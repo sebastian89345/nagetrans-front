@@ -5,7 +5,7 @@ import "./cameraStyle.css";
 
 // import Swal from "sweetalert2";
 
-function CameraComponent({ cameraView }) {
+function CameraComponent({ cameraView , camera }) {
   let capturedImages;
 
   const webcamRef = useRef(null);
@@ -35,11 +35,7 @@ function CameraComponent({ cameraView }) {
   };
 
   const toggleCamera = () => {
-    if(facingMode === "user") {
-      setFacingMode("environment");
-    } else if (facingMode === "environment"){
-      setFacingMode("user");
-    }
+    setFacingMode((prevFacingMode) => (prevFacingMode === "user" ? "environment" : "user"));
   };
 
   // const retakeImage = () => {
@@ -65,7 +61,7 @@ function CameraComponent({ cameraView }) {
       ) : (
         <div>
           <div className={cameraView} >
-            <Webcam className="round-camera-view-video" audio={false} ref={webcamRef} forceScreenshotSourceSize screenshotFormat="image/jpeg" videoConstraints={{ facingMode, mirrored: true }} />
+            <Webcam className="round-camera-view-video" audio={false} ref={webcamRef} forceScreenshotSourceSize screenshotFormat="image/jpeg" videoConstraints={{ facingMode }} />
           </div>
           <div className="camera-component-main">
             <button onClick={toggleCamera} className="camera-component-main-button btn buttonStyle">
