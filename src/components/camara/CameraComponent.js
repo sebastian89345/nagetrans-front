@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import Webcam from "react-webcam";
-import { BsArrowRepeat, BsFillCameraFill } from "react-icons/bs";
+import { BsArrowRepeat } from "react-icons/bs";
 import "./cameraStyle.css";
 
 // import Swal from "sweetalert2";
@@ -35,8 +35,11 @@ function CameraComponent({ cameraView }) {
   };
 
   const toggleCamera = () => {
-    setFacingMode((prevFacingMode) => (prevFacingMode === "user" ? "environment" : "user"));
-    // setCapturedImage(null);
+    if(facingMode === "user") {
+      setFacingMode("environment");
+    } else if (facingMode === "environment"){
+      setFacingMode("user");
+    }
   };
 
   // const retakeImage = () => {
@@ -45,6 +48,7 @@ function CameraComponent({ cameraView }) {
 
   // const switchCamera = () => {
   //   setFacingMode(facingMode === "user" ? "environment" : "user");
+  // setFacingMode((prevFacingMode) => (prevFacingMode === "user" ? "environment" : "user"));
   // };
 
   return (
