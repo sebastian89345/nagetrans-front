@@ -1,0 +1,10 @@
+.DefaultTable-main {
+    width: 100%;
+    padding: 20px 0px 0px 0px;
+}
+
+.DefaultTable-pagination-main {
+    display: flex;
+    justify-content: center;
+}
+

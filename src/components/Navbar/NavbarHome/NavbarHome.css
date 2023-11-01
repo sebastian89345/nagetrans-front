@@ -1,0 +1,117 @@
+.home-container-navbar {
+    width: 100%;
+    padding: 20px 5% 20px 5%;
+    background-color: #000000;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.home-navbar-flex-container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+}
+
+.home-navbar-tiltle {
+    color: #FFFFFF;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+ /* Finaliza sidebar */
+
+  /* Logout */
+
+  .dropdown-menu {
+    transform: translate3d(0px, 50px, 0px) !important;
+    width: 300px;
+    padding: 20px;
+    border-radius: 0px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  }
+
+  .home-logout-container-img {
+    text-align: center;
+  }
+
+  .home-logout-img {
+    border-radius: 150px;
+    width: 80px;
+    height: 80px;
+    /* background: url(<path-to-image>), lightgray 50% / cover no-repeat; */
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  }
+
+  .home-logout-title-email {
+    color: #000;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+  }
+
+  .home-logout-title-user {
+    color: #969292;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+  }
+
+  .home-logout-button {
+    width: 200px;
+    border-radius: 40px;
+    background: #1E88E5;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    padding: 10px 0px 10px 0px;
+    border: none;
+    font-weight: 600;
+    color: white;
+    outline: none;
+    cursor: pointer;
+  }
+
+  .center-text {
+    text-align: center;
+  }
+
+  /*Finaliza Logout*/
+
+  /* Aplicacion movil */
+
+  @media (max-width: 1200px) { 
+  
+    .home-mobile-container-navbar {
+      height: 10%;
+      width: 100%;
+      padding: 21px 5% 18px 5%;
+      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    }
+    
+    .home-mobile-navbar-flex-container {
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .home-mobile-navbar-logo{
+      width: 90px;
+      height: 35px;
+      cursor: pointer;
+    }
+
+    .home-mobile-navbar-menu {
+      width: 40px;
+      height: 35px;
+      cursor: pointer;
+    }
+    
+    .home-mobile-navbar-tiltle{
+      color: rgba(255, 0, 0, 0.70);
+      font-style: normal;
+      font-weight: 700;
+      font-size: 30px;
+      cursor: pointer;
+    }
+  
+  }
+
+  /* Finaliza Aplicacion movil */

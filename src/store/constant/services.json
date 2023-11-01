@@ -1,0 +1,13 @@
+{
+    "urlDev":"http://localhost:3010/api/v1/",
+    "urlProd":"",
+    "login": {
+        "urlLogin":"auth/login/"
+    },
+    "user": {
+        "urlLogin":"users/"
+    },
+    "role": {
+        "urlRole":"role/"
+    }
+}

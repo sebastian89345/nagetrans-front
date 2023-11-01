@@ -1,0 +1,98 @@
+.camera-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.camera-content-button {
+    margin-top: 5%;
+    text-align: center;
+}
+
+.camera-content-button button {
+    border-radius: 100px;
+    border: 1px solid #6B4EFF;
+    background: #6B4EFF;
+    color: #FFF;
+    padding: 10px 72px;
+    cursor: pointer;
+}
+
+.camera-content-button button:focus {
+    outline: none;
+}
+
+.rounded-image {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.rounded-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.button-retake-image {
+    margin-top: 5%;
+    text-align: center;
+}
+
+.button-retake-image button {
+    background-color: #6B4EFF;
+    border: #6B4EFF 1px solid;
+    border-radius: 100px;
+    color: #FFF;
+    padding: 5px 91px;
+    cursor: pointer;
+}
+
+.button-retake-image button:focus {
+    outline: none;
+}
+
+.buttonStyle {
+    margin-top: 5%;
+    background: transparent;
+    border: 1px solid #6B4EFF;
+    color: #6B4EFF;
+    padding: 1.5% 3%;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+.camera-component-main {
+    display: flex;
+    justify-content: center;
+}
+
+.camera-component-main-button {
+    display: flex;
+}
+
+.round-camera-view {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.round-camera-view-chart {
+    width: 300px;
+    height: 200px;
+    overflow: hidden;
+}
+
+.round-camera-view-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* video {
+    transform: scaleX(-1);
+} */

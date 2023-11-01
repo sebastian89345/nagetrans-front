@@ -1,0 +1,18 @@
+.list-user-main {
+    padding: 40px;
+}
+
+.list-user-main-button {
+    text-align: end;
+}
+
+.list-user-button-title {
+    min-width: 150px;
+}
+
+ /* Large devices (desktops, 992px and up) */
+@media (max-width: 992px) { 
+    .list-user-main {
+        padding: 20px;
+    }
+}
