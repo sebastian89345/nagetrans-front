@@ -16,6 +16,9 @@ import { useSelector , useDispatch } from "react-redux";
 //Reducers
 import { getRoleAllService } from "../../../store/action/roleAction";
 
+//Alertas 
+import Swal from 'sweetalert2';
+
 function List() {
   const [view, setView] = useState({list:true,create:false,update:false})
   const dataListRole = useSelector((store) => store.roleService);
@@ -39,8 +42,18 @@ function List() {
     setView({list:false,create:true})
   }
 
-  const deleteInfo = () => {
-    
+  const alertDelete = () => {
+    Swal.fire('¡Hola!', 'Estas seguro que deseas eliminar esta Información', 'success');
+  }
+
+  const deleteInfo = (id) => {
+    alertDelete()
+    console.log(id);
+  }
+
+  const updateInfo = (id,item) => {
+    console.log(id);
+    console.log(item);
   }
 
   return (
@@ -50,7 +63,7 @@ function List() {
           <div className='list-role-main-button'>
             <button onClick={handleClick} type="button" className="list-role-button-title btn btn-primary">Crear</button>
           </div>
-          <DefaultTable data={dataListRole.data} nms={"role"} />
+          <DefaultTable data={dataListRole.data} nms={"role"} deleteId={deleteInfo} updateId={updateInfo} />
         </>
         : view.create === true ?
           <Create />

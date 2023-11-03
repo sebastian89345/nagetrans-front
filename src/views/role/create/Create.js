@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 
 //Hoja de estilos
 import './Create.css';
@@ -12,19 +12,20 @@ import { createRoleService } from "../../../store/action/roleAction";
 function Create() {
 
   const [inputName, setInputName] = useState("");
-  // const dataListRole = useSelector((store) => store.roleService);
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(getRoleAllService());
-  // }, [dispatch])
+  useEffect(() => {
+    
 
+
+  }, [dispatch])
+  
   const handleOnchange = (e) => {
-    console.log(e);
+    // console.log(e);
     setInputName(e.target.value);
   }
 
-  const createRole =  () => {
+  const createRole = async () => {
     let body = {
       name:inputName
     }

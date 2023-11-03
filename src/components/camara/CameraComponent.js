@@ -38,15 +38,6 @@ function CameraComponent({ cameraView , camera }) {
     setFacingMode((prevFacingMode) => (prevFacingMode === "user" ? "environment" : "user"));
   };
 
-  // const retakeImage = () => {
-  //   setCapturedImage(null);
-  // };
-
-  // const switchCamera = () => {
-  //   setFacingMode(facingMode === "user" ? "environment" : "user");
-  // setFacingMode((prevFacingMode) => (prevFacingMode === "user" ? "environment" : "user"));
-  // };
-
   return (
     <div className="camera-container">
       {capturedImages ? (

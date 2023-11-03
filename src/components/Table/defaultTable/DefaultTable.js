@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import './DefaultTable.css';
 
 
-const DefaultTable = ({ data , nms}) => {
+const DefaultTable = ({ data , nms , updateId , deleteId }) => {
 
   const [filtro, setFiltro] = useState('');
   const [paginaActual, setPaginaActual] = useState(1);
@@ -95,10 +95,10 @@ const DefaultTable = ({ data , nms}) => {
                 <tr key={index}>
                   {responseTd(item)}
                   <td>
-                    <button type="button" className="btn btn-primary Default-table-edit mr-4">Editar</button>
+                    <button onClick={() => updateId(item._id,item)} type="button" className="btn btn-primary Default-table-edit mr-4">Editar</button>
                   </td>
                   <td>
-                    <button type="button" className="btn btn-danger Default-table-delete">Eliminar</button>
+                    <button onClick={() => deleteId(item._id)} type="button" className="btn btn-danger Default-table-delete">Eliminar</button>
                   </td>
                 </tr>
               ))}
