@@ -11,6 +11,7 @@ function CameraComponent({ cameraView , camera }) {
   const webcamRef = useRef(null);
   // const [capturedImage, setCapturedImage] = useState(null);
   const [facingMode, setFacingMode] = useState("user");
+  const [mirror, setMirror] = useState(true);
 
   const captureImage = () => {
     // const imageSrc = webcamRef.current.getScreenshot();
@@ -36,6 +37,13 @@ function CameraComponent({ cameraView , camera }) {
 
   const toggleCamera = () => {
     setFacingMode((prevFacingMode) => (prevFacingMode === "user" ? "environment" : "user"));
+    // setMirror((prevMirror) => ( prevMirror === true ? setMirror(false) ))
+
+    if(mirror === true) {
+      setMirror(false)
+    } else if (mirror === false) {
+      setMirror(true)
+    }
   };
 
   return (
@@ -52,7 +60,7 @@ function CameraComponent({ cameraView , camera }) {
       ) : (
         <div>
           <div className={cameraView} >
-            <Webcam className="round-camera-view-video" audio={false} ref={webcamRef} forceScreenshotSourceSize screenshotFormat="image/jpeg" videoConstraints={{ facingMode }} />
+            <Webcam className="round-camera-view-video" audio={false} ref={webcamRef} forceScreenshotSourceSize screenshotFormat="image/jpeg" videoConstraints={{ mirrored:mirror ,facingMode }} />
           </div>
           <div className="camera-component-main">
             <button onClick={toggleCamera} className="camera-component-main-button btn buttonStyle">
