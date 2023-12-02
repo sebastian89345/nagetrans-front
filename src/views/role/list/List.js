@@ -43,7 +43,7 @@ function List() {
   }
 
   const alertDelete = () => {
-    Swal.fire('¡Hola!', 'Estas seguro que deseas eliminar esta Información', 'success');
+    Swal.fire('Estas seguro que deseas eliminar esta Información', 'success');
   }
 
   const deleteInfo = (id) => {

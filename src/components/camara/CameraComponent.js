@@ -39,7 +39,7 @@ function CameraComponent({ cameraView , camera }) {
     setFacingMode((prevFacingMode) => (prevFacingMode === "user" ? "environment" : "user"));
     // setMirror((prevMirror) => ( prevMirror === true ? setMirror(false) ))
 
-    setMirror(!mirror)
+    setMirror(!mirror);
     console.log(!mirror);
 
     // if(mirror === true) {

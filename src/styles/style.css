@@ -1,16 +1,24 @@
-#root {
-    height:100%; 
-    margin:0;
-    padding:0;
-}
-
 html, body { 
     height:100%; 
     margin:0;
     padding:0;
 }
 
+#root {
+    height:100%; 
+    margin:0;
+    padding:0;
+}
+
+:root {
+    --primary-color: #148845;
+    --secondary-color: #148845;
+}
+
 p {
     margin-bottom: 0px;
 }
   
+.button-All { 
+    color: var(--primary-color) !important;
+}

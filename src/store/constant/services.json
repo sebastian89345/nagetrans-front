@@ -1,6 +1,6 @@
 {
     "urlDev":"http://localhost:3010/api/v1/",
-    "urlProd":"",
+    "urlProd":"https://nagetrans-back.onrender.com/api/v1/",
     "login": {
         "urlLogin":"auth/login/"
     },

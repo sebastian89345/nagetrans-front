@@ -88,10 +88,10 @@ function Home() {
           <button name={changeColor[1].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[1].buttons} mb-1 ml-3`}>
             <img className={`home-sidebar-icon ${changeColor[1].icon}`} src={iconUser} alt='nose' /> Usuarios
           </button>
-          <button name={changeColor[4].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[4].buttons} mb-1 ml-3`}>
+          <button name={changeColor[4].name} onClick={changeColorClick} className={`button-All home-sidebar-links ${changeColor[4].buttons} mb-1 ml-3`}>
             <img className={`home-sidebar-icon ${changeColor[4].icon}`} src={iconGroupUser} alt='nose' /> Rol
           </button>
-          <button name={changeColor[5].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[5].buttons} mb-1 ml-3`}>
+          <button name={changeColor[5].name} onClick={changeColorClick} className={`button-All home-sidebar-links ${changeColor[5].buttons} mb-1 ml-3`}>
             <img className={`home-sidebar-icon ${changeColor[5].icon}`} src={iconCheckCircle} alt='nose' /> Estado
           </button>
           <button name={changeColor[6].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[6].buttons} mb-1 ml-3`}>

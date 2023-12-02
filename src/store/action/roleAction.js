@@ -4,7 +4,7 @@ import { GET_ROLE_ALL,CREATE_ROLE } from '../constant/constant';
 
 export const getRoleAllService = (token) => async (dispatch, getState) => {
     try {
-        const res = await axios.get(config.urlDev+config.role.urlRole);
+        const res = await axios.get(config.urlProd+config.role.urlRole);
         // console.log(res);
         let result = res.data.response.response;
         if (res.data.response.status === 200) {
@@ -20,7 +20,7 @@ export const getRoleAllService = (token) => async (dispatch, getState) => {
 
 export const createRoleService = (body,token) => async (dispatch, getState) => {
     try {
-        const res = await axios.post(config.urlDev+config.role.urlRole,body);
+        const res = await axios.post(config.urlProd+config.role.urlRole,body);
         console.log(res);
         let result = res.data.response.response;
         if (res.data.response.status === 200) {
@@ -36,7 +36,7 @@ export const createRoleService = (body,token) => async (dispatch, getState) => {
 
 export const updateRoleService = (body,token) => async (dispatch, getState) => {
     try {
-        const res = await axios.post(config.urlDev+config.role.urlRole,body);
+        const res = await axios.post(config.urlProd+config.role.urlRole,body);
         console.log(res);
         let result = res.data.response.response;
         if (res.data.response.status === 200) {
@@ -52,7 +52,7 @@ export const updateRoleService = (body,token) => async (dispatch, getState) => {
 
 export const deleteRoleService = (id,token) => async (dispatch, getState) => {
     try {
-        const res = await axios.post(config.urlDev+config.role.urlRole + id);
+        const res = await axios.post(config.urlProd+config.role.urlRole + id);
         console.log(res);
         let result = res.data.response.response;
         if (res.data.response.status === 200) {
