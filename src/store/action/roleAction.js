@@ -1,6 +1,6 @@
 import axios from 'axios';
 import config from "../constant/services.json";
-import { GET_ROLE_ID,GET_ROLE_ALL,CREATE_ROLE,UPDATE_ROLE } from '../constant/constant';
+import { GET_ROLE_ID,GET_ROLE_ALL } from '../constant/constant';
 
 export const getRoleAIdService = (token) => async (dispatch, getState) => {
     try {
@@ -37,30 +37,21 @@ export const getRoleAllService = (token) => async (dispatch, getState) => {
 export const createRoleService = (body,token) => async (dispatch, getState) => {
     try {
         const res = await axios.post(config.urlProd+config.role.urlRole,body);
-        console.log(res);
-        let result = res.data.response.response;
-        if (res.data.response.status === 200) {
-            dispatch({
-                type: CREATE_ROLE,
-                payload: { data: result }
-            });
-        } 
+        // console.log(res);
+        let result = res.data;
+        return result;
     } catch (error) {
         console.log(error);
+        return error;
     }
 };
 
 export const updateRoleService = (body,token) => async (dispatch, getState) => {
     try {
         const res = await axios.post(config.urlProd+config.role.urlRole,body);
-        console.log(res);
-        let result = res.data.response.response;
-        if (res.data.response.status === 200) {
-            dispatch({
-                type: UPDATE_ROLE,
-                payload: { data: result }
-            });
-        } 
+        // console.log(res);
+        let result = res.data;
+        return result; 
     } catch (error) {
         console.log(error);
     }

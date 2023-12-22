@@ -1,4 +1,4 @@
-import { GET_ROLE_ALL,CREATE_ROLE,UPDATE_ROLE,DELETE_ROLE } from "../constant/constant";
+import { GET_ROLE_ID,GET_ROLE_ALL } from "../constant/constant";
 
 const initialState = {
     data: [],
@@ -8,22 +8,14 @@ const initialState = {
 
 export default function roleReducer(state = initialState, action) {
     switch (action.type) {
+        case GET_ROLE_ID:
+
+            return {...state,data:action.payload.data};
+        
         case GET_ROLE_ALL:
             
             return {...state,data:action.payload.data};
 
-        case CREATE_ROLE:
-            
-            return {...state,data:action.payload.data};
-
-        case UPDATE_ROLE:
-            
-            return {...state,data:action.payload.data};
-
-        case DELETE_ROLE:
-            
-            return {...state,data:action.payload.data};
-    
         default:
             return state;
     }

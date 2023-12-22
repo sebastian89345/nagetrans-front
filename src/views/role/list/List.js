@@ -63,7 +63,7 @@ function List() {
             });
           break;
         default:
-            console.log(response.error);
+            console.log(response.response);
             Swal.fire({
               title: "Error!",
               text: "Ocurrio un error al eliminarlo",
