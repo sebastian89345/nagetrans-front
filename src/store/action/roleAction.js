@@ -1,6 +1,22 @@
 import axios from 'axios';
 import config from "../constant/services.json";
-import { GET_ROLE_ALL,CREATE_ROLE } from '../constant/constant';
+import { GET_ROLE_ID,GET_ROLE_ALL,CREATE_ROLE,UPDATE_ROLE } from '../constant/constant';
+
+export const getRoleAIdService = (token) => async (dispatch, getState) => {
+    try {
+        const res = await axios.get(config.urlProd+config.role.urlRole);
+        // console.log(res);
+        let result = res.data.response.response;
+        if (res.data.response.status === 200) {
+            dispatch({
+                type: GET_ROLE_ID,
+                payload: { data: result }
+            });
+        } 
+    } catch (error) {
+        console.log(error);
+    }
+};
 
 export const getRoleAllService = (token) => async (dispatch, getState) => {
     try {
@@ -41,7 +57,7 @@ export const updateRoleService = (body,token) => async (dispatch, getState) => {
         let result = res.data.response.response;
         if (res.data.response.status === 200) {
             dispatch({
-                type: CREATE_ROLE,
+                type: UPDATE_ROLE,
                 payload: { data: result }
             });
         } 
@@ -50,18 +66,14 @@ export const updateRoleService = (body,token) => async (dispatch, getState) => {
     }
 };
 
-export const deleteRoleService = (id,token) => async (dispatch, getState) => {
+export const deleteRoleService = (id) => async (dispatch, getState) => {
     try {
-        const res = await axios.post(config.urlProd+config.role.urlRole + id);
-        console.log(res);
-        let result = res.data.response.response;
-        if (res.data.response.status === 200) {
-            dispatch({
-                type: CREATE_ROLE,
-                payload: { data: result }
-            });
-        } 
+        const res = await axios.delete(config.urlProd+config.role.urlRole + id);
+        // console.log(res);
+        let result = res.data;
+        return result;
     } catch (error) {
         console.log(error);
+        return error;
     }
 };
