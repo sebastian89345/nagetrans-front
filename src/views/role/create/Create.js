@@ -19,7 +19,6 @@ function Create() {
   const dispatch = useDispatch();
 
   // const returnWindow = () => {
-
   // }
 
   const validateInput = () => {
@@ -44,7 +43,7 @@ function Create() {
     }
   }
 
-  const createRole = async () => {
+  const create = async () => {
     //Aqui estoy validando que el input cumpla con las validaciones
     let validate = validateInput();
     if(validate === true) {
@@ -96,7 +95,7 @@ function Create() {
                 {error && <p style={{ color: 'red' }}>{error}</p>}
               </div>
               <div className='mt-4 text-center'>
-                <button onClick={createRole} type="button" className="role-create-button btn btn-primary">Guardar</button>
+                <button onClick={create} type="button" className="role-create-button btn btn-primary">Guardar</button>
               </div>
             </div>
         </div>

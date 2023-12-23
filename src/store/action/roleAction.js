@@ -48,7 +48,7 @@ export const createRoleService = (body,token) => async (dispatch, getState) => {
 
 export const updateRoleService = (body,token) => async (dispatch, getState) => {
     try {
-        const res = await axios.post(config.urlProd+config.role.urlRole,body);
+        const res = await axios.put(config.urlProd+config.role.urlRole + body.id,body);
         // console.log(res);
         let result = res.data;
         return result; 
