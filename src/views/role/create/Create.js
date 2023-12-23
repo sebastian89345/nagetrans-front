@@ -12,14 +12,19 @@ import { createRoleService } from "../../../store/action/roleAction";
 //Alertas 
 import Swal from 'sweetalert2';
 
-function Create() {
+//Imagenes
+import arrow from '../../../assets/img/bx-chevron-left.svg';
+
+function Create({ setView,getAll }) {
 
   const [inputName, setInputName] = useState("");
   const [error, setError] = useState('');
   const dispatch = useDispatch();
 
-  // const returnWindow = () => {
-  // }
+  const returnWindow = () => {
+    getAll();
+    setView({list:true})
+  }
 
   const validateInput = () => {
     let message = true;
@@ -82,9 +87,12 @@ function Create() {
   }
 
   return (
-    <div>
-        <div className='card'>
+    <div className='role-create-card-main'>
+        <div className='role-create-card card'>
             <div className='card-body'>
+              <div>
+                <img onClick={returnWindow} src={arrow} className='role-create-img' alt='img' />
+              </div>
               <div className=' text-center'>
                 <p className='role-create-title'>Crear un nuevo rol</p>
               </div>

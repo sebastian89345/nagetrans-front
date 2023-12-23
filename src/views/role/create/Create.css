@@ -1,3 +1,13 @@
+.role-create-card-main{
+    display: flex;
+    justify-content: center;
+}
+
+.role-create-card {
+    width: 100%;
+    max-width: 1000px;
+}
+
 .role-create-main {
     padding: 40px;
 }
@@ -17,6 +27,10 @@
     font-size: 20px;
     font-weight: 500;
     font-family: 'Poppins';
+}
+
+.role-create-img {
+    width: 60px;
 }
 
  /* Large devices (desktops, 992px and up) */

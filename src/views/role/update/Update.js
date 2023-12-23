@@ -12,11 +12,19 @@ import { updateRoleService } from "../../../store/action/roleAction";
 //Alertas 
 import Swal from 'sweetalert2';
 
-function Update({ infoUpdate }) {
+//Imagenes
+import arrow from '../../../assets/img/bx-chevron-left.svg'
+
+function Update({ infoUpdate,setView,getAll }) {
 
   const [inputName, setInputName] = useState(infoUpdate.item.name);
   const [error, setError] = useState('');
   const dispatch = useDispatch();
+
+  const returnWindow = () => {
+    setView({list:true});
+    getAll();
+  }
 
   const validateInput = () => {
     let message = true;
@@ -77,20 +85,23 @@ function Update({ infoUpdate }) {
   }
 
   return (
-    <div>
-        <div className='card'>
+    <div className='role-update-card-main'>
+        <div className='role-update-card card'>
             <div className='card-body'>
+              <div>
+                <img onClick={returnWindow} src={arrow} className='role-update-img' alt='img' />
+              </div>
               <div className=' text-center'>
-                <p className='role-create-title'>Editar el rol</p>
+                <p className='role-update-title'>Editar el rol</p>
               </div>
               <div className='mt-4'>
-                <input value={inputName} onChange={(e) => setInputName(e.target.value)} type="text" className="role-create-input form-control" placeholder="Nombre del rol" />
+                <input value={inputName} onChange={(e) => setInputName(e.target.value)} type="text" className="role-update-input form-control" placeholder="Nombre del rol" />
               </div>
               <div className='mt-4'>
                 {error && <p style={{ color: 'red' }}>{error}</p>}
               </div>
               <div className='mt-4 text-center'>
-                <button onClick={edit} type="button" className="role-create-button btn btn-primary">Guardar</button>
+                <button onClick={edit} type="button" className="role-update-button btn btn-primary">Guardar</button>
               </div>
             </div>
         </div>

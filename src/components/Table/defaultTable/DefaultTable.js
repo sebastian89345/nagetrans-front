@@ -8,7 +8,7 @@ const DefaultTable = ({ data , nms , updateId , deleteId }) => {
 
   const [filtro, setFiltro] = useState('');
   const [paginaActual, setPaginaActual] = useState(1);
-  const filasPorPagina = 5; // Cambia este valor según tus necesidades
+  const filasPorPagina = 10; // Cambia este valor según tus necesidades
 
   // Filtra los datos según el valor del filtro
   const datosFiltrados = data.filter(item => {
