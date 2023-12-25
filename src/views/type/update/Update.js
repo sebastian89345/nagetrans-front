@@ -7,13 +7,13 @@ import './Update.css';
 import {  useDispatch } from "react-redux";
 
 //Reducers
-import { updateRoleService } from "../../../store/action/roleAction";
+import { updateTypeService } from "../../../store/action/typeAction";
 
 //Alertas 
 import Swal from 'sweetalert2';
 
 //Imagenes
-import arrow from '../../../assets/img/bx-chevron-left.svg'
+import arrow from '../../../assets/img/bx-chevron-left.svg';
 
 function Update({ infoUpdate,setView,getAll }) {
 
@@ -54,7 +54,7 @@ function Update({ infoUpdate,setView,getAll }) {
     if(validate === true) { 
         //Aquí comienza las peticiones y demas
         let body = { id:infoUpdate.id, name:inputName }
-        let response = await dispatch(updateRoleService(body));
+        let response = await dispatch(updateTypeService(body));
         if(response.error === undefined){
           switch (response.response.status) {
             case 200:
@@ -85,23 +85,23 @@ function Update({ infoUpdate,setView,getAll }) {
   }
 
   return (
-    <div className='role-update-card-main'>
-        <div className='role-update-card card'>
+    <div className='type-update-card-main'>
+        <div className='type-update-card card'>
             <div className='card-body'>
               <div>
-                <img onClick={returnWindow} src={arrow} className='role-update-img' alt='img' />
+                <img onClick={returnWindow} src={arrow} className='type-update-img' alt='img' />
               </div>
               <div className=' text-center'>
-                <p className='role-update-title'>Editar el rol</p>
+                <p className='type-update-title'>Editar el rol</p>
               </div>
               <div className='mt-4'>
-                <input value={inputName} onChange={(e) => setInputName(e.target.value)} type="text" className="role-update-input form-control" placeholder="Nombre del rol" />
+                <input value={inputName} onChange={(e) => setInputName(e.target.value)} type="text" className="type-update-input form-control" placeholder="Nombre del rol" />
               </div>
               <div className='mt-4'>
                 {error && <p style={{ color: 'red' }}>{error}</p>}
               </div>
               <div className='mt-4 text-center'>
-                <button onClick={edit} type="button" className="role-update-button btn btn-primary">Guardar</button>
+                <button onClick={edit} type="button" className="type-update-button btn btn-primary">Guardar</button>
               </div>
             </div>
         </div>

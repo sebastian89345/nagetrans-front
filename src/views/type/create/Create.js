@@ -7,7 +7,7 @@ import './Create.css';
 import {  useDispatch } from "react-redux";
 
 //Reducers
-import { createRoleService } from "../../../store/action/roleAction";
+import { createTypeService } from "../../../store/action/typeAction";
 
 //Alertas 
 import Swal from 'sweetalert2';
@@ -54,7 +54,7 @@ function Create({ setView,getAll }) {
     if(validate === true) {
       //Aquí comienza las peticiones y demas
       let body = { name:inputName }
-      let response = await dispatch(createRoleService(body));
+      let response = await dispatch(createTypeService(body));
       if(response.error === undefined){
         switch (response.response.status) {
           case 201:
@@ -87,23 +87,23 @@ function Create({ setView,getAll }) {
   }
 
   return (
-    <div className='role-create-card-main'>
-        <div className='role-create-card card'>
+    <div className='type-create-card-main'>
+        <div className='type-create-card card'>
             <div className='card-body'>
               <div>
-                <img onClick={returnWindow} src={arrow} className='role-create-img' alt='img' />
+                <img onClick={returnWindow} src={arrow} className='type-create-img' alt='img' />
               </div>
               <div className=' text-center'>
-                <p className='role-create-title'>Crear un nuevo rol</p>
+                <p className='type-create-title'>Crear un nuevo tipo de vehiculo</p>
               </div>
               <div className='mt-4'>
-                <input value={inputName} onChange={(e) => setInputName(e.target.value)} type="text" className="role-create-input form-control" placeholder="Nombre del rol" />
+                <input value={inputName} onChange={(e) => setInputName(e.target.value)} type="text" className="type-create-input form-control" placeholder="Nombre del rol" />
               </div>
               <div className='mt-4'>
                 {error && <p style={{ color: 'red' }}>{error}</p>}
               </div>
               <div className='mt-4 text-center'>
-                <button onClick={create} type="button" className="role-create-button btn btn-primary">Guardar</button>
+                <button onClick={create} type="button" className="type-create-button btn btn-primary">Guardar</button>
               </div>
             </div>
         </div>
