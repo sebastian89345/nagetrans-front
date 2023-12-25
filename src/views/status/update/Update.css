@@ -1,41 +1,41 @@
-.role-update-card-main{
+.status-update-card-main{
     display: flex;
     justify-content: center;
 }
 
-.role-update-card {
+.status-update-card {
     width: 100%;
     max-width: 1000px;
 }
 
-.role-update-main {
+.status-update-main {
     padding: 40px;
 }
 
-.role-update-button {
+.status-update-button {
     min-width: 150px;
 }
 
-.role-update-title {
+.status-update-title {
     font-size: 25px;
     font-weight: 600;
     font-family: 'Poppins';
     color: #6c757d;
 }
 
-.role-update-input {
+.status-update-input {
     font-size: 20px;
     font-weight: 500;
     font-family: 'Poppins';
 }
 
-.role-update-img {
+.status-update-img {
     width: 60px;
 }
 
  /* Large devices (desktops, 992px and up) */
 @media (max-width: 992px) { 
-    .role-update-main {
+    .status-update-main {
         padding: 20px;
     }
 }

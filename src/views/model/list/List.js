@@ -14,7 +14,7 @@ import Update from '../update/Update';
 import { useSelector , useDispatch } from "react-redux";
 
 //Reducers
-import { getRoleAllService , deleteRoleService  } from "../../../store/action/roleAction";
+import { getModelAllService , deleteModelService  } from "../../../store/action/modelAction";
 
 //Alertas 
 import Swal from 'sweetalert2';
@@ -22,17 +22,17 @@ import Swal from 'sweetalert2';
 function List() {
   const [view, setView] = useState({list:true,create:false,update:false});
   const [infoUpdate, setInfoUpdate] = useState({});
-  const dataList = useSelector((store) => store.roleService);
+  const dataList = useSelector((store) => store.modelService);
   const dispatch = useDispatch();
 
   //Aqui hago la consulta a la base de datos y la agrego el payload al redux
   useEffect(() => {
-    dispatch(getRoleAllService());
+    dispatch(getModelAllService());
   }, [dispatch])
 
   //Esto es para actulizar la lista en el create y update y nada mas
   const getAll = () => {
-    dispatch(getRoleAllService());
+    dispatch(getModelAllService());
   }
 
   const handleCreate = () => {
@@ -56,12 +56,12 @@ function List() {
   }
 
   const alertDelete = async (id) => {
-    let response = await dispatch(deleteRoleService(id));
+    let response = await dispatch(deleteModelService(id));
     if(response.error === undefined){
       switch (response.response.status) {
         case 200:
             //Aquí actulizo la informacion
-            dispatch(getRoleAllService());
+            dispatch(getModelAllService());
             Swal.fire({
               title: "Eliminado!",
               text: "Fue eliminado con exito",
@@ -93,13 +93,13 @@ function List() {
   }
 
   return (
-    <div className='list-role-main'>
+    <div className='list-model-main'>
       { view.list === true ?
         <>
-          <div className='list-role-main-button'>
-            <button onClick={handleCreate} type="button" className="list-role-button-title btn btn-primary">Crear</button>
+          <div className='list-model-main-button'>
+            <button onClick={handleCreate} type="button" className="list-model-button-title btn btn-primary">Crear</button>
           </div> 
-          <DefaultTable data={dataList.data} nms={"role"} deleteId={deleteInfo} updateId={updateInfo} />
+          <DefaultTable data={dataList.data} nms={"model"} deleteId={deleteInfo} updateId={updateInfo} />
         </>
         : view.create === true ?
           <Create setView={setView} getAll={getAll} />

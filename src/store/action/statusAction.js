@@ -1,15 +1,15 @@
 import axios from 'axios';
 import config from "../constant/services.json";
-import { GET_ROLE_ID,GET_ROLE_ALL } from '../constant/constant';
+import { GET_STATUS_ID,GET_STATUS_ALL } from '../constant/constant';
 
-export const getRoleAIdService = (token) => async (dispatch, getState) => {
+export const getStatusAIdService = (token) => async (dispatch, getState) => {
     try {
-        const res = await axios.get(config.urlProd+config.role.urlRole);
+        const res = await axios.get(config.urlProd+config.status.urlStatus);
         // console.log(res);
         let result = res.data.response.response;
         if (res.data.response.status === 200) {
             dispatch({
-                type: GET_ROLE_ID,
+                type: GET_STATUS_ID,
                 payload: { data: result }
             });
         } 
@@ -18,14 +18,14 @@ export const getRoleAIdService = (token) => async (dispatch, getState) => {
     }
 };
 
-export const getRoleAllService = (token) => async (dispatch, getState) => {
+export const getStatusAllService = (token) => async (dispatch, getState) => {
     try {
-        const res = await axios.get(config.urlProd+config.role.urlRole);
+        const res = await axios.get(config.urlProd+config.status.urlStatus);
         // console.log(res);
         let result = res.data.response.response;
         if (res.data.response.status === 200) {
             dispatch({
-                type: GET_ROLE_ALL,
+                type: GET_STATUS_ALL,
                 payload: { data: result }
             });
         } 
@@ -34,9 +34,9 @@ export const getRoleAllService = (token) => async (dispatch, getState) => {
     }
 };
 
-export const createRoleService = (body,token) => async (dispatch, getState) => {
+export const createStatusService = (body,token) => async (dispatch, getState) => {
     try {
-        const res = await axios.post(config.urlProd+config.role.urlRole,body);
+        const res = await axios.post(config.urlProd+config.status.urlStatus,body);
         // console.log(res);
         let result = res.data;
         return result;
@@ -46,9 +46,9 @@ export const createRoleService = (body,token) => async (dispatch, getState) => {
     }
 };
 
-export const updateRoleService = (body,token) => async (dispatch, getState) => {
+export const updateStatusService = (body,token) => async (dispatch, getState) => {
     try {
-        const res = await axios.put(config.urlProd+config.role.urlRole + body.id,body);
+        const res = await axios.put(config.urlProd+config.status.urlStatus + body.id,body);
         // console.log(res);
         let result = res.data;
         return result; 
@@ -57,9 +57,9 @@ export const updateRoleService = (body,token) => async (dispatch, getState) => {
     }
 };
 
-export const deleteRoleService = (id) => async (dispatch, getState) => {
+export const deleteStatusService = (id) => async (dispatch, getState) => {
     try {
-        const res = await axios.delete(config.urlProd+config.role.urlRole + id);
+        const res = await axios.delete(config.urlProd+config.status.urlStatus + id);
         // console.log(res);
         let result = res.data;
         return result;

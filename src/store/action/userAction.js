@@ -1,6 +1,6 @@
 import axios from 'axios';
 import config from "../constant/services.json";
-import { GET_ROLE_ID,GET_ROLE_ALL } from '../constant/constant';
+import { GET_USER_ID,GET_USER_ALL } from '../constant/constant';
 
 export const getRoleAIdService = (token) => async (dispatch, getState) => {
     try {
@@ -9,7 +9,7 @@ export const getRoleAIdService = (token) => async (dispatch, getState) => {
         let result = res.data.response.response;
         if (res.data.response.status === 200) {
             dispatch({
-                type: GET_ROLE_ID,
+                type: GET_USER_ID,
                 payload: { data: result }
             });
         } 
@@ -25,7 +25,7 @@ export const getRoleAllService = (token) => async (dispatch, getState) => {
         let result = res.data.response.response;
         if (res.data.response.status === 200) {
             dispatch({
-                type: GET_ROLE_ALL,
+                type: GET_USER_ALL,
                 payload: { data: result }
             });
         } 

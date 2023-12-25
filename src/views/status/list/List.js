@@ -14,7 +14,7 @@ import Update from '../update/Update';
 import { useSelector , useDispatch } from "react-redux";
 
 //Reducers
-import { getRoleAllService , deleteRoleService  } from "../../../store/action/statusAction";
+import { getStatusAllService , deleteStatusService  } from "../../../store/action/statusAction";
 
 //Alertas 
 import Swal from 'sweetalert2';
@@ -22,17 +22,17 @@ import Swal from 'sweetalert2';
 function List() {
   const [view, setView] = useState({list:true,create:false,update:false});
   const [infoUpdate, setInfoUpdate] = useState({});
-  const dataList = useSelector((store) => store.roleService);
+  const dataList = useSelector((store) => store.statusService);
   const dispatch = useDispatch();
 
   //Aqui hago la consulta a la base de datos y la agrego el payload al redux
   useEffect(() => {
-    dispatch(getRoleAllService());
+    dispatch(getStatusAllService());
   }, [dispatch])
 
   //Esto es para actulizar la lista en el create y update y nada mas
   const getAll = () => {
-    dispatch(getRoleAllService());
+    dispatch(getStatusAllService());
   }
 
   const handleCreate = () => {
@@ -56,12 +56,12 @@ function List() {
   }
 
   const alertDelete = async (id) => {
-    let response = await dispatch(deleteRoleService(id));
+    let response = await dispatch(deleteStatusService(id));
     if(response.error === undefined){
       switch (response.response.status) {
         case 200:
             //Aquí actulizo la informacion
-            dispatch(getRoleAllService());
+            dispatch(getStatusAllService());
             Swal.fire({
               title: "Eliminado!",
               text: "Fue eliminado con exito",
