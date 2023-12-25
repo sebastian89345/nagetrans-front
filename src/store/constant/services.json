@@ -9,5 +9,17 @@
     },
     "role": {
         "urlRole":"role/"
+    },
+    "status": {
+        "urlStatus":"status/"
+    },
+    "brand": {
+        "urlBrand":"brand/"
+    },
+    "model": {
+        "urlModel":"model/"
+    },
+    "type": {
+        "urlType":"type/"
     }
 }
