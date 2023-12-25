@@ -15,7 +15,15 @@ const DefaultTable = ({ data , nms , updateId , deleteId }) => {
     let response;
     if(nms === "user"){
       response =  item.dni.toLowerCase().includes(filtro.toLowerCase())
-    }else if(nms === "role"){
+    } else if(nms === "role"){
+      response = item.name.toLowerCase().includes(filtro.toLowerCase())
+    } else if(nms === "status"){
+      response = item.name.toLowerCase().includes(filtro.toLowerCase())
+    } else if(nms === "brand"){
+      response = item.name.toLowerCase().includes(filtro.toLowerCase())
+    } else if(nms === "model"){
+      response = item.name.toLowerCase().includes(filtro.toLowerCase())
+    } else if(nms === "type"){
       response = item.name.toLowerCase().includes(filtro.toLowerCase())
     }
     return response ;
@@ -52,6 +60,22 @@ const DefaultTable = ({ data , nms , updateId , deleteId }) => {
       th = <>
       <th scope="col">Nombre del rol</th>
     </>
+    } else if (nms === "status"){
+      th = <>
+      <th scope="col">Nombre del estado</th>
+    </>
+    } else if (nms === "brand"){
+      th = <>
+      <th scope="col">Nombre de la marca</th>
+    </>
+    } else if (nms === "model"){
+      th = <>
+      <th scope="col">Nombre del modelo</th>
+    </>
+    } else if (nms === "type"){
+      th = <>
+      <th scope="col">Nombre del tipo</th>
+    </>
     }
     return th ;
   }
@@ -68,6 +92,22 @@ const DefaultTable = ({ data , nms , updateId , deleteId }) => {
         <td>{item.date}</td>
       </>
     } else if (nms === "role") {
+      td = <>
+        <td>{item.name}</td>
+      </>
+    } else if (nms === "status") {
+      td = <>
+        <td>{item.name}</td>
+      </>
+    } else if (nms === "brand") {
+      td = <>
+        <td>{item.name}</td>
+      </>
+    } else if (nms === "model") {
+      td = <>
+        <td>{item.name}</td>
+      </>
+    } else if (nms === "type") {
       td = <>
         <td>{item.name}</td>
       </>

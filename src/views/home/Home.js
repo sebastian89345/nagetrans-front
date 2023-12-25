@@ -18,8 +18,11 @@ import iconAccordion from '../../assets/img/bx-align-left.png';
 
 //vistas 
 import ListUser from '../user/list/List';
-import ListDriverDocument from '../driver-document/list/List';
-import Role from '../role/list/List'
+import ListRole from '../role/list/List';
+import ListStatus from '../status/list/List';
+import ListBrand from '../brand/list/List';
+import ListModel from '../model/list/List';
+import ListType from '../type/list/List';
 
 function Home() {
 
@@ -119,7 +122,7 @@ function Home() {
     const dashboards = () => {
       return <>
           {   changeColor[0].list === true ? 
-              <ListDriverDocument  />
+              <ListUser  />
             : changeColor[1].list === true ?
               <ListUser />
             : changeColor[2].list === true ?
@@ -127,15 +130,15 @@ function Home() {
             : changeColor[3].list === true ?
               <ListUser />
             : changeColor[4].list === true ?
-              <Role />
+              <ListRole />
             : changeColor[5].list === true ?
-              <ListUser />
+              <ListStatus />
             : changeColor[6].list === true ?
-              <ListUser />
+              <ListBrand />
             : changeColor[7].list === true ?
-              <ListUser />
+              <ListModel />
             : changeColor[8].list === true ?
-              <ListUser />
+              <ListType />
             : <></> 
           }
       </>

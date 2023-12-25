@@ -14,7 +14,7 @@ import Update from '../update/Update';
 import { useSelector , useDispatch } from "react-redux";
 
 //Reducers
-import { getRoleAllService , deleteRoleService  } from "../../../store/action/roleAction";
+import { getRoleAllService , deleteRoleService  } from "../../../store/action/statusAction";
 
 //Alertas 
 import Swal from 'sweetalert2';
@@ -93,13 +93,13 @@ function List() {
   }
 
   return (
-    <div className='list-role-main'>
+    <div className='list-status-main'>
       { view.list === true ?
         <>
-          <div className='list-role-main-button'>
-            <button onClick={handleCreate} type="button" className="list-role-button-title btn btn-primary">Crear</button>
+          <div className='list-status-main-button'>
+            <button onClick={handleCreate} type="button" className="list-status-button-title btn btn-primary">Crear</button>
           </div> 
-          <DefaultTable data={dataList.data} nms={"role"} deleteId={deleteInfo} updateId={updateInfo} />
+          <DefaultTable data={dataList.data} nms={"status"} deleteId={deleteInfo} updateId={updateInfo} />
         </>
         : view.create === true ?
           <Create setView={setView} getAll={getAll} />

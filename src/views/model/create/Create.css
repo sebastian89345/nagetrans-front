@@ -1,0 +1,41 @@
+.role-create-card-main{
+    display: flex;
+    justify-content: center;
+}
+
+.role-create-card {
+    width: 100%;
+    max-width: 1000px;
+}
+
+.role-create-main {
+    padding: 40px;
+}
+
+.role-create-button {
+    min-width: 150px;
+}
+
+.role-create-title {
+    font-size: 25px;
+    font-weight: 600;
+    font-family: 'Poppins';
+    color: #6c757d;
+}
+
+.role-create-input {
+    font-size: 20px;
+    font-weight: 500;
+    font-family: 'Poppins';
+}
+
+.role-create-img {
+    width: 60px;
+}
+
+ /* Large devices (desktops, 992px and up) */
+@media (max-width: 992px) { 
+    .role-create-main {
+        padding: 20px;
+    }
+}

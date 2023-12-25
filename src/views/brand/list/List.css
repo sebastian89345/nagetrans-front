@@ -1,0 +1,18 @@
+.list-role-main {
+    padding: 40px;
+}
+
+.list-role-main-button {
+    text-align: end;
+}
+
+.list-role-button-title {
+    min-width: 150px;
+}
+
+ /* Large devices (desktops, 992px and up) */
+@media (max-width: 992px) { 
+    .list-role-main {
+        padding: 20px;
+    }
+}
