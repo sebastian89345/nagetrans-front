@@ -97,7 +97,7 @@ function Create({ setView,getAll }) {
                 <p className='status-create-title'>Crear un nuevo estado</p>
               </div>
               <div className='mt-4'>
-                <input value={inputName} onChange={(e) => setInputName(e.target.value)} type="text" className="status-create-input form-control" placeholder="Nombre del rol" />
+                <input value={inputName} onChange={(e) => setInputName(e.target.value)} type="text" className="status-create-input form-control" placeholder="Nombre del estado" />
               </div>
               <div className='mt-4'>
                 {error && <p style={{ color: 'red' }}>{error}</p>}

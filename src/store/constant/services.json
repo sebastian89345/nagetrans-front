@@ -5,7 +5,7 @@
         "urlLogin":"auth/login/"
     },
     "user": {
-        "urlLogin":"users/"
+        "urlUser":"users/"
     },
     "role": {
         "urlRole":"role/"

@@ -94,10 +94,10 @@ function Create({ setView,getAll }) {
                 <img onClick={returnWindow} src={arrow} className='model-create-img' alt='img' />
               </div>
               <div className=' text-center'>
-                <p className='model-create-title'>Agregar un nuevo año</p>
+                <p className='model-create-title'>Agregar un nuevo modelo</p>
               </div>
               <div className='mt-4'>
-                <input value={inputName} onChange={(e) => setInputName(e.target.value)} type="text" className="model-create-input form-control" placeholder="Nombre del rol" />
+                <input value={inputName} onChange={(e) => setInputName(e.target.value)} type="text" className="model-create-input form-control" placeholder="Nombre del modelo" />
               </div>
               <div className='mt-4'>
                 {error && <p style={{ color: 'red' }}>{error}</p>}

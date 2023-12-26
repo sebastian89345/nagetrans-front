@@ -92,10 +92,10 @@ function Update({ infoUpdate,setView,getAll }) {
                 <img onClick={returnWindow} src={arrow} className='type-update-img' alt='img' />
               </div>
               <div className=' text-center'>
-                <p className='type-update-title'>Editar el rol</p>
+                <p className='type-update-title'>Editar tipo de vehiculo</p>
               </div>
               <div className='mt-4'>
-                <input value={inputName} onChange={(e) => setInputName(e.target.value)} type="text" className="type-update-input form-control" placeholder="Nombre del rol" />
+                <input value={inputName} onChange={(e) => setInputName(e.target.value)} type="text" className="type-update-input form-control" placeholder="Nombre del tipo de vehiculo" />
               </div>
               <div className='mt-4'>
                 {error && <p style={{ color: 'red' }}>{error}</p>}

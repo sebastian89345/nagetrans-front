@@ -97,7 +97,7 @@ function Create({ setView,getAll }) {
                 <p className='type-create-title'>Crear un nuevo tipo de vehiculo</p>
               </div>
               <div className='mt-4'>
-                <input value={inputName} onChange={(e) => setInputName(e.target.value)} type="text" className="type-create-input form-control" placeholder="Nombre del rol" />
+                <input value={inputName} onChange={(e) => setInputName(e.target.value)} type="text" className="type-create-input form-control" placeholder="Nombre del tipo de vehiculo" />
               </div>
               <div className='mt-4'>
                 {error && <p style={{ color: 'red' }}>{error}</p>}

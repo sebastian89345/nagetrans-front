@@ -95,7 +95,7 @@ function Update({ infoUpdate,setView,getAll }) {
                 <p className='brand-update-title'>Editar marca</p>
               </div>
               <div className='mt-4'>
-                <input value={inputName} onChange={(e) => setInputName(e.target.value)} type="text" className="brand-update-input form-control" placeholder="Nombre del rol" />
+                <input value={inputName} onChange={(e) => setInputName(e.target.value)} type="text" className="brand-update-input form-control" placeholder="Nombre de la marca" />
               </div>
               <div className='mt-4'>
                 {error && <p style={{ color: 'red' }}>{error}</p>}

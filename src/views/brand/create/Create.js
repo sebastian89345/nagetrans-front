@@ -97,7 +97,7 @@ function Create({ setView,getAll }) {
                 <p className='brand-create-title'>Crear una marca</p>
               </div>
               <div className='mt-4'>
-                <input value={inputName} onChange={(e) => setInputName(e.target.value)} type="text" className="brand-create-input form-control" placeholder="Nombre del rol" />
+                <input value={inputName} onChange={(e) => setInputName(e.target.value)} type="text" className="brand-create-input form-control" placeholder="Nombre de la marca" />
               </div>
               <div className='mt-4'>
                 {error && <p style={{ color: 'red' }}>{error}</p>}

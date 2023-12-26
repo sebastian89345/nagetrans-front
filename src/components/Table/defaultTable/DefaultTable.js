@@ -14,7 +14,7 @@ const DefaultTable = ({ data , nms , updateId , deleteId }) => {
   const datosFiltrados = data.filter(item => {
     let response;
     if(nms === "user"){
-      response =  item.dni.toLowerCase().includes(filtro.toLowerCase())
+      response =  item.user.toLowerCase().includes(filtro.toLowerCase())
     } else if(nms === "role"){
       response = item.name.toLowerCase().includes(filtro.toLowerCase())
     } else if(nms === "status"){
@@ -49,11 +49,7 @@ const DefaultTable = ({ data , nms , updateId , deleteId }) => {
     let th ;
     if(nms === "user"){
       th = <>
-      <th scope="col">Identificacion</th>
-      <th scope="col">Correo</th>
-      <th scope="col">Telefono</th>
-      <th scope="col">Nombres</th>
-      <th scope="col">Apellidos</th>
+      <th scope="col">usuario</th>
       <th scope="col">Fecha</th>
     </>
     } else if (nms === "role"){
@@ -84,11 +80,7 @@ const DefaultTable = ({ data , nms , updateId , deleteId }) => {
     let td ;
     if(nms === "user") {
       td = <>
-        <td>{item.dni}</td>
-        <td>{item.email}</td>
-        <td>{item.phone}</td>
-        <td>{item.name}</td>
-        <td>{item.surname}</td>
+        <td>{item.user}</td>
         <td>{item.date}</td>
       </>
     } else if (nms === "role") {
