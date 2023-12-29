@@ -7,7 +7,7 @@ import './Update.css';
 import {  useDispatch } from "react-redux";
 
 //Reducers
-import { updateRoleService } from "../../../store/action/roleAction";
+import { getRoleAllService,updateRoleService } from "../../../store/action/roleAction";
 
 //Alertas 
 import Swal from 'sweetalert2';
@@ -15,7 +15,7 @@ import Swal from 'sweetalert2';
 //Imagenes
 import arrow from '../../../assets/img/bx-chevron-left.svg'
 
-function Update({ infoUpdate,setView,getAll }) {
+function Update({ infoUpdate,setView }) {
 
   const [inputName, setInputName] = useState(infoUpdate.item.name);
   const [error, setError] = useState('');
@@ -23,7 +23,6 @@ function Update({ infoUpdate,setView,getAll }) {
 
   const returnWindow = () => {
     setView({list:true});
-    getAll();
   }
 
   const validateInput = () => {
@@ -58,6 +57,7 @@ function Update({ infoUpdate,setView,getAll }) {
         if(response.error === undefined){
           switch (response.response.status) {
             case 200:
+                dispatch(getRoleAllService());
                 Swal.fire({
                   title: "Editado!",
                   text: "Fue editado con exito",

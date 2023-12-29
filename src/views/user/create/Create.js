@@ -1,13 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 
 //Hoja de estilos
 import './Create.css';
 
 // Redux
-import {  useDispatch } from "react-redux";
+import {  useSelector , useDispatch } from "react-redux";
 
 //Reducers
 import { createUserService } from "../../../store/action/userAction";
+import { getRoleAllService } from "../../../store/action/roleAction";
+import { getStatusAllService } from "../../../store/action/statusAction";
 
 //Alertas 
 import Swal from 'sweetalert2';
@@ -19,8 +21,24 @@ function Create({ setView,getAll }) {
 
   const [inputName, setInputName] = useState("");
   const [error, setError] = useState('');
+  const [opcionRole, setOpcionRole] = useState([]);
+  const [opcionStatus, setOpcionStatus] = useState([]);
+  const [opcionSelectRole, setOpcionSelectRole] = useState('');
+  const [opcionSelectStatus, setOpcionSelectStatus] = useState('');
+  const dataListRole = useSelector((store) => store.roleService);
+  const dataListStatus = useSelector((store) => store.statusService);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(getRoleAllService())
+    dispatch(getStatusAllService())
+  }, [dispatch])
+
+  useEffect(() => {
+    setOpcionRole(dataListRole.data);
+    setOpcionStatus(dataListStatus.data);
+  }, [dataListRole,dataListStatus])
+  
   const returnWindow = () => {
     getAll();
     setView({list:true})
@@ -86,6 +104,26 @@ function Create({ setView,getAll }) {
     }
   }
 
+  // Manejar cambios en la selección
+  const handleChangeRole = (event) => {
+    if (event.target.value === "") {
+      console.log("Seleccione algo");
+    } else {
+      setOpcionSelectRole(event.target.value);
+      console.log(event.target.value);
+    }
+  };
+
+  // Manejar cambios en la selección
+  const handleChangeStatus = (event) => {
+    if (event.target.value === "") {
+      console.log("Seleccione algo");
+    } else {
+      setOpcionSelectStatus(event.target.value);
+      console.log(event.target.value);
+    }
+  };
+
   return (
     <div className='user-create-card-main'>
         <div className='user-create-card card'>
@@ -99,9 +137,29 @@ function Create({ setView,getAll }) {
               <div className='mt-4'>
                 <input value={inputName} onChange={(e) => setInputName(e.target.value)} type="text" className="user-create-input form-control" placeholder="Nombre del usuario" />
               </div>
+
+              <select value={opcionSelectRole} onChange={handleChangeRole}>
+                <option value="">Selecciona una opción</option>
+                {opcionRole.map((opcion, index) => (
+                  <option key={index} value={opcion._id}>
+                    {opcion.name}
+                  </option>
+                ))}
+              </select>
+
+              <select value={opcionSelectStatus} onChange={handleChangeStatus}>
+                <option value="">Selecciona una opción</option>
+                {opcionStatus.map((opcion, index) => (
+                  <option key={index} value={opcion._id}>
+                    {opcion.name}
+                  </option>
+                ))}
+              </select>
+              
               <div className='mt-4'>
                 {error && <p style={{ color: 'red' }}>{error}</p>}
               </div>
+
               <div className='mt-4 text-center'>
                 <button onClick={create} type="button" className="user-create-button btn btn-primary">Guardar</button>
               </div>

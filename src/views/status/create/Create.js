@@ -7,7 +7,7 @@ import './Create.css';
 import {  useDispatch } from "react-redux";
 
 //Reducers
-import { createStatusService } from "../../../store/action/statusAction";
+import { getStatusAllService,createStatusService } from "../../../store/action/statusAction";
 
 //Alertas 
 import Swal from 'sweetalert2';
@@ -58,6 +58,7 @@ function Create({ setView,getAll }) {
       if(response.error === undefined){
         switch (response.response.status) {
           case 201:
+              dispatch(getStatusAllService())
               //Aquí estoy limpiando el input
               setInputName("")
               Swal.fire({

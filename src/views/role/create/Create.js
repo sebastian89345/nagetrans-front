@@ -7,7 +7,7 @@ import './Create.css';
 import {  useDispatch } from "react-redux";
 
 //Reducers
-import { createRoleService } from "../../../store/action/roleAction";
+import { getRoleAllService,createRoleService } from "../../../store/action/roleAction";
 
 //Alertas 
 import Swal from 'sweetalert2';
@@ -15,14 +15,13 @@ import Swal from 'sweetalert2';
 //Imagenes
 import arrow from '../../../assets/img/bx-chevron-left.svg';
 
-function Create({ setView,getAll }) {
+function Create({ setView }) {
 
   const [inputName, setInputName] = useState("");
   const [error, setError] = useState('');
   const dispatch = useDispatch();
 
   const returnWindow = () => {
-    getAll();
     setView({list:true})
   }
 
@@ -58,6 +57,7 @@ function Create({ setView,getAll }) {
       if(response.error === undefined){
         switch (response.response.status) {
           case 201:
+              dispatch(getRoleAllService());
               //Aquí estoy limpiando el input
               setInputName("")
               Swal.fire({

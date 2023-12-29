@@ -7,7 +7,7 @@ import './Update.css';
 import {  useDispatch } from "react-redux";
 
 //Reducers
-import { updateStatusService } from "../../../store/action/statusAction";
+import { getStatusAllService,updateStatusService } from "../../../store/action/statusAction";
 
 //Alertas 
 import Swal from 'sweetalert2';
@@ -58,6 +58,7 @@ function Update({ infoUpdate,setView,getAll }) {
         if(response.error === undefined){
           switch (response.response.status) {
             case 200:
+                dispatch(getStatusAllService())
                 Swal.fire({
                   title: "Editado!",
                   text: "Fue editado con exito",

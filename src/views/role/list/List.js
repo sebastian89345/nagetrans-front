@@ -30,11 +30,6 @@ function List() {
     dispatch(getRoleAllService());
   }, [dispatch])
 
-  //Esto es para actulizar la lista en el create y update y nada mas
-  const getAll = () => {
-    dispatch(getRoleAllService());
-  }
-
   const handleCreate = () => {
     setView({list:false,create:true})
   }
@@ -102,9 +97,9 @@ function List() {
           <DefaultTable data={dataList.data} nms={"role"} deleteId={deleteInfo} updateId={updateInfo} />
         </>
         : view.create === true ?
-          <Create setView={setView} getAll={getAll} />
+          <Create setView={setView} />
         : view.update === true ?
-          <Update infoUpdate={infoUpdate} setView={setView} getAll={getAll} />
+          <Update infoUpdate={infoUpdate} setView={setView} />
         : <></>
       }
     </div>
