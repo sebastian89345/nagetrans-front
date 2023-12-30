@@ -1,4 +1,4 @@
-.user-create-card-main{
+.user-create-card-main {
     display: flex;
     justify-content: center;
 }
@@ -22,8 +22,13 @@
     font-family: 'Poppins';
     color: #6c757d;
 }
+.user-create-main-input {
+    display: flex;
+    justify-content: center;
+}
 
 .user-create-input {
+    max-width: 700px;
     font-size: 20px;
     font-weight: 500;
     font-family: 'Poppins';
