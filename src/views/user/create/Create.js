@@ -329,7 +329,6 @@ function Create({ setView,getAll }) {
     if (opcionSelectRole === "6585dd2aeccfb9d2ba855427" || opcionSelectRole === "6585dd30eccfb9d2ba855429") {
 
       let validateDrivers = validateDriver();
-      console.log(validateDrivers);
       let body = { 
         user:inputUser,dni:inputDni,names:inputName,
         surnames:inputSurname,phoneNumber:inputPhone,
@@ -371,10 +370,20 @@ function Create({ setView,getAll }) {
       if(response.error === undefined){
         switch (response.response.status) {
           case 201:
+              resetInput();
+              setOpcionSelectRole("")
               Swal.fire({
                 title: "Creado!",
                 text: "Fue creado con exito",
                 icon: "success"
+              });
+            break;
+            case 400:
+              console.log(response.response);
+              Swal.fire({
+                title: "Error!",
+                text: "Este usuario ,vin o dni ya existen",
+                icon: "error"
               });
             break;
           default:
@@ -562,7 +571,7 @@ function Create({ setView,getAll }) {
               </div>
 
               <div className='mt-4 user-create-main-input'>
-                <input value={inputPassword} onChange={(e) => setInputPassword(e.target.value)} type="text" className="user-create-input form-control" placeholder="Contraseña" />
+                <input value={inputPassword} onChange={(e) => setInputPassword(e.target.value)} type="password" className="user-create-input form-control" placeholder="Contraseña" />
               </div>
               
               <div className='mt-4'>
