@@ -8,6 +8,16 @@
     max-width: 1000px;
 }
 
+.user-create-position-content-form {
+    display: flex;
+    justify-content: center;
+}
+
+.user-create-content-form {
+    width: 100%;
+    max-width: 700px;
+}
+
 .user-create-main {
     padding: 40px;
 }

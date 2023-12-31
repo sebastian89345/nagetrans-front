@@ -50,7 +50,7 @@ const DefaultTable = ({ data , nms , updateId , deleteId }) => {
     if(nms === "user"){
       th = <>
       <th scope="col">usuario</th>
-      <th scope="col">Fecha</th>
+      <th scope="col">Correo</th>
     </>
     } else if (nms === "role"){
       th = <>
@@ -81,7 +81,7 @@ const DefaultTable = ({ data , nms , updateId , deleteId }) => {
     if(nms === "user") {
       td = <>
         <td>{item.user}</td>
-        <td>{item.date}</td>
+        <td>{item.email}</td>
       </>
     } else if (nms === "role") {
       td = <>

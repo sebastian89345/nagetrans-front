@@ -412,66 +412,127 @@ function Create({ setView,getAll }) {
               <div>
                 <img onClick={returnWindow} src={arrow} className='user-create-img' alt='img' />
               </div>
-              <div className=' text-center'>
+              <div className='text-center'>
                 <p className='user-create-title'>Crear un nuevo usuario</p>
               </div>
 
-              <div className='mt-4 user-create-main-input'>
-                <input value={inputUser} onChange={(e) => setInputUser(e.target.value)} type="text" className="user-create-input form-control" placeholder="Usuario" />
-              </div>
+              <div className='user-create-position-content-form'>
 
-              <div className='mt-4'>
-                {errorUser && <p style={{ color: 'red' }}>{errorUser}</p>}
-              </div>
+                <div className='user-create-content-form'>
 
-              { opcionSelectRole === "6585dd2aeccfb9d2ba855427" || opcionSelectRole === "6585dd30eccfb9d2ba855429" ? 
-                <>
                   <div className='mt-4 user-create-main-input'>
-                      <input value={inputDni} onChange={handleChangeDni} pattern="[0-9]{0,13}" type="text" className="user-create-input form-control" placeholder="Cedula" />
+                    <input value={inputUser} onChange={(e) => setInputUser(e.target.value)} type="text" className="user-create-input form-control" placeholder="Usuario" />
                   </div>
 
                   <div className='mt-4'>
-                    {errorDni && <p style={{ color: 'red' }}>{errorDni}</p>}
+                    {errorUser && <p style={{ color: 'red' }}>{errorUser}</p>}
                   </div>
 
+                  { opcionSelectRole === "6585dd2aeccfb9d2ba855427" || opcionSelectRole === "6585dd30eccfb9d2ba855429" ? 
+                    <>
+                      <div className='mt-4 user-create-main-input'>
+                          <input value={inputDni} onChange={handleChangeDni} pattern="[0-9]{0,13}" type="text" className="user-create-input form-control" placeholder="Cedula" />
+                      </div>
+
+                      <div className='mt-4'>
+                        {errorDni && <p style={{ color: 'red' }}>{errorDni}</p>}
+                      </div>
+
+                      <div className='mt-4 user-create-main-input'>
+                        <input value={inputName} onChange={(e) => setInputName(e.target.value)} type="text" className="user-create-input form-control" placeholder="Nombres" />
+                      </div>
+
+                      <div className='mt-4'>
+                        {errorName && <p style={{ color: 'red' }}>{errorName}</p>}
+                      </div>
+
+                      <div className='mt-4 user-create-main-input'>
+                        <input value={inputSurname} onChange={(e) => setInputSurname(e.target.value)} type="text" className="user-create-input form-control" placeholder="Apellidos" />
+                      </div>
+
+                      <div className='mt-4'>
+                        {errorSurname && <p style={{ color: 'red' }}>{errorSurname}</p>}
+                      </div>
+
+                      <div className='mt-4 user-create-main-input'>
+                        <input value={inputPhone} onChange={handleChangePhone} pattern="[0-9]{0,13}" type="text" className="user-create-input form-control" placeholder="Telefono" />
+                      </div>
+
+                      <div className='mt-4'>
+                        {errorPhone && <p style={{ color: 'red' }}>{errorPhone}</p>}
+                      </div>
+                    </> 
+                    : opcionSelectRole === "6585dd37eccfb9d2ba85542b" || opcionSelectRole === "6585dd45eccfb9d2ba85542d" ? 
+                    <>
+                      <div className='mt-4 user-create-main-input'>
+                          <input value={inputVin} onChange={(e) => setInputVin(e.target.value)} type="text" className="user-create-input form-control" placeholder="Vin" />
+                      </div>
+
+                      <div className='mt-4'>
+                        {errorVin && <p style={{ color: 'red' }}>{errorVin}</p>}
+                      </div>
+
+                      <div className='mt-4 user-create-main-input form-group'>
+                        <select value={opcionSelectBrand} onChange={(e) => setOpcionSelectBrand(e.target.value)} className='user-create-input form-control'>
+                          <option value="">Selecciona una opción - marca</option>
+                          {opcionBrand.map((opcion, index) => (
+                            <option key={index} value={opcion._id}>
+                              {opcion.name}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+
+                      <div className='mt-4'>
+                        {errorBrand && <p style={{ color: 'red' }}>{errorBrand}</p>}
+                      </div>
+
+                      <div className='mt-4 user-create-main-input form-group'>
+                        <select value={opcionSelectModel} onChange={(e) => setOpcionSelectModel(e.target.value)} className='user-create-input form-control'>
+                          <option value="">Selecciona una opción - modelo</option>
+                          {opcionModel.map((opcion, index) => (
+                            <option key={index} value={opcion._id}>
+                              {opcion.name}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+
+                      <div className='mt-4'>
+                        {errorModel && <p style={{ color: 'red' }}>{errorModel}</p>}
+                      </div>
+
+                      <div className='mt-4 user-create-main-input form-group'>
+                        <select value={opcionSelectType} onChange={(e) => setOpcionSelectType(e.target.value)} className='user-create-input form-control'>
+                          <option value="">Selecciona una opción - tipo</option>
+                          {opcionType.map((opcion, index) => (
+                            <option key={index} value={opcion._id}>
+                              {opcion.name}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+
+                      <div className='mt-4'>
+                        {errorType && <p style={{ color: 'red' }}>{errorType}</p>}
+                      </div>
+
+                    </> 
+                    : <></>
+                  }
+
                   <div className='mt-4 user-create-main-input'>
-                    <input value={inputName} onChange={(e) => setInputName(e.target.value)} type="text" className="user-create-input form-control" placeholder="Nombres" />
+                    <input value={inputEmail} onChange={(e) => setInputEmail(e.target.value)} type="email" className="user-create-input form-control" placeholder="Correo" />
                   </div>
 
                   <div className='mt-4'>
-                    {errorName && <p style={{ color: 'red' }}>{errorName}</p>}
-                  </div>
-
-                  <div className='mt-4 user-create-main-input'>
-                    <input value={inputSurname} onChange={(e) => setInputSurname(e.target.value)} type="text" className="user-create-input form-control" placeholder="Apellidos" />
-                  </div>
-
-                  <div className='mt-4'>
-                    {errorSurname && <p style={{ color: 'red' }}>{errorSurname}</p>}
-                  </div>
-
-                  <div className='mt-4 user-create-main-input'>
-                    <input value={inputPhone} onChange={handleChangePhone} pattern="[0-9]{0,13}" type="text" className="user-create-input form-control" placeholder="Telefono" />
-                  </div>
-
-                  <div className='mt-4'>
-                    {errorPhone && <p style={{ color: 'red' }}>{errorPhone}</p>}
-                  </div>
-                </> 
-                : opcionSelectRole === "6585dd37eccfb9d2ba85542b" || opcionSelectRole === "6585dd45eccfb9d2ba85542d" ? 
-                <>
-                  <div className='mt-4 user-create-main-input'>
-                      <input value={inputVin} onChange={(e) => setInputVin(e.target.value)} type="text" className="user-create-input form-control" placeholder="Vin" />
-                  </div>
-
-                  <div className='mt-4'>
-                    {errorVin && <p style={{ color: 'red' }}>{errorVin}</p>}
+                    {errorEmail && <p style={{ color: 'red' }}>{errorEmail}</p>}
                   </div>
 
                   <div className='mt-4 user-create-main-input form-group'>
-                    <select value={opcionSelectBrand} onChange={(e) => setOpcionSelectBrand(e.target.value)} className='user-create-input form-control'>
-                      <option value="">Selecciona una opción - marca</option>
-                      {opcionBrand.map((opcion, index) => (
+                    <select value={opcionSelectRole} onChange={handleChangeRole} className='user-create-input form-control'>
+                      <option value="">Selecciona una opción - rol</option>
+                      {opcionRole.map((opcion, index) => (
                         <option key={index} value={opcion._id}>
                           {opcion.name}
                         </option>
@@ -480,13 +541,13 @@ function Create({ setView,getAll }) {
                   </div>
 
                   <div className='mt-4'>
-                    {errorBrand && <p style={{ color: 'red' }}>{errorBrand}</p>}
+                    {errorRole && <p style={{ color: 'red' }}>{errorRole}</p>}
                   </div>
 
                   <div className='mt-4 user-create-main-input form-group'>
-                    <select value={opcionSelectModel} onChange={(e) => setOpcionSelectModel(e.target.value)} className='user-create-input form-control'>
-                      <option value="">Selecciona una opción - modelo</option>
-                      {opcionModel.map((opcion, index) => (
+                    <select value={opcionSelectStatus} onChange={(e) => setOpcionSelectStatus(e.target.value)} className='user-create-input form-control'>
+                      <option value="">Selecciona una opción - estado</option>
+                      {opcionStatus.map((opcion, index) => (
                         <option key={index} value={opcion._id}>
                           {opcion.name}
                         </option>
@@ -495,92 +556,40 @@ function Create({ setView,getAll }) {
                   </div>
 
                   <div className='mt-4'>
-                    {errorModel && <p style={{ color: 'red' }}>{errorModel}</p>}
+                    {errorStatus && <p style={{ color: 'red' }}>{errorStatus}</p>}
                   </div>
 
                   <div className='mt-4 user-create-main-input form-group'>
-                    <select value={opcionSelectType} onChange={(e) => setOpcionSelectType(e.target.value)} className='user-create-input form-control'>
-                      <option value="">Selecciona una opción - tipo</option>
-                      {opcionType.map((opcion, index) => (
-                        <option key={index} value={opcion._id}>
-                          {opcion.name}
+                    <select value={opcionSelectShow} onChange={(e) => setOpcionSelectShow(e.target.value)} className='user-create-input form-control'>
+                      <option value="">Selecciona una opción - mostrar</option>
+                      {opcionShow.map((opcion, index) => (
+                        <option key={index} value={opcion.value}>
+                          {opcion.value}
                         </option>
                       ))}
                     </select>
                   </div>
 
                   <div className='mt-4'>
-                    {errorType && <p style={{ color: 'red' }}>{errorType}</p>}
+                    {errorShow && <p style={{ color: 'red' }}>{errorShow}</p>}
                   </div>
 
-                </> 
-                : <></>
-              }
+                  <div className='mt-4 user-create-main-input'>
+                    <input value={inputPassword} onChange={(e) => setInputPassword(e.target.value)} type="password" className="user-create-input form-control" placeholder="Contraseña" />
+                  </div>
+                  
+                  <div className='mt-4'>
+                    {errorPassword && <p style={{ color: 'red' }}>{errorPassword}</p>}
+                  </div>
 
-              <div className='mt-4 user-create-main-input'>
-                <input value={inputEmail} onChange={(e) => setInputEmail(e.target.value)} type="email" className="user-create-input form-control" placeholder="Correo" />
-              </div>
+                  <div className='mt-4 text-center'>
+                    <button onClick={create} type="button" className="user-create-button btn btn-primary">Guardar</button>
+                  </div>
 
-              <div className='mt-4'>
-                {errorEmail && <p style={{ color: 'red' }}>{errorEmail}</p>}
-              </div>
+                </div>
 
-              <div className='mt-4 user-create-main-input form-group'>
-                <select value={opcionSelectRole} onChange={handleChangeRole} className='user-create-input form-control'>
-                  <option value="">Selecciona una opción - rol</option>
-                  {opcionRole.map((opcion, index) => (
-                    <option key={index} value={opcion._id}>
-                      {opcion.name}
-                    </option>
-                  ))}
-                </select>
               </div>
 
-              <div className='mt-4'>
-                {errorRole && <p style={{ color: 'red' }}>{errorRole}</p>}
-              </div>
-
-              <div className='mt-4 user-create-main-input form-group'>
-                <select value={opcionSelectStatus} onChange={(e) => setOpcionSelectStatus(e.target.value)} className='user-create-input form-control'>
-                  <option value="">Selecciona una opción - estado</option>
-                  {opcionStatus.map((opcion, index) => (
-                    <option key={index} value={opcion._id}>
-                      {opcion.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div className='mt-4'>
-                {errorStatus && <p style={{ color: 'red' }}>{errorStatus}</p>}
-              </div>
-
-              <div className='mt-4 user-create-main-input form-group'>
-                <select value={opcionSelectShow} onChange={(e) => setOpcionSelectShow(e.target.value)} className='user-create-input form-control'>
-                  <option value="">Selecciona una opción - mostrar</option>
-                  {opcionShow.map((opcion, index) => (
-                    <option key={index} value={opcion.value}>
-                      {opcion.value}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div className='mt-4'>
-                {errorShow && <p style={{ color: 'red' }}>{errorShow}</p>}
-              </div>
-
-              <div className='mt-4 user-create-main-input'>
-                <input value={inputPassword} onChange={(e) => setInputPassword(e.target.value)} type="password" className="user-create-input form-control" placeholder="Contraseña" />
-              </div>
-              
-              <div className='mt-4'>
-                {errorPassword && <p style={{ color: 'red' }}>{errorPassword}</p>}
-              </div>
-
-              <div className='mt-4 text-center'>
-                <button onClick={create} type="button" className="user-create-button btn btn-primary">Guardar</button>
-              </div>
             </div>
         </div>
     </div>
