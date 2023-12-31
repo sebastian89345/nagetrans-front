@@ -326,39 +326,74 @@ function Create({ setView,getAll }) {
 
   const create = async () => {
 
-    const isValid = validateDriver();
-    console.log(isValid);
-    if (isValid) {
-      //Aquí comienza las peticiones y demas
-      // let body = { name:inputName }
-      // let response = await dispatch(createUserService(body));
-      // if(response.error === undefined){
-      //   switch (response.response.status) {
-      //     case 201:
-      //         Swal.fire({
-      //           title: "Creado!",
-      //           text: "Fue creado con exito",
-      //           icon: "success"
-      //         });
-      //       break;
-      //     default:
-      //         console.log(response.response);
-      //         Swal.fire({
-      //           title: "Error!",
-      //           text: "Ocurrio un error al crearlo",
-      //           icon: "error"
-      //         });
-      //       break;
-      //   }
-      // } else {
-      //   console.log(response.error);
-      //   Swal.fire({
-      //     title: "Error!",
-      //     text: "Eror al crear el usuario",
-      //     icon: "error"
-      //   });
-      // }
+    if (opcionSelectRole === "6585dd2aeccfb9d2ba855427" || opcionSelectRole === "6585dd30eccfb9d2ba855429") {
+
+      let validateDrivers = validateDriver();
+      console.log(validateDrivers);
+      let body = { 
+        user:inputUser,dni:inputDni,names:inputName,
+        surnames:inputSurname,phoneNumber:inputPhone,
+        email:inputEmail,role:opcionSelectRole,
+        status:opcionSelectStatus,password:inputPassword,
+        show:opcionSelectShow 
+      }
+      if (validateDrivers) {
+        createUser(body);
+      }
+
+    } else if (opcionSelectRole === "6585dd37eccfb9d2ba85542b" || opcionSelectRole === "6585dd45eccfb9d2ba85542d") {
+      
+      let validateVehicles = validateVehicle();
+      let body = { 
+        user:inputUser,vin:inputVin,email:inputEmail,
+        role:opcionSelectRole,status:opcionSelectStatus,
+        brand:opcionSelectBrand,model:opcionSelectModel,
+        type:opcionSelectType,password:inputPassword,
+        show:opcionSelectShow 
+      }
+      if (validateVehicles) {
+        createUser(body);
+      }
+
+    } else if (opcionSelectRole === "") {
+      const roleError = validateField(opcionSelectRole, 'role', /\S/, 1);
+      if (roleError) {
+        setErrorRole(roleError);
+      } else {
+        setErrorRole("");
+      }
     }
+  }
+
+  const createUser = async (body) => {
+      // Aquí comienza las peticiones y demas
+      let response = await dispatch(createUserService(body));
+      if(response.error === undefined){
+        switch (response.response.status) {
+          case 201:
+              Swal.fire({
+                title: "Creado!",
+                text: "Fue creado con exito",
+                icon: "success"
+              });
+            break;
+          default:
+              console.log(response.response);
+              Swal.fire({
+                title: "Error!",
+                text: "Ocurrio un error al crearlo",
+                icon: "error"
+              });
+            break;
+        }
+      } else {
+        console.log(response.error);
+        Swal.fire({
+          title: "Error!",
+          text: "Eror al crear el usuario",
+          icon: "error"
+        });
+      }
   }
 
   return (
@@ -380,7 +415,7 @@ function Create({ setView,getAll }) {
                 {errorUser && <p style={{ color: 'red' }}>{errorUser}</p>}
               </div>
 
-              { opcionSelectRole === "Administrador" || opcionSelectRole === "Conductor" ? 
+              { opcionSelectRole === "6585dd2aeccfb9d2ba855427" || opcionSelectRole === "6585dd30eccfb9d2ba855429" ? 
                 <>
                   <div className='mt-4 user-create-main-input'>
                       <input value={inputDni} onChange={handleChangeDni} pattern="[0-9]{0,13}" type="text" className="user-create-input form-control" placeholder="Cedula" />
@@ -414,7 +449,7 @@ function Create({ setView,getAll }) {
                     {errorPhone && <p style={{ color: 'red' }}>{errorPhone}</p>}
                   </div>
                 </> 
-                : opcionSelectRole === "Vehiculo" || opcionSelectRole === "Asociado" ? 
+                : opcionSelectRole === "6585dd37eccfb9d2ba85542b" || opcionSelectRole === "6585dd45eccfb9d2ba85542d" ? 
                 <>
                   <div className='mt-4 user-create-main-input'>
                       <input value={inputVin} onChange={(e) => setInputVin(e.target.value)} type="text" className="user-create-input form-control" placeholder="Vin" />
@@ -428,7 +463,7 @@ function Create({ setView,getAll }) {
                     <select value={opcionSelectBrand} onChange={(e) => setOpcionSelectBrand(e.target.value)} className='user-create-input form-control'>
                       <option value="">Selecciona una opción - marca</option>
                       {opcionBrand.map((opcion, index) => (
-                        <option key={index} value={opcion.name}>
+                        <option key={index} value={opcion._id}>
                           {opcion.name}
                         </option>
                       ))}
@@ -443,7 +478,7 @@ function Create({ setView,getAll }) {
                     <select value={opcionSelectModel} onChange={(e) => setOpcionSelectModel(e.target.value)} className='user-create-input form-control'>
                       <option value="">Selecciona una opción - modelo</option>
                       {opcionModel.map((opcion, index) => (
-                        <option key={index} value={opcion.name}>
+                        <option key={index} value={opcion._id}>
                           {opcion.name}
                         </option>
                       ))}
@@ -458,7 +493,7 @@ function Create({ setView,getAll }) {
                     <select value={opcionSelectType} onChange={(e) => setOpcionSelectType(e.target.value)} className='user-create-input form-control'>
                       <option value="">Selecciona una opción - tipo</option>
                       {opcionType.map((opcion, index) => (
-                        <option key={index} value={opcion.name}>
+                        <option key={index} value={opcion._id}>
                           {opcion.name}
                         </option>
                       ))}
@@ -485,7 +520,7 @@ function Create({ setView,getAll }) {
                 <select value={opcionSelectRole} onChange={handleChangeRole} className='user-create-input form-control'>
                   <option value="">Selecciona una opción - rol</option>
                   {opcionRole.map((opcion, index) => (
-                    <option key={index} value={opcion.name}>
+                    <option key={index} value={opcion._id}>
                       {opcion.name}
                     </option>
                   ))}
@@ -500,7 +535,7 @@ function Create({ setView,getAll }) {
                 <select value={opcionSelectStatus} onChange={(e) => setOpcionSelectStatus(e.target.value)} className='user-create-input form-control'>
                   <option value="">Selecciona una opción - estado</option>
                   {opcionStatus.map((opcion, index) => (
-                    <option key={index} value={opcion.name}>
+                    <option key={index} value={opcion._id}>
                       {opcion.name}
                     </option>
                   ))}
