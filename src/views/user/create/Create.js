@@ -168,7 +168,7 @@ function Create({ setView,getAll }) {
   const validateVehicle = () => {
     let isValid = true;
 
-    const userError = validateField(inputUser, 'user', /^[a-zA-Z0-9_]+$/, 4);
+    const userError = validateField(inputUser, 'usuario', /^.+$/, 4);
     if (userError) {
       setErrorUser(userError);
       isValid = false;
@@ -176,7 +176,7 @@ function Create({ setView,getAll }) {
       setErrorUser("");
     }
 
-    const vinError = validateField(inputVin, 'vin', /^[a-zA-Z0-9_]+$/, 4);
+    const vinError = validateField(inputVin, 'vin', /^.+$/, 4);
     if (vinError) {
       setErrorVin(vinError);
       isValid = false;
@@ -184,7 +184,7 @@ function Create({ setView,getAll }) {
       setErrorVin("");
     }
 
-    const emailError = validateField(inputEmail, 'email', /^[a-zA-Z0-9_]+$/, 4);
+    const emailError = validateField(inputEmail, 'correo', /^.+$/, 4);
     if (emailError) {
       setErrorEmail(emailError);
       isValid = false;
@@ -192,7 +192,7 @@ function Create({ setView,getAll }) {
       setErrorEmail("");
     }
 
-    const brandError = validateField(opcionSelectBrand, 'brand', /\S/, 1);
+    const brandError = validateField(opcionSelectBrand, 'marca', /\S/, 1);
     if (brandError) {
       setErrorBrand(brandError);
       isValid = false;
@@ -200,7 +200,7 @@ function Create({ setView,getAll }) {
       setErrorBrand("");
     }
 
-    const modelError = validateField(opcionSelectModel, 'model', /\S/, 1);
+    const modelError = validateField(opcionSelectModel, 'modelo', /\S/, 1);
     if (modelError) {
       setErrorModel(modelError);
       isValid = false;
@@ -208,7 +208,7 @@ function Create({ setView,getAll }) {
       setErrorModel("");
     }
 
-    const typeError = validateField(opcionSelectType, 'type', /\S/, 1);
+    const typeError = validateField(opcionSelectType, 'tipo', /\S/, 1);
     if (typeError) {
       setErrorType(typeError);
       isValid = false;
@@ -216,7 +216,23 @@ function Create({ setView,getAll }) {
       setErrorType("");
     }
 
-    const showError = validateField(opcionSelectShow, 'show', /\S/, 1);
+    const roleError = validateField(opcionSelectRole, 'rol', /\S/, 1);
+    if (roleError) {
+      setErrorRole(roleError);
+      isValid = false;
+    } else {
+      setErrorRole("");
+    }
+
+    const statusError = validateField(opcionSelectStatus, 'estado', /\S/, 1);
+    if (statusError) {
+      setErrorStatus(statusError);
+      isValid = false;
+    } else {
+      setErrorStatus("");
+    }
+
+    const showError = validateField(opcionSelectShow, 'mostrar', /\S/, 1);
     if (showError) {
       setErrorShow(showError);
       isValid = false;
@@ -224,7 +240,7 @@ function Create({ setView,getAll }) {
       setErrorShow("");
     }
 
-    const passwordError = validateField(inputPassword, 'password', /^[a-zA-Z0-9_]+$/, 4);
+    const passwordError = validateField(inputPassword, 'contraseña', /^[a-zA-Z0-9_]+$/, 4);
     if (passwordError) {
       setErrorPassword(passwordError);
       isValid = false;
@@ -240,7 +256,7 @@ function Create({ setView,getAll }) {
   const validateDriver = () => {
     let isValid = true;
 
-    const userError = validateField(inputUser, 'user', /^[a-zA-Z0-9_]+$/, 4);
+    const userError = validateField(inputUser, 'usuario', /^[a-zA-Z0-9_!@#$%^&*()-]+$/, 4);
     if (userError) {
       setErrorUser(userError);
       isValid = false;
@@ -248,7 +264,7 @@ function Create({ setView,getAll }) {
       setErrorUser("");
     }
 
-    const dniError = validateField(inputDni, 'dni', /^[0-9]+$/, 4);
+    const dniError = validateField(inputDni, 'cedula', /^[0-9]+$/, 4);
     if (dniError) {
       setErrorDni(dniError);
       isValid = false;
@@ -256,7 +272,7 @@ function Create({ setView,getAll }) {
       setErrorDni("");
     }
 
-    const nameError = validateField(inputName, 'name', /^[a-zA-Z0-9_]+$/, 4);
+    const nameError = validateField(inputName, 'nombres', /^[a-zA-Z0-9_\s]+$/, 4);
     if (nameError) {
       setErrorName(nameError);
       isValid = false;
@@ -264,7 +280,7 @@ function Create({ setView,getAll }) {
       setErrorName("");
     }
 
-    const surnameError = validateField(inputSurname, 'surname', /^[a-zA-Z0-9_]+$/, 4);
+    const surnameError = validateField(inputSurname, 'apellidos', /^[a-zA-Z0-9_\s]+$/, 4);
     if (surnameError) {
       setErrorSurname(surnameError);
       isValid = false;
@@ -272,7 +288,7 @@ function Create({ setView,getAll }) {
       setErrorSurname("");
     }
 
-    const phoneError = validateField(inputPhone, 'phone', /^[0-9]+$/, 4);
+    const phoneError = validateField(inputPhone, 'telefono', /^[0-9]+$/, 4);
     if (phoneError) {
       setErrorPhone(phoneError);
       isValid = false;
@@ -280,7 +296,7 @@ function Create({ setView,getAll }) {
       setErrorPhone("");
     }
 
-    const emailError = validateField(inputEmail, 'email', /^[a-zA-Z0-9_]+$/, 4);
+    const emailError = validateField(inputEmail, 'correo', /^.+$/, 4);
     if (emailError) {
       setErrorEmail(emailError);
       isValid = false;
@@ -296,7 +312,7 @@ function Create({ setView,getAll }) {
       setErrorRole("");
     }
 
-    const statusError = validateField(opcionSelectStatus, 'status', /\S/, 1);
+    const statusError = validateField(opcionSelectStatus, 'estado', /\S/, 1);
     if (statusError) {
       setErrorStatus(statusError);
       isValid = false;
@@ -304,7 +320,7 @@ function Create({ setView,getAll }) {
       setErrorStatus("");
     }
 
-    const showError = validateField(opcionSelectShow, 'show', /\S/, 1);
+    const showError = validateField(opcionSelectShow, 'mostrar', /\S/, 1);
     if (showError) {
       setErrorShow(showError);
       isValid = false;
@@ -312,7 +328,7 @@ function Create({ setView,getAll }) {
       setErrorShow("");
     }
 
-    const passwordError = validateField(inputPassword, 'password', /^[a-zA-Z0-9_]+$/, 4);
+    const passwordError = validateField(inputPassword, 'contraseña', /^[a-zA-Z0-9_]+$/, 4);
     if (passwordError) {
       setErrorPassword(passwordError);
       isValid = false;
@@ -347,7 +363,7 @@ function Create({ setView,getAll }) {
         user:inputUser,vin:inputVin,email:inputEmail,
         role:opcionSelectRole,status:opcionSelectStatus,
         brand:opcionSelectBrand,model:opcionSelectModel,
-        type:opcionSelectType,password:inputPassword,
+        types:opcionSelectType,password:inputPassword,
         show:opcionSelectShow 
       }
       if (validateVehicles) {
@@ -417,7 +433,6 @@ function Create({ setView,getAll }) {
               </div>
 
               <div className='user-create-position-content-form'>
-
                 <div className='user-create-content-form'>
 
                   <div className='mt-4 user-create-main-input'>
@@ -522,7 +537,7 @@ function Create({ setView,getAll }) {
                   }
 
                   <div className='mt-4 user-create-main-input'>
-                    <input value={inputEmail} onChange={(e) => setInputEmail(e.target.value)} type="email" className="user-create-input form-control" placeholder="Correo" />
+                    <input value={inputEmail} onChange={(e) => setInputEmail(e.target.value)} type="text" className="user-create-input form-control" placeholder="Correo" />
                   </div>
 
                   <div className='mt-4'>
@@ -587,9 +602,7 @@ function Create({ setView,getAll }) {
                   </div>
 
                 </div>
-
               </div>
-
             </div>
         </div>
     </div>
