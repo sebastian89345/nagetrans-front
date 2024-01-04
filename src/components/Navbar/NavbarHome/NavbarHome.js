@@ -9,7 +9,7 @@ import arrow from '../../../assets/img/arrow.png';
 import logo from '../../../assets/img/logo.png';
 import menu from '../../../assets/img/menu.png';
 
-function NavbarHome() {
+function NavbarHome({ logout }) {
 
     const [width, setWidth] = useState(window.innerWidth);
       
@@ -44,7 +44,7 @@ function NavbarHome() {
                       <p className='home-logout-title-user'>SWT2222</p>
                     </div>
                     <div className='form-group center-text'>
-                      <button className='home-logout-button' type='button' >Cerrar session</button>
+                      <button onClick={logout} className='home-logout-button' type='button' >Cerrar session</button>
                     </div>
                   </div>
               </div>

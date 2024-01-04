@@ -8,3 +8,8 @@
     justify-content: center;
 }
 
+.component-table-input {
+    font-weight: 500;
+    font-size: 20px;
+    font-family: 'poppins';
+}

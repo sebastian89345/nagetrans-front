@@ -111,7 +111,7 @@ const DefaultTable = ({ data , nms , updateId , deleteId }) => {
     <>
       <div className='DefaultTable-main'>
         <div>
-          <input className='form-control' type="text" placeholder="Filtrar por identificacion" value={filtro} onChange={e => setFiltro(e.target.value)} />
+          <input className='component-table-input form-control' type="text" placeholder="Filtrar por identificacion" value={filtro} onChange={e => setFiltro(e.target.value)} />
         </div>
         <div className='table-responsive'>
           <table className="table table-striped mt-3">

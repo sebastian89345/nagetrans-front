@@ -56,11 +56,11 @@ function Create({ setView,getAll }) {
   const [opcionSelectBrand, setOpcionSelectBrand] = useState('');
   const [opcionSelectModel, setOpcionSelectModel] = useState('');
   const [opcionSelectType, setOpcionSelectType] = useState('');
-  const dataListRole = useSelector((store) => store.roleService);
-  const dataListStatus = useSelector((store) => store.statusService);
-  const dataListBrand = useSelector((store) => store.brandService);
-  const dataListModel = useSelector((store) => store.modelService);
-  const dataListType = useSelector((store) => store.typeService);
+  const dataListRole = useSelector((store) => store.roleReducer);
+  const dataListStatus = useSelector((store) => store.statusReducer);
+  const dataListBrand = useSelector((store) => store.brandReducer);
+  const dataListModel = useSelector((store) => store.modelReducer);
+  const dataListType = useSelector((store) => store.typeReducer);
   const dispatch = useDispatch();
 
   useEffect(() => {

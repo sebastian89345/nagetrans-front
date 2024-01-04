@@ -22,7 +22,7 @@ import Swal from 'sweetalert2';
 function List() {
   const [view, setView] = useState({list:true,create:false,update:false});
   const [infoUpdate, setInfoUpdate] = useState({});
-  const dataList = useSelector((store) => store.statusService);
+  const dataList = useSelector((store) => store.statusReducer);
   const dispatch = useDispatch();
 
   //Aqui hago la consulta a la base de datos y la agrego el payload al redux

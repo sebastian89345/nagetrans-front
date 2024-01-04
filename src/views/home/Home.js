@@ -1,5 +1,5 @@
 // componentes de react
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 
 //hoja de estilos
 import './Home.css';
@@ -24,14 +24,20 @@ import ListBrand from '../brand/list/List';
 import ListModel from '../model/list/List';
 import ListType from '../type/list/List';
 
+// para navegar
+import { useNavigate } from 'react-router-dom';
+
 function Home() {
 
-    const [width, setWidth] = useState(window.innerWidth);
-    const handleResize = () => {
-      setWidth(window.innerWidth);
-    };
+  const [width, setWidth] = useState(window.innerWidth);
+  const navigate = useNavigate();
 
-    window.addEventListener('resize', handleResize);
+    useEffect(() => {
+      const handleResize = () => {
+        setWidth(window.innerWidth);
+      };
+      window.addEventListener('resize', handleResize);
+    }, [width])
 
     const [changeColor, setChangeColor] = useState([
       { name:"listCheck", list:false, buttons:"", icon:"" },
@@ -144,6 +150,11 @@ function Home() {
       </>
     }
 
+    const logout = () => {
+      navigate("/login");
+      window.location.reload();
+    }
+
   return (
     <>
     {width > 1200
@@ -157,7 +168,7 @@ function Home() {
           </div>
         </div>
         <div className='home-fila1'>
-            <NavbarHome />
+            <NavbarHome logout={logout} />
             {dashboards()}
         </div>
       </div> 
@@ -180,7 +191,7 @@ function Home() {
                   {buttons()}
                 </div>
                 <div className='home-mobile-sidebar-sidebar-logout'>
-                  <button type="submit" className="home-mobile-sidebar-btn btn btn-danger">Cerrar sesion</button>
+                  <button onClick={logout} type="submit" className="home-mobile-sidebar-btn btn btn-danger">Cerrar sesion</button>
                 </div>
               </div>
             </div>

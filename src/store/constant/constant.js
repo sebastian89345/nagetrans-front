@@ -15,4 +15,7 @@ export const GET_TYPE_ALL = "GET TYPE ALL";
 
 export const GET_USER_ID = "GET USER ID"; 
 export const GET_USER_ALL = "GET USER ALL"; 
+
+export const LOGIN = "LOGIN USER INFORMATION"; 
+// export const LOGOUT = "LOGOUT USER"; 
 // export const ERR_LOGIN_ANI = ["AN1", "Ocurrió un error al autenticarse con ANI"];

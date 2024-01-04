@@ -1,11 +1,18 @@
 // componentes de react
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-// react-router components
+// Redux
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+//Actions
+import { loginApp } from "../../store/action/loginAction";
 
 //Estilos css
 import './Login.css';
+
+//Alertas 
+import Swal from 'sweetalert2';
 
 //Componentes reutilizables
 import NavbarLogin from "../../components/Navbar/NavbarLogin/NavbarLogin";
@@ -19,26 +26,86 @@ function Login() {
   const navigate = useNavigate();
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [errorUser, setErrorUser] = useState("");
+  const [errorPassword, setErrorPassword] = useState("");
   const [width, setWidth] = useState(window.innerWidth);
-    
-  const handleResize = () => {
-    setWidth(window.innerWidth);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWidth(window.innerWidth);
+    };
+    window.addEventListener('resize', handleResize);
+  }, [width])
+
+  const validateField = (value, fieldName, regex, minLength, customErrorMessage) => {
+    if (value.trim() === '') {
+      return `El campo ${fieldName} no puede estar en blanco.`;
+    }
+
+    if (regex && !regex.test(value)) {
+      return customErrorMessage || `El campo ${fieldName} no cumple con el formato esperado.`;
+    }
+
+    if (value.length < minLength) {
+      return `El campo ${fieldName} debe tener al menos ${minLength} caracteres.`;
+    }
+
+    return null; // Indica que la validación fue exitosa
   };
 
-  window.addEventListener('resize', handleResize);
-    
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-      let userInfo = {
-        user:'sebastian893',
-        password:'sebastian893',
-        rol:'Admin'
+  const validateLogin = () => {
+    let isValid = true;
+
+    const userError = validateField(userName, 'usuario', /^[a-zA-Z0-9_!@#$%^&*()-]+$/, 4);
+    if (userError) {
+      setErrorUser(userError);
+      isValid = false;
+    } else {
+      setErrorUser("");
+    }
+
+    const passwordError = validateField(password, 'contraseña', /^[a-zA-Z0-9_]+$/, 4);
+    if (passwordError) {
+      setErrorPassword(passwordError);
+      isValid = false;
+    } else {
+      setErrorPassword("");
+    }
+
+    // Puedes agregar más bloques de validaciones para otros campos si es necesario
+    return isValid;
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    let validate = validateLogin();
+    if (validate) {
+      let response = await dispatch(loginApp(userName, password));
+      if(response.error === undefined){
+        switch (response.response.status) {
+          case 200:
+              navigate("/home");
+            break;
+          default:
+              console.log(response.response);
+              Swal.fire({
+                title: "Error!",
+                text: "usuario o contraseña incorrectos",
+                icon: "error"
+              });
+            break;
+        }
+      } else {
+        console.log(response.error);
+        Swal.fire({
+          title: "Error!",
+          text: "A ocurrido un error",
+          icon: "error"
+        });
       }
-      console.log(userInfo);  
-      sessionStorage.setItem('userInfo', JSON.stringify(userInfo));
-      navigate("/home"); 
+    }
   };
-
 
   return (
     <>
@@ -65,9 +132,19 @@ function Login() {
                         <div className="form-group">
                           <input type="text" value={userName} onChange={e => setUserName(e.target.value)} className="form-control login-input" placeholder="Usuario" />
                         </div>
+
+                        <div className='mt-4'>
+                          {errorUser && <p style={{ color: 'red' }}>{errorUser}</p>}
+                        </div>
+
                         <div className="form-group">
                           <input type="password" value={password} onChange={e => setPassword(e.target.value)} className="form-control login-input" placeholder="Contraseña" />
                         </div>
+
+                        <div className='mt-4'>
+                          {errorPassword && <p style={{ color: 'red' }}>{errorPassword}</p>}
+                        </div>
+
                         <div className="form-group">
                           <button type="submit" className="login-btn-login btn btn-danger">Ingresar</button>
                         </div>
@@ -90,12 +167,23 @@ function Login() {
               <p className="login-mobile-text">Iniciar session</p>
             </div>
             <form onSubmit={handleSubmit} component="form">
+
               <div className="form-group">
                 <input type="text" value={userName} onChange={e => setUserName(e.target.value)} className="form-control login-mobile-input" placeholder="Usuario" />
               </div>
+
+              <div className='mt-4'>
+                {errorUser && <p style={{ color: 'red' }}>{errorUser}</p>}
+              </div>
+
               <div className="form-group">
                 <input type="password" value={password} onChange={e => setPassword(e.target.value)} className="form-control login-mobile-input" placeholder="Contraseña" />
               </div>
+
+              <div className='mt-4'>
+                {errorPassword && <p style={{ color: 'red' }}>{errorPassword}</p>}
+              </div>
+
               <div className="form-group">
                 <p className="center-text login-mobile-text">Cambiar contraseña</p>
               </div>
