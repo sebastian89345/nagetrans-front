@@ -1,41 +1,41 @@
-.brand-create-card-main{
+.arl-create-card-main{
     display: flex;
     justify-content: center;
 }
 
-.brand-create-card {
+.arl-create-card {
     width: 100%;
     max-width: 1000px;
 }
 
-.brand-create-main {
+.arl-create-main {
     padding: 40px;
 }
 
-.brand-create-button {
+.arl-create-button {
     min-width: 150px;
 }
 
-.brand-create-title {
+.arl-create-title {
     font-size: 25px;
     font-weight: 600;
     font-family: 'Poppins';
     color: #6c757d;
 }
 
-.brand-create-input {
+.arl-create-input {
     font-size: 20px;
     font-weight: 500;
     font-family: 'Poppins';
 }
 
-.brand-create-img {
+.arl-create-img {
     width: 60px;
 }
 
  /* Large devices (desktops, 992px and up) */
 @media (max-width: 992px) { 
-    .brand-create-main {
+    .arl-create-main {
         padding: 20px;
     }
 }

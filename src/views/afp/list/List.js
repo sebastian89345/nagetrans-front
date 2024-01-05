@@ -93,11 +93,11 @@ function List() {
   }
 
   return (
-    <div className='list-brand-main'>
+    <div className='list-afp-main'>
       { view.list === true ?
         <>
-          <div className='list-brand-main-button'>
-            <button onClick={handleCreate} type="button" className="list-brand-button-title btn btn-primary">Crear</button>
+          <div className='list-afp-main-button'>
+            <button onClick={handleCreate} type="button" className="list-afp-button-title btn btn-primary">Crear</button>
           </div> 
           <DefaultTable data={dataList.data} nms={"afp"} deleteId={deleteInfo} updateId={updateInfo} />
         </>

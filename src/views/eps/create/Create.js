@@ -7,7 +7,7 @@ import './Create.css';
 import {  useDispatch } from "react-redux";
 
 //Reducers
-import { createBrandService } from "../../../store/action/brandAction";
+import { createEpsService } from "../../../store/action/epsAction";
 
 //Alertas 
 import Swal from 'sweetalert2';
@@ -54,7 +54,7 @@ function Create({ setView,getAll }) {
     if(validate === true) {
       //Aquí comienza las peticiones y demas
       let body = { name:inputName }
-      let response = await dispatch(createBrandService(body));
+      let response = await dispatch(createEpsService(body));
       if(response.error === undefined){
         switch (response.response.status) {
           case 201:
@@ -87,23 +87,23 @@ function Create({ setView,getAll }) {
   }
 
   return (
-    <div className='brand-create-card-main'>
-        <div className='brand-create-card card'>
+    <div className='eps-create-card-main'>
+        <div className='eps-create-card card'>
             <div className='card-body'>
               <div>
-                <img onClick={returnWindow} src={arrow} className='brand-create-img' alt='img' />
+                <img onClick={returnWindow} src={arrow} className='eps-create-img' alt='img' />
               </div>
               <div className=' text-center'>
-                <p className='brand-create-title'>Crear una marca</p>
+                <p className='eps-create-title'>Crear una EPS</p>
               </div>
               <div className='mt-4'>
-                <input value={inputName} onChange={(e) => setInputName(e.target.value)} type="text" className="brand-create-input form-control" placeholder="Nombre de la marca" />
+                <input value={inputName} onChange={(e) => setInputName(e.target.value)} type="text" className="eps-create-input form-control" placeholder="Nombre de la eps" />
               </div>
               <div className='mt-4'>
                 {error && <p style={{ color: 'red' }}>{error}</p>}
               </div>
               <div className='mt-4 text-center'>
-                <button onClick={create} type="button" className="brand-create-button btn btn-primary">Guardar</button>
+                <button onClick={create} type="button" className="eps-create-button btn btn-primary">Guardar</button>
               </div>
             </div>
         </div>

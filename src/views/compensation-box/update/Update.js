@@ -7,7 +7,7 @@ import './Update.css';
 import {  useDispatch } from "react-redux";
 
 //Reducers
-import { updateBrandService } from "../../../store/action/brandAction";
+import { updateCompensationBoxService } from "../../../store/action/compensationBoxAction";
 
 //Alertas 
 import Swal from 'sweetalert2';
@@ -54,7 +54,7 @@ function Update({ infoUpdate,setView,getAll }) {
     if(validate === true) { 
         //Aquí comienza las peticiones y demas
         let body = { id:infoUpdate.id, name:inputName }
-        let response = await dispatch(updateBrandService(body));
+        let response = await dispatch(updateCompensationBoxService(body));
         if(response.error === undefined){
           switch (response.response.status) {
             case 200:
@@ -85,23 +85,23 @@ function Update({ infoUpdate,setView,getAll }) {
   }
 
   return (
-    <div className='brand-update-card-main'>
-        <div className='brand-update-card card'>
+    <div className='compensationBox-update-card-main'>
+        <div className='compensationBox-update-card card'>
             <div className='card-body'>
               <div>
-                <img onClick={returnWindow} src={arrow} className='brand-update-img' alt='img' />
+                <img onClick={returnWindow} src={arrow} className='compensationBox-update-img' alt='img' />
               </div>
               <div className=' text-center'>
-                <p className='brand-update-title'>Editar marca</p>
+                <p className='compensationBox-update-title'>Editar una caja de compensacion</p>
               </div>
               <div className='mt-4'>
-                <input value={inputName} onChange={(e) => setInputName(e.target.value)} type="text" className="brand-update-input form-control" placeholder="Nombre de la marca" />
+                <input value={inputName} onChange={(e) => setInputName(e.target.value)} type="text" className="compensationBox-update-input form-control" placeholder="Nombre de la caja de compensacion" />
               </div>
               <div className='mt-4'>
                 {error && <p style={{ color: 'red' }}>{error}</p>}
               </div>
               <div className='mt-4 text-center'>
-                <button onClick={edit} type="button" className="brand-update-button btn btn-primary">Guardar</button>
+                <button onClick={edit} type="button" className="compensationBox-update-button btn btn-primary">Guardar</button>
               </div>
             </div>
         </div>

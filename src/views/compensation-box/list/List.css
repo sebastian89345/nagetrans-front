@@ -1,18 +1,18 @@
-.list-brand-main {
+.list-compensationBox-main {
     padding: 40px;
 }
 
-.list-brand-main-button {
+.list-compensationBox-main-button {
     text-align: end;
 }
 
-.list-brand-button-title {
+.list-compensationBox-button-title {
     min-width: 150px;
 }
 
  /* Large devices (desktops, 992px and up) */
 @media (max-width: 992px) { 
-    .list-brand-main {
+    .list-compensationBox-main {
         padding: 20px;
     }
 }

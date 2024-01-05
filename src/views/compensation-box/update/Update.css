@@ -1,41 +1,41 @@
-.brand-update-card-main{
+.compensationBox-update-card-main{
     display: flex;
     justify-content: center;
 }
 
-.brand-update-card {
+.compensationBox-update-card {
     width: 100%;
     max-width: 1000px;
 }
 
-.brand-update-main {
+.compensationBox-update-main {
     padding: 40px;
 }
 
-.brand-update-button {
+.compensationBox-update-button {
     min-width: 150px;
 }
 
-.brand-update-title {
+.compensationBox-update-title {
     font-size: 25px;
     font-weight: 600;
     font-family: 'Poppins';
     color: #6c757d;
 }
 
-.brand-update-input {
+.compensationBox-update-input {
     font-size: 20px;
     font-weight: 500;
     font-family: 'Poppins';
 }
 
-.brand-update-img {
+.compensationBox-update-img {
     width: 60px;
 }
 
  /* Large devices (desktops, 992px and up) */
 @media (max-width: 992px) { 
-    .brand-update-main {
+    .compensationBox-update-main {
         padding: 20px;
     }
 }

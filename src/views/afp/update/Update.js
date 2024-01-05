@@ -85,23 +85,23 @@ function Update({ infoUpdate,setView,getAll }) {
   }
 
   return (
-    <div className='brand-update-card-main'>
-        <div className='brand-update-card card'>
+    <div className='afp-update-card-main'>
+        <div className='afp-update-card card'>
             <div className='card-body'>
               <div>
-                <img onClick={returnWindow} src={arrow} className='brand-update-img' alt='img' />
+                <img onClick={returnWindow} src={arrow} className='afp-update-img' alt='img' />
               </div>
               <div className=' text-center'>
-                <p className='brand-update-title'>Editar marca</p>
+                <p className='afp-update-title'>Editar AFP</p>
               </div>
               <div className='mt-4'>
-                <input value={inputName} onChange={(e) => setInputName(e.target.value)} type="text" className="brand-update-input form-control" placeholder="Nombre de la marca" />
+                <input value={inputName} onChange={(e) => setInputName(e.target.value)} type="text" className="afp-update-input form-control" placeholder="Nombre de la afp" />
               </div>
               <div className='mt-4'>
                 {error && <p style={{ color: 'red' }}>{error}</p>}
               </div>
               <div className='mt-4 text-center'>
-                <button onClick={edit} type="button" className="brand-update-button btn btn-primary">Guardar</button>
+                <button onClick={edit} type="button" className="afp-update-button btn btn-primary">Guardar</button>
               </div>
             </div>
         </div>

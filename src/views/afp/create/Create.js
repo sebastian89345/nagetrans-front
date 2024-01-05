@@ -87,23 +87,23 @@ function Create({ setView,getAll }) {
   }
 
   return (
-    <div className='brand-create-card-main'>
-        <div className='brand-create-card card'>
+    <div className='afp-create-card-main'>
+        <div className='afp-create-card card'>
             <div className='card-body'>
               <div>
-                <img onClick={returnWindow} src={arrow} className='brand-create-img' alt='img' />
+                <img onClick={returnWindow} src={arrow} className='afp-create-img' alt='img' />
               </div>
               <div className=' text-center'>
-                <p className='brand-create-title'>Crear una marca</p>
+                <p className='afp-create-title'>Crear un AFP</p>
               </div>
               <div className='mt-4'>
-                <input value={inputName} onChange={(e) => setInputName(e.target.value)} type="text" className="brand-create-input form-control" placeholder="Nombre de la marca" />
+                <input value={inputName} onChange={(e) => setInputName(e.target.value)} type="text" className="afp-create-input form-control" placeholder="Nombre de la afp" />
               </div>
               <div className='mt-4'>
                 {error && <p style={{ color: 'red' }}>{error}</p>}
               </div>
               <div className='mt-4 text-center'>
-                <button onClick={create} type="button" className="brand-create-button btn btn-primary">Guardar</button>
+                <button onClick={create} type="button" className="afp-create-button btn btn-primary">Guardar</button>
               </div>
             </div>
         </div>

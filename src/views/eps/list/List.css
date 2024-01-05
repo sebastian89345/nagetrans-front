@@ -1,18 +1,18 @@
-.list-brand-main {
+.list-eps-main {
     padding: 40px;
 }
 
-.list-brand-main-button {
+.list-eps-main-button {
     text-align: end;
 }
 
-.list-brand-button-title {
+.list-eps-button-title {
     min-width: 150px;
 }
 
  /* Large devices (desktops, 992px and up) */
 @media (max-width: 992px) { 
-    .list-brand-main {
+    .list-eps-main {
         padding: 20px;
     }
 }

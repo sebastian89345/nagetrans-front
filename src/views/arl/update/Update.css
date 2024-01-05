@@ -1,41 +1,41 @@
-.brand-update-card-main{
+.arl-update-card-main{
     display: flex;
     justify-content: center;
 }
 
-.brand-update-card {
+.arl-update-card {
     width: 100%;
     max-width: 1000px;
 }
 
-.brand-update-main {
+.arl-update-main {
     padding: 40px;
 }
 
-.brand-update-button {
+.arl-update-button {
     min-width: 150px;
 }
 
-.brand-update-title {
+.arl-update-title {
     font-size: 25px;
     font-weight: 600;
     font-family: 'Poppins';
     color: #6c757d;
 }
 
-.brand-update-input {
+.arl-update-input {
     font-size: 20px;
     font-weight: 500;
     font-family: 'Poppins';
 }
 
-.brand-update-img {
+.arl-update-img {
     width: 60px;
 }
 
  /* Large devices (desktops, 992px and up) */
 @media (max-width: 992px) { 
-    .brand-update-main {
+    .arl-update-main {
         padding: 20px;
     }
 }

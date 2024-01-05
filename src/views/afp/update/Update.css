@@ -1,41 +1,41 @@
-.brand-update-card-main{
+.afp-update-card-main{
     display: flex;
     justify-content: center;
 }
 
-.brand-update-card {
+.afp-update-card {
     width: 100%;
     max-width: 1000px;
 }
 
-.brand-update-main {
+.afp-update-main {
     padding: 40px;
 }
 
-.brand-update-button {
+.afp-update-button {
     min-width: 150px;
 }
 
-.brand-update-title {
+.afp-update-title {
     font-size: 25px;
     font-weight: 600;
     font-family: 'Poppins';
     color: #6c757d;
 }
 
-.brand-update-input {
+.afp-update-input {
     font-size: 20px;
     font-weight: 500;
     font-family: 'Poppins';
 }
 
-.brand-update-img {
+.afp-update-img {
     width: 60px;
 }
 
  /* Large devices (desktops, 992px and up) */
 @media (max-width: 992px) { 
-    .brand-update-main {
+    .afp-update-main {
         padding: 20px;
     }
 }

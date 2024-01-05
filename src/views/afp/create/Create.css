@@ -1,41 +1,41 @@
-.brand-create-card-main{
+.afp-create-card-main{
     display: flex;
     justify-content: center;
 }
 
-.brand-create-card {
+.afp-create-card {
     width: 100%;
     max-width: 1000px;
 }
 
-.brand-create-main {
+.afp-create-main {
     padding: 40px;
 }
 
-.brand-create-button {
+.afp-create-button {
     min-width: 150px;
 }
 
-.brand-create-title {
+.afp-create-title {
     font-size: 25px;
     font-weight: 600;
     font-family: 'Poppins';
     color: #6c757d;
 }
 
-.brand-create-input {
+.afp-create-input {
     font-size: 20px;
     font-weight: 500;
     font-family: 'Poppins';
 }
 
-.brand-create-img {
+.afp-create-img {
     width: 60px;
 }
 
  /* Large devices (desktops, 992px and up) */
 @media (max-width: 992px) { 
-    .brand-create-main {
+    .afp-create-main {
         padding: 20px;
     }
 }

@@ -14,7 +14,7 @@ import Update from '../update/Update';
 import { useSelector , useDispatch } from "react-redux";
 
 //Reducers
-import { getBrandAllService , deleteBrandService  } from "../../../store/action/brandAction";
+import { getArlAllService , deleteArlService  } from "../../../store/action/arlAction";
 
 //Alertas 
 import Swal from 'sweetalert2';
@@ -22,17 +22,17 @@ import Swal from 'sweetalert2';
 function List() {
   const [view, setView] = useState({list:true,create:false,update:false});
   const [infoUpdate, setInfoUpdate] = useState({});
-  const dataList = useSelector((store) => store.brandReducer);
+  const dataList = useSelector((store) => store.arlReducer);
   const dispatch = useDispatch();
 
   //Aqui hago la consulta a la base de datos y la agrego el payload al redux
   useEffect(() => {
-    dispatch(getBrandAllService());
+    dispatch(getArlAllService());
   }, [dispatch])
 
   //Esto es para actulizar la lista en el create y update y nada mas
   const getAll = () => {
-    dispatch(getBrandAllService());
+    dispatch(getArlAllService());
   }
 
   const handleCreate = () => {
@@ -56,12 +56,12 @@ function List() {
   }
 
   const alertDelete = async (id) => {
-    let response = await dispatch(deleteBrandService(id));
+    let response = await dispatch(deleteArlService(id));
     if(response.error === undefined){
       switch (response.response.status) {
         case 200:
             //Aquí actulizo la informacion
-            dispatch(getBrandAllService());
+            dispatch(getArlAllService());
             Swal.fire({
               title: "Eliminado!",
               text: "Fue eliminado con exito",
@@ -99,7 +99,7 @@ function List() {
           <div className='list-brand-main-button'>
             <button onClick={handleCreate} type="button" className="list-brand-button-title btn btn-primary">Crear</button>
           </div> 
-          <DefaultTable data={dataList.data} nms={"brand"} deleteId={deleteInfo} updateId={updateInfo} />
+          <DefaultTable data={dataList.data} nms={"arl"} deleteId={deleteInfo} updateId={updateInfo} />
         </>
         : view.create === true ?
           <Create setView={setView} getAll={getAll} />

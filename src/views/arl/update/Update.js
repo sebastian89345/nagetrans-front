@@ -7,7 +7,7 @@ import './Update.css';
 import {  useDispatch } from "react-redux";
 
 //Reducers
-import { updateBrandService } from "../../../store/action/brandAction";
+import { updateArlService } from "../../../store/action/arlAction";
 
 //Alertas 
 import Swal from 'sweetalert2';
@@ -54,7 +54,7 @@ function Update({ infoUpdate,setView,getAll }) {
     if(validate === true) { 
         //Aquí comienza las peticiones y demas
         let body = { id:infoUpdate.id, name:inputName }
-        let response = await dispatch(updateBrandService(body));
+        let response = await dispatch(updateArlService(body));
         if(response.error === undefined){
           switch (response.response.status) {
             case 200:
@@ -85,23 +85,23 @@ function Update({ infoUpdate,setView,getAll }) {
   }
 
   return (
-    <div className='brand-update-card-main'>
-        <div className='brand-update-card card'>
+    <div className='arl-update-card-main'>
+        <div className='arl-update-card card'>
             <div className='card-body'>
               <div>
-                <img onClick={returnWindow} src={arrow} className='brand-update-img' alt='img' />
+                <img onClick={returnWindow} src={arrow} className='arl-update-img' alt='img' />
               </div>
               <div className=' text-center'>
-                <p className='brand-update-title'>Editar marca</p>
+                <p className='arl-update-title'>Editar una ARL</p>
               </div>
               <div className='mt-4'>
-                <input value={inputName} onChange={(e) => setInputName(e.target.value)} type="text" className="brand-update-input form-control" placeholder="Nombre de la marca" />
+                <input value={inputName} onChange={(e) => setInputName(e.target.value)} type="text" className="arl-update-input form-control" placeholder="Nombre de la arl" />
               </div>
               <div className='mt-4'>
                 {error && <p style={{ color: 'red' }}>{error}</p>}
               </div>
               <div className='mt-4 text-center'>
-                <button onClick={edit} type="button" className="brand-update-button btn btn-primary">Guardar</button>
+                <button onClick={edit} type="button" className="arl-update-button btn btn-primary">Guardar</button>
               </div>
             </div>
         </div>
