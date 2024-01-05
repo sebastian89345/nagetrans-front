@@ -133,17 +133,17 @@ function Home() {
             <button name={changeColor[3].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[3].buttons} mb-1`}>
               <img className={`home-sidebar-icon ${changeColor[3].icon}`} src={iconSheet} alt='nose' /> Papeles conductor
             </button>
-            <button name={changeColor[9].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[3].buttons} mb-1`}>
-              <img className={`home-sidebar-icon ${changeColor[3].icon}`} src={iconSheet} alt='nose' /> Arl
+            <button name={changeColor[9].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[9].buttons} mb-1`}>
+              <img className={`home-sidebar-icon ${changeColor[9].icon}`} src={iconSheet} alt='nose' /> Arl
             </button>
-            <button name={changeColor[10].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[3].buttons} mb-1`}>
-              <img className={`home-sidebar-icon ${changeColor[3].icon}`} src={iconSheet} alt='nose' /> Afp
+            <button name={changeColor[10].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[10].buttons} mb-1`}>
+              <img className={`home-sidebar-icon ${changeColor[10].icon}`} src={iconSheet} alt='nose' /> Afp
             </button>
-            <button name={changeColor[11].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[3].buttons} mb-1`}>
-              <img className={`home-sidebar-icon ${changeColor[3].icon}`} src={iconSheet} alt='nose' /> Eps
+            <button name={changeColor[11].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[11].buttons} mb-1`}>
+              <img className={`home-sidebar-icon ${changeColor[11].icon}`} src={iconSheet} alt='nose' /> Eps
             </button>
-            <button name={changeColor[12].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[3].buttons} mb-1`}>
-              <img className={`home-sidebar-icon ${changeColor[3].icon}`} src={iconSheet} alt='nose' /> Caja de compensacion
+            <button name={changeColor[12].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[12].buttons} mb-1`}>
+              <img className={`home-sidebar-icon ${changeColor[12].icon}`} src={iconSheet} alt='nose' /> Caja de compensacion
             </button>
           </div>
         </>
@@ -183,6 +183,14 @@ function Home() {
               <ListModel />
             : changeColor[8].list === true ?
               <ListType />
+            : changeColor[9].list === true ?
+              <div>Arl</div>
+            : changeColor[10].list === true ?
+              <div>Afp</div>
+            : changeColor[11].list === true ?
+              <div>Eps</div>
+            : changeColor[12].list === true ?
+              <div>Caja de compesacion</div>
             : <></> 
           }
       </>
