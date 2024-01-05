@@ -20,18 +20,21 @@
         "urlModel":"model/"
     },
     "arl": {
-        "urlType":"arl/"
+        "urlArl":"arl/"
     },
     "afp": {
-        "urlType":"afp/"
+        "urlAfp":"afp/"
     },
     "eps": {
-        "urlType":"eps/"
+        "urlEps":"eps/"
     },
     "compensationbox": {
-        "urlType":"compensationbox/"
+        "urlCompensationbox":"compensationbox/"
     },
     "driverDocument": {
-        "urlType":"driverDocument/"
+        "urlDriverDocument":"driverDocument/"
+    },
+    "vehicleDocument": {
+        "urlVehicleDocument":"vehicleDocument/"
     }
 }

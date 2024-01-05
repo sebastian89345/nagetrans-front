@@ -2,7 +2,7 @@ import axios from 'axios';
 import config from "../constant/services.json";
 import { GET_MODEL_ID,GET_MODEL_ALL } from '../constant/constant';
 
-export const getModelAIdService = (token) => async (dispatch, getState) => {
+export const getModelAIdService = () => async (dispatch, getState) => {
     try {
         const res = await axios.get(config.urlProd+config.model.urlModel);
         // console.log(res);
@@ -18,7 +18,7 @@ export const getModelAIdService = (token) => async (dispatch, getState) => {
     }
 };
 
-export const getModelAllService = (token) => async (dispatch, getState) => {
+export const getModelAllService = () => async (dispatch, getState) => {
     try {
         const res = await axios.get(config.urlProd+config.model.urlModel);
         // console.log(res);
@@ -34,7 +34,7 @@ export const getModelAllService = (token) => async (dispatch, getState) => {
     }
 };
 
-export const createModelService = (body,token) => async (dispatch, getState) => {
+export const createModelService = (body) => async (dispatch, getState) => {
     try {
         const res = await axios.post(config.urlProd+config.model.urlModel,body);
         // console.log(res);
@@ -46,7 +46,7 @@ export const createModelService = (body,token) => async (dispatch, getState) => 
     }
 };
 
-export const updateModelService = (body,token) => async (dispatch, getState) => {
+export const updateModelService = (body) => async (dispatch, getState) => {
     try {
         const res = await axios.put(config.urlProd+config.model.urlModel + body.id,body);
         // console.log(res);

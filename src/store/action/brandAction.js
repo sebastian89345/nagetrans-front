@@ -2,7 +2,7 @@ import axios from 'axios';
 import config from "../constant/services.json";
 import { GET_BRAND_ID,GET_BRAND_ALL } from '../constant/constant';
 
-export const getBrandAIdService = (token) => async (dispatch, getState) => {
+export const getBrandAIdService = () => async (dispatch, getState) => {
     try {
         const res = await axios.get(config.urlProd+config.brand.urlBrand);
         // console.log(res);
@@ -18,7 +18,7 @@ export const getBrandAIdService = (token) => async (dispatch, getState) => {
     }
 };
 
-export const getBrandAllService = (token) => async (dispatch, getState) => {
+export const getBrandAllService = () => async (dispatch, getState) => {
     try {
         const res = await axios.get(config.urlProd+config.brand.urlBrand);
         // console.log(res);
@@ -34,7 +34,7 @@ export const getBrandAllService = (token) => async (dispatch, getState) => {
     }
 };
 
-export const createBrandService = (body,token) => async (dispatch, getState) => {
+export const createBrandService = (body) => async (dispatch, getState) => {
     try {
         const res = await axios.post(config.urlProd+config.brand.urlBrand,body);
         // console.log(res);
@@ -46,7 +46,7 @@ export const createBrandService = (body,token) => async (dispatch, getState) => 
     }
 };
 
-export const updateBrandService = (body,token) => async (dispatch, getState) => {
+export const updateBrandService = (body) => async (dispatch, getState) => {
     try {
         const res = await axios.put(config.urlProd+config.brand.urlBrand + body.id,body);
         // console.log(res);

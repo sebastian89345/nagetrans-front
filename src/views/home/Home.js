@@ -23,6 +23,13 @@ import ListStatus from '../status/list/List';
 import ListBrand from '../brand/list/List';
 import ListModel from '../model/list/List';
 import ListType from '../type/list/List';
+import ListAfp from '../afp/list/List';
+import ListArl from '../arl/list/List';
+import ListEps from '../eps/list/List';
+import ListCompensationBox from '../compensation-box/list/List';
+import ListDriverDocument from '../driver-document/list/List';
+import ListVehicleDocument from '../vehicle-document/list/List';
+
 
 // para navegar
 import { useNavigate } from 'react-router-dom';
@@ -170,9 +177,9 @@ function Home() {
             : changeColor[1].list === true ?
               <ListUser />
             : changeColor[2].list === true ?
-              <ListUser />
+              <ListVehicleDocument />
             : changeColor[3].list === true ?
-              <ListUser />
+              <ListDriverDocument />
             : changeColor[4].list === true ?
               <ListRole />
             : changeColor[5].list === true ?
@@ -184,13 +191,13 @@ function Home() {
             : changeColor[8].list === true ?
               <ListType />
             : changeColor[9].list === true ?
-              <div>Arl</div>
+              <ListArl />
             : changeColor[10].list === true ?
-              <div>Afp</div>
+              <ListAfp />
             : changeColor[11].list === true ?
-              <div>Eps</div>
+              <ListEps />
             : changeColor[12].list === true ?
-              <div>Caja de compesacion</div>
+              <ListCompensationBox />
             : <></> 
           }
       </>

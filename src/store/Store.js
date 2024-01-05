@@ -7,6 +7,12 @@ import modelReducer from './reducers/modelReducers';
 import typeReducer from './reducers/typeReducers';
 import userReducer from './reducers/userReducers';
 import loginReducer from './reducers/loginReducers';
+import arlReducer from './reducers/arlReducers';
+import afpReducer from './reducers/afpReducers';
+import epsReducer from './reducers/epsReducers';
+import compesationBoxReducer from './reducers/compesationBoxReducers';
+import driverDocumentReducer from './reducers/driverDocumentReducers';
+import vehicleDocumentReducer from './reducers/vehicleDocumentReducers';
 
 const rootReducer = combineReducers({
     roleReducer: roleReducer, 
@@ -15,7 +21,13 @@ const rootReducer = combineReducers({
     modelReducer: modelReducer, 
     typeReducer: typeReducer, 
     userReducer: userReducer, 
-    loginReducer: loginReducer 
+    loginReducer: loginReducer,
+    arlReducer: arlReducer, 
+    afpReducer: afpReducer, 
+    epsReducer: epsReducer, 
+    compesationBoxReducer: compesationBoxReducer, 
+    driverDocumentReducer: driverDocumentReducer, 
+    vehicleDocumentReducer: vehicleDocumentReducer 
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

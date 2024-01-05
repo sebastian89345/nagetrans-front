@@ -15,17 +15,15 @@ const DefaultTable = ({ data , nms , updateId , deleteId }) => {
     let response;
     if(nms === "user"){
       response =  item.user.toLowerCase().includes(filtro.toLowerCase())
-    } else if(nms === "role"){
+    } else if (nms === "driverDocument") {
+
+    } else if (nms === "vehicleDocument") {
+
+    } else if (nms === "listCheck") {
+
+    } else if(nms === "role" || nms === "status" || nms === "brand" || nms === "model" || nms === "type" || nms === "arl" || nms === "afp" || nms === "eps" || nms === "compensationBox"){
       response = item.name.toLowerCase().includes(filtro.toLowerCase())
-    } else if(nms === "status"){
-      response = item.name.toLowerCase().includes(filtro.toLowerCase())
-    } else if(nms === "brand"){
-      response = item.name.toLowerCase().includes(filtro.toLowerCase())
-    } else if(nms === "model"){
-      response = item.name.toLowerCase().includes(filtro.toLowerCase())
-    } else if(nms === "type"){
-      response = item.name.toLowerCase().includes(filtro.toLowerCase())
-    }
+    } 
     return response ;
    }
   );
@@ -49,30 +47,23 @@ const DefaultTable = ({ data , nms , updateId , deleteId }) => {
     let th ;
     if(nms === "user"){
       th = <>
-      <th scope="col">usuario</th>
-      <th scope="col">Correo</th>
-    </>
-    } else if (nms === "role"){
+        <th scope="col">usuario</th>
+        <th scope="col">Correo</th>
+      </>
+    } else if (nms === "driverDocument") {
       th = <>
-      <th scope="col">Nombre del rol</th>
-    </>
-    } else if (nms === "status"){
+        <th scope="col">usuario</th>
+        <th scope="col">Correo</th>
+      </>
+    } else if (nms === "vehicleDocument") {
+
+    } else if (nms === "listCheck") {
+
+    } else if (nms === "role" || nms === "status" || nms === "brand" || nms === "model" || nms === "type" || nms === "arl" || nms === "afp" || nms === "eps" || nms === "compensationBox"){
       th = <>
-      <th scope="col">Nombre del estado</th>
-    </>
-    } else if (nms === "brand"){
-      th = <>
-      <th scope="col">Nombre de la marca</th>
-    </>
-    } else if (nms === "model"){
-      th = <>
-      <th scope="col">Nombre del modelo</th>
-    </>
-    } else if (nms === "type"){
-      th = <>
-      <th scope="col">Nombre del tipo</th>
-    </>
-    }
+        <th scope="col">Nombre</th>
+      </>
+    } 
     return th ;
   }
 
@@ -83,23 +74,16 @@ const DefaultTable = ({ data , nms , updateId , deleteId }) => {
         <td>{item.user}</td>
         <td>{item.email}</td>
       </>
-    } else if (nms === "role") {
+    } else if (nms === "driverDocument") {
       td = <>
-        <td>{item.name}</td>
+        <td>{item.user}</td>
+        <td>{item.email}</td>
       </>
-    } else if (nms === "status") {
-      td = <>
-        <td>{item.name}</td>
-      </>
-    } else if (nms === "brand") {
-      td = <>
-        <td>{item.name}</td>
-      </>
-    } else if (nms === "model") {
-      td = <>
-        <td>{item.name}</td>
-      </>
-    } else if (nms === "type") {
+    } else if (nms === "vehicleDocument") {
+
+    } else if (nms === "listCheck") {
+
+    } else if (nms === "role" || nms === "status" || nms === "brand" || nms === "model" || nms === "type" || nms === "arl" || nms === "afp" || nms === "eps" || nms === "compensationBox") {
       td = <>
         <td>{item.name}</td>
       </>

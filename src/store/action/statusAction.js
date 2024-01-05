@@ -2,7 +2,7 @@ import axios from 'axios';
 import config from "../constant/services.json";
 import { GET_STATUS_ID,GET_STATUS_ALL } from '../constant/constant';
 
-export const getStatusAIdService = (token) => async (dispatch, getState) => {
+export const getStatusAIdService = () => async (dispatch, getState) => {
     try {
         const res = await axios.get(config.urlProd+config.status.urlStatus);
         // console.log(res);
@@ -18,7 +18,7 @@ export const getStatusAIdService = (token) => async (dispatch, getState) => {
     }
 };
 
-export const getStatusAllService = (token) => async (dispatch, getState) => {
+export const getStatusAllService = () => async (dispatch, getState) => {
     try {
         const res = await axios.get(config.urlProd+config.status.urlStatus);
         // console.log(res);
@@ -34,7 +34,7 @@ export const getStatusAllService = (token) => async (dispatch, getState) => {
     }
 };
 
-export const createStatusService = (body,token) => async (dispatch, getState) => {
+export const createStatusService = (body) => async (dispatch, getState) => {
     try {
         const res = await axios.post(config.urlProd+config.status.urlStatus,body);
         // console.log(res);
@@ -46,7 +46,7 @@ export const createStatusService = (body,token) => async (dispatch, getState) =>
     }
 };
 
-export const updateStatusService = (body,token) => async (dispatch, getState) => {
+export const updateStatusService = (body) => async (dispatch, getState) => {
     try {
         const res = await axios.put(config.urlProd+config.status.urlStatus + body.id,body);
         // console.log(res);

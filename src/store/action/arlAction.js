@@ -1,15 +1,15 @@
 import axios from 'axios';
 import config from "../constant/services.json";
-import { GET_TYPE_ID,GET_TYPE_ALL } from '../constant/constant';
+import { GET_ARL_ID,GET_ARL_ALL } from '../constant/constant';
 
-export const getTypeAIdService = () => async (dispatch, getState) => {
+export const getArlAIdService = () => async (dispatch, getState) => {
     try {
-        const res = await axios.get(config.urlProd+config.type.urlType);
+        const res = await axios.get(config.urlProd+config.arl.urlArl);
         // console.log(res);
         let result = res.data.response.response;
         if (res.data.response.status === 200) {
             dispatch({
-                type: GET_TYPE_ID,
+                type: GET_ARL_ID,
                 payload: { data: result }
             });
         } 
@@ -18,14 +18,14 @@ export const getTypeAIdService = () => async (dispatch, getState) => {
     }
 };
 
-export const getTypeAllService = () => async (dispatch, getState) => {
+export const getArlAllService = () => async (dispatch, getState) => {
     try {
-        const res = await axios.get(config.urlProd+config.type.urlType);
+        const res = await axios.get(config.urlProd+config.arl.urlArl);
         // console.log(res);
         let result = res.data.response.response;
         if (res.data.response.status === 200) {
             dispatch({
-                type: GET_TYPE_ALL,
+                type: GET_ARL_ALL,
                 payload: { data: result }
             });
         } 
@@ -34,9 +34,9 @@ export const getTypeAllService = () => async (dispatch, getState) => {
     }
 };
 
-export const createTypeService = (body) => async (dispatch, getState) => {
+export const createArlService = (body) => async (dispatch, getState) => {
     try {
-        const res = await axios.post(config.urlProd+config.type.urlType,body);
+        const res = await axios.post(config.urlProd+config.arl.urlArl,body);
         // console.log(res);
         let result = res.data;
         return result;
@@ -46,9 +46,9 @@ export const createTypeService = (body) => async (dispatch, getState) => {
     }
 };
 
-export const updateTypeService = (body) => async (dispatch, getState) => {
+export const updateArlService = (body) => async (dispatch, getState) => {
     try {
-        const res = await axios.put(config.urlProd+config.type.urlType + body.id,body);
+        const res = await axios.put(config.urlProd+config.arl.urlArl + body.id,body);
         // console.log(res);
         let result = res.data;
         return result; 
@@ -57,9 +57,9 @@ export const updateTypeService = (body) => async (dispatch, getState) => {
     }
 };
 
-export const deleteTypeService = (id) => async (dispatch, getState) => {
+export const deleteArlService = (id) => async (dispatch, getState) => {
     try {
-        const res = await axios.delete(config.urlProd+config.type.urlType + id);
+        const res = await axios.delete(config.urlProd+config.arl.urlArl + id);
         // console.log(res);
         let result = res.data;
         return result;

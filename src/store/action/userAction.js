@@ -2,7 +2,7 @@ import axios from 'axios';
 import config from "../constant/services.json";
 import { GET_USER_ID,GET_USER_ALL } from '../constant/constant';
 
-export const getUserAIdService = (token) => async (dispatch, getState) => {
+export const getUserAIdService = () => async (dispatch, getState) => {
     try {
         const res = await axios.get(config.urlProd+config.user.urlUser);
         // console.log(res);
@@ -18,7 +18,7 @@ export const getUserAIdService = (token) => async (dispatch, getState) => {
     }
 };
 
-export const getUserAllService = (token) => async (dispatch, getState) => {
+export const getUserAllService = () => async (dispatch, getState) => {
     try {
         const res = await axios.get(config.urlProd+config.user.urlUser);
         // console.log(res);
@@ -34,7 +34,7 @@ export const getUserAllService = (token) => async (dispatch, getState) => {
     }
 };
 
-export const createUserService = (body,token) => async (dispatch, getState) => {
+export const createUserService = (body) => async (dispatch, getState) => {
     try {
         const res = await axios.post(config.urlProd+config.user.urlUser,body);
         // console.log(res);
@@ -46,7 +46,7 @@ export const createUserService = (body,token) => async (dispatch, getState) => {
     }
 };
 
-export const updateUserService = (body,token) => async (dispatch, getState) => {
+export const updateUserService = (body) => async (dispatch, getState) => {
     try {
         const res = await axios.put(config.urlProd+config.user.urlUser + body.id,body);
         // console.log(res);
