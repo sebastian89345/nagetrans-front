@@ -48,7 +48,11 @@ function Home() {
       { name:"status", list:false, buttons:"", icon:"" },
       { name:"brand", list:false, buttons:"", icon:"" },
       { name:"model", list:false, buttons:"", icon:"" },
-      { name:"type", list:false, buttons:"", icon:"" }
+      { name:"type", list:false, buttons:"", icon:"" },
+      { name:"arl",list:false,buttons:"", icon:"" },
+      { name:"afp",list:false,buttons:"", icon:"" },
+      { name:"eps",list:false,buttons:"", icon:"" },
+      { name:"compensationBox",list:false,buttons:"", icon:"" }
     ]); 
 
     const closeSidebar = () => {
@@ -67,7 +71,11 @@ function Home() {
         { name:"status",list:false,buttons:"", icon:"" },
         { name:"brand",list:false,buttons:"", icon:"" },
         { name:"model",list:false,buttons:"", icon:"" },
-        { name:"type",list:false,buttons:"", icon:"" }
+        { name:"type",list:false,buttons:"", icon:"" },
+        { name:"arl",list:false,buttons:"", icon:"" },
+        { name:"afp",list:false,buttons:"", icon:"" },
+        { name:"eps",list:false,buttons:"", icon:"" },
+        { name:"compensationBox",list:false,buttons:"", icon:"" }
       ];
     };
 
@@ -90,6 +98,8 @@ function Home() {
 
     const buttons = () => {
      return <>
+      {/* usuarios */}
+      <>
         <button className="home-sidebar-links mb-1" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">
           <img className="home-sidebar-icon" src={iconAccordion} alt='nose' /> Modulo usuarios
         </button>
@@ -113,15 +123,43 @@ function Home() {
             <img className={`home-sidebar-icon ${changeColor[8].icon}`} src={iconCar} alt='nose' /> Tipo
           </button>
         </div>
-        <button name={changeColor[0].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[0].buttons}  mb-1`}>
-          <img className={`home-sidebar-icon ${changeColor[0].icon}`} src={iconTask} alt='nose' /> Lista de chequeo
-        </button>
-        <button name={changeColor[2].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[2].buttons} mb-1`}>
-          <img className={`home-sidebar-icon ${changeColor[2].icon}`} src={iconSheet} alt='nose' /> Papeles vehiculo
-        </button>
-        <button name={changeColor[3].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[3].buttons} mb-1`}>
-          <img className={`home-sidebar-icon ${changeColor[3].icon}`} src={iconSheet} alt='nose' /> Papeles conductor
-        </button>
+        </>
+        {/* papeles del condutor */}
+        <>
+          <button className="home-sidebar-links mb-1" type="button" data-toggle="collapse" data-target=".multi-collapses" aria-expanded="false" aria-controls="multiCollapseExample3">
+            <img className="home-sidebar-icon" src={iconAccordion} alt='nose' /> Modulo conductor
+          </button>
+          <div id="multiCollapseExample3" className="collapse multi-collapses">
+            <button name={changeColor[3].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[3].buttons} mb-1`}>
+              <img className={`home-sidebar-icon ${changeColor[3].icon}`} src={iconSheet} alt='nose' /> Papeles conductor
+            </button>
+            <button name={changeColor[9].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[3].buttons} mb-1`}>
+              <img className={`home-sidebar-icon ${changeColor[3].icon}`} src={iconSheet} alt='nose' /> Arl
+            </button>
+            <button name={changeColor[10].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[3].buttons} mb-1`}>
+              <img className={`home-sidebar-icon ${changeColor[3].icon}`} src={iconSheet} alt='nose' /> Afp
+            </button>
+            <button name={changeColor[11].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[3].buttons} mb-1`}>
+              <img className={`home-sidebar-icon ${changeColor[3].icon}`} src={iconSheet} alt='nose' /> Eps
+            </button>
+            <button name={changeColor[12].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[3].buttons} mb-1`}>
+              <img className={`home-sidebar-icon ${changeColor[3].icon}`} src={iconSheet} alt='nose' /> Caja de compensacion
+            </button>
+          </div>
+        </>
+        {/* papeles del vehciculo */}
+        <>
+          <button name={changeColor[2].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[2].buttons} mb-1`}>
+            <img className={`home-sidebar-icon ${changeColor[2].icon}`} src={iconSheet} alt='nose' /> Papeles vehiculo
+          </button>
+        </>
+        {/* lista de chequeo */}
+        <>
+          <button name={changeColor[0].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[0].buttons}  mb-1`}>
+            <img className={`home-sidebar-icon ${changeColor[0].icon}`} src={iconTask} alt='nose' /> Lista de chequeo
+          </button>
+        </>
+        
       </>
     }
 

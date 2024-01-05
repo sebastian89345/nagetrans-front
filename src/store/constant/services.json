@@ -19,7 +19,19 @@
     "model": {
         "urlModel":"model/"
     },
-    "type": {
-        "urlType":"type/"
+    "arl": {
+        "urlType":"arl/"
+    },
+    "afp": {
+        "urlType":"afp/"
+    },
+    "eps": {
+        "urlType":"eps/"
+    },
+    "compensationbox": {
+        "urlType":"compensationbox/"
+    },
+    "driverDocument": {
+        "urlType":"driverDocument/"
     }
 }
