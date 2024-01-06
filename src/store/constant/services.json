@@ -19,6 +19,9 @@
     "model": {
         "urlModel":"model/"
     },
+    "type": {
+        "urlType":"type/"
+    },
     "arl": {
         "urlArl":"arl/"
     },

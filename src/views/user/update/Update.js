@@ -20,8 +20,12 @@ import Swal from 'sweetalert2';
 //Imagenes
 import arrow from '../../../assets/img/bx-chevron-left.svg';
 
+//id de los roles
+import roleService from '../../../libs/helpers/role.json';
+
 function Update({ infoUpdate,setView,getAll }) {
 
+  const { adminstrador,conductor,vehiculo,asociado } = roleService;
   const [inputUser, setInputUser] = useState("");
   const [inputDni, setInputDni] = useState("");
   const [inputName, setInputName] = useState("");
@@ -86,7 +90,7 @@ function Update({ infoUpdate,setView,getAll }) {
   }, [dataListBrand,dataListModel,dataListType])
 
   useEffect(() => {
-    if (infoUpdate.item.role[0]._id === "6585dd2aeccfb9d2ba855427" || infoUpdate.item.role[0]._id === "6585dd30eccfb9d2ba855429") {
+    if (infoUpdate.item.role[0]._id === adminstrador || infoUpdate.item.role[0]._id === conductor) {
       setInputUser(infoUpdate.item.user);
       setInputDni(infoUpdate.item.dni);
       setInputName(infoUpdate.item.names);
@@ -96,7 +100,7 @@ function Update({ infoUpdate,setView,getAll }) {
       setOpcionSelectRole(infoUpdate.item.role[0]._id);
       setOpcionSelectStatus(infoUpdate.item.status[0]._id);
       setOpcionSelectShow(infoUpdate.item.show);
-    } else if (infoUpdate.item.role[0]._id === "6585dd37eccfb9d2ba85542b" || infoUpdate.item.role[0]._id === "6585dd45eccfb9d2ba85542d") {
+    } else if (infoUpdate.item.role[0]._id === vehiculo || infoUpdate.item.role[0]._id === asociado) {
       setInputUser(infoUpdate.item.user);
       setInputVin(infoUpdate.item.vin);
       setInputEmail(infoUpdate.item.email);
@@ -314,7 +318,7 @@ function Update({ infoUpdate,setView,getAll }) {
 
   const edit = async () => {
 
-    if (opcionSelectRole === "6585dd2aeccfb9d2ba855427" || opcionSelectRole === "6585dd30eccfb9d2ba855429") {
+    if (opcionSelectRole === adminstrador || opcionSelectRole === conductor) {
 
       let validateDrivers = validateDriver();
       let body = { 
@@ -327,7 +331,7 @@ function Update({ infoUpdate,setView,getAll }) {
         editUser(body);
       }
 
-    } else if (opcionSelectRole === "6585dd37eccfb9d2ba85542b" || opcionSelectRole === "6585dd45eccfb9d2ba85542d") {
+    } else if (opcionSelectRole === vehiculo || opcionSelectRole === asociado) {
       
       let validateVehicles = validateVehicle();
       let body = { 
@@ -403,7 +407,7 @@ function Update({ infoUpdate,setView,getAll }) {
                     {errorUser && <p style={{ color: 'red' }}>{errorUser}</p>}
                   </div>
 
-                  { opcionSelectRole === "6585dd2aeccfb9d2ba855427" || opcionSelectRole === "6585dd30eccfb9d2ba855429" ? 
+                  { opcionSelectRole === adminstrador || opcionSelectRole === conductor ? 
                     <>
                       <div className='mt-4 user-update-main-input'>
                           <input value={inputDni} onChange={handleChangeDni} pattern="[0-9]{0,13}" type="text" className="user-update-input form-control" placeholder="Cedula" />
@@ -437,7 +441,7 @@ function Update({ infoUpdate,setView,getAll }) {
                         {errorPhone && <p style={{ color: 'red' }}>{errorPhone}</p>}
                       </div>
                     </> 
-                    : opcionSelectRole === "6585dd37eccfb9d2ba85542b" || opcionSelectRole === "6585dd45eccfb9d2ba85542d" ? 
+                    : opcionSelectRole === vehiculo || opcionSelectRole === asociado ? 
                     <>
                       <div className='mt-4 user-update-main-input'>
                           <input value={inputVin} onChange={(e) => setInputVin(e.target.value)} type="text" className="user-update-input form-control" placeholder="Vin" />

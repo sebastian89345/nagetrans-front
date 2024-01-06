@@ -20,8 +20,12 @@ import Swal from 'sweetalert2';
 //Imagenes
 import arrow from '../../../assets/img/bx-chevron-left.svg';
 
+//id de los roles
+import roleService from '../../../libs/helpers/role.json';
+
 function Create({ setView,getAll }) {
 
+  const { adminstrador,conductor,vehiculo,asociado } = roleService;
   const [inputUser, setInputUser] = useState("");
   const [inputDni, setInputDni] = useState("");
   const [inputName, setInputName] = useState("");
@@ -64,16 +68,15 @@ function Create({ setView,getAll }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-      try {
-        dispatch(getRoleAllService())
-        dispatch(getStatusAllService())
-        dispatch(getBrandAllService())
-        dispatch(getModelAllService())
-        dispatch(getTypeAllService())
-      } catch (error) {
-        console.log(error);
-      }
-    
+    try {
+      dispatch(getRoleAllService())
+      dispatch(getStatusAllService())
+      dispatch(getBrandAllService())
+      dispatch(getModelAllService())
+      dispatch(getTypeAllService())
+    } catch (error) {
+      console.log(error);
+    }
   }, [dispatch])
 
   useEffect(() => {
@@ -342,7 +345,7 @@ function Create({ setView,getAll }) {
 
   const create = async () => {
 
-    if (opcionSelectRole === "6585dd2aeccfb9d2ba855427" || opcionSelectRole === "6585dd30eccfb9d2ba855429") {
+    if (opcionSelectRole === adminstrador || opcionSelectRole === conductor ) {
 
       let validateDrivers = validateDriver();
       let body = { 
@@ -356,7 +359,7 @@ function Create({ setView,getAll }) {
         createUser(body);
       }
 
-    } else if (opcionSelectRole === "6585dd37eccfb9d2ba85542b" || opcionSelectRole === "6585dd45eccfb9d2ba85542d") {
+    } else if (opcionSelectRole === vehiculo || opcionSelectRole === asociado ) {
       
       let validateVehicles = validateVehicle();
       let body = { 
@@ -443,7 +446,7 @@ function Create({ setView,getAll }) {
                     {errorUser && <p style={{ color: 'red' }}>{errorUser}</p>}
                   </div>
 
-                  { opcionSelectRole === "6585dd2aeccfb9d2ba855427" || opcionSelectRole === "6585dd30eccfb9d2ba855429" ? 
+                  { opcionSelectRole === adminstrador || opcionSelectRole === conductor  ? 
                     <>
                       <div className='mt-4 user-create-main-input'>
                           <input value={inputDni} onChange={handleChangeDni} pattern="[0-9]{0,13}" type="text" className="user-create-input form-control" placeholder="Cedula" />
@@ -477,7 +480,7 @@ function Create({ setView,getAll }) {
                         {errorPhone && <p style={{ color: 'red' }}>{errorPhone}</p>}
                       </div>
                     </> 
-                    : opcionSelectRole === "6585dd37eccfb9d2ba85542b" || opcionSelectRole === "6585dd45eccfb9d2ba85542d" ? 
+                    : opcionSelectRole === vehiculo || opcionSelectRole === asociado  ? 
                     <>
                       <div className='mt-4 user-create-main-input'>
                           <input value={inputVin} onChange={(e) => setInputVin(e.target.value)} type="text" className="user-create-input form-control" placeholder="Vin" />

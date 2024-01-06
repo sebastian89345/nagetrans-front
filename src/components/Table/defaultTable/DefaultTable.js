@@ -16,7 +16,7 @@ const DefaultTable = ({ data , nms , updateId , deleteId }) => {
     if(nms === "user"){
       response =  item.user.toLowerCase().includes(filtro.toLowerCase())
     } else if (nms === "driverDocument") {
-
+      response =  item.numberLicense.toLowerCase().includes(filtro.toLowerCase())
     } else if (nms === "vehicleDocument") {
 
     } else if (nms === "listCheck") {
@@ -53,7 +53,7 @@ const DefaultTable = ({ data , nms , updateId , deleteId }) => {
     } else if (nms === "driverDocument") {
       th = <>
         <th scope="col">usuario</th>
-        <th scope="col">Correo</th>
+        <th scope="col">numero de licensia</th>
       </>
     } else if (nms === "vehicleDocument") {
 
@@ -76,8 +76,8 @@ const DefaultTable = ({ data , nms , updateId , deleteId }) => {
       </>
     } else if (nms === "driverDocument") {
       td = <>
-        <td>{item.user}</td>
-        <td>{item.email}</td>
+        <td>{item.users[0].user}</td>
+        <td>{item.numberLicense}</td>
       </>
     } else if (nms === "vehicleDocument") {
 
