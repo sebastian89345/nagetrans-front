@@ -27,9 +27,8 @@ function Create({ setView,getAll }) {
 
   const { conductor } = roleService;
   const [inputnumberLicense, setInputnumberLicense] = useState("");
-  const [inputexpirationLicense, setInputexpirationLicense] = useState("");
   const [inputstartLicense, setInputstartLicense] = useState("");
-  // const [inputexpirationTimeLicense, setInputexpirationTimeLicense] = useState("");
+  const [inputExpirationLicense, setInputExpirationLicense] = useState("");
   const [opcionUser, setOpcionUser] = useState([]);
   const [opcionAfp, setOpcionAfp] = useState([]);
   const [opcionArl, setOpcionArl] = useState([]);
@@ -40,6 +39,14 @@ function Create({ setView,getAll }) {
   const [opcionSelectArl, setOpcionSelectArl] = useState('');
   const [opcionSelectEps, setOpcionSelectEps] = useState('');
   const [opcionSelectCompensationBox, setOpcionSelectCompensationBox] = useState('');
+  const [errorUser, setErrorUser] = useState('');
+  const [errorNumberLicense, setErrorNumberLicense] = useState('');
+  const [errorStartLicense, setErrorStartLicense] = useState('');
+  const [errorExpirationLicense, setErrorExpirationLicense] = useState('');
+  const [errorAfp, setErrorAfp] = useState('');
+  const [errorArl, setErrorArl] = useState('');
+  const [errorEps, setErrorEps] = useState('');
+  const [errorCompensationBox, setErrorCompensationBox] = useState('');
   const dataListUser = useSelector((store) => store.userReducer);
   const dataListAfp = useSelector((store) => store.afpReducer);
   const dataListArl = useSelector((store) => store.arlReducer);
@@ -73,35 +80,165 @@ function Create({ setView,getAll }) {
     setView({list:true})
   }
 
-  const create = async () => {
-    //Aquí comienza las peticiones y demas
-    let body = {  }
-    let response = await dispatch(createDriverDocumentService(body));
-    if(response.error === undefined){
-      switch (response.response.status) {
-        case 201:
-            Swal.fire({
-              title: "Creado!",
-              text: "Fue creado con exito",
-              icon: "success"
-            });
-          break;
-        default:
-            console.log(response.response);
-            Swal.fire({
-              title: "Error!",
-              text: "Ocurrio un error al crearlo",
-              icon: "error"
-            });
-          break;
-      }
+  const resetInput = () => {
+    //Este formatea los inputs
+    setInputnumberLicense("");
+    setInputstartLicense("");
+    setInputExpirationLicense("");
+
+    //Este formatea los select
+    setOpcionSelectUser("");
+    setOpcionSelectAfp("");
+    setOpcionSelectArl("");
+    setOpcionSelectEps("");
+    setOpcionSelectCompensationBox("");
+
+    //Este formatea los mensajes de errores
+    setErrorUser("");
+    setErrorNumberLicense("");
+    setErrorAfp("");
+    setErrorArl("");
+    setErrorEps("");
+    setErrorCompensationBox("");
+    setErrorStartLicense("");
+    setErrorExpirationLicense("");
+  }
+
+  const handleChangeNumberLicense = (e) => {
+    // valida que solo se escriban numeros
+    const esValido = e.target.validity.valid;
+    if (esValido) {
+      setInputnumberLicense(e.target.value);
+    }
+  } 
+
+  const validateField = (value, fieldName, regex, minLength, customErrorMessage) => {
+    if (value.trim() === '') {
+      return `El campo ${fieldName} no puede estar en blanco.`;
+    }
+
+    if (regex && !regex.test(value)) {
+      return customErrorMessage || `El campo ${fieldName} no cumple con el formato esperado.`;
+    }
+
+    if (value.length < minLength) {
+      return `El campo ${fieldName} debe tener al menos ${minLength} caracteres.`;
+    }
+
+    return null; // Indica que la validación fue exitosa
+  };
+
+  const validate = () => {
+    let isValid = true;
+
+    const userError = validateField(opcionSelectUser, 'usuario', /\S/, 1);
+    if (userError) {
+      setErrorUser(userError);
+      isValid = false;
     } else {
-      console.log(response.error);
-      Swal.fire({
-        title: "Error!",
-        text: "Eror al crear el usuario",
-        icon: "error"
-      });
+      setErrorUser("");
+    }
+
+    const numberLicenseError = validateField(inputnumberLicense, 'numero de licencia', /^[0-9]+$/, 4);
+    if (numberLicenseError) {
+      setErrorNumberLicense(numberLicenseError);
+      isValid = false;
+    } else {
+      setErrorNumberLicense("");
+    }
+
+    const startLicenseError = validateField(inputstartLicense, 'comienzo de la licensia', /^\d{4}-\d{2}-\d{2}$/, 4);
+    if (startLicenseError) {
+      setErrorStartLicense(startLicenseError);
+      isValid = false;
+    } else {
+      setErrorStartLicense("");
+    }
+
+    const expirationtLicenseError = validateField(inputExpirationLicense, 'expiracion de la licensia', /^\d{4}-\d{2}-\d{2}$/, 4);
+    if (expirationtLicenseError) {
+      setErrorExpirationLicense(expirationtLicenseError);
+      isValid = false;
+    } else {
+      setErrorExpirationLicense("");
+    }
+
+    const arlError = validateField(opcionSelectArl, 'ARL', /\S/, 1);
+    if (arlError) {
+      setErrorArl(arlError);
+      isValid = false;
+    } else {
+      setErrorArl("");
+    }
+
+    const afpError = validateField(opcionSelectAfp, 'AFP', /\S/, 1);
+    if (afpError) {
+      setErrorAfp(afpError);
+      isValid = false;
+    } else {
+      setErrorAfp("");
+    }
+
+    const epsError = validateField(opcionSelectEps, 'EPS', /\S/, 1);
+    if (epsError) {
+      setErrorEps(epsError);
+      isValid = false;
+    } else {
+      setErrorEps("");
+    }
+
+    const CompensationBoxError = validateField(opcionSelectUser, 'caja de compensacion', /\S/, 1);
+    if (CompensationBoxError) {
+      setErrorCompensationBox(CompensationBoxError);
+      isValid = false;
+    } else {
+      setErrorCompensationBox("");
+    }
+
+    return isValid;
+  };
+
+  const create = async () => {
+    let validates = validate();
+    if (validates) {
+      // Aquí comienza las peticiones y demas
+      let body = { 
+        users:opcionSelectUser,
+        numberLicense:inputnumberLicense,
+        startLicense:inputstartLicense,
+        expirationLicense:inputExpirationLicense,
+        arl:opcionSelectArl,afp:opcionSelectAfp,
+        eps:opcionSelectEps,
+        compesationBox:opcionSelectCompensationBox 
+      }
+      let response = await dispatch(createDriverDocumentService(body));
+      if(response.error === undefined){
+        switch (response.response.status) {
+          case 201:
+              resetInput();
+              Swal.fire({
+                title: "Creado!",
+                text: "Fue creado con exito",
+                icon: "success"
+              });
+            break;
+          default:
+              console.log(response.response);
+              Swal.fire({
+                title: "Error!",
+                text: "Ocurrio un error al crearlo",
+                icon: "error"
+              });
+            break;
+        }
+      } else {
+        console.log(response.error);
+        Swal.fire({
+          title: "Error!",
+          text: "Eror al crear el usuario",
+          icon: "error"
+        });
+      }
     }
   }
 
@@ -112,20 +249,8 @@ function Create({ setView,getAll }) {
               <div>
                 <img onClick={returnWindow} src={arrow} className='driverDocument-create-img' alt='img' />
               </div>
-              <div className=' text-center'>
-                <p className='driverDocument-create-title'>Crear un documento del conductor</p>
-              </div>
-              
-                <div className='mt-4 user-create-main-input'>
-                    <input value={inputnumberLicense} onChange={(e) => setInputnumberLicense(e.target.value)} type="text" className="user-create-input form-control" placeholder="Usuario" />
-                </div>
-
-                <div className='mt-4 user-create-main-input'>
-                    <input value={inputexpirationLicense} onChange={(e) => setInputexpirationLicense(e.target.value)} type="text" className="user-create-input form-control" placeholder="Usuario" />
-                </div>
-
-                <div className='mt-4 user-create-main-input'>
-                    <input value={inputstartLicense} onChange={(e) => setInputstartLicense(e.target.value)} type="text" className="user-create-input form-control" placeholder="Usuario" />
+                <div className=' text-center'>
+                  <p className='driverDocument-create-title'>Crear un documento del conductor</p>
                 </div>
 
                 <div className='mt-4 user-create-main-input form-group'>
@@ -133,10 +258,38 @@ function Create({ setView,getAll }) {
                     <option value="">Selecciona una opción - conductor</option>
                     {opcionUser.map((opcion, index) => (
                       <option key={index} value={opcion._id}>
-                        {opcion.dni}
+                        {opcion.dni + " " + opcion.names}
                       </option>
                     ))}
                   </select>
+                </div>
+
+                <div className='mt-4'>
+                    {errorUser && <p style={{ color: 'red' }}>{errorUser}</p>}
+                </div>
+
+                <div className='mt-4 user-create-main-input'>
+                    <input value={inputnumberLicense} onChange={handleChangeNumberLicense} pattern="[0-9]{0,13}" type="text" className="user-create-input form-control" placeholder="Numero de licencia" />
+                </div>
+
+                <div className='mt-4'>
+                    {errorNumberLicense && <p style={{ color: 'red' }}>{errorNumberLicense}</p>}
+                  </div>
+
+                <div className='mt-4 user-create-main-input'>
+                  <input value={inputstartLicense} onChange={(e) => setInputstartLicense(e.target.value)} type="date" className='user-create-input form-control' />
+                </div>
+
+                <div className='mt-4'>
+                  {errorStartLicense && <p style={{ color: 'red' }}>{errorStartLicense}</p>}
+                </div>
+
+                <div className='mt-4 user-create-main-input'>
+                  <input value={inputExpirationLicense} onChange={(e) => setInputExpirationLicense(e.target.value)} type="date" className='user-create-input form-control' />
+                </div>
+
+                <div className='mt-4'>
+                  {errorExpirationLicense && <p style={{ color: 'red' }}>{errorExpirationLicense}</p>}
                 </div>
 
                 <div className='mt-4 user-create-main-input form-group'>
@@ -150,6 +303,10 @@ function Create({ setView,getAll }) {
                   </select>
                 </div>
 
+                <div className='mt-4'>
+                  {errorArl && <p style={{ color: 'red' }}>{errorArl}</p>}
+                </div>
+
                 <div className='mt-4 user-create-main-input form-group'>
                   <select value={opcionSelectAfp} onChange={(e) => setOpcionSelectAfp(e.target.value)} className='user-create-input form-control'>
                     <option value="">Selecciona una opción - AFP</option>
@@ -159,6 +316,10 @@ function Create({ setView,getAll }) {
                       </option>
                     ))}
                   </select>
+                </div>
+
+                <div className='mt-4'>
+                  {errorAfp && <p style={{ color: 'red' }}>{errorAfp}</p>}
                 </div>
 
                 <div className='mt-4 user-create-main-input form-group'>
@@ -172,6 +333,10 @@ function Create({ setView,getAll }) {
                   </select>
                 </div>
 
+                <div className='mt-4'>
+                  {errorEps && <p style={{ color: 'red' }}>{errorEps}</p>}
+                </div>
+
                 <div className='mt-4 user-create-main-input form-group'>
                   <select value={opcionSelectCompensationBox} onChange={(e) => setOpcionSelectCompensationBox(e.target.value)} className='user-create-input form-control'>
                     <option value="">Selecciona una opción - caja de compensacion</option>
@@ -181,6 +346,10 @@ function Create({ setView,getAll }) {
                       </option>
                     ))}
                   </select>
+                </div>
+
+                <div className='mt-4'>
+                  {errorCompensationBox && <p style={{ color: 'red' }}>{errorCompensationBox}</p>}
                 </div>
 
               <div className='mt-4 text-center'>

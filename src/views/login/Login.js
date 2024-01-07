@@ -89,11 +89,7 @@ function Login() {
             break;
           default:
               console.log(response.response);
-              Swal.fire({
-                title: "Error!",
-                text: "usuario o contraseña incorrectos",
-                icon: "error"
-              });
+              setErrorPassword("Usuario o contraseña incorrectos");
             break;
         }
       } else {
@@ -133,7 +129,7 @@ function Login() {
                           <input type="text" value={userName} onChange={e => setUserName(e.target.value)} className="form-control login-input" placeholder="Usuario" />
                         </div>
 
-                        <div className='mt-4'>
+                        <div className='mb-4'>
                           {errorUser && <p style={{ color: 'red' }}>{errorUser}</p>}
                         </div>
 
@@ -141,7 +137,7 @@ function Login() {
                           <input type="password" value={password} onChange={e => setPassword(e.target.value)} className="form-control login-input" placeholder="Contraseña" />
                         </div>
 
-                        <div className='mt-4'>
+                        <div className='mb-4'>
                           {errorPassword && <p style={{ color: 'red' }}>{errorPassword}</p>}
                         </div>
 
@@ -172,7 +168,7 @@ function Login() {
                 <input type="text" value={userName} onChange={e => setUserName(e.target.value)} className="form-control login-mobile-input" placeholder="Usuario" />
               </div>
 
-              <div className='mt-4'>
+              <div className='mb-4'>
                 {errorUser && <p style={{ color: 'red' }}>{errorUser}</p>}
               </div>
 
@@ -180,7 +176,7 @@ function Login() {
                 <input type="password" value={password} onChange={e => setPassword(e.target.value)} className="form-control login-mobile-input" placeholder="Contraseña" />
               </div>
 
-              <div className='mt-4'>
+              <div className='mb-4'>
                 {errorPassword && <p style={{ color: 'red' }}>{errorPassword}</p>}
               </div>
 

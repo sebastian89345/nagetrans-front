@@ -22,6 +22,7 @@ import Swal from 'sweetalert2';
 function List() {
   const [view, setView] = useState({list:true,create:false,update:false});
   const [infoUpdate, setInfoUpdate] = useState({});
+  const [dataListDriver, setDataListDriver] = useState([]);
   const dataList = useSelector((store) => store.driverDocumentReducer);
   const dispatch = useDispatch();
 
@@ -30,6 +31,11 @@ function List() {
     dispatch(getDriverDocumentAllService());
   }, [dispatch])
 
+  useEffect(() => {
+    let resultadosFiltrados = dataList.data.filter(objeto => objeto.users[0].show === "Si");
+    setDataListDriver(resultadosFiltrados)
+  }, [dataList])
+  
   //Esto es para actulizar la lista en el create y update y nada mas
   const getAll = () => {
     dispatch(getDriverDocumentAllService());
@@ -99,7 +105,7 @@ function List() {
           <div className='list-driverDocument-main-button'>
             <button onClick={handleCreate} type="button" className="list-driverDocument-button-title btn btn-primary">Crear</button>
           </div> 
-          <DefaultTable data={dataList.data} nms={"driverDocument"} deleteId={deleteInfo} updateId={updateInfo} />
+          <DefaultTable data={dataListDriver} nms={"driverDocument"} deleteId={deleteInfo} updateId={updateInfo} />
         </>
         : view.create === true ?
           <Create setView={setView} getAll={getAll} />

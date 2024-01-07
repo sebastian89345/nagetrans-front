@@ -53,7 +53,11 @@ const DefaultTable = ({ data , nms , updateId , deleteId }) => {
     } else if (nms === "driverDocument") {
       th = <>
         <th scope="col">usuario</th>
-        <th scope="col">numero de licensia</th>
+        <th scope="col">numero de licencia</th>
+        <th scope="col">ARL</th>
+        <th scope="col">AFP</th>
+        <th scope="col">EPS</th>
+        <th scope="col">Caja de compensacion</th>
       </>
     } else if (nms === "vehicleDocument") {
 
@@ -78,6 +82,10 @@ const DefaultTable = ({ data , nms , updateId , deleteId }) => {
       td = <>
         <td>{item.users[0].user}</td>
         <td>{item.numberLicense}</td>
+        <td>{item.arl[0].name}</td>
+        <td>{item.afp[0].name}</td>
+        <td>{item.eps[0].name}</td>
+        <td>{item.compesationBox[0].name}</td>
       </>
     } else if (nms === "vehicleDocument") {
 
