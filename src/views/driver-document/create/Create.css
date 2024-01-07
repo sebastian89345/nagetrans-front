@@ -1,4 +1,4 @@
-.driverDocument-create-card-main{
+.driverDocument-create-card-main {
     display: flex;
     justify-content: center;
 }
@@ -6,6 +6,16 @@
 .driverDocument-create-card {
     width: 100%;
     max-width: 1000px;
+}
+
+.driverDocument-create-position-content-form {
+    display: flex;
+    justify-content: center;
+}
+
+.driverDocument-create-content-form {
+    width: 100%;
+    max-width: 700px;
 }
 
 .driverDocument-create-main {
@@ -23,7 +33,13 @@
     color: #6c757d;
 }
 
+.driverDocument-create-main-input {
+    display: flex;
+    justify-content: center;
+}
+
 .driverDocument-create-input {
+    max-width: 700px;
     font-size: 20px;
     font-weight: 500;
     font-family: 'Poppins';

@@ -246,116 +246,119 @@ function Create({ setView,getAll }) {
     <div className='driverDocument-create-card-main'>
         <div className='driverDocument-create-card card'>
             <div className='card-body'>
-              <div>
-                <img onClick={returnWindow} src={arrow} className='driverDocument-create-img' alt='img' />
-              </div>
-                <div className=' text-center'>
-                  <p className='driverDocument-create-title'>Crear un documento del conductor</p>
-                </div>
-
-                <div className='mt-4 user-create-main-input form-group'>
-                  <select value={opcionSelectUser} onChange={(e) => setOpcionSelectUser(e.target.value)} className='user-create-input form-control'>
-                    <option value="">Selecciona una opción - conductor</option>
-                    {opcionUser.map((opcion, index) => (
-                      <option key={index} value={opcion._id}>
-                        {opcion.dni + " " + opcion.names}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                <div className='mt-4'>
-                    {errorUser && <p style={{ color: 'red' }}>{errorUser}</p>}
-                </div>
-
-                <div className='mt-4 user-create-main-input'>
-                    <input value={inputnumberLicense} onChange={handleChangeNumberLicense} pattern="[0-9]{0,13}" type="text" className="user-create-input form-control" placeholder="Numero de licencia" />
-                </div>
-
-                <div className='mt-4'>
-                    {errorNumberLicense && <p style={{ color: 'red' }}>{errorNumberLicense}</p>}
+                  <div>
+                    <img onClick={returnWindow} src={arrow} className='driverDocument-create-img' alt='img' />
                   </div>
+                  <div className=' text-center'>
+                    <p className='driverDocument-create-title'>Crear un documento del conductor</p>
+                  </div>
+                  <div className='user-create-position-content-form'>
+                    <div className='user-create-content-form'>
+                      <div className='mt-4 user-create-main-input form-group'>
+                        <select value={opcionSelectUser} onChange={(e) => setOpcionSelectUser(e.target.value)} className='user-create-input form-control'>
+                          <option value="">Selecciona una opción - conductor</option>
+                          {opcionUser.map((opcion, index) => (
+                            <option key={index} value={opcion._id}>
+                              {opcion.dni + " " + opcion.names}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
 
-                <div className='mt-4 user-create-main-input'>
-                  <input value={inputstartLicense} onChange={(e) => setInputstartLicense(e.target.value)} type="date" className='user-create-input form-control' />
+                      <div className='mt-4'>
+                          {errorUser && <p style={{ color: 'red' }}>{errorUser}</p>}
+                      </div>
+
+                      <div className='mt-4 user-create-main-input'>
+                          <input value={inputnumberLicense} onChange={handleChangeNumberLicense} pattern="[0-9]{0,13}" type="text" className="user-create-input form-control" placeholder="Numero de licencia" />
+                      </div>
+
+                      <div className='mt-4'>
+                          {errorNumberLicense && <p style={{ color: 'red' }}>{errorNumberLicense}</p>}
+                        </div>
+
+                      <div className='mt-4 user-create-main-input'>
+                        <input value={inputstartLicense} onChange={(e) => setInputstartLicense(e.target.value)} type="date" className='user-create-input form-control' />
+                      </div>
+
+                      <div className='mt-4'>
+                        {errorStartLicense && <p style={{ color: 'red' }}>{errorStartLicense}</p>}
+                      </div>
+
+                      <div className='mt-4 user-create-main-input'>
+                        <input value={inputExpirationLicense} onChange={(e) => setInputExpirationLicense(e.target.value)} type="date" className='user-create-input form-control' />
+                      </div>
+
+                      <div className='mt-4'>
+                        {errorExpirationLicense && <p style={{ color: 'red' }}>{errorExpirationLicense}</p>}
+                      </div>
+
+                      <div className='mt-4 user-create-main-input form-group'>
+                        <select value={opcionSelectArl} onChange={(e) => setOpcionSelectArl(e.target.value)} className='user-create-input form-control'>
+                          <option value="">Selecciona una opción - ARL</option>
+                          {opcionArl.map((opcion, index) => (
+                            <option key={index} value={opcion._id}>
+                              {opcion.name}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+
+                      <div className='mt-4'>
+                        {errorArl && <p style={{ color: 'red' }}>{errorArl}</p>}
+                      </div>
+
+                      <div className='mt-4 user-create-main-input form-group'>
+                        <select value={opcionSelectAfp} onChange={(e) => setOpcionSelectAfp(e.target.value)} className='user-create-input form-control'>
+                          <option value="">Selecciona una opción - AFP</option>
+                          {opcionAfp.map((opcion, index) => (
+                            <option key={index} value={opcion._id}>
+                              {opcion.name}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+
+                      <div className='mt-4'>
+                        {errorAfp && <p style={{ color: 'red' }}>{errorAfp}</p>}
+                      </div>
+
+                      <div className='mt-4 user-create-main-input form-group'>
+                        <select value={opcionSelectEps} onChange={(e) => setOpcionSelectEps(e.target.value)} className='user-create-input form-control'>
+                          <option value="">Selecciona una opción - EPS</option>
+                          {opcionEps.map((opcion, index) => (
+                            <option key={index} value={opcion._id}>
+                              {opcion.name}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+
+                      <div className='mt-4'>
+                        {errorEps && <p style={{ color: 'red' }}>{errorEps}</p>}
+                      </div>
+
+                      <div className='mt-4 user-create-main-input form-group'>
+                        <select value={opcionSelectCompensationBox} onChange={(e) => setOpcionSelectCompensationBox(e.target.value)} className='user-create-input form-control'>
+                          <option value="">Selecciona una opción - caja de compensacion</option>
+                          {opcionCompensationBox.map((opcion, index) => (
+                            <option key={index} value={opcion._id}>
+                              {opcion.name}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+
+                      <div className='mt-4'>
+                        {errorCompensationBox && <p style={{ color: 'red' }}>{errorCompensationBox}</p>}
+                      </div>
+
+                    <div className='mt-4 text-center'>
+                      <button onClick={create} type="button" className="driverDocument-create-button btn btn-primary">Guardar</button>
+                    </div>
                 </div>
-
-                <div className='mt-4'>
-                  {errorStartLicense && <p style={{ color: 'red' }}>{errorStartLicense}</p>}
-                </div>
-
-                <div className='mt-4 user-create-main-input'>
-                  <input value={inputExpirationLicense} onChange={(e) => setInputExpirationLicense(e.target.value)} type="date" className='user-create-input form-control' />
-                </div>
-
-                <div className='mt-4'>
-                  {errorExpirationLicense && <p style={{ color: 'red' }}>{errorExpirationLicense}</p>}
-                </div>
-
-                <div className='mt-4 user-create-main-input form-group'>
-                  <select value={opcionSelectArl} onChange={(e) => setOpcionSelectArl(e.target.value)} className='user-create-input form-control'>
-                    <option value="">Selecciona una opción - ARL</option>
-                    {opcionArl.map((opcion, index) => (
-                      <option key={index} value={opcion._id}>
-                        {opcion.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                <div className='mt-4'>
-                  {errorArl && <p style={{ color: 'red' }}>{errorArl}</p>}
-                </div>
-
-                <div className='mt-4 user-create-main-input form-group'>
-                  <select value={opcionSelectAfp} onChange={(e) => setOpcionSelectAfp(e.target.value)} className='user-create-input form-control'>
-                    <option value="">Selecciona una opción - AFP</option>
-                    {opcionAfp.map((opcion, index) => (
-                      <option key={index} value={opcion._id}>
-                        {opcion.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                <div className='mt-4'>
-                  {errorAfp && <p style={{ color: 'red' }}>{errorAfp}</p>}
-                </div>
-
-                <div className='mt-4 user-create-main-input form-group'>
-                  <select value={opcionSelectEps} onChange={(e) => setOpcionSelectEps(e.target.value)} className='user-create-input form-control'>
-                    <option value="">Selecciona una opción - EPS</option>
-                    {opcionEps.map((opcion, index) => (
-                      <option key={index} value={opcion._id}>
-                        {opcion.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                <div className='mt-4'>
-                  {errorEps && <p style={{ color: 'red' }}>{errorEps}</p>}
-                </div>
-
-                <div className='mt-4 user-create-main-input form-group'>
-                  <select value={opcionSelectCompensationBox} onChange={(e) => setOpcionSelectCompensationBox(e.target.value)} className='user-create-input form-control'>
-                    <option value="">Selecciona una opción - caja de compensacion</option>
-                    {opcionCompensationBox.map((opcion, index) => (
-                      <option key={index} value={opcion._id}>
-                        {opcion.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                <div className='mt-4'>
-                  {errorCompensationBox && <p style={{ color: 'red' }}>{errorCompensationBox}</p>}
-                </div>
-
-              <div className='mt-4 text-center'>
-                <button onClick={create} type="button" className="driverDocument-create-button btn btn-primary">Guardar</button>
               </div>
-            </div>
+          </div>
         </div>
     </div>
   )
