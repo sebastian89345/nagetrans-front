@@ -112,7 +112,7 @@ function Update({ infoUpdate,setView,getAll }) {
       setOpcionSelectModel(infoUpdate.item.model[0]._id);
       setOpcionSelectType(infoUpdate.item.types[0]._id);
     }
-    // eslint-disable-next-line
+    //eslint-disable-next-line
   }, [])
   
   const returnWindow = () => {

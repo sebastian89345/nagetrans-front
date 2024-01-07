@@ -8,7 +8,7 @@ import { useSelector , useDispatch } from "react-redux";
 
 //Reducers
 import { createDriverDocumentService } from "../../../store/action/driverDocumentAction";
-import { getUserAIdService } from "../../../store/action/userAction";
+import { getUserAllService } from "../../../store/action/userAction";
 import { getArlAllService } from "../../../store/action/arlAction";
 import { getAfpAllService } from "../../../store/action/afpAction";
 import { getEpsAllService } from "../../../store/action/epsAction";
@@ -56,7 +56,7 @@ function Create({ setView,getAll }) {
 
   useEffect(() => {
     try {
-      dispatch(getUserAIdService())
+      dispatch(getUserAllService())
       dispatch(getArlAllService())
       dispatch(getAfpAllService())
       dispatch(getEpsAllService())
@@ -252,9 +252,11 @@ function Create({ setView,getAll }) {
                   <div className=' text-center'>
                     <p className='driverDocument-create-title'>Crear un documento del conductor</p>
                   </div>
-                  <div className='user-create-position-content-form'>
-                    <div className='user-create-content-form'>
-                      <div className='mt-4 user-create-main-input form-group'>
+                  
+                  <div className='driverDocument-create-position-content-form'>
+                    <div className='driverDocument-create-content-form'>
+
+                      <div className='mt-4 driverDocument-create-main-input form-group'>
                         <select value={opcionSelectUser} onChange={(e) => setOpcionSelectUser(e.target.value)} className='user-create-input form-control'>
                           <option value="">Selecciona una opción - conductor</option>
                           {opcionUser.map((opcion, index) => (
