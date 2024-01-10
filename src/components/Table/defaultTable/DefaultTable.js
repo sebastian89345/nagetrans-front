@@ -16,9 +16,9 @@ const DefaultTable = ({ data , nms , updateId , deleteId }) => {
     if(nms === "user"){
       response =  item.user.toLowerCase().includes(filtro.toLowerCase())
     } else if (nms === "driverDocument") {
-      response =  item.numberLicense.toLowerCase().includes(filtro.toLowerCase())
+      response =  item.users[0].user.toLowerCase().includes(filtro.toLowerCase())
     } else if (nms === "vehicleDocument") {
-
+      response =  item.users[0].user.toLowerCase().includes(filtro.toLowerCase())
     } else if (nms === "listCheck") {
 
     } else if(nms === "role" || nms === "status" || nms === "brand" || nms === "model" || nms === "type" || nms === "arl" || nms === "afp" || nms === "eps" || nms === "compensationBox"){
@@ -60,7 +60,16 @@ const DefaultTable = ({ data , nms , updateId , deleteId }) => {
         <th scope="col">Caja de compensacion</th>
       </>
     } else if (nms === "vehicleDocument") {
-
+      th = <>
+        <th scope="col">usuario</th>
+        <th scope="col">Soat</th>
+        <th scope="col">Tecnicomecanica</th>
+        <th scope="col">Tarjeta de operaciones</th>
+        <th scope="col">Tarjeta de propiedades</th>
+        <th scope="col">Segurorccece</th>
+        <th scope="col">Extracto</th>
+        <th scope="col">Revision preventiva</th>
+      </>
     } else if (nms === "listCheck") {
 
     } else if (nms === "role" || nms === "status" || nms === "brand" || nms === "model" || nms === "type" || nms === "arl" || nms === "afp" || nms === "eps" || nms === "compensationBox"){
@@ -88,7 +97,16 @@ const DefaultTable = ({ data , nms , updateId , deleteId }) => {
         <td>{item.compesationBox[0].name}</td>
       </>
     } else if (nms === "vehicleDocument") {
-
+      td = <>
+        <td>{item.users[0].user}</td>
+        <td>{item.soat}</td>
+        <td>{item.mechanicalTechnician}</td>
+        <td>{item.operationsCard}</td>
+        <td>{item.propertyCards}</td>
+        <td>{item.sureRccece}</td>
+        <td>{item.extract}</td>
+        <td>{item.preventiveReview}</td>
+      </>
     } else if (nms === "listCheck") {
 
     } else if (nms === "role" || nms === "status" || nms === "brand" || nms === "model" || nms === "type" || nms === "arl" || nms === "afp" || nms === "eps" || nms === "compensationBox") {

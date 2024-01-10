@@ -1,41 +1,58 @@
-.brand-create-card-main{
+.vehicleDocument-create-card-main {
     display: flex;
     justify-content: center;
 }
 
-.brand-create-card {
+.vehicleDocument-create-card {
     width: 100%;
     max-width: 1000px;
 }
 
-.brand-create-main {
+.vehicleDocument-create-position-content-form {
+    display: flex;
+    justify-content: center;
+}
+
+.vehicleDocument-create-content-form {
+    width: 100%;
+    max-width: 700px;
+}
+
+.vehicleDocument-create-main {
     padding: 40px;
 }
 
-.brand-create-button {
+.vehicleDocument-create-button {
     min-width: 150px;
 }
 
-.brand-create-title {
+.vehicleDocument-create-title {
     font-size: 25px;
     font-weight: 600;
     font-family: 'Poppins';
     color: #6c757d;
 }
 
-.brand-create-input {
+.vehicleDocument-create-main-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.vehicleDocument-create-input {
+    max-width: 700px;
     font-size: 20px;
     font-weight: 500;
     font-family: 'Poppins';
 }
 
-.brand-create-img {
+.vehicleDocument-create-img {
     width: 60px;
 }
 
  /* Large devices (desktops, 992px and up) */
 @media (max-width: 992px) { 
-    .brand-create-main {
+    .vehicleDocument-create-main {
         padding: 20px;
     }
 }

@@ -243,10 +243,10 @@ function Update({ infoUpdate,setView,getAll }) {
               <div className='driverDocument-create-position-content-form'>
                 <div className='driverDocument-create-content-form'>
 
-
                     <div className='mt-4 driverDocument-create-main-input form-group'>
+                      <label>Usuario:</label>
                       <select value={opcionSelectUser} onChange={(e) => setOpcionSelectUser(e.target.value)} className='user-create-input form-control'>
-                        <option value="">Selecciona una opción - conductor</option>
+                        <option value="">Selecciona una opción</option>
                         {opcionUser.map((opcion, index) => (
                           <option key={index} value={opcion._id}>
                             {opcion.dni + " " + opcion.names}
@@ -260,6 +260,7 @@ function Update({ infoUpdate,setView,getAll }) {
                     </div>
 
                     <div className='mt-4 user-create-main-input'>
+                      <label>Numero de la licencia:</label>
                         <input value={inputnumberLicense} onChange={handleChangeNumberLicense} pattern="[0-9]{0,13}" type="text" className="user-create-input form-control" placeholder="Numero de licencia" />
                     </div>
 
@@ -268,6 +269,7 @@ function Update({ infoUpdate,setView,getAll }) {
                       </div>
 
                     <div className='mt-4 user-create-main-input'>
+                      <label>Inicio de la licencia:</label>
                       <input value={inputstartLicense} onChange={(e) => setInputstartLicense(e.target.value)} type="date" className='user-create-input form-control' />
                     </div>
 
@@ -276,6 +278,7 @@ function Update({ infoUpdate,setView,getAll }) {
                     </div>
 
                     <div className='mt-4 user-create-main-input'>
+                      <label>Vencimiento de la licencia:</label>
                       <input value={inputExpirationLicense} onChange={(e) => setInputExpirationLicense(e.target.value)} type="date" className='user-create-input form-control' />
                     </div>
 
@@ -284,8 +287,9 @@ function Update({ infoUpdate,setView,getAll }) {
                     </div>
 
                     <div className='mt-4 user-create-main-input form-group'>
+                      <label>Arl:</label>
                       <select value={opcionSelectArl} onChange={(e) => setOpcionSelectArl(e.target.value)} className='user-create-input form-control'>
-                        <option value="">Selecciona una opción - ARL</option>
+                        <option value="">Selecciona una opción</option>
                         {opcionArl.map((opcion, index) => (
                           <option key={index} value={opcion._id}>
                             {opcion.name}
@@ -299,8 +303,9 @@ function Update({ infoUpdate,setView,getAll }) {
                     </div>
 
                     <div className='mt-4 user-create-main-input form-group'>
+                      <label>Afp:</label>
                       <select value={opcionSelectAfp} onChange={(e) => setOpcionSelectAfp(e.target.value)} className='user-create-input form-control'>
-                        <option value="">Selecciona una opción - AFP</option>
+                        <option value="">Selecciona una opción</option>
                         {opcionAfp.map((opcion, index) => (
                           <option key={index} value={opcion._id}>
                             {opcion.name}
@@ -314,8 +319,9 @@ function Update({ infoUpdate,setView,getAll }) {
                     </div>
 
                     <div className='mt-4 user-create-main-input form-group'>
+                      <label>Eps:</label>
                       <select value={opcionSelectEps} onChange={(e) => setOpcionSelectEps(e.target.value)} className='user-create-input form-control'>
-                        <option value="">Selecciona una opción - EPS</option>
+                        <option value="">Selecciona una opción</option>
                         {opcionEps.map((opcion, index) => (
                           <option key={index} value={opcion._id}>
                             {opcion.name}
@@ -329,8 +335,9 @@ function Update({ infoUpdate,setView,getAll }) {
                     </div>
 
                     <div className='mt-4 user-create-main-input form-group'>
+                      <label>Caja de compensacion:</label>
                       <select value={opcionSelectCompensationBox} onChange={(e) => setOpcionSelectCompensationBox(e.target.value)} className='user-create-input form-control'>
-                        <option value="">Selecciona una opción - caja de compensacion</option>
+                        <option value="">Selecciona una opción</option>
                         {opcionCompensationBox.map((opcion, index) => (
                           <option key={index} value={opcion._id}>
                             {opcion.name}

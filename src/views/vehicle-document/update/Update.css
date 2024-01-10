@@ -1,41 +1,57 @@
-.brand-update-card-main{
+.driverDocument-update-card-main {
     display: flex;
     justify-content: center;
 }
 
-.brand-update-card {
+.driverDocument-update-card {
     width: 100%;
     max-width: 1000px;
 }
 
-.brand-update-main {
+.driverDocument-update-position-content-form {
+    display: flex;
+    justify-content: center;
+}
+
+.driverDocument-update-content-form {
+    width: 100%;
+    max-width: 700px;
+}
+
+.driverDocument-update-main {
     padding: 40px;
 }
 
-.brand-update-button {
+.driverDocument-update-button {
     min-width: 150px;
 }
 
-.brand-update-title {
+.driverDocument-update-title {
     font-size: 25px;
     font-weight: 600;
     font-family: 'Poppins';
     color: #6c757d;
 }
 
-.brand-update-input {
+.driverDocument-update-main-input {
+    display: flex;
+    justify-content: center;
+}
+
+.driverDocument-update-input {
+    max-width: 700px;
     font-size: 20px;
     font-weight: 500;
     font-family: 'Poppins';
 }
 
-.brand-update-img {
+.driverDocument-update-img {
     width: 60px;
 }
 
  /* Large devices (desktops, 992px and up) */
 @media (max-width: 992px) { 
-    .brand-update-main {
+    .driverDocument-update-main {
         padding: 20px;
     }
 }

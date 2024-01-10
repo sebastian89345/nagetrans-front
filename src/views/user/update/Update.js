@@ -31,7 +31,7 @@ function Update({ infoUpdate,setView,getAll }) {
   const [inputName, setInputName] = useState("");
   const [inputSurname, setInputSurname] = useState("");
   const [inputPhone, setInputPhone] = useState("");
-  const [inputVin, setInputVin] = useState("");
+  const [inputPlaca, setInputPlaca] = useState("");
   const [inputEmail, setInputEmail] = useState("");
   const [errorUser, setErrorUser] = useState('');
   const [errorDni, setErrorDni] = useState('');
@@ -39,7 +39,7 @@ function Update({ infoUpdate,setView,getAll }) {
   const [errorSurname, setErrorSurname] = useState('');
   const [errorPhone, setErrorPhone] = useState('');
   const [errorEmail, setErrorEmail] = useState('');
-  const [errorVin, setErrorVin] = useState('');
+  const [errorPlaca, setErrorPlaca] = useState('');
   const [errorRole, setErrorRole] = useState('');
   const [errorStatus, setErrorStatus] = useState('');
   const [errorBrand, setErrorBrand] = useState('');
@@ -102,7 +102,7 @@ function Update({ infoUpdate,setView,getAll }) {
       setOpcionSelectShow(infoUpdate.item.show);
     } else if (infoUpdate.item.role[0]._id === vehiculo || infoUpdate.item.role[0]._id === asociado) {
       setInputUser(infoUpdate.item.user);
-      setInputVin(infoUpdate.item.vin);
+      setInputPlaca(infoUpdate.item.placa);
       setInputEmail(infoUpdate.item.email);
       setInputPhone(infoUpdate.item.phoneNumber);
       setOpcionSelectRole(infoUpdate.item.role[0]._id);
@@ -168,12 +168,12 @@ function Update({ infoUpdate,setView,getAll }) {
       setErrorUser("");
     }
 
-    const vinError = validateField(inputVin, 'vin',/^.+$/, 4);
-    if (vinError) {
-      setErrorVin(vinError);
+    const placaError = validateField(inputPlaca, 'placa',/^.+$/, 4);
+    if (placaError) {
+      setErrorPlaca(placaError);
       isValid = false;
     } else {
-      setErrorVin("");
+      setErrorPlaca("");
     }
 
     const emailError = validateField(inputEmail, 'correo',/^.+$/, 4);
@@ -400,6 +400,7 @@ function Update({ infoUpdate,setView,getAll }) {
                 <div className='user-update-content-form'>
 
                   <div className='mt-4 user-update-main-input'>
+                    <label htmlFor="exampleInputEmail1">Usuario:</label>
                     <input value={inputUser} onChange={(e) => setInputUser(e.target.value)} type="text" className="user-update-input form-control" placeholder="Usuario" />
                   </div>
 
@@ -410,6 +411,7 @@ function Update({ infoUpdate,setView,getAll }) {
                   { opcionSelectRole === adminstrador || opcionSelectRole === conductor ? 
                     <>
                       <div className='mt-4 user-update-main-input'>
+                          <label htmlFor="exampleInputEmail1">Cedula:</label>
                           <input value={inputDni} onChange={handleChangeDni} pattern="[0-9]{0,13}" type="text" className="user-update-input form-control" placeholder="Cedula" />
                       </div>
 
@@ -418,6 +420,7 @@ function Update({ infoUpdate,setView,getAll }) {
                       </div>
 
                       <div className='mt-4 user-update-main-input'>
+                        <label htmlFor="exampleInputEmail1">Nombres:</label>
                         <input value={inputName} onChange={(e) => setInputName(e.target.value)} type="text" className="user-update-input form-control" placeholder="Nombres" />
                       </div>
 
@@ -426,6 +429,7 @@ function Update({ infoUpdate,setView,getAll }) {
                       </div>
 
                       <div className='mt-4 user-update-main-input'>
+                        <label htmlFor="exampleInputEmail1">Apellidos:</label>
                         <input value={inputSurname} onChange={(e) => setInputSurname(e.target.value)} type="text" className="user-update-input form-control" placeholder="Apellidos" />
                       </div>
 
@@ -434,6 +438,7 @@ function Update({ infoUpdate,setView,getAll }) {
                       </div>
 
                       <div className='mt-4 user-update-main-input'>
+                        <label htmlFor="exampleInputEmail1">Telefono:</label>
                         <input value={inputPhone} onChange={handleChangePhone} pattern="[0-9]{0,13}" type="text" className="user-update-input form-control" placeholder="Telefono" />
                       </div>
 
@@ -444,16 +449,18 @@ function Update({ infoUpdate,setView,getAll }) {
                     : opcionSelectRole === vehiculo || opcionSelectRole === asociado ? 
                     <>
                       <div className='mt-4 user-update-main-input'>
-                          <input value={inputVin} onChange={(e) => setInputVin(e.target.value)} type="text" className="user-update-input form-control" placeholder="Vin" />
+                          <label htmlFor="exampleInputEmail1">Placa:</label>
+                          <input value={inputPlaca} onChange={(e) => setInputPlaca(e.target.value)} type="text" className="user-update-input form-control" placeholder="Placa" />
                       </div>
 
                       <div className='mt-4'>
-                        {errorVin && <p style={{ color: 'red' }}>{errorVin}</p>}
+                        {errorPlaca && <p style={{ color: 'red' }}>{errorPlaca}</p>}
                       </div>
 
                       <div className='mt-4 user-update-main-input form-group'>
+                        <label htmlFor="exampleInputEmail1">Marca del vehiculo:</label>
                         <select value={opcionSelectBrand} onChange={(e) => setOpcionSelectBrand(e.target.value)} className='user-update-input form-control'>
-                          <option value="">Selecciona una opción - marca</option>
+                          <option value="">Selecciona una opción</option>
                           {opcionBrand.map((opcion, index) => (
                             <option key={index} value={opcion._id}>
                               {opcion.name}
@@ -467,8 +474,9 @@ function Update({ infoUpdate,setView,getAll }) {
                       </div>
 
                       <div className='mt-4 user-update-main-input form-group'>
+                        <label htmlFor="exampleInputEmail1">Modelo del vehiculo:</label>
                         <select value={opcionSelectModel} onChange={(e) => setOpcionSelectModel(e.target.value)} className='user-update-input form-control'>
-                          <option value="">Selecciona una opción - modelo</option>
+                          <option value="">Selecciona una opción</option>
                           {opcionModel.map((opcion, index) => (
                             <option key={index} value={opcion._id}>
                               {opcion.name}
@@ -482,8 +490,9 @@ function Update({ infoUpdate,setView,getAll }) {
                       </div>
 
                       <div className='mt-4 user-update-main-input form-group'>
+                        <label htmlFor="exampleInputEmail1">Tipo de vehiculo:</label>
                         <select value={opcionSelectType} onChange={(e) => setOpcionSelectType(e.target.value)} className='user-update-input form-control'>
-                          <option value="">Selecciona una opción - tipo</option>
+                          <option value="">Selecciona una opción</option>
                           {opcionType.map((opcion, index) => (
                             <option key={index} value={opcion._id}>
                               {opcion.name}
@@ -501,6 +510,7 @@ function Update({ infoUpdate,setView,getAll }) {
                   }
 
                   <div className='mt-4 user-update-main-input'>
+                    <label htmlFor="exampleInputEmail1">Correo:</label>
                     <input value={inputEmail} onChange={(e) => setInputEmail(e.target.value)} type="email" className="user-update-input form-control" placeholder="Correo" />
                   </div>
 
@@ -509,8 +519,9 @@ function Update({ infoUpdate,setView,getAll }) {
                   </div>
 
                   <div className='mt-4 user-update-main-input form-group'>
+                    <label htmlFor="exampleInputEmail1">Rol del usuario:</label>
                     <select value={opcionSelectRole} onChange={handleChangeRole} className='user-update-input form-control'>
-                      <option value="">Selecciona una opción - rol</option>
+                      <option value="">Selecciona una opción</option>
                       {opcionRole.map((opcion, index) => (
                         <option key={index} value={opcion._id}>
                           {opcion.name}
@@ -524,8 +535,9 @@ function Update({ infoUpdate,setView,getAll }) {
                   </div>
 
                   <div className='mt-4 user-update-main-input form-group'>
+                    <label htmlFor="exampleInputEmail1">Estado del usuario:</label>
                     <select value={opcionSelectStatus} onChange={(e) => setOpcionSelectStatus(e.target.value)} className='user-update-input form-control'>
-                      <option value="">Selecciona una opción - estado</option>
+                      <option value="">Selecciona una opción</option>
                       {opcionStatus.map((opcion, index) => (
                         <option key={index} value={opcion._id}>
                           {opcion.name}
@@ -539,8 +551,9 @@ function Update({ infoUpdate,setView,getAll }) {
                   </div>
 
                   <div className='mt-4 user-update-main-input form-group'>
+                    <label htmlFor="exampleInputEmail1">Mostrar:</label>
                     <select value={opcionSelectShow} onChange={(e) => setOpcionSelectShow(e.target.value)} className='user-update-input form-control'>
-                      <option value="">Selecciona una opción - mostrar</option>
+                      <option value="">Selecciona una opción</option>
                       {opcionShow.map((opcion, index) => (
                         <option key={index} value={opcion.value}>
                           {opcion.value}

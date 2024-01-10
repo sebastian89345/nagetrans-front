@@ -38,6 +38,6 @@
         "urlDriverDocument":"driverDocument/"
     },
     "vehicleDocument": {
-        "urlVehicleDocument":"vehicleDocument/"
+        "urlVehicleDocument":"vehicledocument/"
     }
 }

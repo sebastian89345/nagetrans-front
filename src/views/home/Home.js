@@ -30,7 +30,6 @@ import ListCompensationBox from '../compensation-box/list/List';
 import ListDriverDocument from '../driver-document/list/List';
 import ListVehicleDocument from '../vehicle-document/list/List';
 
-
 // para navegar
 import { useNavigate } from 'react-router-dom';
 

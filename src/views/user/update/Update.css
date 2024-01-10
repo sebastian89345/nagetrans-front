@@ -35,6 +35,7 @@
 
 .user-update-main-input {
     display: flex;
+    flex-direction: column;
     justify-content: center;
 }
 

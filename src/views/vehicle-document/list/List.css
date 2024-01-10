@@ -1,18 +1,18 @@
-.list-brand-main {
+.list-vehicleDocument-main {
     padding: 40px;
 }
 
-.list-brand-main-button {
+.list-vehicleDocument-main-button {
     text-align: end;
 }
 
-.list-brand-button-title {
+.list-vehicleDocument-button-title {
     min-width: 150px;
 }
 
  /* Large devices (desktops, 992px and up) */
 @media (max-width: 992px) { 
-    .list-brand-main {
+    .list-vehicleDocument-main {
         padding: 20px;
     }
 }

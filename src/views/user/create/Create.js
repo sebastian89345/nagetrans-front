@@ -31,7 +31,7 @@ function Create({ setView,getAll }) {
   const [inputName, setInputName] = useState("");
   const [inputSurname, setInputSurname] = useState("");
   const [inputPhone, setInputPhone] = useState("");
-  const [inputVin, setInputVin] = useState("");
+  const [inputPlaca, setInputPlaca] = useState("");
   const [inputEmail, setInputEmail] = useState("");
   const [inputPassword, setInputPassword] = useState("");
   const [errorUser, setErrorUser] = useState('');
@@ -41,7 +41,7 @@ function Create({ setView,getAll }) {
   const [errorPhone, setErrorPhone] = useState('');
   const [errorEmail, setErrorEmail] = useState('');
   const [errorPassword, setErrorPassword] = useState('');
-  const [errorVin, setErrorVin] = useState('');
+  const [errorPlaca, setErrorPlaca] = useState('');
   const [errorRole, setErrorRole] = useState('');
   const [errorStatus, setErrorStatus] = useState('');
   const [errorBrand, setErrorBrand] = useState('');
@@ -105,7 +105,7 @@ function Create({ setView,getAll }) {
     setInputPhone("")
     setInputEmail("")
     setInputPassword("")
-    setInputVin("")
+    setInputPlaca("")
 
     //Este formatea los select
     setOpcionSelectStatus("")
@@ -116,7 +116,7 @@ function Create({ setView,getAll }) {
 
     //Este formatea los mensajes de errores
     setErrorUser("")
-    setErrorVin("")
+    setErrorPlaca("")
     setErrorDni("")
     setErrorName("")
     setErrorSurname("")
@@ -179,12 +179,12 @@ function Create({ setView,getAll }) {
       setErrorUser("");
     }
 
-    const vinError = validateField(inputVin, 'vin', /^.+$/, 4);
+    const vinError = validateField(inputPlaca, 'vin', /^.+$/, 4);
     if (vinError) {
-      setErrorVin(vinError);
+      setErrorPlaca(vinError);
       isValid = false;
     } else {
-      setErrorVin("");
+      setErrorPlaca("");
     }
 
     const emailError = validateField(inputEmail, 'correo', /^.+$/, 4);
@@ -363,7 +363,7 @@ function Create({ setView,getAll }) {
       
       let validateVehicles = validateVehicle();
       let body = { 
-        user:inputUser,vin:inputVin,email:inputEmail,
+        user:inputUser,placa:inputPlaca,email:inputEmail,
         role:opcionSelectRole,status:opcionSelectStatus,
         brand:opcionSelectBrand,model:opcionSelectModel,
         types:opcionSelectType,password:inputPassword,
@@ -439,6 +439,7 @@ function Create({ setView,getAll }) {
                 <div className='user-create-content-form'>
 
                   <div className='mt-4 user-create-main-input'>
+                    <label htmlFor="exampleInputEmail1">Usuario:</label>
                     <input value={inputUser} onChange={(e) => setInputUser(e.target.value)} type="text" className="user-create-input form-control" placeholder="Usuario" />
                   </div>
 
@@ -449,6 +450,7 @@ function Create({ setView,getAll }) {
                   { opcionSelectRole === adminstrador || opcionSelectRole === conductor  ? 
                     <>
                       <div className='mt-4 user-create-main-input'>
+                        <label htmlFor="exampleInputEmail1">Cedula:</label>
                           <input value={inputDni} onChange={handleChangeDni} pattern="[0-9]{0,13}" type="text" className="user-create-input form-control" placeholder="Cedula" />
                       </div>
 
@@ -457,6 +459,7 @@ function Create({ setView,getAll }) {
                       </div>
 
                       <div className='mt-4 user-create-main-input'>
+                        <label htmlFor="exampleInputEmail1">Nombres:</label>
                         <input value={inputName} onChange={(e) => setInputName(e.target.value)} type="text" className="user-create-input form-control" placeholder="Nombres" />
                       </div>
 
@@ -465,6 +468,7 @@ function Create({ setView,getAll }) {
                       </div>
 
                       <div className='mt-4 user-create-main-input'>
+                        <label htmlFor="exampleInputEmail1">Apellidos:</label>
                         <input value={inputSurname} onChange={(e) => setInputSurname(e.target.value)} type="text" className="user-create-input form-control" placeholder="Apellidos" />
                       </div>
 
@@ -473,6 +477,7 @@ function Create({ setView,getAll }) {
                       </div>
 
                       <div className='mt-4 user-create-main-input'>
+                        <label htmlFor="exampleInputEmail1">Telefono:</label>
                         <input value={inputPhone} onChange={handleChangePhone} pattern="[0-9]{0,13}" type="text" className="user-create-input form-control" placeholder="Telefono" />
                       </div>
 
@@ -483,16 +488,18 @@ function Create({ setView,getAll }) {
                     : opcionSelectRole === vehiculo || opcionSelectRole === asociado  ? 
                     <>
                       <div className='mt-4 user-create-main-input'>
-                          <input value={inputVin} onChange={(e) => setInputVin(e.target.value)} type="text" className="user-create-input form-control" placeholder="Vin" />
+                        <label htmlFor="exampleInputEmail1">Placa:</label>
+                          <input value={inputPlaca} onChange={(e) => setInputPlaca(e.target.value)} type="text" className="user-create-input form-control" placeholder="Placa" />
                       </div>
 
                       <div className='mt-4'>
-                        {errorVin && <p style={{ color: 'red' }}>{errorVin}</p>}
+                        {errorPlaca && <p style={{ color: 'red' }}>{errorPlaca}</p>}
                       </div>
 
                       <div className='mt-4 user-create-main-input form-group'>
+                        <label htmlFor="exampleInputEmail1">Marca del vehiculo:</label>
                         <select value={opcionSelectBrand} onChange={(e) => setOpcionSelectBrand(e.target.value)} className='user-create-input form-control'>
-                          <option value="">Selecciona una opción - marca</option>
+                          <option value="">Selecciona una opción</option>
                           {opcionBrand.map((opcion, index) => (
                             <option key={index} value={opcion._id}>
                               {opcion.name}
@@ -506,8 +513,9 @@ function Create({ setView,getAll }) {
                       </div>
 
                       <div className='mt-4 user-create-main-input form-group'>
+                        <label htmlFor="exampleInputEmail1">Modelo del vehiculo:</label>
                         <select value={opcionSelectModel} onChange={(e) => setOpcionSelectModel(e.target.value)} className='user-create-input form-control'>
-                          <option value="">Selecciona una opción - modelo</option>
+                          <option value="">Selecciona una opción</option>
                           {opcionModel.map((opcion, index) => (
                             <option key={index} value={opcion._id}>
                               {opcion.name}
@@ -521,8 +529,9 @@ function Create({ setView,getAll }) {
                       </div>
 
                       <div className='mt-4 user-create-main-input form-group'>
+                        <label htmlFor="exampleInputEmail1">Tipo de vehiculo:</label>
                         <select value={opcionSelectType} onChange={(e) => setOpcionSelectType(e.target.value)} className='user-create-input form-control'>
-                          <option value="">Selecciona una opción - tipo</option>
+                          <option value="">Selecciona una opción</option>
                           {opcionType.map((opcion, index) => (
                             <option key={index} value={opcion._id}>
                               {opcion.name}
@@ -540,6 +549,7 @@ function Create({ setView,getAll }) {
                   }
 
                   <div className='mt-4 user-create-main-input'>
+                    <label htmlFor="exampleInputEmail1">Correo:</label>
                     <input value={inputEmail} onChange={(e) => setInputEmail(e.target.value)} type="text" className="user-create-input form-control" placeholder="Correo" />
                   </div>
 
@@ -548,8 +558,9 @@ function Create({ setView,getAll }) {
                   </div>
 
                   <div className='mt-4 user-create-main-input form-group'>
+                    <label htmlFor="exampleInputEmail1">Rol del usuario:</label>
                     <select value={opcionSelectRole} onChange={handleChangeRole} className='user-create-input form-control'>
-                      <option value="">Selecciona una opción - rol</option>
+                      <option value="">Selecciona una opción</option>
                       {opcionRole.map((opcion, index) => (
                         <option key={index} value={opcion._id}>
                           {opcion.name}
@@ -563,8 +574,9 @@ function Create({ setView,getAll }) {
                   </div>
 
                   <div className='mt-4 user-create-main-input form-group'>
+                    <label htmlFor="exampleInputEmail1">Estado del usuario:</label>
                     <select value={opcionSelectStatus} onChange={(e) => setOpcionSelectStatus(e.target.value)} className='user-create-input form-control'>
-                      <option value="">Selecciona una opción - estado</option>
+                      <option value="">Selecciona una opción</option>
                       {opcionStatus.map((opcion, index) => (
                         <option key={index} value={opcion._id}>
                           {opcion.name}
@@ -578,8 +590,9 @@ function Create({ setView,getAll }) {
                   </div>
 
                   <div className='mt-4 user-create-main-input form-group'>
+                    <label htmlFor="exampleInputEmail1">Mostrar:</label>
                     <select value={opcionSelectShow} onChange={(e) => setOpcionSelectShow(e.target.value)} className='user-create-input form-control'>
-                      <option value="">Selecciona una opción - mostrar</option>
+                      <option value="">Selecciona una opción</option>
                       {opcionShow.map((opcion, index) => (
                         <option key={index} value={opcion.value}>
                           {opcion.value}
@@ -593,6 +606,7 @@ function Create({ setView,getAll }) {
                   </div>
 
                   <div className='mt-4 user-create-main-input'>
+                    <label htmlFor="exampleInputEmail1">Contraseña:</label>
                     <input value={inputPassword} onChange={(e) => setInputPassword(e.target.value)} type="password" className="user-create-input form-control" placeholder="Contraseña" />
                   </div>
                   

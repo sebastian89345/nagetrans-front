@@ -14,7 +14,7 @@ import Update from '../update/Update';
 import { useSelector , useDispatch } from "react-redux";
 
 //Reducers
-import { getBrandAllService , deleteBrandService  } from "../../../store/action/brandAction";
+import { getVehicleDocumentAllService , deleteVehicleDocumentService  } from "../../../store/action/vehicleDocumentAction";
 
 //Alertas 
 import Swal from 'sweetalert2';
@@ -22,17 +22,23 @@ import Swal from 'sweetalert2';
 function List() {
   const [view, setView] = useState({list:true,create:false,update:false});
   const [infoUpdate, setInfoUpdate] = useState({});
-  const dataList = useSelector((store) => store.brandReducer);
+  const [dataListDriver, setDataListDriver] = useState([]);
+  const dataList = useSelector((store) => store.vehicleDocumentReducer);
   const dispatch = useDispatch();
 
   //Aqui hago la consulta a la base de datos y la agrego el payload al redux
   useEffect(() => {
-    dispatch(getBrandAllService());
+    dispatch(getVehicleDocumentAllService());
   }, [dispatch])
 
+  useEffect(() => {
+    let resultadosFiltrados = dataList.data.filter(objeto => objeto.users[0].show === "Si");
+    setDataListDriver(resultadosFiltrados)
+  }, [dataList])
+  
   //Esto es para actulizar la lista en el create y update y nada mas
   const getAll = () => {
-    dispatch(getBrandAllService());
+    dispatch(getVehicleDocumentAllService());
   }
 
   const handleCreate = () => {
@@ -56,12 +62,12 @@ function List() {
   }
 
   const alertDelete = async (id) => {
-    let response = await dispatch(deleteBrandService(id));
+    let response = await dispatch(deleteVehicleDocumentService(id));
     if(response.error === undefined){
       switch (response.response.status) {
         case 200:
             //Aquí actulizo la informacion
-            dispatch(getBrandAllService());
+            dispatch(getVehicleDocumentAllService());
             Swal.fire({
               title: "Eliminado!",
               text: "Fue eliminado con exito",
@@ -93,13 +99,13 @@ function List() {
   }
 
   return (
-    <div className='list-brand-main'>
+    <div className='list-vehicleDocument-main'>
       { view.list === true ?
         <>
-          <div className='list-brand-main-button'>
-            <button onClick={handleCreate} type="button" className="list-brand-button-title btn btn-primary">Crear</button>
+          <div className='list-vehicleDocument-main-button'>
+            <button onClick={handleCreate} type="button" className="list-vehicleDocument-button-title btn btn-primary">Crear</button>
           </div> 
-          <DefaultTable data={dataList.data} nms={"brand"} deleteId={deleteInfo} updateId={updateInfo} />
+          <DefaultTable data={dataListDriver} nms={"vehicleDocument"} deleteId={deleteInfo} updateId={updateInfo} />
         </>
         : view.create === true ?
           <Create setView={setView} getAll={getAll} />
