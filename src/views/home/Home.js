@@ -1,5 +1,5 @@
 // componentes de react
-import React, { useState , useEffect} from 'react';
+import React, { useState , useEffect } from 'react';
 
 //hoja de estilos
 import './Home.css';
@@ -33,9 +33,17 @@ import ListVehicleDocument from '../vehicle-document/list/List';
 // para navegar
 import { useNavigate } from 'react-router-dom';
 
+//id de los roles
+import roleService from '../../libs/helpers/role.json';
+
+// Redux
+import {  useSelector } from "react-redux";
+
 function Home() {
 
+  const { adminstrador,vehiculo } = roleService;
   const [width, setWidth] = useState(window.innerWidth);
+  const dataListLogin = useSelector((store) => store.loginReducer);
   const navigate = useNavigate();
 
     useEffect(() => {
@@ -103,72 +111,85 @@ function Home() {
     }
 
     const buttons = () => {
-     return <>
-      {/* usuarios */}
-      <>
-        <button className="home-sidebar-links mb-1" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">
-          <img className="home-sidebar-icon" src={iconAccordion} alt='nose' /> Modulo usuarios
-        </button>
-        <div id="multiCollapseExample1" className="collapse multi-collapse">
-          <button name={changeColor[1].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[1].buttons} mb-1 ml-3`}>
-            <img className={`home-sidebar-icon ${changeColor[1].icon}`} src={iconUser} alt='nose' /> Usuarios
-          </button>
-          <button name={changeColor[4].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[4].buttons} mb-1 ml-3`}>
-            <img className={`home-sidebar-icon ${changeColor[4].icon}`} src={iconGroupUser} alt='nose' /> Rol
-          </button>
-          <button name={changeColor[5].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[5].buttons} mb-1 ml-3`}>
-            <img className={`home-sidebar-icon ${changeColor[5].icon}`} src={iconCheckCircle} alt='nose' /> Estado
-          </button>
-          <button name={changeColor[6].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[6].buttons} mb-1 ml-3`}>
-            <img className={`home-sidebar-icon ${changeColor[6].icon}`} src={iconCar} alt='nose' /> Marca
-          </button>
-          <button name={changeColor[7].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[7].buttons} mb-1 ml-3`}>
-            <img className={`home-sidebar-icon ${changeColor[7].icon}`} src={iconCar} alt='nose' /> Modelo
-          </button>
-          <button name={changeColor[8].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[8].buttons} mb-1 ml-3`}>
-            <img className={`home-sidebar-icon ${changeColor[8].icon}`} src={iconCar} alt='nose' /> Tipo
-          </button>
-        </div>
-        </>
-        {/* papeles del condutor */}
-        <>
-          <button className="home-sidebar-links mb-1" type="button" data-toggle="collapse" data-target=".multi-collapses" aria-expanded="false" aria-controls="multiCollapseExample3">
-            <img className="home-sidebar-icon" src={iconAccordion} alt='nose' /> Modulo conductor
-          </button>
-          <div id="multiCollapseExample3" className="collapse multi-collapses">
-            <button name={changeColor[3].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[3].buttons} mb-1`}>
-              <img className={`home-sidebar-icon ${changeColor[3].icon}`} src={iconSheet} alt='nose' /> Papeles conductor
+      let Buttons;
+      if( dataListLogin.data.response.data.role[0]._id === adminstrador){
+        Buttons = <>
+          {/* usuarios */}
+          <>
+            <button className="home-sidebar-links mb-1" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">
+              <img className="home-sidebar-icon" src={iconAccordion} alt='nose' /> Modulo usuarios
             </button>
-            <button name={changeColor[9].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[9].buttons} mb-1`}>
-              <img className={`home-sidebar-icon ${changeColor[9].icon}`} src={iconSheet} alt='nose' /> Arl
-            </button>
-            <button name={changeColor[10].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[10].buttons} mb-1`}>
-              <img className={`home-sidebar-icon ${changeColor[10].icon}`} src={iconSheet} alt='nose' /> Afp
-            </button>
-            <button name={changeColor[11].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[11].buttons} mb-1`}>
-              <img className={`home-sidebar-icon ${changeColor[11].icon}`} src={iconSheet} alt='nose' /> Eps
-            </button>
-            <button name={changeColor[12].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[12].buttons} mb-1`}>
-              <img className={`home-sidebar-icon ${changeColor[12].icon}`} src={iconSheet} alt='nose' /> Caja de compensacion
-            </button>
-          </div>
-        </>
-        {/* papeles del vehciculo */}
-        <>
-          <button name={changeColor[2].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[2].buttons} mb-1`}>
-            <img className={`home-sidebar-icon ${changeColor[2].icon}`} src={iconSheet} alt='nose' /> Papeles vehiculo
-          </button>
-        </>
-        {/* lista de chequeo */}
-        <>
-          <button name={changeColor[0].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[0].buttons}  mb-1`}>
-            <img className={`home-sidebar-icon ${changeColor[0].icon}`} src={iconTask} alt='nose' /> Lista de chequeo
-          </button>
-        </>
-        
-      </>
+            <div id="multiCollapseExample1" className="collapse multi-collapse">
+              <button name={changeColor[1].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[1].buttons} mb-1 ml-3`}>
+                <img className={`home-sidebar-icon ${changeColor[1].icon}`} src={iconUser} alt='nose' /> Usuarios
+              </button>
+              <button name={changeColor[4].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[4].buttons} mb-1 ml-3`}>
+                <img className={`home-sidebar-icon ${changeColor[4].icon}`} src={iconGroupUser} alt='nose' /> Rol
+              </button>
+              <button name={changeColor[5].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[5].buttons} mb-1 ml-3`}>
+                <img className={`home-sidebar-icon ${changeColor[5].icon}`} src={iconCheckCircle} alt='nose' /> Estado
+              </button>
+              <button name={changeColor[6].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[6].buttons} mb-1 ml-3`}>
+                <img className={`home-sidebar-icon ${changeColor[6].icon}`} src={iconCar} alt='nose' /> Marca
+              </button>
+              <button name={changeColor[7].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[7].buttons} mb-1 ml-3`}>
+                <img className={`home-sidebar-icon ${changeColor[7].icon}`} src={iconCar} alt='nose' /> Modelo
+              </button>
+              <button name={changeColor[8].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[8].buttons} mb-1 ml-3`}>
+                <img className={`home-sidebar-icon ${changeColor[8].icon}`} src={iconCar} alt='nose' /> Tipo
+              </button>
+            </div>
+          </>
+            {/* papeles del condutor */}
+          <>
+              <button className="home-sidebar-links mb-1" type="button" data-toggle="collapse" data-target=".multi-collapses" aria-expanded="false" aria-controls="multiCollapseExample3">
+                <img className="home-sidebar-icon" src={iconAccordion} alt='nose' /> Modulo conductor
+              </button>
+              <div id="multiCollapseExample3" className="collapse multi-collapses">
+                <button name={changeColor[3].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[3].buttons} mb-1`}>
+                  <img className={`home-sidebar-icon ${changeColor[3].icon}`} src={iconSheet} alt='nose' /> Papeles conductor
+                </button>
+                <button name={changeColor[9].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[9].buttons} mb-1`}>
+                  <img className={`home-sidebar-icon ${changeColor[9].icon}`} src={iconSheet} alt='nose' /> Arl
+                </button>
+                <button name={changeColor[10].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[10].buttons} mb-1`}>
+                  <img className={`home-sidebar-icon ${changeColor[10].icon}`} src={iconSheet} alt='nose' /> Afp
+                </button>
+                <button name={changeColor[11].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[11].buttons} mb-1`}>
+                  <img className={`home-sidebar-icon ${changeColor[11].icon}`} src={iconSheet} alt='nose' /> Eps
+                </button>
+                <button name={changeColor[12].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[12].buttons} mb-1`}>
+                  <img className={`home-sidebar-icon ${changeColor[12].icon}`} src={iconSheet} alt='nose' /> Caja de compensacion
+                </button>
+              </div>
+            </>
+              {/* papeles del vehciculo */}
+            <>
+              <button name={changeColor[2].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[2].buttons} mb-1`}>
+                <img className={`home-sidebar-icon ${changeColor[2].icon}`} src={iconSheet} alt='nose' /> Papeles vehiculo
+              </button>
+            </>
+              {/* lista de chequeo */}
+            <>
+              <button name={changeColor[0].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[0].buttons}  mb-1`}>
+                <img className={`home-sidebar-icon ${changeColor[0].icon}`} src={iconTask} alt='nose' /> Lista de chequeo
+              </button>
+            </>
+          </>
+      } else if ( dataListLogin.data.response.data.role[0]._id === vehiculo){
+        Buttons = <>
+          <>
+              <>
+                <button name={changeColor[0].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[0].buttons}  mb-1`}>
+                  <img className={`home-sidebar-icon ${changeColor[0].icon}`} src={iconTask} alt='nose' /> Lista de chequeo
+                </button>
+              </>
+          </>
+        </> 
+      }
+      return Buttons;
     }
-
+      
     const dashboards = () => {
       return <>
           {   changeColor[0].list === true ? 
