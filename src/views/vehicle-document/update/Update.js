@@ -7,13 +7,8 @@ import './Update.css';
 import {  useSelector,useDispatch } from "react-redux";
 
 //Reducers
-//Reducers
-import { updateDriverDocumentService } from "../../../store/action/driverDocumentAction";
+import { updateVehicleDocumentService } from "../../../store/action/vehicleDocumentAction";
 import { getUserAllService } from "../../../store/action/userAction";
-import { getArlAllService } from "../../../store/action/arlAction";
-import { getAfpAllService } from "../../../store/action/afpAction";
-import { getEpsAllService } from "../../../store/action/epsAction";
-import { getCompensationBoxAllService } from "../../../store/action/compensationBoxAction";
 
 //Alertas 
 import Swal from 'sweetalert2';
@@ -26,65 +21,105 @@ import roleService from '../../../libs/helpers/role.json';
 
 function Update({ infoUpdate,setView,getAll }) {
 
-  const { conductor } = roleService;
-  const [inputnumberLicense, setInputnumberLicense] = useState("");
-  const [inputstartLicense, setInputstartLicense] = useState("");
-  const [inputExpirationLicense, setInputExpirationLicense] = useState("");
+  const { vehiculo } = roleService;
   const [opcionUser, setOpcionUser] = useState([]);
-  const [opcionAfp, setOpcionAfp] = useState([]);
-  const [opcionArl, setOpcionArl] = useState([]);
-  const [opcionEps, setOpcionEps] = useState([]);
-  const [opcionCompensationBox, setOpcionCompensationBox] = useState([]);
+  const [opcionSoat, setOpcionSoat] = useState([]);
+  const [opcionMechanicalTechnician, setOpcionMechanicalTechnician] = useState([]);
+  const [opcionOperationsCard, setOpcionOperationsCard] = useState([]);
+  const [opcionPropertyCards, setOpcionPropertyCards] = useState([]);
+  const [opcionSureRccece, setOpcionSureRccece] = useState([]);
+  const [opcionExtract, setOpcionExtract] = useState([]);
+  const [opcionPreventiveReview, setOpcionPreventiveReview] = useState([]);
+  const [inputDateStartSoat, setInputDateStartSoat] = useState("");
+  const [inputDateStartMechanicalTechnician, setInputDateStartMechanicalTechnician] = useState("");
+  const [inputDateStartCardOperations, setInputDateStartCardOperations] = useState("");
+  const [inputDateStartCardProperties, setInputDateStartCardProperties] = useState("");
+  const [inputDateStartSureRccece, setInputDateStartSureRccece] = useState("");
+  const [inputDateStartPreventiveReview, setInputDateStartPreventiveReview] = useState("");
+  const [inputDateStartExtract, setInputDateStartExtract] = useState("");
+  const [inputDateExpirationSoat, setInputDateExpirationSoat] = useState("");
+  const [inputDateExpirationMechanicalTechnician, setInputDateExpirationMechanicalTechnician] = useState("");
+  const [inputDateExpirationCardOperations, setInputDateExpirationCardOperations] = useState("");
+  const [inputDateExpirationCardProperties, setInputDateExpirationCardProperties] = useState("");
+  const [inputDateExpirationSureRccece, setInputDateExpirationSureRccece] = useState("");
+  const [inputDateExpirationExtract, setInputDateExpirationExtract] = useState("");
+  const [inputDateExpirationPreventiveReview, setInputDateExpirationPreventiveReview] = useState("");
   const [opcionSelectUser, setOpcionSelectUser] = useState('');
-  const [opcionSelectAfp, setOpcionSelectAfp] = useState('');
-  const [opcionSelectArl, setOpcionSelectArl] = useState('');
-  const [opcionSelectEps, setOpcionSelectEps] = useState('');
-  const [opcionSelectCompensationBox, setOpcionSelectCompensationBox] = useState('');
+  const [opcionSelectSoat, setOpcionSelectSoat] = useState('');
+  const [opcionSelectMechanicalTechnician, setOpcionSelectMechanicalTechnician] = useState('');
+  const [opcionSelectOperationsCard, setOpcionSelectOperationsCard] = useState('');
+  const [opcionSelectPropertyCards, setOpcionSelectPropertyCards] = useState('');
+  const [opcionSelectSureRccece, setOpcionSelectSureRccece] = useState('');
+  const [opcionSelectExtract, setOpcionSelectExtract] = useState('');
+  const [opcionSelectPreventiveReview, setOpcionSelectPreventiveReview] = useState('');
   const [errorUser, setErrorUser] = useState('');
-  const [errorNumberLicense, setErrorNumberLicense] = useState('');
-  const [errorStartLicense, setErrorStartLicense] = useState('');
-  const [errorExpirationLicense, setErrorExpirationLicense] = useState('');
-  const [errorAfp, setErrorAfp] = useState('');
-  const [errorArl, setErrorArl] = useState('');
-  const [errorEps, setErrorEps] = useState('');
-  const [errorCompensationBox, setErrorCompensationBox] = useState('');
+  const [errorSoat, setErrorSoat] = useState('');
+  const [errorMechanicalTechnician, setErrorMechanicalTechnician] = useState('');
+  const [errorOperationsCard, setErrorOperationsCard] = useState('');
+  const [errorPropertyCards, setErrorPropertyCards] = useState('');
+  const [errorSureRccece, setErrorSureRccece] = useState('');
+  const [errorExtract, setErrorExtract] = useState('');
+  const [errorPreventiveReview, setErrorPreventiveReview] = useState('');
+  const [errorDateStartSoat, setErrorDateStartSoat] = useState('');
+  const [errorDateStartMechanicalTechnician, setErrorDateStartMechanicalTechnician] = useState('');
+  const [errorDateStartCardOperations, setErrorDateStartCardOperations] = useState('');
+  const [errorDateStartCardProperties, setErrorDateStartCardProperties] = useState('');
+  const [errorDateStartSureRccece, setErrorDateStartSureRccece] = useState('');
+  const [errorDateExpirationSoat, setErrorDateExpirationSoat] = useState('');
+  const [errorDateExpirationMechanicalTechnician, setErrorDateExpirationMechanicalTechnician] = useState('');
+  const [errorDateExpirationCardOperations, setErrorDateExpirationCardOperations] = useState('');
+  const [errorDateExpirationCardProperties, setErrorDateExpirationCardProperties] = useState('');
+  const [errorDateExpirationSureRccece, setErrorDateExpirationSureRccece] = useState('');
+  const [errorDateStartExtract, setErrorDateStartExtract] = useState('');
+  const [errorDateExpirationExtract, setErrorDateExpirationExtract] = useState('');
+  const [errorDateStartPreventiveReview, setErrorDateStartPreventiveReview] = useState('');
+  const [errorDateExpirationPreventiveReview, setErrorDateExpirationPreventiveReview] = useState('');
   const dataListUser = useSelector((store) => store.userReducer);
-  const dataListAfp = useSelector((store) => store.afpReducer);
-  const dataListArl = useSelector((store) => store.arlReducer);
-  const dataListEps = useSelector((store) => store.epsReducer);
-  const dataListCompensationBox = useSelector((store) => store.compesationBoxReducer);
   const dispatch = useDispatch();
 
   useEffect(() => {
     try {
       dispatch(getUserAllService())
-      dispatch(getArlAllService())
-      dispatch(getAfpAllService())
-      dispatch(getEpsAllService())
-      dispatch(getCompensationBoxAllService())
     } catch (error) {
       console.log(error);
     }
   }, [dispatch])
   
   useEffect(() => {
-    let resultadosFiltrados = dataListUser.data.filter(objeto => objeto.dni !== undefined && objeto.role[0]._id === conductor && objeto.show === "Si");
+    let resultadosFiltrados = dataListUser.data.filter(objeto => objeto.role[0]._id === vehiculo && objeto.show === "Si");
     setOpcionUser(resultadosFiltrados);
-    setOpcionAfp(dataListAfp.data);
-    setOpcionArl(dataListArl.data);
-    setOpcionEps(dataListEps.data);
-    setOpcionCompensationBox(dataListCompensationBox.data);
-  }, [dataListUser,dataListAfp,dataListArl,dataListEps,dataListCompensationBox,conductor])
+    setOpcionSoat([{value:"Si"},{value:"No"}]);
+    setOpcionMechanicalTechnician([{value:"Si"},{value:"No"}]);
+    setOpcionOperationsCard([{value:"Si"},{value:"No"}]);
+    setOpcionPropertyCards([{value:"Si"},{value:"No"}]);
+    setOpcionSureRccece([{value:"Si"},{value:"No"}]);
+    setOpcionExtract([{value:"Si"},{value:"No"}]);
+    setOpcionPreventiveReview([{value:"Si"},{value:"No"}]);
+  }, [dataListUser,vehiculo])
   
   useEffect(() => {
     setOpcionSelectUser(infoUpdate.item.users[0]._id);
-    setInputnumberLicense(infoUpdate.item.numberLicense);
-    setInputstartLicense(infoUpdate.item.startLicense);
-    setInputExpirationLicense(infoUpdate.item.expirationLicense);
-    setOpcionSelectArl(infoUpdate.item.arl[0]._id);
-    setOpcionSelectAfp(infoUpdate.item.afp[0]._id);
-    setOpcionSelectEps(infoUpdate.item.eps[0]._id);
-    setOpcionSelectCompensationBox(infoUpdate.item.compesationBox[0]._id);
+    setOpcionSelectSoat(infoUpdate.item.soat);
+    setOpcionSelectMechanicalTechnician(infoUpdate.item.mechanicalTechnician);
+    setOpcionSelectOperationsCard(infoUpdate.item.operationsCard);
+    setOpcionSelectPropertyCards(infoUpdate.item.propertyCards);
+    setOpcionSelectSureRccece(infoUpdate.item.sureRccece);
+    setOpcionSelectExtract(infoUpdate.item.extract);
+    setOpcionSelectPreventiveReview(infoUpdate.item.preventiveReview);
+    setInputDateStartSoat(infoUpdate.item.dateStartSoat);
+    setInputDateStartMechanicalTechnician(infoUpdate.item.dateStartMechanicalTechnician);
+    setInputDateStartCardOperations(infoUpdate.item.dateStartCardOperations);
+    setInputDateStartCardProperties(infoUpdate.item.dateStartCardProperties);
+    setInputDateStartSureRccece(infoUpdate.item.dateStartSureRccece);
+    setInputDateStartExtract(infoUpdate.item.dateStartExtract);
+    setInputDateStartPreventiveReview(infoUpdate.item.dateStartPreventiveReview);
+    setInputDateExpirationSoat(infoUpdate.item.dateExpirationSoat);
+    setInputDateExpirationMechanicalTechnician(infoUpdate.item.dateExpirationMechanicalTechnician);
+    setInputDateExpirationCardOperations(infoUpdate.item.dateExpirationCardOperations);
+    setInputDateExpirationCardProperties(infoUpdate.item.dateExpirationCardProperties);
+    setInputDateExpirationSureRccece(infoUpdate.item.dateExpirationSureRccece);
+    setInputDateExpirationExtract(infoUpdate.item.dateExpirationExtract);
+    setInputDateExpirationPreventiveReview(infoUpdate.item.dateExpirationPreventiveReview);
     //eslint-disable-next-line
   }, [])
   
@@ -92,14 +127,6 @@ function Update({ infoUpdate,setView,getAll }) {
     setView({list:true});
     getAll();
   }
-
-  const handleChangeNumberLicense = (e) => {
-    // valida que solo se escriban numeros
-    const esValido = e.target.validity.valid;
-    if (esValido) {
-      setInputnumberLicense(e.target.value);
-    }
-  } 
 
   const validateField = (value, fieldName, regex, minLength, customErrorMessage) => {
     if (value.trim() === '') {
@@ -128,61 +155,174 @@ function Update({ infoUpdate,setView,getAll }) {
       setErrorUser("");
     }
 
-    const numberLicenseError = validateField(inputnumberLicense, 'numero de licencia', /^[0-9]+$/, 4);
-    if (numberLicenseError) {
-      setErrorNumberLicense(numberLicenseError);
+    const soatError = validateField(opcionSelectSoat, 'soat', /\S/, 1);
+    if (soatError) {
+      setErrorSoat(soatError);
       isValid = false;
     } else {
-      setErrorNumberLicense("");
+      setErrorSoat("");
     }
 
-    const startLicenseError = validateField(inputstartLicense, 'comienzo de la licensia', /^\d{4}-\d{2}-\d{2}$/, 4);
-    if (startLicenseError) {
-      setErrorStartLicense(startLicenseError);
+    const mechanicalTechnicianError = validateField(opcionSelectMechanicalTechnician, 'tecnico mecanica', /\S/, 1);
+    if (mechanicalTechnicianError) {
+      setErrorMechanicalTechnician(mechanicalTechnicianError);
       isValid = false;
     } else {
-      setErrorStartLicense("");
+      setErrorMechanicalTechnician("");
     }
 
-    const expirationtLicenseError = validateField(inputExpirationLicense, 'expiracion de la licensia', /^\d{4}-\d{2}-\d{2}$/, 4);
-    if (expirationtLicenseError) {
-      setErrorExpirationLicense(expirationtLicenseError);
+    const operationsCardError = validateField(opcionSelectOperationsCard, 'tarjeta de operaciones', /\S/, 1);
+    if (operationsCardError) {
+      setErrorOperationsCard(operationsCardError);
       isValid = false;
     } else {
-      setErrorExpirationLicense("");
+      setErrorOperationsCard("");
     }
 
-    const arlError = validateField(opcionSelectArl, 'ARL', /\S/, 1);
-    if (arlError) {
-      setErrorArl(arlError);
+    const propertyCardsError = validateField(opcionSelectPropertyCards, 'tarjeta de propiedades', /\S/, 1);
+    if (propertyCardsError) {
+      setErrorPropertyCards(propertyCardsError);
       isValid = false;
     } else {
-      setErrorArl("");
+      setErrorPropertyCards("");
+    }
+  
+    const sureRcceceError = validateField(opcionSelectSureRccece, 'seguro rcc ece', /\S/, 1);
+    if (sureRcceceError) {
+      setErrorSureRccece(sureRcceceError);
+      isValid = false;
+    } else {
+      setErrorSureRccece("");
+    }
+  
+    const extractError = validateField(opcionSelectExtract, 'extracto', /\S/, 1);
+    if (extractError) {
+      setErrorExtract(extractError);
+      isValid = false;
+    } else {
+      setErrorExtract("");
     }
 
-    const afpError = validateField(opcionSelectAfp, 'AFP', /\S/, 1);
-    if (afpError) {
-      setErrorAfp(afpError);
+    const preventiveReviewError = validateField(opcionSelectPreventiveReview, 'revision preventiva', /\S/, 1);
+    if (preventiveReviewError) {
+      setErrorPreventiveReview(preventiveReviewError);
       isValid = false;
     } else {
-      setErrorAfp("");
+      setErrorPreventiveReview("");
     }
 
-    const epsError = validateField(opcionSelectEps, 'EPS', /\S/, 1);
-    if (epsError) {
-      setErrorEps(epsError);
+    const dateStartSoatError = validateField(inputDateStartSoat, 'inicio soat', /^\d{4}-\d{2}-\d{2}$/, 4);
+    if (dateStartSoatError) {
+      setErrorDateStartSoat(dateStartSoatError);
       isValid = false;
     } else {
-      setErrorEps("");
+      setErrorDateStartSoat("");
     }
 
-    const CompensationBoxError = validateField(opcionSelectUser, 'caja de compensacion', /\S/, 1);
-    if (CompensationBoxError) {
-      setErrorCompensationBox(CompensationBoxError);
+    const dateExpirationSoatError = validateField(inputDateExpirationSoat, 'vencimiento soat', /^\d{4}-\d{2}-\d{2}$/, 4);
+    if (dateExpirationSoatError) {
+      setErrorDateExpirationSoat(dateExpirationSoatError);
       isValid = false;
     } else {
-      setErrorCompensationBox("");
+      setErrorDateExpirationSoat("");
     }
+
+    const dateStartMechanicalTechnicianError = validateField(inputDateStartMechanicalTechnician, 'inicio tenicomecanica', /^\d{4}-\d{2}-\d{2}$/, 4);
+    if (dateStartMechanicalTechnicianError) {
+      setErrorDateStartMechanicalTechnician(dateStartMechanicalTechnicianError);
+      isValid = false;
+    } else {
+      setErrorDateStartMechanicalTechnician("");
+    }
+
+    const dateExpirationMechanicalTechnicianError = validateField(inputDateExpirationMechanicalTechnician, 'vencimiento tecnicomencanica', /^\d{4}-\d{2}-\d{2}$/, 4);
+    if (dateExpirationMechanicalTechnicianError) {
+      setErrorDateExpirationMechanicalTechnician(dateExpirationMechanicalTechnicianError);
+      isValid = false;
+    } else {
+      setErrorDateExpirationMechanicalTechnician("");
+    }
+
+    const dateStartCardOperationsError = validateField(inputDateStartCardOperations, 'inicio tarjeta de operaciones', /^\d{4}-\d{2}-\d{2}$/, 4);
+    if (dateStartCardOperationsError) {
+      setErrorDateStartCardOperations(dateStartCardOperationsError);
+      isValid = false;
+    } else {
+      setErrorDateStartCardOperations("");
+    }
+
+    const dateExpirationCardOperationsError = validateField(inputDateExpirationCardOperations, 'vencimiento tarjeta de operaciones', /^\d{4}-\d{2}-\d{2}$/, 4);
+    if (dateExpirationCardOperationsError) {
+      setErrorDateExpirationCardOperations(dateExpirationCardOperationsError);
+      isValid = false;
+    } else {
+      setErrorDateExpirationCardOperations("");
+    }
+
+    const dateStartCardPropertiesError = validateField(inputDateStartCardProperties, 'inicio tarjeta de propiedades', /^\d{4}-\d{2}-\d{2}$/, 4);
+    if (dateStartCardPropertiesError) {
+      setErrorDateStartCardProperties(dateStartCardPropertiesError);
+      isValid = false;
+    } else {
+      setErrorDateStartCardProperties("");
+    }
+
+    const dateExpirationCardPropertiesError = validateField(inputDateExpirationCardProperties, 'vencimiento tarjeta de propiedades', /^\d{4}-\d{2}-\d{2}$/, 4);
+    if (dateExpirationCardPropertiesError) {
+      setErrorDateExpirationCardProperties(dateExpirationCardPropertiesError);
+      isValid = false;
+    } else {
+      setErrorDateExpirationCardProperties("");
+    }
+
+    const dateStartSureRcceceError = validateField(inputDateStartSureRccece, 'inicio seguro rcc ece', /^\d{4}-\d{2}-\d{2}$/, 4);
+    if (dateStartSureRcceceError) {
+      setErrorDateStartSureRccece(dateStartSureRcceceError);
+      isValid = false;
+    } else {
+      setErrorDateStartSureRccece("");
+    }
+
+    const dateExpirationSureRcceceError = validateField(inputDateExpirationSureRccece, 'vencimiento seguro rcc ece', /^\d{4}-\d{2}-\d{2}$/, 4);
+    if (dateExpirationSureRcceceError) {
+      setErrorDateExpirationSureRccece(dateExpirationSureRcceceError);
+      isValid = false;
+    } else {
+      setErrorDateExpirationSureRccece("");
+    }
+
+    const DateStartExtractError = validateField(inputDateStartExtract, 'inicio extracto', /^\d{4}-\d{2}-\d{2}$/, 4);
+    if (DateStartExtractError) {
+      setErrorDateStartExtract(DateStartExtractError);
+      isValid = false;
+    } else {
+      setErrorDateStartExtract("");
+    }
+
+    const dateExpirationExtractError = validateField(inputDateExpirationExtract, 'vencimiento extracto', /^\d{4}-\d{2}-\d{2}$/, 4);
+    if (dateExpirationExtractError) {
+      setErrorDateExpirationExtract(dateExpirationExtractError);
+      isValid = false;
+    } else {
+      setErrorDateExpirationExtract("");
+    }
+ 
+    const dateStartPreventiveReviewError = validateField(inputDateStartPreventiveReview, 'inicio revision preventiva', /^\d{4}-\d{2}-\d{2}$/, 4);
+    if (dateStartPreventiveReviewError) {
+      setErrorDateStartPreventiveReview(dateStartPreventiveReviewError);
+      isValid = false;
+    } else {
+      setErrorDateStartPreventiveReview("");
+    }
+
+    const dateExpirationPreventiveReviewError = validateField(inputDateExpirationPreventiveReview, 'vencimiento revision preventiva', /^\d{4}-\d{2}-\d{2}$/, 4);
+    if (dateExpirationPreventiveReviewError) {
+      setErrorDateExpirationPreventiveReview(dateExpirationPreventiveReviewError);
+      isValid = false;
+    } else {
+      setErrorDateExpirationPreventiveReview("");
+    }
+
 
     return isValid;
   };
@@ -193,14 +333,29 @@ function Update({ infoUpdate,setView,getAll }) {
         let body = { 
           id:infoUpdate.item._id,
           users:opcionSelectUser,
-          numberLicense:inputnumberLicense,
-          startLicense:inputstartLicense,
-          expirationLicense:inputExpirationLicense,
-          arl:opcionSelectArl,afp:opcionSelectAfp,
-          eps:opcionSelectEps,
-          compesationBox:opcionSelectCompensationBox 
+          soat:opcionSelectSoat,
+          mechanicalTechnician:opcionSelectMechanicalTechnician, 
+          operationsCard:opcionSelectOperationsCard, 
+          propertyCards:opcionSelectPropertyCards, 
+          sureRccece:opcionSelectSureRccece, 
+          extract:opcionSelectExtract, 
+          preventiveReview:opcionSelectPreventiveReview, 
+          dateStartSoat:inputDateStartSoat,
+          dateStartMechanicalTechnician:inputDateStartMechanicalTechnician,
+          dateStartCardOperations:inputDateStartCardOperations,
+          dateStartCardProperties:inputDateStartCardProperties,
+          dateStartSureRccece:inputDateStartSureRccece,
+          dateStartExtract:inputDateStartExtract,
+          dateStartPreventiveReview:inputDateStartPreventiveReview,
+          dateExpirationSoat:inputDateExpirationSoat,
+          dateExpirationMechanicalTechnician:inputDateExpirationMechanicalTechnician,
+          dateExpirationCardOperations:inputDateExpirationCardOperations,
+          dateExpirationCardProperties:inputDateExpirationCardProperties,
+          dateExpirationSureRccece:inputDateExpirationSureRccece,
+          dateExpirationExtract:inputDateExpirationExtract,
+          dateExpirationPreventiveReview:inputDateExpirationPreventiveReview 
         }
-        let response = await dispatch(updateDriverDocumentService(body));
+        let response = await dispatch(updateVehicleDocumentService(body));
         if(response.error === undefined){
           switch (response.response.status) {
             case 200:
@@ -244,109 +399,264 @@ function Update({ infoUpdate,setView,getAll }) {
                 <div className='driverDocument-create-content-form'>
 
 
-                    <div className='mt-4 driverDocument-create-main-input form-group'>
-                      <select value={opcionSelectUser} onChange={(e) => setOpcionSelectUser(e.target.value)} className='user-create-input form-control'>
-                        <option value="">Selecciona una opción - conductor</option>
-                        {opcionUser.map((opcion, index) => (
-                          <option key={index} value={opcion._id}>
-                            {opcion.dni + " " + opcion.names}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-
-                    <div className='mt-4'>
-                        {errorUser && <p style={{ color: 'red' }}>{errorUser}</p>}
-                    </div>
-
-                    <div className='mt-4 user-create-main-input'>
-                        <input value={inputnumberLicense} onChange={handleChangeNumberLicense} pattern="[0-9]{0,13}" type="text" className="user-create-input form-control" placeholder="Numero de licencia" />
-                    </div>
-
-                    <div className='mt-4'>
-                        {errorNumberLicense && <p style={{ color: 'red' }}>{errorNumberLicense}</p>}
+                      <div className='mt-4 vehicleDocument-create-main-input form-group'>
+                        <label htmlFor="exampleInputEmail1">Usuario:</label>
+                        <select value={opcionSelectUser} onChange={(e) => setOpcionSelectUser(e.target.value)} className='user-create-input form-control'>
+                          <option value="">Selecciona una opción</option>
+                          {opcionUser.map((opcion, index) => (
+                            <option key={index} value={opcion._id}>
+                              {opcion.placa}
+                            </option>
+                          ))}
+                        </select>
                       </div>
 
-                    <div className='mt-4 user-create-main-input'>
-                      <input value={inputstartLicense} onChange={(e) => setInputstartLicense(e.target.value)} type="date" className='user-create-input form-control' />
-                    </div>
+                      <div className='mt-4'>
+                        {errorUser && <p style={{ color: 'red' }}>{errorUser}</p>}
+                      </div>
 
-                    <div className='mt-4'>
-                      {errorStartLicense && <p style={{ color: 'red' }}>{errorStartLicense}</p>}
-                    </div>
+                      <div className='mt-4 vehicleDocument-create-main-input form-group'>
+                      <label htmlFor="exampleInputEmail1">Soat:</label>
+                        <select value={opcionSelectSoat} onChange={(e) => setOpcionSelectSoat(e.target.value)} className='user-create-input form-control'>
+                          <option value="">Selecciona una opción</option>
+                          {opcionSoat.map((opcion, index) => (
+                            <option key={index} value={opcion.value}>
+                              {opcion.value}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
 
-                    <div className='mt-4 user-create-main-input'>
-                      <input value={inputExpirationLicense} onChange={(e) => setInputExpirationLicense(e.target.value)} type="date" className='user-create-input form-control' />
-                    </div>
+                      <div className='mt-4'>
+                        {errorSoat && <p style={{ color: 'red' }}>{errorSoat}</p>}
+                      </div>
 
-                    <div className='mt-4'>
-                      {errorExpirationLicense && <p style={{ color: 'red' }}>{errorExpirationLicense}</p>}
-                    </div>
+                      <div className='mt-4 vehicleDocument-create-main-input form-group'>
+                      <label htmlFor="exampleInputEmail1">Tecnico mecanica:</label>
+                        <select value={opcionSelectMechanicalTechnician} onChange={(e) => setOpcionSelectMechanicalTechnician(e.target.value)} className='user-create-input form-control'>
+                          <option value="">Selecciona una opción</option>
+                          {opcionMechanicalTechnician.map((opcion, index) => (
+                            <option key={index} value={opcion.value}>
+                              {opcion.value}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
 
-                    <div className='mt-4 user-create-main-input form-group'>
-                      <select value={opcionSelectArl} onChange={(e) => setOpcionSelectArl(e.target.value)} className='user-create-input form-control'>
-                        <option value="">Selecciona una opción - ARL</option>
-                        {opcionArl.map((opcion, index) => (
-                          <option key={index} value={opcion._id}>
-                            {opcion.name}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
+                      <div className='mt-4'>
+                        {errorMechanicalTechnician && <p style={{ color: 'red' }}>{errorMechanicalTechnician}</p>}
+                      </div>
 
-                    <div className='mt-4'>
-                      {errorArl && <p style={{ color: 'red' }}>{errorArl}</p>}
-                    </div>
+                      <div className='mt-4 vehicleDocument-create-main-input form-group'>
+                        <label htmlFor="exampleInputEmail1">Tarjeta de operaciones:</label>
+                        <select value={opcionSelectOperationsCard} onChange={(e) => setOpcionSelectOperationsCard(e.target.value)} className='user-create-input form-control'>
+                          <option value="">Selecciona una opción</option>
+                          {opcionOperationsCard.map((opcion, index) => (
+                            <option key={index} value={opcion.value}>
+                              {opcion.value}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
 
-                    <div className='mt-4 user-create-main-input form-group'>
-                      <select value={opcionSelectAfp} onChange={(e) => setOpcionSelectAfp(e.target.value)} className='user-create-input form-control'>
-                        <option value="">Selecciona una opción - AFP</option>
-                        {opcionAfp.map((opcion, index) => (
-                          <option key={index} value={opcion._id}>
-                            {opcion.name}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
+                      <div className='mt-4'>
+                        {errorOperationsCard && <p style={{ color: 'red' }}>{errorOperationsCard}</p>}
+                      </div>
 
-                    <div className='mt-4'>
-                      {errorAfp && <p style={{ color: 'red' }}>{errorAfp}</p>}
-                    </div>
+                      <div className='mt-4 vehicleDocument-create-main-input form-group'>
+                        <label htmlFor="exampleInputEmail1">Tarjeta de propiedades:</label>
+                        <select value={opcionSelectPropertyCards} onChange={(e) => setOpcionSelectPropertyCards(e.target.value)} className='user-create-input form-control'>
+                          <option value="">Selecciona una opción</option>
+                          {opcionPropertyCards.map((opcion, index) => (
+                            <option key={index} value={opcion.value}>
+                              {opcion.value}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
 
-                    <div className='mt-4 user-create-main-input form-group'>
-                      <select value={opcionSelectEps} onChange={(e) => setOpcionSelectEps(e.target.value)} className='user-create-input form-control'>
-                        <option value="">Selecciona una opción - EPS</option>
-                        {opcionEps.map((opcion, index) => (
-                          <option key={index} value={opcion._id}>
-                            {opcion.name}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
+                      <div className='mt-4'>
+                        {errorPropertyCards && <p style={{ color: 'red' }}>{errorPropertyCards}</p>}
+                      </div>
 
-                    <div className='mt-4'>
-                      {errorEps && <p style={{ color: 'red' }}>{errorEps}</p>}
-                    </div>
+                      <div className='mt-4 vehicleDocument-create-main-input form-group'>
+                        <label htmlFor="exampleInputEmail1">Seguro rcc ece:</label>
+                        <select value={opcionSelectSureRccece} onChange={(e) => setOpcionSelectSureRccece(e.target.value)} className='user-create-input form-control'>
+                          <option value="">Selecciona una opción</option>
+                          {opcionSureRccece.map((opcion, index) => (
+                            <option key={index} value={opcion.value}>
+                              {opcion.value}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
 
-                    <div className='mt-4 user-create-main-input form-group'>
-                      <select value={opcionSelectCompensationBox} onChange={(e) => setOpcionSelectCompensationBox(e.target.value)} className='user-create-input form-control'>
-                        <option value="">Selecciona una opción - caja de compensacion</option>
-                        {opcionCompensationBox.map((opcion, index) => (
-                          <option key={index} value={opcion._id}>
-                            {opcion.name}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
+                      <div className='mt-4'>
+                        {errorSureRccece && <p style={{ color: 'red' }}>{errorSureRccece}</p>}
+                      </div>
 
-                    <div className='mt-4'>
-                      {errorCompensationBox && <p style={{ color: 'red' }}>{errorCompensationBox}</p>}
-                    </div>
+                      <div className='mt-4 vehicleDocument-create-main-input form-group'>
+                        <label htmlFor="exampleInputEmail1">Extracto:</label>
+                        <select value={opcionSelectExtract} onChange={(e) => setOpcionSelectExtract(e.target.value)} className='user-create-input form-control'>
+                          <option value="">Selecciona una opción</option>
+                          {opcionExtract.map((opcion, index) => (
+                            <option key={index} value={opcion.value}>
+                              {opcion.value}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+
+                      <div className='mt-4'>
+                        {errorExtract && <p style={{ color: 'red' }}>{errorExtract}</p>}
+                      </div>
+
+                      <div className='mt-4 vehicleDocument-create-main-input form-group'>
+                        <label htmlFor="exampleInputEmail1">Revicion preventiva:</label>
+                        <select value={opcionSelectPreventiveReview} onChange={(e) => setOpcionSelectPreventiveReview(e.target.value)} className='user-create-input form-control'>
+                          <option value="">Selecciona una opción</option>
+                          {opcionPreventiveReview.map((opcion, index) => (
+                            <option key={index} value={opcion.value}>
+                              {opcion.value}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+
+                      <div className='mt-4'>
+                        {errorPreventiveReview && <p style={{ color: 'red' }}>{errorPreventiveReview}</p>}
+                      </div>
+
+                      <div className='mt-4 vehicleDocument-create-main-input'>
+                        <label htmlFor="exampleInputEmail1">Inicio del soat:</label>
+                        <input value={inputDateStartSoat} onChange={(e) => setInputDateStartSoat(e.target.value)} type="date" className='vehicleDocument-create-input form-control' />
+                      </div>
+
+                      <div className='mt-4'>
+                        {errorDateStartSoat && <p style={{ color: 'red' }}>{errorDateStartSoat}</p>}
+                      </div>
+
+                      <div className='mt-4 vehicleDocument-create-main-input'>
+                       <label htmlFor="exampleInputEmail1">Vencimiento del soat:</label>
+                        <input value={inputDateExpirationSoat} onChange={(e) => setInputDateExpirationSoat(e.target.value)} type="date" className='vehicleDocument-create-input form-control' />
+                      </div>
+
+                      <div className='mt-4'>
+                        {errorDateExpirationSoat && <p style={{ color: 'red' }}>{errorDateExpirationSoat}</p>}
+                      </div>
+
+                      <div className='mt-4 vehicleDocument-create-main-input'>
+                        <label htmlFor="exampleInputEmail1">Inicio de la tecnicomecanico:</label>
+                        <input value={inputDateStartMechanicalTechnician} onChange={(e) => setInputDateStartMechanicalTechnician(e.target.value)} type="date" className='vehicleDocument-create-input form-control' />
+                      </div>
+
+                      <div className='mt-4'>
+                        {errorDateStartMechanicalTechnician && <p style={{ color: 'red' }}>{errorDateStartMechanicalTechnician}</p>}
+                      </div>
+
+                      <div className='mt-4 vehicleDocument-create-main-input'>
+                        <label htmlFor="exampleInputEmail1">vencimiento de la tecnicomecanico:</label>
+                        <input value={inputDateExpirationMechanicalTechnician} onChange={(e) => setInputDateExpirationMechanicalTechnician(e.target.value)} type="date" className='user-create-input form-control' />
+                      </div>
+
+                      <div className='mt-4'>
+                        {errorDateExpirationMechanicalTechnician && <p style={{ color: 'red' }}>{errorDateExpirationMechanicalTechnician}</p>}
+                      </div>
+
+                      <div className='mt-4 vehicleDocument-create-main-input'>
+                        <label htmlFor="exampleInputEmail1">Inicio de la tarjeta operaciones:</label>
+                        <input value={inputDateStartCardOperations} onChange={(e) => setInputDateStartCardOperations(e.target.value)} type="date" className='vehicleDocument-create-input form-control' />
+                      </div>
+
+                      <div className='mt-4'>
+                        {errorDateStartCardOperations && <p style={{ color: 'red' }}>{errorDateStartCardOperations}</p>}
+                      </div>
+
+                      <div className='mt-4 vehicleDocument-create-main-input'>
+                        <label htmlFor="exampleInputEmail1">Vencimiento de la tarjeta operaciones:</label>
+                        <input value={inputDateExpirationCardOperations} onChange={(e) => setInputDateExpirationCardOperations(e.target.value)} type="date" className='user-create-input form-control' />
+                      </div>
+
+                      <div className='mt-4'>
+                        {errorDateExpirationCardOperations && <p style={{ color: 'red' }}>{errorDateExpirationCardOperations}</p>}
+                      </div>
+
+                      <div className='mt-4 vehicleDocument-create-main-input'>
+                        <label htmlFor="exampleInputEmail1">Inicio de la tarjeta propiedades:</label>
+                        <input value={inputDateStartCardProperties} onChange={(e) => setInputDateStartCardProperties(e.target.value)} type="date" className='vehicleDocument-create-input form-control' />
+                      </div>
+
+                      <div className='mt-4'>
+                        {errorDateStartCardProperties && <p style={{ color: 'red' }}>{errorDateStartCardProperties}</p>}
+                      </div>
+
+                      <div className='mt-4 vehicleDocument-create-main-input'>
+                        <label htmlFor="exampleInputEmail1">Vencimiento de la tarjeta propiedades:</label>
+                        <input value={inputDateExpirationCardProperties} onChange={(e) => setInputDateExpirationCardProperties(e.target.value)} type="date" className='user-create-input form-control' />
+                      </div>
+
+                      <div className='mt-4'>
+                        {errorDateExpirationCardProperties && <p style={{ color: 'red' }}>{errorDateExpirationCardProperties}</p>}
+                      </div>
+
+                      <div className='mt-4 vehicleDocument-create-main-input'>
+                        <label htmlFor="exampleInputEmail1">Inicio seguro rcc rce:</label>
+                        <input value={inputDateStartSureRccece} onChange={(e) => setInputDateStartSureRccece(e.target.value)} type="date" className='vehicleDocument-create-input form-control' />
+                      </div>
+
+                      <div className='mt-4'>
+                        {errorDateStartSureRccece && <p style={{ color: 'red' }}>{errorDateStartSureRccece}</p>}
+                      </div>
+
+                      <div className='mt-4 vehicleDocument-create-main-input'>
+                        <label htmlFor="exampleInputEmail1">Vencimiento seguro rcc rce:</label>
+                        <input value={inputDateExpirationSureRccece} onChange={(e) => setInputDateExpirationSureRccece(e.target.value)} type="date" className='user-create-input form-control' />
+                      </div>
+
+                      <div className='mt-4'>
+                        {errorDateExpirationSureRccece && <p style={{ color: 'red' }}>{errorDateExpirationSureRccece}</p>}
+                      </div>
+
+                      <div className='mt-4 vehicleDocument-create-main-input'>
+                        <label htmlFor="exampleInputEmail1">Inicio extracto:</label>
+                        <input value={inputDateStartExtract} onChange={(e) => setInputDateStartExtract(e.target.value)} type="date" className='vehicleDocument-create-input form-control' />
+                      </div>
+
+                      <div className='mt-4'>
+                        {errorDateStartExtract && <p style={{ color: 'red' }}>{errorDateStartExtract}</p>}
+                      </div>
+
+                      <div className='mt-4 vehicleDocument-create-main-input'>
+                        <label htmlFor="exampleInputEmail1">Vencimiento extracto:</label>
+                        <input value={inputDateExpirationExtract} onChange={(e) => setInputDateExpirationExtract(e.target.value)} type="date" className='user-create-input form-control' />
+                      </div>
+
+                      <div className='mt-4'>
+                        {errorDateExpirationExtract && <p style={{ color: 'red' }}>{errorDateExpirationExtract}</p>}
+                      </div>
+
+                      <div className='mt-4 vehicleDocument-create-main-input'>
+                        <label htmlFor="exampleInputEmail1">Inicio revision preventiva:</label>
+                        <input value={inputDateStartPreventiveReview} onChange={(e) => setInputDateStartPreventiveReview(e.target.value)} type="date" className='vehicleDocument-create-input form-control' />
+                      </div>
+
+                      <div className='mt-4'>
+                        {errorDateStartPreventiveReview && <p style={{ color: 'red' }}>{errorDateStartPreventiveReview}</p>}
+                      </div>
+
+                      <div className='mt-4 vehicleDocument-create-main-input'>
+                        <label htmlFor="exampleInputEmail1">Vencimiento revision preventiva:</label>
+                        <input value={inputDateExpirationPreventiveReview} onChange={(e) => setInputDateExpirationPreventiveReview(e.target.value)} type="date" className='user-create-input form-control' />
+                      </div>
+
+                      <div className='mt-4'>
+                        {errorDateExpirationPreventiveReview && <p style={{ color: 'red' }}>{errorDateExpirationPreventiveReview}</p>}
+                      </div>
+                    
 
                   <div className='mt-4 text-center'>
                     <button onClick={edit} type="button" className="driverDocument-update-button btn btn-primary">Guardar</button>
                   </div>
-
                 </div>
               </div>
             </div>
