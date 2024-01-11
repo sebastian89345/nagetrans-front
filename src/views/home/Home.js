@@ -29,6 +29,8 @@ import ListEps from '../eps/list/List';
 import ListCompensationBox from '../compensation-box/list/List';
 import ListDriverDocument from '../driver-document/list/List';
 import ListVehicleDocument from '../vehicle-document/list/List';
+import ListCheck from '../list-check/list/List';
+import ListCheckDriver from '../list-check-vehicle/create/Create';
 
 // para navegar
 import { useNavigate } from 'react-router-dom';
@@ -41,10 +43,10 @@ import {  useSelector } from "react-redux";
 
 function Home() {
 
-  const { adminstrador,vehiculo } = roleService;
-  const [width, setWidth] = useState(window.innerWidth);
-  const dataListLogin = useSelector((store) => store.loginReducer);
-  const navigate = useNavigate();
+    const { adminstrador,vehiculo } = roleService;
+    const [width, setWidth] = useState(window.innerWidth);
+    const dataListLogin = useSelector((store) => store.loginReducer);
+    const navigate = useNavigate();
 
     useEffect(() => {
       const handleResize = () => {
@@ -66,7 +68,8 @@ function Home() {
       { name:"arl",list:false,buttons:"", icon:"" },
       { name:"afp",list:false,buttons:"", icon:"" },
       { name:"eps",list:false,buttons:"", icon:"" },
-      { name:"compensationBox",list:false,buttons:"", icon:"" }
+      { name:"compensationBox",list:false,buttons:"", icon:"" },
+      { name:"listCheckVehicle",list:false,buttons:"", icon:"" }
     ]); 
 
     const closeSidebar = () => {
@@ -89,7 +92,8 @@ function Home() {
         { name:"arl",list:false,buttons:"", icon:"" },
         { name:"afp",list:false,buttons:"", icon:"" },
         { name:"eps",list:false,buttons:"", icon:"" },
-        { name:"compensationBox",list:false,buttons:"", icon:"" }
+        { name:"compensationBox",list:false,buttons:"", icon:"" },
+        { name:"listCheckVehicle",list:false,buttons:"", icon:"" }
       ];
     };
 
@@ -179,11 +183,9 @@ function Home() {
       } else if ( dataListLogin.data.response.data.role[0]._id === vehiculo){
         Buttons = <>
           <>
-              <>
-                <button name={changeColor[0].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[0].buttons}  mb-1`}>
-                  <img className={`home-sidebar-icon ${changeColor[0].icon}`} src={iconTask} alt='nose' /> Lista de chequeo
-                </button>
-              </>
+            <button name={changeColor[13].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[13].buttons}  mb-1`}>
+              <img className={`home-sidebar-icon ${changeColor[13].icon}`} src={iconTask} alt='nose' /> Lista de chequeo
+            </button>
           </>
         </> 
       }
@@ -193,7 +195,7 @@ function Home() {
     const dashboards = () => {
       return <>
           {   changeColor[0].list === true ? 
-              <ListUser  />
+              <ListCheck  />
             : changeColor[1].list === true ?
               <ListUser />
             : changeColor[2].list === true ?
@@ -218,6 +220,8 @@ function Home() {
               <ListEps />
             : changeColor[12].list === true ?
               <ListCompensationBox />
+            : changeColor[13].list === true ?
+              <ListCheckDriver />
             : <></> 
           }
       </>
