@@ -7,14 +7,14 @@ import './List.css';
 import DefaultTable from '../../../components/Table/defaultTable/DefaultTable';
 
 //Views
-import Create from '../../list-check-vehicle/create/Create';
+import Create from '../create/Create';
 import Update from '../update/Update';
 
 // Redux
 import { useSelector , useDispatch } from "react-redux";
 
 //Reducers
-import { getBrandAllService , deleteBrandService  } from "../../../store/action/brandAction";
+import { getListCheckAllService , deleteListCheckService  } from "../../../store/action/listCheckAction";
 
 //Alertas 
 import Swal from 'sweetalert2';
@@ -22,21 +22,17 @@ import Swal from 'sweetalert2';
 function List() {
   const [view, setView] = useState({list:true,create:false,update:false});
   const [infoUpdate, setInfoUpdate] = useState({});
-  const dataList = useSelector((store) => store.brandReducer);
+  const dataList = useSelector((store) => store.listCheckReducer);
   const dispatch = useDispatch();
 
   //Aqui hago la consulta a la base de datos y la agrego el payload al redux
   useEffect(() => {
-    dispatch(getBrandAllService());
+    dispatch(getListCheckAllService());
   }, [dispatch])
 
   //Esto es para actulizar la lista en el create y update y nada mas
   const getAll = () => {
-    dispatch(getBrandAllService());
-  }
-
-  const handleCreate = () => {
-    setView({list:false,create:true})
+    dispatch(getListCheckAllService());
   }
 
   const deleteInfo = (id) => {
@@ -56,12 +52,12 @@ function List() {
   }
 
   const alertDelete = async (id) => {
-    let response = await dispatch(deleteBrandService(id));
+    let response = await dispatch(deleteListCheckService(id));
     if(response.error === undefined){
       switch (response.response.status) {
         case 200:
             //Aquí actulizo la informacion
-            dispatch(getBrandAllService());
+            dispatch(getListCheckAllService());
             Swal.fire({
               title: "Eliminado!",
               text: "Fue eliminado con exito",
@@ -93,13 +89,10 @@ function List() {
   }
 
   return (
-    <div className='list-brand-main'>
+    <div className='list-listCheck-main'>
       { view.list === true ?
         <>
-          <div className='list-brand-main-button'>
-            <button onClick={handleCreate} type="button" className="list-brand-button-title btn btn-primary">Crear</button>
-          </div> 
-          <DefaultTable data={dataList.data} nms={"brand"} deleteId={deleteInfo} updateId={updateInfo} />
+          <DefaultTable data={dataList.data} nms={"listCheck"} deleteId={deleteInfo} updateId={updateInfo} />
         </>
         : view.create === true ?
           <Create setView={setView} getAll={getAll} />

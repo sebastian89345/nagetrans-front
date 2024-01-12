@@ -13,6 +13,7 @@ import epsReducer from './reducers/epsReducers';
 import compesationBoxReducer from './reducers/compesationBoxReducers';
 import driverDocumentReducer from './reducers/driverDocumentReducers';
 import vehicleDocumentReducer from './reducers/vehicleDocumentReducers';
+import listCheckReducers from './reducers/listCheckReducers';
 
 const rootReducer = combineReducers({
     roleReducer: roleReducer, 
@@ -27,7 +28,8 @@ const rootReducer = combineReducers({
     epsReducer: epsReducer, 
     compesationBoxReducer: compesationBoxReducer, 
     driverDocumentReducer: driverDocumentReducer, 
-    vehicleDocumentReducer: vehicleDocumentReducer 
+    vehicleDocumentReducer: vehicleDocumentReducer, 
+    listCheckReducer: listCheckReducers 
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

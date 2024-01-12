@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 //Hoja de estilos
 import './DefaultTable.css';
 
-
 const DefaultTable = ({ data , nms , updateId , deleteId }) => {
 
   const [filtro, setFiltro] = useState('');
@@ -20,7 +19,7 @@ const DefaultTable = ({ data , nms , updateId , deleteId }) => {
     } else if (nms === "vehicleDocument") {
       response =  item.users[0].user.toLowerCase().includes(filtro.toLowerCase())
     } else if (nms === "listCheck") {
-
+      response =  item.userVehicle[0].placa.toLowerCase().includes(filtro.toLowerCase())
     } else if(nms === "role" || nms === "status" || nms === "brand" || nms === "model" || nms === "type" || nms === "arl" || nms === "afp" || nms === "eps" || nms === "compensationBox"){
       response = item.name.toLowerCase().includes(filtro.toLowerCase())
     } 
@@ -72,6 +71,14 @@ const DefaultTable = ({ data , nms , updateId , deleteId }) => {
       </>
     } else if (nms === "listCheck") {
 
+      th = <>
+        <th scope="col">Placa</th>
+        <th scope="col">Dni</th>
+        <th scope="col">Kilometraje actual</th>
+        <th scope="col">Proximo cambio de aceite</th>
+        <th scope="col">Fecha</th>
+      </>
+
     } else if (nms === "role" || nms === "status" || nms === "brand" || nms === "model" || nms === "type" || nms === "arl" || nms === "afp" || nms === "eps" || nms === "compensationBox"){
       th = <>
         <th scope="col">Nombre</th>
@@ -109,7 +116,15 @@ const DefaultTable = ({ data , nms , updateId , deleteId }) => {
       </>
     } else if (nms === "listCheck") {
 
-    } else if (nms === "role" || nms === "status" || nms === "brand" || nms === "model" || nms === "type" || nms === "arl" || nms === "afp" || nms === "eps" || nms === "compensationBox") {
+      td = <>
+        <td>{item.userVehicle[0].placa}</td>
+        <td>{item.userDriver[0].dni}</td>
+        <td>{item.currentKm}</td>
+        <td>{item.oilChange}</td>
+        <td>{item.date}</td>
+      </>
+
+  } else if (nms === "role" || nms === "status" || nms === "brand" || nms === "model" || nms === "type" || nms === "arl" || nms === "afp" || nms === "eps" || nms === "compensationBox") {
       td = <>
         <td>{item.name}</td>
       </>

@@ -12,19 +12,11 @@ import { createBrandService } from "../../../store/action/brandAction";
 //Alertas 
 import Swal from 'sweetalert2';
 
-//Imagenes
-import arrow from '../../../assets/img/bx-chevron-left.svg';
-
-function Create({ setView,getAll }) {
+function Create() {
 
   const [inputName, setInputName] = useState("");
   const [error, setError] = useState('');
   const dispatch = useDispatch();
-
-  const returnWindow = () => {
-    getAll();
-    setView({list:true})
-  }
 
   const validateInput = () => {
     let message = true;
@@ -87,23 +79,20 @@ function Create({ setView,getAll }) {
   }
 
   return (
-    <div className='brand-create-card-main'>
-        <div className='brand-create-card card'>
+    <div className='listCheck-create-card-main'>
+        <div className='listCheck-create-card card'>
             <div className='card-body'>
-              <div>
-                <img onClick={returnWindow} src={arrow} className='brand-create-img' alt='img' />
-              </div>
               <div className=' text-center'>
-                <p className='brand-create-title'>Crear una marca</p>
+                <p className='listCheck-create-title'>Crear una preoperacional</p>
               </div>
               <div className='mt-4'>
-                <input value={inputName} onChange={(e) => setInputName(e.target.value)} type="text" className="brand-create-input form-control" placeholder="Nombre de la marca" />
+                <input value={inputName} onChange={(e) => setInputName(e.target.value)} type="text" className="listCheck-create-input form-control" placeholder="Nombre de la marca" />
               </div>
               <div className='mt-4'>
                 {error && <p style={{ color: 'red' }}>{error}</p>}
               </div>
               <div className='mt-4 text-center'>
-                <button onClick={create} type="button" className="brand-create-button btn btn-primary">Guardar</button>
+                <button onClick={create} type="button" className="listCheck-create-button btn btn-primary">Guardar</button>
               </div>
             </div>
         </div>

@@ -30,7 +30,7 @@ import ListCompensationBox from '../compensation-box/list/List';
 import ListDriverDocument from '../driver-document/list/List';
 import ListVehicleDocument from '../vehicle-document/list/List';
 import ListCheck from '../list-check/list/List';
-import ListCheckDriver from '../list-check-vehicle/create/Create';
+import ListCheckDriver from '../list-check/create/Create';
 
 // para navegar
 import { useNavigate } from 'react-router-dom';

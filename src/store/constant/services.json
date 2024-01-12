@@ -39,5 +39,8 @@
     },
     "vehicleDocument": {
         "urlVehicleDocument":"vehicledocument/"
+    },
+    "listCheck": {
+        "urlListCheck":"listCheck/"
     }
 }
