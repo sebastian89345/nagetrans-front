@@ -48,6 +48,8 @@ const DefaultTable = ({ data , nms , updateId , deleteId }) => {
       th = <>
         <th scope="col">usuario</th>
         <th scope="col">Correo</th>
+        <th scope="col">Rol</th>
+        <th scope="col">Mostrar</th>
       </>
     } else if (nms === "driverDocument") {
       th = <>
@@ -93,6 +95,8 @@ const DefaultTable = ({ data , nms , updateId , deleteId }) => {
       td = <>
         <td>{item.user}</td>
         <td>{item.email}</td>
+        <td>{item.role[0].name}</td>
+        <td>{item.show}</td>
       </>
     } else if (nms === "driverDocument") {
       td = <>
