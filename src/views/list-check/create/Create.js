@@ -331,7 +331,6 @@ function Create() {
               <div className='mt-4 user-create-main-input'>
                 <label htmlFor="exampleInputEmail1">Observacion :</label>
                 <textarea value={observation} onChange={(e) => setObservation(e.target.value)} type="text" className="user-create-input form-control" placeholder="Observacion" />
-                {/* <input value={observation} onChange={(e) => setObservation(e.target.value)} type="text" className="user-create-input form-control" placeholder="Usuario" /> */}
               </div>
 
               <div className='mt-4 text-center'>
