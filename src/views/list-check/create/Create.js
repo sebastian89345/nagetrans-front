@@ -173,47 +173,81 @@ function Create() {
     return isValid;
   };
 
+  const dateNow = () => {
+    // Obtener la fecha actual
+    const fechaActual = new Date();
+
+    // Formatear manualmente la fecha según el formato deseado
+    const year = fechaActual.getFullYear();
+    const month = (fechaActual.getMonth() + 1).toString().padStart(2, '0'); // Los meses son indexados desde 0
+    const day = fechaActual.getDate().toString().padStart(2, '0');
+
+    const fechaFormateada = `${year}-${month}-${day}`;
+    return fechaFormateada;
+  }
+
+  const setChangeToogle = () => {
+    let body = { 
+      engineOilIndicator:engineOilIndicator,
+      fuelLevel:fuelLevel,
+      whistle:whistle,
+      batteryIndicator:batteryIndicator,
+      emergencyBrake:emergencyBrake,
+      chairCushions:chairCushions,
+      wiperWasher:wiperWasher,
+      internalLights:internalLights,
+      instrumentSpeedometerDashboard:instrumentSpeedometerDashboard,
+      engineOil:engineOil,
+      hydraulicOilSteering:hydraulicOilSteering,
+      coolantLiquid:coolantLiquid,
+      brakeFluid:brakeFluid,
+      fuelcap:fuelcap,
+      beltTension:brakeFluid,
+      mirrorGlass:mirrorGlass,
+      highLowBeams:highLowBeams,
+      turnSignals:turnSignals,
+      logoPlates:logoPlates,
+      tires:tires,
+      deviceSpeed:deviceSpeed,
+      safetyBelts:safetyBelts,
+      firstaidkit:firstaidkit,
+      extinguisher:extinguisher,
+      roadTeam:roadTeam,
+      spareTire:spareTire,
+      observation:observation,
+      largeTent:largeTent 
+    }
+
+    let newObjt = {};
+    for (let propiedad in body) {
+      if (body.hasOwnProperty(propiedad)) {
+        // console.log(propiedad);
+        // console.log(body[propiedad]);
+        if(body[propiedad] === true){
+          newObjt[`prop${propiedad}`] = `Bueno`;
+        } else if (body[propiedad] === false) {
+          newObjt[`prop${propiedad}`] = `Malo`;
+        }
+      }
+    }
+    return newObjt;
+  }
+
   const create = async () => {
+    let dateNows = dateNow();
     let validates = validate();
     if (validates) {
-      // Aquí comienza las peticiones y demas
+      let setChangeToogles = setChangeToogle();
       let body = { 
         userVehicle:userVehicle,
         userDriver:opcionSelectUser,
-        date:"",
+        date:dateNows,
         oilChange:oilChange,
         currentKm:currentKm,
-        engineOilIndicator:engineOilIndicator,
-        fuelLevel:fuelLevel,
-        whistle:whistle,
-        batteryIndicator:batteryIndicator,
-        emergencyBrake:emergencyBrake,
-        chairCushions:chairCushions,
-        wiperWasher:wiperWasher,
-        internalLights:internalLights,
-        instrumentSpeedometerDashboard:instrumentSpeedometerDashboard,
-        engineOil:engineOil,
-        hydraulicOilSteering:hydraulicOilSteering,
-        coolantLiquid:coolantLiquid,
-        brakeFluid:brakeFluid,
-        fuelcap:fuelcap,
-        beltTension:brakeFluid,
-        mirrorGlass:mirrorGlass,
-        highLowBeams:highLowBeams,
-        turnSignals:turnSignals,
-        logoPlates:logoPlates,
-        tires:tires,
-        deviceSpeed:deviceSpeed,
-        safetyBelts:safetyBelts,
-        firstaidkit:firstaidkit,
-        extinguisher:extinguisher,
         dateExtinguisherExpiration:dateExtinguisherExpiration,
-        roadTeam:roadTeam,
-        spareTire:spareTire,
-        observation:observation,
-        largeTent:largeTent
       }
-      let response = await dispatch(createListCheckService(body));
+      const objetoCombinado = { ...body, ...setChangeToogles };
+      let response = await dispatch(createListCheckService(objetoCombinado));
       if(response.error === undefined){
         switch (response.response.status) {
           case 201:
