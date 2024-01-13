@@ -20,6 +20,7 @@ function Create() {
 
   const { conductor } = roleService;
   const [opcionUser, setOpcionUser] = useState([]);
+  const [userVehicle, setUserVehicle] = useState([]);
   const [opcionSelectUser, setOpcionSelectUser] = useState('');
   const [oilChange, setOilChange] = useState("");
   const [currentKm, setCurrentKm] = useState("");
@@ -53,7 +54,11 @@ function Create() {
   const [spareTire, setSpareTire] = useState(false);
   const [observation, setObservation] = useState("");
   const [errorUser, setErrorUser] = useState("");
+  const [errorDateExtinguisherExpiration, setErrorDateExtinguisherExpiration] = useState("");
+  const [errorOilChange, setErrorOilChange] = useState("");
+  const [errorCurrentKm, setErrorCurrentKm] = useState("");
   const dataListUser = useSelector((store) => store.userReducer);
+  const dataListLogin = useSelector((store) => store.loginReducer);
   const dispatch = useDispatch();
   
   useEffect(() => {
@@ -67,10 +72,176 @@ function Create() {
   useEffect(() => {
     let resultadosFiltrados = dataListUser.data.filter(objeto => objeto.role[0]._id === conductor && objeto.show === "Si");
     setOpcionUser(resultadosFiltrados);
-  }, [dataListUser,conductor])
+    setUserVehicle(dataListLogin.data.response.data._id);
+  }, [dataListLogin,dataListUser,conductor])
   
+  const resetInput = () => {
+    
+    //Toogle
+    setEngineOilIndicator(false);
+    setFuelLevel(false);
+    setWhistle(false);
+    setBatteryIndicator(false);
+    setEmergencyBrake(false);
+    setChairCushions(false);
+    setWiperWasher(false);
+    setInternalLights(false);
+    setInstrumentSpeedometerDashboard(false);
+    setEngineOil(false);
+    setHydraulicOilSteering(false);
+    setCoolantLiquid(false);
+    setBrakeFluid(false);
+    setFuelcap(false);
+    setBeltTension(false);
+    setMirrorGlass(false);
+    setHighLowBeams(false);
+    setHighLowBeams(false);
+    setTurnSignals(false);
+    setLogoPlates(false);
+    setTires(false);
+    setDeviceSpeed(false);
+    setSafetyBelts(false);
+    setFirstaidkit(false);
+    setLargeTent(false);
+    setExtinguisher(false);
+    setRoadTeam(false);
+    setSpareTire(false);
+
+    //Date
+    setDateExtinguisherExpiration("");
+
+    //Select
+    setOpcionSelectUser("");
+
+    //Input
+    setOilChange("");
+    setCurrentKm("");
+    setObservation("");
+  }
+
+  const validateField = (value, fieldName, regex, minLength, customErrorMessage) => {
+    if (value.trim() === '') {
+      return `El campo ${fieldName} no puede estar en blanco.`;
+    }
+
+    if (regex && !regex.test(value)) {
+      return customErrorMessage || `El campo ${fieldName} no cumple con el formato esperado.`;
+    }
+
+    if (value.length < minLength) {
+      return `El campo ${fieldName} debe tener al menos ${minLength} caracteres.`;
+    }
+
+    return null; // Indica que la validación fue exitosa
+  };
+
+  const validate = () => {
+    let isValid = true;
+
+    const userError = validateField(opcionSelectUser, 'usuario', /\S/, 1);
+    if (userError) {
+      setErrorUser(userError);
+      isValid = false;
+    } else {
+      setErrorUser("");
+    }
+
+    const dateExtinguisherExpirationError = validateField(dateExtinguisherExpiration, 'vencimiento extintor', /^\d{4}-\d{2}-\d{2}$/, 4);
+    if (dateExtinguisherExpirationError) {
+      setErrorDateExtinguisherExpiration(dateExtinguisherExpirationError);
+      isValid = false;
+    } else {
+      setErrorDateExtinguisherExpiration("");
+    }
+
+    const currentKmError = validateField(currentKm, 'kilometraje actual', /\S/, 1);
+    if (currentKmError) {
+      setErrorCurrentKm(currentKmError);
+      isValid = false;
+    } else {
+      setErrorCurrentKm("");
+    }
+
+    const oilChangeError = validateField(oilChange, 'kilometraje actual', /\S/, 1);
+    if (oilChangeError) {
+      setErrorOilChange(oilChangeError);
+      isValid = false;
+    } else {
+      setErrorOilChange("");
+    }
+
+    return isValid;
+  };
+
   const create = async () => {
-   console.log(engineOilIndicator);
+    let validates = validate();
+    if (validates) {
+      // Aquí comienza las peticiones y demas
+      let body = { 
+        userVehicle:userVehicle,
+        userDriver:opcionSelectUser,
+        date:"",
+        oilChange:oilChange,
+        currentKm:currentKm,
+        engineOilIndicator:engineOilIndicator,
+        fuelLevel:fuelLevel,
+        whistle:whistle,
+        batteryIndicator:batteryIndicator,
+        emergencyBrake:emergencyBrake,
+        chairCushions:chairCushions,
+        wiperWasher:wiperWasher,
+        internalLights:internalLights,
+        instrumentSpeedometerDashboard:instrumentSpeedometerDashboard,
+        engineOil:engineOil,
+        hydraulicOilSteering:hydraulicOilSteering,
+        coolantLiquid:coolantLiquid,
+        brakeFluid:brakeFluid,
+        fuelcap:fuelcap,
+        beltTension:brakeFluid,
+        mirrorGlass:mirrorGlass,
+        highLowBeams:highLowBeams,
+        turnSignals:turnSignals,
+        logoPlates:logoPlates,
+        tires:tires,
+        deviceSpeed:deviceSpeed,
+        safetyBelts:safetyBelts,
+        firstaidkit:firstaidkit,
+        extinguisher:extinguisher,
+        dateExtinguisherExpiration:dateExtinguisherExpiration,
+        roadTeam:roadTeam,
+        spareTire:spareTire,
+        observation:observation,
+        largeTent:largeTent
+      }
+      let response = await dispatch(createListCheckService(body));
+      if(response.error === undefined){
+        switch (response.response.status) {
+          case 201:
+              resetInput();
+              Swal.fire({
+                title: "Creado!",
+                text: "Fue creado con exito",
+                icon: "success"
+              });
+            break;
+          default:
+              console.log(response.response);
+              Swal.fire({
+                title: "Error!",
+                text: "Ocurrio un error al crearlo",
+                icon: "error"
+              });
+            break;
+        }
+      } else {
+        console.log(response.error);
+        Swal.fire({
+          title: "Error!",
+          text: "Eror al crearlo",
+          icon: "error"
+        });
+      }
+    }
   }
 
   return (
@@ -81,9 +252,9 @@ function Create() {
                 <p className='listCheck-create-title'>Crear una preoperacional</p>
               </div>
 
-              <div className='mt-4 user-create-main-input form-group'>
+              <div className='mt-4 listCheck-create-main-input form-group'>
                 <label htmlFor="exampleInputEmail1">Conductor :</label>
-                <select value={opcionSelectUser} onChange={(e) => setOpcionSelectUser(e.target.value)} className='user-create-input form-control'>
+                <select value={opcionSelectUser} onChange={(e) => setOpcionSelectUser(e.target.value)} className='listCheck-create-input form-control'>
                   <option value="">Selecciona una opción</option>
                   {opcionUser.map((opcion, index) => (
                     <option key={index} value={opcion._id}>
@@ -97,7 +268,7 @@ function Create() {
                 {errorUser && <p style={{ color: 'red' }}>{errorUser}</p>}
               </div>
 
-              <div className='mt-4 user-create-main-input'>
+              <div className='mt-4 listCheck-create-main-input'>
                 <label htmlFor="exampleInputEmail1">Indicador de aceite de motor :</label>
                 <label className="toggle-container">
                   <input type="checkbox" className="toggle-checkbox" checked={engineOilIndicator} onChange={(e) => setEngineOilIndicator(!engineOilIndicator)} />
@@ -105,7 +276,7 @@ function Create() {
                 </label>
               </div>
 
-              <div className='mt-4 user-create-main-input'>
+              <div className='mt-4 listCheck-create-main-input'>
                 <label htmlFor="exampleInputEmail1">Nivel de combustible :</label>
                 <label className="toggle-container">
                   <input type="checkbox" className="toggle-checkbox" checked={fuelLevel} onChange={(e) => setFuelLevel(!fuelLevel)} />
@@ -113,7 +284,7 @@ function Create() {
                 </label>
               </div>
 
-              <div className='mt-4 user-create-main-input'>
+              <div className='mt-4 listCheck-create-main-input'>
                 <label htmlFor="exampleInputEmail1">Pito :</label>
                 <label className="toggle-container">
                   <input type="checkbox" className="toggle-checkbox" checked={whistle} onChange={(e) => setWhistle(!whistle)} />
@@ -121,7 +292,7 @@ function Create() {
                 </label>
               </div>
 
-              <div className='mt-4 user-create-main-input'>
+              <div className='mt-4 listCheck-create-main-input'>
                 <label htmlFor="exampleInputEmail1">Indicador de bateria :</label>
                 <label className="toggle-container">
                   <input checked={batteryIndicator} onChange={(e) => setBatteryIndicator(!batteryIndicator)} type="checkbox" className="toggle-checkbox" />
@@ -129,7 +300,7 @@ function Create() {
                 </label>
               </div>
 
-              <div className='mt-4 user-create-main-input'>
+              <div className='mt-4 listCheck-create-main-input'>
                 <label htmlFor="exampleInputEmail1">Freno de emergencia :</label>
                 <label className="toggle-container">
                   <input checked={emergencyBrake} onChange={(e) => setEmergencyBrake(!emergencyBrake)} type="checkbox" className="toggle-checkbox" />
@@ -137,7 +308,7 @@ function Create() {
                 </label>
               </div>
 
-              <div className='mt-4 user-create-main-input'>
+              <div className='mt-4 listCheck-create-main-input'>
                 <label htmlFor="exampleInputEmail1">Cojineria y sillas :</label>
                 <label className="toggle-container">
                   <input checked={chairCushions} onChange={(e) => setChairCushions(!chairCushions)} type="checkbox" className="toggle-checkbox" />
@@ -145,7 +316,7 @@ function Create() {
                 </label>
               </div>
 
-              <div className='mt-4 user-create-main-input'>
+              <div className='mt-4 listCheck-create-main-input'>
                 <label htmlFor="exampleInputEmail1">Limpia parabrisas (Estado, nivel de agua) :</label>
                 <label className="toggle-container">
                   <input checked={wiperWasher} onChange={(e) => setWiperWasher(!wiperWasher)} type="checkbox" className="toggle-checkbox" />
@@ -153,7 +324,7 @@ function Create() {
                 </label>
               </div>
 
-              <div className='mt-4 user-create-main-input'>
+              <div className='mt-4 listCheck-create-main-input'>
                 <label htmlFor="exampleInputEmail1">Luces internas :</label>
                 <label className="toggle-container">
                   <input checked={internalLights} onChange={(e) => setInternalLights(!internalLights)} type="checkbox" className="toggle-checkbox" />
@@ -161,7 +332,7 @@ function Create() {
                 </label>
               </div>
 
-              <div className='mt-4 user-create-main-input'>
+              <div className='mt-4 listCheck-create-main-input'>
                 <label htmlFor="exampleInputEmail1">Tablero velocimetro instrumentos :</label>
                 <label className="toggle-container">
                   <input checked={instrumentSpeedometerDashboard} onChange={(e) => setInstrumentSpeedometerDashboard(!instrumentSpeedometerDashboard)} type="checkbox" className="toggle-checkbox" />
@@ -169,7 +340,7 @@ function Create() {
                 </label>
               </div>
 
-              <div className='mt-4 user-create-main-input'>
+              <div className='mt-4 listCheck-create-main-input'>
                 <label htmlFor="exampleInputEmail1">Nivel de aceite Motor :</label>
                 <label className="toggle-container">
                   <input checked={engineOil} onChange={(e) => setEngineOil(!engineOil)} type="checkbox" className="toggle-checkbox" />
@@ -177,7 +348,7 @@ function Create() {
                 </label>
               </div>
 
-              <div className='mt-4 user-create-main-input'>
+              <div className='mt-4 listCheck-create-main-input'>
                 <label htmlFor="exampleInputEmail1">Nivel de aceite hidráulico dirección :</label>
                 <label className="toggle-container">
                   <input checked={hydraulicOilSteering} onChange={(e) => setHydraulicOilSteering(!hydraulicOilSteering)} type="checkbox" className="toggle-checkbox" />
@@ -185,7 +356,7 @@ function Create() {
                 </label>
               </div>
 
-              <div className='mt-4 user-create-main-input'>
+              <div className='mt-4 listCheck-create-main-input'>
                 <label htmlFor="exampleInputEmail1">Nivel de liquido refrigerante :</label>
                 <label className="toggle-container">
                   <input checked={coolantLiquid} onChange={(e) => setCoolantLiquid(!coolantLiquid)} type="checkbox" className="toggle-checkbox" />
@@ -193,7 +364,7 @@ function Create() {
                 </label>
               </div>
 
-              <div className='mt-4 user-create-main-input'>
+              <div className='mt-4 listCheck-create-main-input'>
                 <label htmlFor="exampleInputEmail1">Nivel de liquido de frenos :</label>
                 <label className="toggle-container">
                   <input checked={brakeFluid} onChange={(e) => setBrakeFluid(!brakeFluid)} type="checkbox" className="toggle-checkbox" />
@@ -201,7 +372,7 @@ function Create() {
                 </label>
               </div>
 
-              <div className='mt-4 user-create-main-input'>
+              <div className='mt-4 listCheck-create-main-input'>
                 <label htmlFor="exampleInputEmail1">Tapa de combustible :</label>
                 <label className="toggle-container">
                   <input checked={fuelcap} onChange={(e) => setFuelcap(!fuelcap)} type="checkbox" className="toggle-checkbox" />
@@ -209,7 +380,7 @@ function Create() {
                 </label>
               </div>
 
-              <div className='mt-4 user-create-main-input'>
+              <div className='mt-4 listCheck-create-main-input'>
                 <label htmlFor="exampleInputEmail1">Tension de la correa :</label>
                 <label className="toggle-container">
                   <input checked={beltTension} onChange={(e) => setBeltTension(!beltTension)} type="checkbox" className="toggle-checkbox" />
@@ -217,7 +388,7 @@ function Create() {
                 </label>
               </div>
 
-              <div className='mt-4 user-create-main-input'>
+              <div className='mt-4 listCheck-create-main-input'>
                 <label htmlFor="exampleInputEmail1">Vidrios y espejos :</label>
                 <label className="toggle-container">
                   <input checked={mirrorGlass} onChange={(e) => setMirrorGlass(!mirrorGlass)} type="checkbox" className="toggle-checkbox" />
@@ -225,7 +396,7 @@ function Create() {
                 </label>
               </div>
 
-              <div className='mt-4 user-create-main-input'>
+              <div className='mt-4 listCheck-create-main-input'>
                 <label htmlFor="exampleInputEmail1">Luces altas y bajas :</label>
                 <label className="toggle-container">
                   <input checked={highLowBeams} onChange={(e) => setHighLowBeams(!highLowBeams)} type="checkbox" className="toggle-checkbox" />
@@ -233,7 +404,7 @@ function Create() {
                 </label>
               </div>
 
-              <div className='mt-4 user-create-main-input'>
+              <div className='mt-4 listCheck-create-main-input'>
                 <label htmlFor="exampleInputEmail1">Luces direccionales (delanteras-traseras) :</label>
                 <label className="toggle-container">
                   <input checked={turnSignals} onChange={(e) => setTurnSignals(!turnSignals)} type="checkbox" className="toggle-checkbox" />
@@ -241,7 +412,7 @@ function Create() {
                 </label>
               </div>
 
-              <div className='mt-4 user-create-main-input'>
+              <div className='mt-4 listCheck-create-main-input'>
                 <label htmlFor="exampleInputEmail1">Placas y logos :</label>
                 <label className="toggle-container">
                   <input checked={logoPlates} onChange={(e) => setLogoPlates(!logoPlates)} type="checkbox" className="toggle-checkbox" />
@@ -249,7 +420,7 @@ function Create() {
                 </label>
               </div>
 
-              <div className='mt-4 user-create-main-input'>
+              <div className='mt-4 listCheck-create-main-input'>
                 <label htmlFor="exampleInputEmail1">Llantas (Desgaste, presión de aire) :</label>
                 <label className="toggle-container">
                   <input checked={tires} onChange={(e) => setTires(!tires)} type="checkbox" className="toggle-checkbox" />
@@ -257,7 +428,7 @@ function Create() {
                 </label>
               </div>
 
-              <div className='mt-4 user-create-main-input'>
+              <div className='mt-4 listCheck-create-main-input'>
                 <label htmlFor="exampleInputEmail1">Dispositivo de velocidad :</label>
                 <label className="toggle-container">
                   <input checked={deviceSpeed} onChange={(e) => setDeviceSpeed(!deviceSpeed)} type="checkbox" className="toggle-checkbox" />
@@ -265,7 +436,7 @@ function Create() {
                 </label>
               </div>
 
-              <div className='mt-4 user-create-main-input'>
+              <div className='mt-4 listCheck-create-main-input'>
                 <label htmlFor="exampleInputEmail1">Cinturones de seguridad :</label>
                 <label className="toggle-container">
                   <input checked={safetyBelts} onChange={(e) => setSafetyBelts(!safetyBelts)} type="checkbox" className="toggle-checkbox" />
@@ -273,7 +444,7 @@ function Create() {
                 </label>
               </div>
 
-              <div className='mt-4 user-create-main-input'>
+              <div className='mt-4 listCheck-create-main-input'>
                 <label htmlFor="exampleInputEmail1">Botiquin :</label>
                 <label className="toggle-container">
                   <input checked={firstaidkit} onChange={(e) => setFirstaidkit(!firstaidkit)} type="checkbox" className="toggle-checkbox" />
@@ -281,7 +452,7 @@ function Create() {
                 </label>
               </div>
 
-              <div className='mt-4 user-create-main-input'>
+              <div className='mt-4 listCheck-create-main-input'>
                 <label htmlFor="exampleInputEmail1">Estado de la carpa,cierres y correas :</label>
                 <label className="toggle-container">
                   <input checked={largeTent} onChange={(e) => setLargeTent(!largeTent)} type="checkbox" className="toggle-checkbox" />
@@ -289,7 +460,7 @@ function Create() {
                 </label>
               </div>
 
-              <div className='mt-4 user-create-main-input'>
+              <div className='mt-4 listCheck-create-main-input'>
                 <label htmlFor="exampleInputEmail1">Extintor :</label>
                 <label className="toggle-container">
                   <input checked={extinguisher} onChange={(e) => setExtinguisher(!extinguisher)} type="checkbox" className="toggle-checkbox" />
@@ -297,12 +468,16 @@ function Create() {
                 </label>
               </div>
 
-              <div className='mt-4 user-create-main-input'>
+              <div className='mt-4 listCheck-create-main-input'>
                 <label htmlFor="exampleInputEmail1">Vencimiento extintor :</label>
-                <input value={dateExtinguisherExpiration} onChange={(e) => setDateExtinguisherExpiration(e.target.value)} type="date" className='user-create-input form-control' />
+                <input value={dateExtinguisherExpiration} onChange={(e) => setDateExtinguisherExpiration(e.target.value)} type="date" className='listCheck-create-input form-control' />
               </div>
 
-              <div className='mt-4 user-create-main-input'>
+              <div className='mt-4'>
+                {errorDateExtinguisherExpiration && <p style={{ color: 'red' }}>{errorDateExtinguisherExpiration}</p>}
+              </div>
+
+              <div className='mt-4 listCheck-create-main-input'>
                 <label htmlFor="exampleInputEmail1">Equipo de carretera :</label>
                 <label className="toggle-container">
                   <input checked={roadTeam} onChange={(e) => setRoadTeam(!roadTeam)} type="checkbox" className="toggle-checkbox" />
@@ -310,7 +485,7 @@ function Create() {
                 </label>
               </div>
 
-              <div className='mt-4 user-create-main-input'>
+              <div className='mt-4 listCheck-create-main-input'>
                 <label htmlFor="exampleInputEmail1">Llantas de repuesto :</label>
                 <label className="toggle-container">
                   <input checked={spareTire} onChange={(e) => setSpareTire(!spareTire)} type="checkbox" className="toggle-checkbox" />
@@ -318,19 +493,27 @@ function Create() {
                 </label>
               </div>
 
-              <div className='mt-4 user-create-main-input'>
+              <div className='mt-4 listCheck-create-main-input'>
                 <label htmlFor="exampleInputEmail1">Kilometraje actual :</label>
-                <input value={currentKm} onChange={(e) => setCurrentKm(e.target.value)} type="text" className="user-create-input form-control" placeholder="Kilometraje actual" />
+                <input value={currentKm} onChange={(e) => setCurrentKm(e.target.value)} type="text" className="listCheck-create-input form-control" placeholder="Kilometraje actual" />
               </div>
 
-              <div className='mt-4 user-create-main-input'>
+              <div className='mt-4'>
+                {errorCurrentKm && <p style={{ color: 'red' }}>{errorCurrentKm}</p>}
+              </div>
+
+              <div className='mt-4 listCheck-create-main-input'>
                 <label htmlFor="exampleInputEmail1">Proximo cambio de aceite :</label>
-                <input value={oilChange} onChange={(e) => setOilChange(e.target.value)} type="text" className="user-create-input form-control" placeholder="Proximo cambio de aceite" />
+                <input value={oilChange} onChange={(e) => setOilChange(e.target.value)} type="text" className="listCheck-create-input form-control" placeholder="Proximo cambio de aceite" />
               </div>
 
-              <div className='mt-4 user-create-main-input'>
+              <div className='mt-4'>
+                {errorOilChange && <p style={{ color: 'red' }}>{errorOilChange}</p>}
+              </div>
+
+              <div className='mt-4 listCheck-create-main-input'>
                 <label htmlFor="exampleInputEmail1">Observacion :</label>
-                <textarea value={observation} onChange={(e) => setObservation(e.target.value)} type="text" className="user-create-input form-control" placeholder="Observacion" />
+                <textarea value={observation} onChange={(e) => setObservation(e.target.value)} type="text" className="listCheck-create-input form-control" placeholder="Observacion" />
               </div>
 
               <div className='mt-4 text-center'>

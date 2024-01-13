@@ -1,37 +1,99 @@
 .listCheck-create-card-main {
-    display: flex;
-    justify-content: center;
-    padding: 40px 10px 10px 10px;
+  display: flex;
+  justify-content: center;
+  padding: 40px 10px 10px 10px;
 }
 
 .listCheck-create-card {
-    width: 100%;
-    max-width: 1000px;
+  width: 100%;
+  max-width: 1000px;
+}
+
+.listCheck-create-position-content-form {
+  display: flex;
+  justify-content: center;
+}
+
+.listCheck-create-content-form {
+  width: 100%;
+  max-width: 700px;
 }
 
 .listCheck-create-main {
-    padding: 40px;
+  padding: 40px;
 }
 
 .listCheck-create-button {
-    min-width: 150px;
+  min-width: 150px;
 }
 
 .listCheck-create-title {
-    font-size: 25px;
-    font-weight: 600;
-    font-family: 'Poppins';
-    color: #6c757d;
+  font-size: 25px;
+  font-weight: 600;
+  font-family: 'Poppins';
+  color: #6c757d;
+}
+
+.listCheck-create-main-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .listCheck-create-input {
-    font-size: 20px;
-    font-weight: 500;
-    font-family: 'Poppins';
+  max-width: 700px;
+  font-size: 20px;
+  font-weight: 500;
+  font-family: 'Poppins';
 }
 
 .listCheck-create-img {
-    width: 60px;
+  width: 60px;
+}
+
+.toggle-container {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.toggle-checkbox {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  border-radius: 34px;
+  transition: 0.4s;
+}
+
+.toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+.toggle-checkbox:checked + .toggle-slider {
+  background-color: #2196F3;
+}
+
+.toggle-checkbox:checked + .toggle-slider:before {
+  transform: translateX(26px);
 }
 
 /* Large devices (desktops, 992px and up) */
@@ -40,51 +102,3 @@
         padding: 20px;
     }
 }
-
-
-
-
-.toggle-container {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-  }
-
-  .toggle-checkbox {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-
-  .toggle-slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    border-radius: 34px;
-    transition: 0.4s;
-  }
-
-  .toggle-slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    border-radius: 50%;
-    transition: 0.4s;
-  }
-
-  .toggle-checkbox:checked + .toggle-slider {
-    background-color: #2196F3;
-  }
-
-  .toggle-checkbox:checked + .toggle-slider:before {
-    transform: translateX(26px);
-  }
