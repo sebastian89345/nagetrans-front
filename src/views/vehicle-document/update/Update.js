@@ -398,7 +398,6 @@ function Update({ infoUpdate,setView,getAll }) {
               <div className='driverDocument-create-position-content-form'>
                 <div className='driverDocument-create-content-form'>
 
-
                       <div className='mt-4 vehicleDocument-create-main-input form-group'>
                         <label htmlFor="exampleInputEmail1">Usuario:</label>
                         <select value={opcionSelectUser} onChange={(e) => setOpcionSelectUser(e.target.value)} className='user-create-input form-control'>
