@@ -202,7 +202,7 @@ function Create() {
       coolantLiquid:coolantLiquid,
       brakeFluid:brakeFluid,
       fuelcap:fuelcap,
-      beltTension:brakeFluid,
+      beltTension:beltTension,
       mirrorGlass:mirrorGlass,
       highLowBeams:highLowBeams,
       turnSignals:turnSignals,
@@ -214,7 +214,6 @@ function Create() {
       extinguisher:extinguisher,
       roadTeam:roadTeam,
       spareTire:spareTire,
-      observation:observation,
       largeTent:largeTent 
     }
 
@@ -245,7 +244,8 @@ function Create() {
         oilChange:oilChange,
         currentKm:currentKm,
         dateExtinguisherExpiration:dateExtinguisherExpiration,
-      }
+        observation:observation,
+    }
       const objetoCombinado = { ...body, ...setChangeToogles };
       let response = await dispatch(createListCheckService(objetoCombinado));
       if(response.error === undefined){
