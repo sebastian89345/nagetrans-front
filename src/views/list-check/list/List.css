@@ -10,6 +10,20 @@
     min-width: 150px;
 }
 
+.list-listCheck-input {
+    max-width: 400px;
+    font-size: 20px;
+    font-weight: 500;
+    font-family: 'Poppins';
+}
+
+.list-listCheck-input-date {
+    max-width: 400px;
+    font-size: 17px;
+    font-weight: 500;
+    font-family: 'Poppins';
+}
+
  /* Large devices (desktops, 992px and up) */
 @media (max-width: 992px) { 
     .list-listCheck-main {

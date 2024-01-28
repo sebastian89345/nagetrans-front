@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 //Hoja de estilos
 import './DefaultTable.css';
 
-const DefaultTable = ({ data , nms , updateId , deleteId }) => {
+const DefaultTable = ({ data , nms , updateId , deleteId , selectCheck}) => {
 
   const [filtro, setFiltro] = useState('');
   const [paginaActual, setPaginaActual] = useState(1);
@@ -146,6 +146,7 @@ const DefaultTable = ({ data , nms , updateId , deleteId }) => {
           <table className="table table-striped mt-3">
             <thead className='thead-dark'>
               <tr>
+                <th scope="col">Preoperacional diaria</th>
                 {responseTh()}
                 <th scope="col">Actualizar</th>
                 <th scope="col">Eliminar</th>
@@ -154,6 +155,9 @@ const DefaultTable = ({ data , nms , updateId , deleteId }) => {
             <tbody>
               {datosPaginaActual.map((item, index) => (
                 <tr key={index}>
+                  <td className='text-center'>
+                    <input type="checkbox" className="form-check-input" onChange={() => selectCheck(item)} />
+                  </td>
                   {responseTd(item)}
                   <td>
                     <button onClick={() => updateId(item._id,item)} type="button" className="btn btn-primary Default-table-edit mr-4">Editar</button>

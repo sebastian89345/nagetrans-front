@@ -19,12 +19,31 @@ import { getListCheckAllService , deleteListCheckService  } from "../../../store
 //Alertas 
 import Swal from 'sweetalert2';
 
+// pdf-lib
+import { PDFDocument, StandardFonts, rgb } from 'pdf-lib';
+
+//dowland
+import download  from 'downloadjs';
+
+//imagenes
+import logoNagetrans from '../../../assets/img/logo.png'
+
 function List() {
   const [view, setView] = useState({list:true,create:false,update:false});
   const [infoUpdate, setInfoUpdate] = useState({});
   const dataList = useSelector((store) => store.listCheckReducer);
   const dispatch = useDispatch();
 
+  const [opcionPreoperacional, setOpcionPreoperacional] = useState([]);
+  const [opcionSelectPreoperacional, setOpcionSelectPreoperacional] = useState('');
+  const [inputstartLicense, setInputstartLicense] = useState("");
+  const [dowmlandPdfDiary, setDowmlandPdfDiary] = useState([]);
+  // const [dowmlandPdfMonthly, setDowmlandPdfMonthly] = useState([]);
+
+  useEffect(() => {
+    setOpcionPreoperacional([{value:"Preoperacional diaria"},{value:"Preoperacional mensual"}])
+  }, [dataList])
+  
   //Aqui hago la consulta a la base de datos y la agrego el payload al redux
   useEffect(() => {
     dispatch(getListCheckAllService());
@@ -88,11 +107,445 @@ function List() {
     setView({list:false,update:true})
   }
 
+  const selectCheck = (item) => {
+    let newArray = [];
+    for (let i = 0; i < dataList.data.length; i++) {
+      const element = dataList.data[i];
+      if(item._id === element._id){
+
+        if (element.check === undefined) {
+          element.check = true;
+        } else if(element.check === true) {
+          element.check = false;
+        } else if (element.check === false) {
+          element.check = true;  
+        }
+      }
+      newArray.push(element);
+    }
+    setDowmlandPdfDiary(newArray);
+  }
+
+  const dowlandPdfDiary = async () => {
+    // console.log(dowmlandPdfDiary);
+
+    const pdfDoc = await PDFDocument.create();
+
+    const timesRomanFont = await pdfDoc.embedFont(StandardFonts.HelveticaBold)
+    const page = pdfDoc.addPage();
+    const { width, height} = page.getSize();
+    
+    // console.log(width);
+    // console.log(height);
+
+    // Definir la altura y el ancho de las celdas
+    const cellWidth = 515;
+    const cellHeight = 640;
+
+    // primer borde
+    page.drawRectangle({
+      x:40,
+      y:140,
+      width: cellWidth,
+      height: cellHeight,
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:2,
+    });
+
+    //texto
+    page.drawText('REPORTE DIARIO REVISIÓN PREOPERACIONAL', {
+      x: 70,
+      y: height - 90,
+      size: 12,
+      font: timesRomanFont,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto
+    page.drawText('Nagetrans', {
+      x: 180,
+      y: height - 105,
+      size: 10,
+      font: timesRomanFont,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto
+    page.drawText('Nit: 901007799-6', {
+      x: 180,
+      y: height - 120,
+      size: 10,
+      font: timesRomanFont,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    // Cargar la imagen desde tu proyecto de React
+    const imagenBytes = await fetch(logoNagetrans).then((res) => res.arrayBuffer());
+    const pngImage = await pdfDoc.embedPng(imagenBytes);
+    page.drawImage(pngImage, {
+      x: 400,
+      y: height - 130,
+      width: 110,
+      height: 70,
+    })
+
+    // bordes de los titulos
+    page.drawRectangle({
+      x:40,
+      y: height - 145,
+      width: cellWidth,
+      height: 15,
+      color:rgb(0.8, 0.8, 0.8),
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:0.5,
+    });
+
+    //texto
+    page.drawText('INFORMACIÓN GENERAL', {
+      x: 230,
+      y: height - 141,
+      size: 10,
+      font: timesRomanFont,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto
+    page.drawText('Fecha preoperacional: ', {
+      x: 50,
+      y: height - 160,
+      size: 10,
+      font: timesRomanFont,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto
+    page.drawText('23/12/2023', {
+      x: 160,
+      y: height - 160,
+      size: 9,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto
+    page.drawText('Placa: ', {
+      x: 50,
+      y: height - 170,
+      size: 10,
+      color: rgb(0, 0, 0 ,1),
+      font: timesRomanFont,
+    })
+
+    //texto
+    page.drawText('SWT714', {
+      x: 85,
+      y: height - 170,
+      size: 9,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto
+    page.drawText('Model: ', {
+      x: 170,
+      y: height - 170,
+      size: 10,
+      color: rgb(0, 0, 0 ,1),
+      font: timesRomanFont,
+    })
+
+    //texto
+    page.drawText('2019', {
+      x: 205,
+      y: height - 170,
+      size: 9,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto
+    page.drawText('Número interno: ', {
+      x: 50,
+      y: height - 180,
+      size: 10,
+      color: rgb(0, 0, 0 ,1),
+      font: timesRomanFont,
+    })
+
+    //texto
+    page.drawText('001714', {
+      x: 130,
+      y: height - 180,
+      size: 9,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto
+    page.drawText('Conductor:', {
+      x: 50,
+      y: height - 190,
+      size: 10,
+      color: rgb(0, 0, 0 ,1),
+      font: timesRomanFont,
+    })
+
+    //texto
+    page.drawText('JORGE ALBERTO NAGED ORTIZ', {
+      x: 110,
+      y: height - 190,
+      size: 9,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto
+    page.drawText('Propietario:', {
+      x: 50,
+      y: height - 200,
+      size: 10,
+      color: rgb(0, 0, 0 ,1),
+      font: timesRomanFont,
+    })
+
+    page.drawText('OPERADOR LOGISTICO Y DE', {
+      x: 110,
+      y: height - 200,
+      size: 9,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto
+    page.drawText('TRANSPORTE NAGETRANS ZOMAC S.A.S.', {
+      x: 50,
+      y: height - 210,
+      size: 9,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto
+    page.drawText('Kilometraje:', {
+      x: 270,
+      y: height - 160,
+      size: 10,
+      color: rgb(0, 0, 0 ,1),
+      font: timesRomanFont,
+    })
+
+    //texto
+    page.drawText('113.500', {
+      x: 330,
+      y: height - 160,
+      size: 9,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto
+    page.drawText('Marca:', {
+      x: 270,
+      y: height - 170,
+      size: 10,
+      color: rgb(0, 0, 0 ,1),
+      font: timesRomanFont,
+    })
+
+    //texto
+    page.drawText('RENAULT', {
+      x: 305,
+      y: height - 170,
+      size: 9,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto
+    page.drawText('Clase:', {
+      x: 400,
+      y: height - 170,
+      size: 10,
+      color: rgb(0, 0, 0 ,1),
+      font: timesRomanFont,
+    })
+
+    //texto
+    page.drawText('Camioneta', {
+      x: 435,
+      y: height - 170,
+      size: 9,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto
+    page.drawText('Número tarjeta operación:', {
+      x: 270,
+      y: height - 180,
+      size: 10,
+      color: rgb(0, 0, 0 ,1),
+      font: timesRomanFont,
+    })
+
+    //texto
+    page.drawText('298455', {
+      x: 400,
+      y: height - 180,
+      size: 9,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto
+    page.drawText('Identificación del conductor:', {
+      x: 270,
+      y: height - 190,
+      size: 10,
+      color: rgb(0, 0, 0 ,1),
+      font: timesRomanFont,
+    })
+
+    //texto
+    page.drawText('93180662', {
+      x: 410,
+      y: height - 190,
+      size: 9,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto
+    page.drawText('Identificación del Propietario:', {
+      x: 270,
+      y: height - 200,
+      size: 10,
+      color: rgb(0, 0, 0 ,1),
+      font: timesRomanFont,
+    })
+
+    //texto
+    page.drawText('901158731', {
+      x: 415,
+      y: height - 200,
+      size: 10,
+      color: rgb(0, 0, 0 ,1),
+    })
+   
+    // bordes de los titulos
+    page.drawRectangle({
+      x:40,
+      y: height - 230,
+      width: cellWidth,
+      height: 15,
+      color:rgb(0.8, 0.8, 0.8),
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:0.5,
+    });
+
+    //texto
+    page.drawText('DETALLE PREOPERACIONAL DIARIO', {
+      x: 210,
+      y: height - 226,
+      size: 10,
+      color: rgb(0, 0, 0 ,1),
+      font: timesRomanFont,
+    })
+
+    // 1 borde de los titulos
+    page.drawRectangle({
+      x:40,
+      y: height - 245,
+      width: 150,
+      height: 15,
+      color:rgb(0.8, 0.8, 0.8),
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:0.5,
+    });
+
+    // 2 borde de los titulos
+    page.drawRectangle({
+      x:190,
+      y: height - 245,
+      width: 215,
+      height: 15,
+      color:rgb(0.8, 0.8, 0.8),
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:0.5,
+    });
+
+    // 3 borde de los titulos
+    page.drawRectangle({
+      x:405,
+      y: height - 245,
+      width: 150,
+      height: 15,
+      color:rgb(0.8, 0.8, 0.8),
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:0.5,
+    });
+
+    //texto
+    page.drawText('GRUPO', {
+      x: 100,
+      y: height - 241,
+      size: 10,
+      color: rgb(0, 0, 0 ,1),
+      font: timesRomanFont,
+    })
+
+    //texto
+    page.drawText('DESCRIPCIÓN', {
+      x: 270,
+      y: height - 241,
+      size: 10,
+      color: rgb(0, 0, 0 ,1),
+      font: timesRomanFont,
+    })
+
+    //texto
+    page.drawText('CUMPLE', {
+      x: 460,
+      y: height - 241,
+      size: 10,
+      color: rgb(0, 0, 0 ,1),
+      font: timesRomanFont,
+    })
+
+    const pdfBytes = await pdfDoc.save()
+
+    // Trigger the browser to download the PDF document
+    download(pdfBytes, "pdf-lib_form_creation_example.pdf", "application/pdf");
+  }
+
+  // const dowlandPdfMonthly = () => {}
+
   return (
     <div className='list-listCheck-main'>
       { view.list === true ?
         <>
-          <DefaultTable data={dataList.data} nms={"listCheck"} deleteId={deleteInfo} updateId={updateInfo} />
+          <DefaultTable data={dataList.data} nms={"listCheck"} deleteId={deleteInfo} updateId={updateInfo} selectCheck={selectCheck} />
+
+          <div className='mt-4 user-create-main-input form-group'>
+            {/* <label htmlFor="exampleInputEmail1">Preoperacional:</label> */}
+            <select value={opcionSelectPreoperacional} onChange={(e) => setOpcionSelectPreoperacional(e.target.value)} className='list-listCheck-input form-control'>
+              <option value="">Selecciona una opción</option>
+              {opcionPreoperacional.map((opcion, index) => (
+                <option key={index} value={opcion.value}>
+                  {opcion.value}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {
+            opcionSelectPreoperacional === "Preoperacional diaria" ? 
+              <>
+                <div>
+                  <button onClick={dowlandPdfDiary}>Descargar 1</button>
+                </div>
+              </> 
+            : opcionSelectPreoperacional === "Preoperacional mensual" ? 
+              <>
+                <div className='mt-4 user-create-main-input'>
+                  <label htmlFor="exampleInputEmail1">Mes de la preoperacional:</label>
+                  <input value={inputstartLicense} onChange={(e) => setInputstartLicense(e.target.value)} type="date" className='list-listCheck-input-date form-control' />
+                </div>
+                <div>
+                  {/* <button onCanPlay={dowlandPdfMonthly}>Descargar 2</button> */}
+                </div>
+              </> 
+            : <></>
+          }
+
         </>
         : view.create === true ?
           <Create setView={setView} getAll={getAll} />
