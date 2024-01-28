@@ -244,7 +244,7 @@ function List() {
     })
 
     //texto
-    page.drawText('Model: ', {
+    page.drawText('Modelo: ', {
       x: 170,
       y: height - 170,
       size: 10,
@@ -498,6 +498,240 @@ function List() {
       size: 10,
       color: rgb(0, 0, 0 ,1),
       font: timesRomanFont,
+    })
+
+    // borde fila 1
+    page.drawRectangle({
+      x:40,
+      y: height - 317,
+      width: 150,
+      height: 72,
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:0.5,
+    });
+
+    // borde fila 2
+    page.drawRectangle({
+      x:190,
+      y: height - 257,
+      width: 215,
+      height: 12,
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:0.5,
+    });
+
+    // borde 2
+    page.drawRectangle({
+      x:190,
+      y: height - 269,
+      width: 215,
+      height: 12,
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:0.5,
+    });
+
+    // borde 2
+    page.drawRectangle({
+      x:190,
+      y: height - 281,
+      width: 215,
+      height: 12,
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:0.5,
+    });
+
+    // borde 2
+    page.drawRectangle({
+      x:190,
+      y: height - 293,
+      width: 215,
+      height: 12,
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:0.5,
+    });
+
+    // borde 2
+    page.drawRectangle({
+      x:190,
+      y: height - 305,
+      width: 215,
+      height: 12,
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:0.5,
+    });
+
+    // borde 2
+    page.drawRectangle({
+      x:190,
+      y: height - 317,
+      width: 215,
+      height: 12,
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:0.5,
+    });
+
+    // borde fila 3
+    page.drawRectangle({
+      x:405,
+      y: height - 257,
+      width: 150,
+      height: 12,
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:0.5,
+    });
+
+    // borde 3
+    page.drawRectangle({
+      x:405,
+      y: height - 269,
+      width: 150,
+      height: 12,
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:0.5,
+    });
+
+    // borde 3
+    page.drawRectangle({
+      x:405,
+      y: height - 281,
+      width: 150,
+      height: 12,
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:0.5,
+    });
+
+    // borde 3
+    page.drawRectangle({
+      x:405,
+      y: height - 293,
+      width: 150,
+      height: 12,
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:0.5,
+    });
+
+    // borde 3
+    page.drawRectangle({
+      x:405,
+      y: height - 305,
+      width: 150,
+      height: 12,
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:0.5,
+    });
+
+    // borde 3
+    page.drawRectangle({
+      x:405,
+      y: height - 317,
+      width: 150,
+      height: 12,
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:0.5,
+    });
+
+    //texto 1
+    page.drawText('Revisión Interna', {
+      x: 50,
+      y: height - 260,
+      size: 10,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto 2
+    page.drawText('Limpia Parabrisas', {
+      x: 195,
+      y: height - 254,
+      size: 8,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto 2
+    page.drawText('Freno de Emergencia', {
+      x: 195,
+      y: height - 266,
+      size: 8,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto 2
+    page.drawText('Pito', {
+      x: 195,
+      y: height - 278,
+      size: 8,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto 2
+    page.drawText('Cinturones de Seguridad', {
+      x: 195,
+      y: height - 290,
+      size: 8,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto 2
+    page.drawText('Elevavidrios', {
+      x: 195,
+      y: height - 302,
+      size: 8,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto 2
+    page.drawText('Iluminación', {
+      x: 195,
+      y: height - 314,
+      size: 8,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto 3 
+    page.drawText('SI', {
+      x: 475,
+      y: height - 254,
+      size: 8,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto 3 
+    page.drawText('SI', {
+      x: 475,
+      y: height - 266,
+      size: 8,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto 3 
+    page.drawText('SI', {
+      x: 475,
+      y: height - 278,
+      size: 8,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto 3 
+    page.drawText('SI', {
+      x: 475,
+      y: height - 290,
+      size: 8,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto 3 
+    page.drawText('SI', {
+      x: 475,
+      y: height - 302,
+      size: 8,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto 3 
+    page.drawText('SI', {
+      x: 475,
+      y: height - 314,
+      size: 8,
+      color: rgb(0, 0, 0 ,1),
     })
 
     const pdfBytes = await pdfDoc.save()
