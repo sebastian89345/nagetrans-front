@@ -254,7 +254,7 @@ function List() {
 
     //texto
     page.drawText('2019', {
-      x: 205,
+      x: 210,
       y: height - 170,
       size: 9,
       color: rgb(0, 0, 0 ,1),
@@ -730,6 +730,546 @@ function List() {
     page.drawText('SI', {
       x: 475,
       y: height - 314,
+      size: 8,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    // columna 1 - fila 2  
+    page.drawRectangle({
+      x:40,
+      y: height - 438,
+      width: 150,
+      height: 120,
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:0.5,
+    });
+
+    // columna 2 - fila 2  
+    page.drawRectangle({
+      x:190,
+      y: height - 330,
+      width: 215,
+      height: 12,
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:0.5,
+    });
+
+    // borde 2 
+    page.drawRectangle({
+      x:190,
+      y: height - 342,
+      width: 215,
+      height: 12,
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:0.5,
+    });
+
+    // borde 2 
+    page.drawRectangle({
+      x:190,
+      y: height - 354,
+      width: 215,
+      height: 12,
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:0.5,
+    });
+
+    // borde 2 
+    page.drawRectangle({
+      x:190,
+      y: height - 366,
+      width: 215,
+      height: 12,
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:0.5,
+    });
+
+    // borde 2 
+    page.drawRectangle({
+      x:190,
+      y: height - 378,
+      width: 215,
+      height: 12,
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:0.5,
+    });
+
+    // borde 2 
+    page.drawRectangle({
+      x:190,
+      y: height - 390,
+      width: 215,
+      height: 12,
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:0.5,
+    });
+
+    // borde 2 
+    page.drawRectangle({
+      x:190,
+      y: height - 402,
+      width: 215,
+      height: 12,
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:0.5,
+    });
+
+    // borde 2 
+    page.drawRectangle({
+      x:190,
+      y: height - 414,
+      width: 215,
+      height: 12,
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:0.5,
+    });
+
+    // borde 2 
+    page.drawRectangle({
+      x:190,
+      y: height - 426,
+      width: 215,
+      height: 12,
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:0.5,
+    });
+
+    // borde 2 
+    page.drawRectangle({
+      x:190,
+      y: height - 438,
+      width: 215,
+      height: 12,
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:0.5,
+    });
+
+     // columna 3 - fila 2  
+     page.drawRectangle({
+      x:405,
+      y: height - 330,
+      width: 150,
+      height: 12,
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:0.5,
+    });
+
+    // borde 3 
+    page.drawRectangle({
+      x:405,
+      y: height - 342,
+      width: 150,
+      height: 12,
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:0.5,
+    });
+
+    // borde 3 
+    page.drawRectangle({
+      x:405,
+      y: height - 354,
+      width: 150,
+      height: 12,
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:0.5,
+    });
+
+    // borde 3 
+    page.drawRectangle({
+      x:405,
+      y: height - 366,
+      width: 150,
+      height: 12,
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:0.5,
+    });
+
+    // borde 3 
+    page.drawRectangle({
+      x:405,
+      y: height - 378,
+      width: 150,
+      height: 12,
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:0.5,
+    });
+
+    // borde 3 
+    page.drawRectangle({
+      x:405,
+      y: height - 390,
+      width: 150,
+      height: 12,
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:0.5,
+    });
+
+     // borde 3 
+     page.drawRectangle({
+      x:405,
+      y: height - 402,
+      width: 150,
+      height: 12,
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:0.5,
+    });
+
+     // borde 3 
+     page.drawRectangle({
+      x:405,
+      y: height - 414,
+      width: 150,
+      height: 12,
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:0.5,
+    });
+
+    // borde 3 
+    page.drawRectangle({
+      x:405,
+      y: height - 426,
+      width: 150,
+      height: 12,
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:0.5,
+    });
+
+    // borde 3 
+    page.drawRectangle({
+      x:405,
+      y: height - 438,
+      width: 150,
+      height: 12,
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:0.5,
+    });
+
+    //texto 1
+    page.drawText('Revisión Externa', {
+      x: 50,
+      y: height - 333,
+      size: 10,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto - columna 2 - fila 2
+    page.drawText('Direccionales', {
+      x: 195,
+      y: height - 327,
+      size: 8,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto 2
+    page.drawText('Estacionarias', {
+      x: 195,
+      y: height - 339,
+      size: 8,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto 2
+    page.drawText('Luces Altas', {
+      x: 195,
+      y: height - 351,
+      size: 8,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto 2
+    page.drawText('Luces Bajas', {
+      x: 195,
+      y: height - 363,
+      size: 8,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto 2
+    page.drawText('Stop', {
+      x: 195,
+      y: height - 375,
+      size: 8,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto 2
+    page.drawText('Reverso', {
+      x: 195,
+      y: height - 387,
+      size: 8,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto 2
+    page.drawText('Batería', {
+      x: 195,
+      y: height - 399,
+      size: 8,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto 2
+    page.drawText('Desgaste Llantas', {
+      x: 195,
+      y: height - 411,
+      size: 8,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto 2
+    page.drawText('Estado Llantas', {
+      x: 195,
+      y: height - 423,
+      size: 8,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto 2
+    page.drawText('Presión Aire Llantas', {
+      x: 195,
+      y: height - 435,
+      size: 8,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto 3 - columna 3 - fila 2
+    page.drawText('SI', {
+      x: 475,
+      y: height - 327,
+      size: 8,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto 3
+    page.drawText('SI', {
+      x: 475,
+      y: height - 339,
+      size: 8,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto 3
+    page.drawText('SI', {
+      x: 475,
+      y: height - 351,
+      size: 8,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto 3
+    page.drawText('SI', {
+      x: 475,
+      y: height - 363,
+      size: 8,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto 3
+    page.drawText('SI', {
+      x: 475,
+      y: height - 375,
+      size: 8,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto 3
+    page.drawText('SI', {
+      x: 475,
+      y: height - 387,
+      size: 8,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto 3
+    page.drawText('SI', {
+      x: 475,
+      y: height - 399,
+      size: 8,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto 3
+    page.drawText('SI', {
+      x: 475,
+      y: height - 411,
+      size: 8,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto 3
+    page.drawText('SI', {
+      x: 475,
+      y: height - 423,
+      size: 8,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto 3
+    page.drawText('SI', {
+      x: 475,
+      y: height - 435,
+      size: 8,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    // celda - columna 1 - fila 3  
+    page.drawRectangle({
+      x:40,
+      y: height - 487,
+      width: 150,
+      height: 48,
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:0.5,
+    });
+
+    // celda - columna 2 - fila 3  
+    page.drawRectangle({
+      x:190,
+      y: height - 451,
+      width: 215,
+      height: 12,
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:0.5,
+    });
+
+    // celda 2 
+    page.drawRectangle({
+      x:190,
+      y: height - 463,
+      width: 215,
+      height: 12,
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:0.5,
+    });
+
+    // celda 2 
+    page.drawRectangle({
+      x:190,
+      y: height - 475,
+      width: 215,
+      height: 12,
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:0.5,
+    });
+
+    // celda 2 
+    page.drawRectangle({
+      x:190,
+      y: height - 487,
+      width: 215,
+      height: 12,
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:0.5,
+    });
+
+    // celda - columna 3 - fila 3  
+    page.drawRectangle({
+      x:405,
+      y: height - 451,
+      width: 150,
+      height: 12,
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:0.5,
+    });
+
+    // celda 3 
+    page.drawRectangle({
+      x:405,
+      y: height - 463,
+      width: 150,
+      height: 12,
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:0.5,
+    });
+
+    // celda 3 
+    page.drawRectangle({
+      x:405,
+      y: height - 475,
+      width: 150,
+      height: 12,
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:0.5,
+    });
+
+    // celda 3 
+    page.drawRectangle({
+      x:405,
+      y: height - 487,
+      width: 150,
+      height: 12,
+      borderColor:rgb(0, 0, 0 ,1),
+      borderWidth:0.5,
+    });
+
+    //texto - columna 1 - fila 3
+    page.drawText('Motor', {
+      x: 50,
+      y: height - 455,
+      size: 10,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto - columna 2 - fila 3
+    page.drawText('Fugas de Motor', {
+      x: 195,
+      y: height - 448,
+      size: 8,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto 2
+    page.drawText('Fugas en Frenos', {
+      x: 195,
+      y: height - 460,
+      size: 8,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto 2
+    page.drawText('Tensión Correas', {
+      x: 195,
+      y: height - 472,
+      size: 8,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto 2
+    page.drawText('Filtros Húmedos', {
+      x: 195,
+      y: height - 484,
+      size: 8,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto 3 - columna 3 - fila 3
+    page.drawText('SI', {
+      x: 475,
+      y: height - 448,
+      size: 8,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto 3
+    page.drawText('SI', {
+      x: 475,
+      y: height - 460,
+      size: 8,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto 3
+    page.drawText('SI', {
+      x: 475,
+      y: height - 472,
+      size: 8,
+      color: rgb(0, 0, 0 ,1),
+    })
+
+    //texto 3
+    page.drawText('SI', {
+      x: 475,
+      y: height - 484,
       size: 8,
       color: rgb(0, 0, 0 ,1),
     })
