@@ -25,8 +25,9 @@ import { PDFDocument, StandardFonts, rgb } from 'pdf-lib';
 //dowland
 import download  from 'downloadjs';
 
-//imagenes
-import logoNagetrans from '../../../assets/img/logo.png'
+//documentos
+import pdfDiary from '../../../docs/pdfDiary.pdf';
+
 
 function List() {
   const [view, setView] = useState({list:true,create:false,update:false});
@@ -129,1149 +130,420 @@ function List() {
   const dowlandPdfDiary = async () => {
     // console.log(dowmlandPdfDiary);
 
-    const pdfDoc = await PDFDocument.create();
+    const pdf = await fetch(pdfDiary).then((res) => res.arrayBuffer());
+    const pdfDoc = await PDFDocument.load(pdf);
 
-    const timesRomanFont = await pdfDoc.embedFont(StandardFonts.HelveticaBold)
-    const page = pdfDoc.addPage();
-    const { width, height} = page.getSize();
-    
-    // console.log(width);
-    // console.log(height);
+    const page = pdfDoc.getPage(0)
+    const { width, height } = page.getSize()
 
-    // Definir la altura y el ancho de las celdas
-    const cellWidth = 515;
-    const cellHeight = 640;
-
-    // primer borde
-    page.drawRectangle({
-      x:40,
-      y:140,
-      width: cellWidth,
-      height: cellHeight,
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:2,
-    });
-
-    //texto
-    page.drawText('REPORTE DIARIO REVISIÓN PREOPERACIONAL', {
-      x: 70,
-      y: height - 90,
-      size: 12,
-      font: timesRomanFont,
-      color: rgb(0, 0, 0 ,1),
+    // nit
+    page.drawText('901158731-3', {
+      x: 195,
+      y: height - 98,
+      size: 9,
+      color: rgb(0, 0, 0 , 1),
     })
 
-    //texto
-    page.drawText('Nagetrans', {
-      x: 180,
-      y: height - 105,
-      size: 10,
-      font: timesRomanFont,
-      color: rgb(0, 0, 0 ,1),
-    })
-
-    //texto
-    page.drawText('Nit: 901007799-6', {
-      x: 180,
-      y: height - 120,
-      size: 10,
-      font: timesRomanFont,
-      color: rgb(0, 0, 0 ,1),
-    })
-
-    // Cargar la imagen desde tu proyecto de React
-    const imagenBytes = await fetch(logoNagetrans).then((res) => res.arrayBuffer());
-    const pngImage = await pdfDoc.embedPng(imagenBytes);
-    page.drawImage(pngImage, {
-      x: 400,
-      y: height - 130,
-      width: 110,
-      height: 70,
-    })
-
-    // bordes de los titulos
-    page.drawRectangle({
-      x:40,
-      y: height - 145,
-      width: cellWidth,
-      height: 15,
-      color:rgb(0.8, 0.8, 0.8),
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:0.5,
-    });
-
-    //texto
-    page.drawText('INFORMACIÓN GENERAL', {
-      x: 230,
-      y: height - 141,
-      size: 10,
-      font: timesRomanFont,
-      color: rgb(0, 0, 0 ,1),
-    })
-
-    //texto
-    page.drawText('Fecha preoperacional: ', {
-      x: 50,
-      y: height - 160,
-      size: 10,
-      font: timesRomanFont,
-      color: rgb(0, 0, 0 ,1),
-    })
-
-    //texto
+    // Fecha preoperacional
     page.drawText('23/12/2023', {
-      x: 160,
-      y: height - 160,
-      size: 9,
-      color: rgb(0, 0, 0 ,1),
+      x: 155,
+      y: height - 143,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
     })
 
-    //texto
-    page.drawText('Placa: ', {
-      x: 50,
-      y: height - 170,
-      size: 10,
-      color: rgb(0, 0, 0 ,1),
-      font: timesRomanFont,
-    })
-
-    //texto
+    // Placa
     page.drawText('SWT714', {
-      x: 85,
-      y: height - 170,
-      size: 9,
-      color: rgb(0, 0, 0 ,1),
+      x: 80,
+      y: height - 153,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
     })
 
-    //texto
-    page.drawText('Modelo: ', {
-      x: 170,
-      y: height - 170,
-      size: 10,
-      color: rgb(0, 0, 0 ,1),
-      font: timesRomanFont,
-    })
-
-    //texto
+    // Modelo
     page.drawText('2019', {
-      x: 210,
-      y: height - 170,
-      size: 9,
-      color: rgb(0, 0, 0 ,1),
+      x: 205,
+      y: height - 153,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
     })
 
-    //texto
-    page.drawText('Número interno: ', {
-      x: 50,
-      y: height - 180,
-      size: 10,
-      color: rgb(0, 0, 0 ,1),
-      font: timesRomanFont,
-    })
-
-    //texto
-    page.drawText('001714', {
-      x: 130,
-      y: height - 180,
-      size: 9,
-      color: rgb(0, 0, 0 ,1),
-    })
-
-    //texto
-    page.drawText('Conductor:', {
-      x: 50,
-      y: height - 190,
-      size: 10,
-      color: rgb(0, 0, 0 ,1),
-      font: timesRomanFont,
-    })
-
-    //texto
-    page.drawText('JORGE ALBERTO NAGED ORTIZ', {
-      x: 110,
-      y: height - 190,
-      size: 9,
-      color: rgb(0, 0, 0 ,1),
-    })
-
-    //texto
-    page.drawText('Propietario:', {
-      x: 50,
-      y: height - 200,
-      size: 10,
-      color: rgb(0, 0, 0 ,1),
-      font: timesRomanFont,
-    })
-
-    page.drawText('OPERADOR LOGISTICO Y DE', {
-      x: 110,
-      y: height - 200,
-      size: 9,
-      color: rgb(0, 0, 0 ,1),
-    })
-
-    //texto
-    page.drawText('TRANSPORTE NAGETRANS ZOMAC S.A.S.', {
-      x: 50,
-      y: height - 210,
-      size: 9,
-      color: rgb(0, 0, 0 ,1),
-    })
-
-    //texto
-    page.drawText('Kilometraje:', {
-      x: 270,
-      y: height - 160,
-      size: 10,
-      color: rgb(0, 0, 0 ,1),
-      font: timesRomanFont,
-    })
-
-    //texto
-    page.drawText('113.500', {
-      x: 330,
-      y: height - 160,
-      size: 9,
-      color: rgb(0, 0, 0 ,1),
-    })
-
-    //texto
-    page.drawText('Marca:', {
-      x: 270,
-      y: height - 170,
-      size: 10,
-      color: rgb(0, 0, 0 ,1),
-      font: timesRomanFont,
-    })
-
-    //texto
+    // Marca
     page.drawText('RENAULT', {
-      x: 305,
-      y: height - 170,
-      size: 9,
-      color: rgb(0, 0, 0 ,1),
+      x: 300,
+      y: height - 153,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
     })
 
-    //texto
-    page.drawText('Clase:', {
-      x: 400,
-      y: height - 170,
-      size: 10,
-      color: rgb(0, 0, 0 ,1),
-      font: timesRomanFont,
+    // Clase
+    page.drawText('Campero', {
+      x: 430,
+      y: height - 153,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    
+    // Número interno
+    page.drawText('001714', {
+      x: 125,
+      y: height - 164,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
     })
 
-    //texto
-    page.drawText('Camioneta', {
-      x: 435,
-      y: height - 170,
-      size: 9,
-      color: rgb(0, 0, 0 ,1),
-    })
-
-    //texto
-    page.drawText('Número tarjeta operación:', {
-      x: 270,
-      y: height - 180,
-      size: 10,
-      color: rgb(0, 0, 0 ,1),
-      font: timesRomanFont,
-    })
-
-    //texto
-    page.drawText('298455', {
-      x: 400,
-      y: height - 180,
-      size: 9,
-      color: rgb(0, 0, 0 ,1),
-    })
-
-    //texto
-    page.drawText('Identificación del conductor:', {
-      x: 270,
-      y: height - 190,
-      size: 10,
-      color: rgb(0, 0, 0 ,1),
-      font: timesRomanFont,
-    })
-
-    //texto
-    page.drawText('93180662', {
-      x: 410,
-      y: height - 190,
-      size: 9,
-      color: rgb(0, 0, 0 ,1),
-    })
-
-    //texto
-    page.drawText('Identificación del Propietario:', {
-      x: 270,
-      y: height - 200,
-      size: 10,
-      color: rgb(0, 0, 0 ,1),
-      font: timesRomanFont,
-    })
-
-    //texto
-    page.drawText('901158731', {
-      x: 415,
-      y: height - 200,
-      size: 10,
-      color: rgb(0, 0, 0 ,1),
-    })
-   
-    // bordes de los titulos
-    page.drawRectangle({
-      x:40,
-      y: height - 230,
-      width: cellWidth,
-      height: 15,
-      color:rgb(0.8, 0.8, 0.8),
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:0.5,
-    });
-
-    //texto
-    page.drawText('DETALLE PREOPERACIONAL DIARIO', {
-      x: 210,
-      y: height - 226,
-      size: 10,
-      color: rgb(0, 0, 0 ,1),
-      font: timesRomanFont,
-    })
-
-    // 1 borde de los titulos
-    page.drawRectangle({
-      x:40,
-      y: height - 245,
-      width: 150,
-      height: 15,
-      color:rgb(0.8, 0.8, 0.8),
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:0.5,
-    });
-
-    // 2 borde de los titulos
-    page.drawRectangle({
-      x:190,
-      y: height - 245,
-      width: 215,
-      height: 15,
-      color:rgb(0.8, 0.8, 0.8),
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:0.5,
-    });
-
-    // 3 borde de los titulos
-    page.drawRectangle({
-      x:405,
-      y: height - 245,
-      width: 150,
-      height: 15,
-      color:rgb(0.8, 0.8, 0.8),
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:0.5,
-    });
-
-    //texto
-    page.drawText('GRUPO', {
+    // Conductor
+    page.drawText('JORGE ALBERTO NAGED ORTIZ', {
       x: 100,
-      y: height - 241,
-      size: 10,
-      color: rgb(0, 0, 0 ,1),
-      font: timesRomanFont,
+      y: height - 174,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
     })
 
-    //texto
-    page.drawText('DESCRIPCIÓN', {
-      x: 270,
-      y: height - 241,
-      size: 10,
-      color: rgb(0, 0, 0 ,1),
-      font: timesRomanFont,
+    // Kilometraje
+    page.drawText('113.500', {
+      x: 325,
+      y: height - 143,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
     })
 
-    //texto
-    page.drawText('CUMPLE', {
-      x: 460,
-      y: height - 241,
-      size: 10,
-      color: rgb(0, 0, 0 ,1),
-      font: timesRomanFont,
+    // Número tarjeta operación
+    page.drawText('298455', {
+      x: 390,
+      y: height - 163,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
     })
 
-    // borde fila 1
-    page.drawRectangle({
-      x:40,
-      y: height - 317,
-      width: 150,
-      height: 72,
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:0.5,
-    });
+    // Identificación del conductor
+    page.drawText('93180662', {
+      x: 405,
+      y: height - 173,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
 
-    // borde fila 2
-    page.drawRectangle({
-      x:190,
+    // Identificación del Propietario
+    page.drawText('901158731', {
+      x: 410,
+      y: height - 183,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // DETALLE PREOPERACIONAL DIARIO
+
+    // Limpia Parabrisas
+    page.drawText('SI', {
+      x: 475,
+      y: height - 244,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Freno de Emergencia
+    page.drawText('SI', {
+      x: 475,
       y: height - 257,
-      width: 215,
-      height: 12,
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:0.5,
-    });
-
-    // borde 2
-    page.drawRectangle({
-      x:190,
-      y: height - 269,
-      width: 215,
-      height: 12,
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:0.5,
-    });
-
-    // borde 2
-    page.drawRectangle({
-      x:190,
-      y: height - 281,
-      width: 215,
-      height: 12,
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:0.5,
-    });
-
-    // borde 2
-    page.drawRectangle({
-      x:190,
-      y: height - 293,
-      width: 215,
-      height: 12,
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:0.5,
-    });
-
-    // borde 2
-    page.drawRectangle({
-      x:190,
-      y: height - 305,
-      width: 215,
-      height: 12,
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:0.5,
-    });
-
-    // borde 2
-    page.drawRectangle({
-      x:190,
-      y: height - 317,
-      width: 215,
-      height: 12,
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:0.5,
-    });
-
-    // borde fila 3
-    page.drawRectangle({
-      x:405,
-      y: height - 257,
-      width: 150,
-      height: 12,
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:0.5,
-    });
-
-    // borde 3
-    page.drawRectangle({
-      x:405,
-      y: height - 269,
-      width: 150,
-      height: 12,
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:0.5,
-    });
-
-    // borde 3
-    page.drawRectangle({
-      x:405,
-      y: height - 281,
-      width: 150,
-      height: 12,
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:0.5,
-    });
-
-    // borde 3
-    page.drawRectangle({
-      x:405,
-      y: height - 293,
-      width: 150,
-      height: 12,
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:0.5,
-    });
-
-    // borde 3
-    page.drawRectangle({
-      x:405,
-      y: height - 305,
-      width: 150,
-      height: 12,
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:0.5,
-    });
-
-    // borde 3
-    page.drawRectangle({
-      x:405,
-      y: height - 317,
-      width: 150,
-      height: 12,
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:0.5,
-    });
-
-    //texto 1
-    page.drawText('Revisión Interna', {
-      x: 50,
-      y: height - 260,
-      size: 10,
-      color: rgb(0, 0, 0 ,1),
-    })
-
-    //texto 2
-    page.drawText('Limpia Parabrisas', {
-      x: 195,
-      y: height - 254,
       size: 8,
-      color: rgb(0, 0, 0 ,1),
+      color: rgb(0, 0, 0 , 1),
     })
 
-    //texto 2
-    page.drawText('Freno de Emergencia', {
-      x: 195,
-      y: height - 266,
-      size: 8,
-      color: rgb(0, 0, 0 ,1),
-    })
-
-    //texto 2
-    page.drawText('Pito', {
-      x: 195,
-      y: height - 278,
-      size: 8,
-      color: rgb(0, 0, 0 ,1),
-    })
-
-    //texto 2
-    page.drawText('Cinturones de Seguridad', {
-      x: 195,
-      y: height - 290,
-      size: 8,
-      color: rgb(0, 0, 0 ,1),
-    })
-
-    //texto 2
-    page.drawText('Elevavidrios', {
-      x: 195,
-      y: height - 302,
-      size: 8,
-      color: rgb(0, 0, 0 ,1),
-    })
-
-    //texto 2
-    page.drawText('Iluminación', {
-      x: 195,
-      y: height - 314,
-      size: 8,
-      color: rgb(0, 0, 0 ,1),
-    })
-
-    //texto 3 
+    // Freno de Emergencia
     page.drawText('SI', {
       x: 475,
-      y: height - 254,
+      y: height - 270,
       size: 8,
-      color: rgb(0, 0, 0 ,1),
+      color: rgb(0, 0, 0 , 1),
     })
 
-    //texto 3 
+    // Pito
     page.drawText('SI', {
       x: 475,
-      y: height - 266,
+      y: height - 283,
       size: 8,
-      color: rgb(0, 0, 0 ,1),
+      color: rgb(0, 0, 0 , 1),
     })
 
-    //texto 3 
+    // Cinturones de Seguridad
     page.drawText('SI', {
       x: 475,
-      y: height - 278,
+      y: height - 283,
       size: 8,
-      color: rgb(0, 0, 0 ,1),
+      color: rgb(0, 0, 0 , 1),
     })
 
-    //texto 3 
+    // Elevavidrios
     page.drawText('SI', {
       x: 475,
-      y: height - 290,
+      y: height - 296,
       size: 8,
-      color: rgb(0, 0, 0 ,1),
+      color: rgb(0, 0, 0 , 1),
     })
 
-    //texto 3 
+    // Iluminación
     page.drawText('SI', {
       x: 475,
-      y: height - 302,
+      y: height - 309,
       size: 8,
-      color: rgb(0, 0, 0 ,1),
+      color: rgb(0, 0, 0 , 1),
     })
 
-    //texto 3 
+    // Direccionales
     page.drawText('SI', {
       x: 475,
-      y: height - 314,
+      y: height - 322,
       size: 8,
-      color: rgb(0, 0, 0 ,1),
+      color: rgb(0, 0, 0 , 1),
     })
 
-    // columna 1 - fila 2  
-    page.drawRectangle({
-      x:40,
-      y: height - 438,
-      width: 150,
-      height: 120,
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:0.5,
-    });
-
-    // columna 2 - fila 2  
-    page.drawRectangle({
-      x:190,
-      y: height - 330,
-      width: 215,
-      height: 12,
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:0.5,
-    });
-
-    // borde 2 
-    page.drawRectangle({
-      x:190,
-      y: height - 342,
-      width: 215,
-      height: 12,
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:0.5,
-    });
-
-    // borde 2 
-    page.drawRectangle({
-      x:190,
-      y: height - 354,
-      width: 215,
-      height: 12,
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:0.5,
-    });
-
-    // borde 2 
-    page.drawRectangle({
-      x:190,
-      y: height - 366,
-      width: 215,
-      height: 12,
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:0.5,
-    });
-
-    // borde 2 
-    page.drawRectangle({
-      x:190,
-      y: height - 378,
-      width: 215,
-      height: 12,
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:0.5,
-    });
-
-    // borde 2 
-    page.drawRectangle({
-      x:190,
-      y: height - 390,
-      width: 215,
-      height: 12,
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:0.5,
-    });
-
-    // borde 2 
-    page.drawRectangle({
-      x:190,
-      y: height - 402,
-      width: 215,
-      height: 12,
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:0.5,
-    });
-
-    // borde 2 
-    page.drawRectangle({
-      x:190,
-      y: height - 414,
-      width: 215,
-      height: 12,
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:0.5,
-    });
-
-    // borde 2 
-    page.drawRectangle({
-      x:190,
-      y: height - 426,
-      width: 215,
-      height: 12,
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:0.5,
-    });
-
-    // borde 2 
-    page.drawRectangle({
-      x:190,
-      y: height - 438,
-      width: 215,
-      height: 12,
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:0.5,
-    });
-
-     // columna 3 - fila 2  
-     page.drawRectangle({
-      x:405,
-      y: height - 330,
-      width: 150,
-      height: 12,
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:0.5,
-    });
-
-    // borde 3 
-    page.drawRectangle({
-      x:405,
-      y: height - 342,
-      width: 150,
-      height: 12,
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:0.5,
-    });
-
-    // borde 3 
-    page.drawRectangle({
-      x:405,
-      y: height - 354,
-      width: 150,
-      height: 12,
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:0.5,
-    });
-
-    // borde 3 
-    page.drawRectangle({
-      x:405,
-      y: height - 366,
-      width: 150,
-      height: 12,
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:0.5,
-    });
-
-    // borde 3 
-    page.drawRectangle({
-      x:405,
-      y: height - 378,
-      width: 150,
-      height: 12,
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:0.5,
-    });
-
-    // borde 3 
-    page.drawRectangle({
-      x:405,
-      y: height - 390,
-      width: 150,
-      height: 12,
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:0.5,
-    });
-
-     // borde 3 
-     page.drawRectangle({
-      x:405,
-      y: height - 402,
-      width: 150,
-      height: 12,
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:0.5,
-    });
-
-     // borde 3 
-     page.drawRectangle({
-      x:405,
-      y: height - 414,
-      width: 150,
-      height: 12,
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:0.5,
-    });
-
-    // borde 3 
-    page.drawRectangle({
-      x:405,
-      y: height - 426,
-      width: 150,
-      height: 12,
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:0.5,
-    });
-
-    // borde 3 
-    page.drawRectangle({
-      x:405,
-      y: height - 438,
-      width: 150,
-      height: 12,
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:0.5,
-    });
-
-    //texto 1
-    page.drawText('Revisión Externa', {
-      x: 50,
-      y: height - 333,
-      size: 10,
-      color: rgb(0, 0, 0 ,1),
-    })
-
-    //texto - columna 2 - fila 2
-    page.drawText('Direccionales', {
-      x: 195,
-      y: height - 327,
-      size: 8,
-      color: rgb(0, 0, 0 ,1),
-    })
-
-    //texto 2
-    page.drawText('Estacionarias', {
-      x: 195,
-      y: height - 339,
-      size: 8,
-      color: rgb(0, 0, 0 ,1),
-    })
-
-    //texto 2
-    page.drawText('Luces Altas', {
-      x: 195,
-      y: height - 351,
-      size: 8,
-      color: rgb(0, 0, 0 ,1),
-    })
-
-    //texto 2
-    page.drawText('Luces Bajas', {
-      x: 195,
-      y: height - 363,
-      size: 8,
-      color: rgb(0, 0, 0 ,1),
-    })
-
-    //texto 2
-    page.drawText('Stop', {
-      x: 195,
-      y: height - 375,
-      size: 8,
-      color: rgb(0, 0, 0 ,1),
-    })
-
-    //texto 2
-    page.drawText('Reverso', {
-      x: 195,
-      y: height - 387,
-      size: 8,
-      color: rgb(0, 0, 0 ,1),
-    })
-
-    //texto 2
-    page.drawText('Batería', {
-      x: 195,
-      y: height - 399,
-      size: 8,
-      color: rgb(0, 0, 0 ,1),
-    })
-
-    //texto 2
-    page.drawText('Desgaste Llantas', {
-      x: 195,
-      y: height - 411,
-      size: 8,
-      color: rgb(0, 0, 0 ,1),
-    })
-
-    //texto 2
-    page.drawText('Estado Llantas', {
-      x: 195,
-      y: height - 423,
-      size: 8,
-      color: rgb(0, 0, 0 ,1),
-    })
-
-    //texto 2
-    page.drawText('Presión Aire Llantas', {
-      x: 195,
-      y: height - 435,
-      size: 8,
-      color: rgb(0, 0, 0 ,1),
-    })
-
-    //texto 3 - columna 3 - fila 2
+    // Estacionarias
     page.drawText('SI', {
       x: 475,
-      y: height - 327,
+      y: height - 335,
       size: 8,
-      color: rgb(0, 0, 0 ,1),
+      color: rgb(0, 0, 0 , 1),
     })
 
-    //texto 3
+    // Luces Altas
     page.drawText('SI', {
       x: 475,
-      y: height - 339,
+      y: height - 348,
       size: 8,
-      color: rgb(0, 0, 0 ,1),
+      color: rgb(0, 0, 0 , 1),
     })
 
-    //texto 3
+    // Luces Bajas
     page.drawText('SI', {
       x: 475,
-      y: height - 351,
+      y: height - 360,
       size: 8,
-      color: rgb(0, 0, 0 ,1),
+      color: rgb(0, 0, 0 , 1),
     })
 
-    //texto 3
+     // Stop
+     page.drawText('SI', {
+      x: 475,
+      y: height - 372,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Reverso
     page.drawText('SI', {
       x: 475,
-      y: height - 363,
+      y: height - 384,
       size: 8,
-      color: rgb(0, 0, 0 ,1),
+      color: rgb(0, 0, 0 , 1),
     })
 
-    //texto 3
+    // Batería
     page.drawText('SI', {
       x: 475,
-      y: height - 375,
+      y: height - 396,
       size: 8,
-      color: rgb(0, 0, 0 ,1),
+      color: rgb(0, 0, 0 , 1),
     })
 
-    //texto 3
+    // Desgaste Llantas
     page.drawText('SI', {
       x: 475,
-      y: height - 387,
+      y: height - 409,
       size: 8,
-      color: rgb(0, 0, 0 ,1),
+      color: rgb(0, 0, 0 , 1),
     })
 
-    //texto 3
+    // Estado Llantas
     page.drawText('SI', {
       x: 475,
-      y: height - 399,
+      y: height - 422,
       size: 8,
-      color: rgb(0, 0, 0 ,1),
+      color: rgb(0, 0, 0 , 1),
     })
 
-    //texto 3
-    page.drawText('SI', {
-      x: 475,
-      y: height - 411,
-      size: 8,
-      color: rgb(0, 0, 0 ,1),
-    })
-
-    //texto 3
-    page.drawText('SI', {
-      x: 475,
-      y: height - 423,
-      size: 8,
-      color: rgb(0, 0, 0 ,1),
-    })
-
-    //texto 3
+    // Presión Aire Llantas
     page.drawText('SI', {
       x: 475,
       y: height - 435,
       size: 8,
-      color: rgb(0, 0, 0 ,1),
+      color: rgb(0, 0, 0 , 1),
     })
 
-    // celda - columna 1 - fila 3  
-    page.drawRectangle({
-      x:40,
-      y: height - 487,
-      width: 150,
-      height: 48,
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:0.5,
-    });
+    // Fugas de Motor
+    page.drawText('SI', {
+      x: 475,
+      y: height - 449,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
 
-    // celda - columna 2 - fila 3  
-    page.drawRectangle({
-      x:190,
-      y: height - 451,
-      width: 215,
-      height: 12,
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:0.5,
-    });
-
-    // celda 2 
-    page.drawRectangle({
-      x:190,
+    // Fugas en Frenos
+    page.drawText('SI', {
+      x: 475,
       y: height - 463,
-      width: 215,
-      height: 12,
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:0.5,
-    });
-
-    // celda 2 
-    page.drawRectangle({
-      x:190,
-      y: height - 475,
-      width: 215,
-      height: 12,
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:0.5,
-    });
-
-    // celda 2 
-    page.drawRectangle({
-      x:190,
-      y: height - 487,
-      width: 215,
-      height: 12,
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:0.5,
-    });
-
-    // celda - columna 3 - fila 3  
-    page.drawRectangle({
-      x:405,
-      y: height - 451,
-      width: 150,
-      height: 12,
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:0.5,
-    });
-
-    // celda 3 
-    page.drawRectangle({
-      x:405,
-      y: height - 463,
-      width: 150,
-      height: 12,
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:0.5,
-    });
-
-    // celda 3 
-    page.drawRectangle({
-      x:405,
-      y: height - 475,
-      width: 150,
-      height: 12,
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:0.5,
-    });
-
-    // celda 3 
-    page.drawRectangle({
-      x:405,
-      y: height - 487,
-      width: 150,
-      height: 12,
-      borderColor:rgb(0, 0, 0 ,1),
-      borderWidth:0.5,
-    });
-
-    //texto - columna 1 - fila 3
-    page.drawText('Motor', {
-      x: 50,
-      y: height - 455,
-      size: 10,
-      color: rgb(0, 0, 0 ,1),
-    })
-
-    //texto - columna 2 - fila 3
-    page.drawText('Fugas de Motor', {
-      x: 195,
-      y: height - 448,
       size: 8,
-      color: rgb(0, 0, 0 ,1),
+      color: rgb(0, 0, 0 , 1),
     })
 
-    //texto 2
-    page.drawText('Fugas en Frenos', {
-      x: 195,
-      y: height - 460,
-      size: 8,
-      color: rgb(0, 0, 0 ,1),
-    })
-
-    //texto 2
-    page.drawText('Tensión Correas', {
-      x: 195,
-      y: height - 472,
-      size: 8,
-      color: rgb(0, 0, 0 ,1),
-    })
-
-    //texto 2
-    page.drawText('Filtros Húmedos', {
-      x: 195,
-      y: height - 484,
-      size: 8,
-      color: rgb(0, 0, 0 ,1),
-    })
-
-    //texto 3 - columna 3 - fila 3
+    // Tensión Correas
     page.drawText('SI', {
       x: 475,
-      y: height - 448,
+      y: height - 476,
       size: 8,
-      color: rgb(0, 0, 0 ,1),
+      color: rgb(0, 0, 0 , 1),
     })
 
-    //texto 3
+    // Filtros Húmedos
     page.drawText('SI', {
       x: 475,
-      y: height - 460,
+      y: height - 489,
       size: 8,
-      color: rgb(0, 0, 0 ,1),
+      color: rgb(0, 0, 0 , 1),
     })
 
-    //texto 3
+    // Aceite de Motor
     page.drawText('SI', {
       x: 475,
-      y: height - 472,
+      y: height - 501,
       size: 8,
-      color: rgb(0, 0, 0 ,1),
+      color: rgb(0, 0, 0 , 1),
     })
 
-    //texto 3
+    // Aceite Transmisión
     page.drawText('SI', {
       x: 475,
-      y: height - 484,
+      y: height - 512,
       size: 8,
-      color: rgb(0, 0, 0 ,1),
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Refrigerante
+    page.drawText('SI', {
+      x: 475,
+      y: height - 523,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Agua Limpiabrisas
+    page.drawText('SI', {
+      x: 475,
+      y: height - 534,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Aditivos Radiador
+    page.drawText('SI', {
+      x: 475,
+      y: height - 545,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Equipo de Carretera
+    page.drawText('SI', {
+      x: 475,
+      y: height - 556,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Botiquín
+    page.drawText('SI', {
+      x: 475,
+      y: height - 567,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Extintor
+    page.drawText('SI', {
+      x: 475,
+      y: height - 578,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Cruceta
+    page.drawText('SI', {
+      x: 475,
+      y: height - 589,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Gato
+    page.drawText('SI', {
+      x: 475,
+      y: height - 600,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Tacos
+    page.drawText('SI', {
+      x: 475,
+      y: height - 611,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Señales
+    page.drawText('SI', {
+      x: 475,
+      y: height - 622,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Chaleco
+    page.drawText('SI', {
+      x: 475,
+      y: height - 633,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Linterna
+    page.drawText('SI', {
+      x: 475,
+      y: height - 644,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // ¿Porta Guantes?
+    page.drawText('SI', {
+      x: 475,
+      y: height - 654,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // ¿Porta su Tapabocas?
+    page.drawText('SI', {
+      x: 475,
+      y: height - 665,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // ¿Porta Gel Antibacterial o Alcohol?
+    page.drawText('SI', {
+      x: 475,
+      y: height - 676,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Conductor
+    page.drawText('JORGE ALBERTO NAGED ORTIZ', {
+      x: 370,
+      y: height - 726,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
     })
 
     const pdfBytes = await pdfDoc.save()
