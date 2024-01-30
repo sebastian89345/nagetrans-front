@@ -113,7 +113,6 @@ function List() {
     for (let i = 0; i < dataList.data.length; i++) {
       const element = dataList.data[i];
       if(item._id === element._id){
-
         if (element.check === undefined) {
           element.check = true;
         } else if(element.check === true) {
@@ -128,13 +127,28 @@ function List() {
   }
 
   const dowlandPdfDiary = async () => {
-    // console.log(dowmlandPdfDiary);
+    for (let i = 0; i < dowmlandPdfDiary.length; i++) {
+      const element = dowmlandPdfDiary[i];
+      if(element.check === true) {
+        // console.log(element);
+        const pdfBytes = await createPdf(element,i);
+        download(pdfBytes, `preoperacional_diaria_${i}.pdf`, "application/pdf");
+        await esperar(1000);
+      }
+    }
+  }
 
+  function esperar(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  const createPdf = async (element,i) => {
+    console.log(element);
     const pdf = await fetch(pdfDiary).then((res) => res.arrayBuffer());
     const pdfDoc = await PDFDocument.load(pdf);
 
-    const page = pdfDoc.getPage(0)
-    const { width, height } = page.getSize()
+    const page = pdfDoc.getPage(0);
+    const { width, height } = page.getSize();
 
     // nit
     page.drawText('901158731-3', {
@@ -153,7 +167,7 @@ function List() {
     })
 
     // Placa
-    page.drawText('SWT714', {
+    page.drawText(element.userVehicle[0].placa, {
       x: 80,
       y: height - 153,
       size: 8,
@@ -161,23 +175,23 @@ function List() {
     })
 
     // Modelo
-    page.drawText('2019', {
+    page.drawText(element.userVehicle[0].model[0].name, {
       x: 205,
       y: height - 153,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
 
-    // Marca
-    page.drawText('RENAULT', {
+    // // Marca
+    page.drawText(element.userVehicle[0].brand[0].name, {
       x: 300,
       y: height - 153,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
 
-    // Clase
-    page.drawText('Campero', {
+    // // Clase
+    page.drawText(element.userVehicle[0].types[0].name, {
       x: 430,
       y: height - 153,
       size: 8,
@@ -185,7 +199,7 @@ function List() {
     })
     
     // Número interno
-    page.drawText('001714', {
+    page.drawText('0', {
       x: 125,
       y: height - 164,
       size: 8,
@@ -193,7 +207,7 @@ function List() {
     })
 
     // Conductor
-    page.drawText('JORGE ALBERTO NAGED ORTIZ', {
+    page.drawText(element.userDriver[0].names + " " + element.userDriver[0].surnames, {
       x: 100,
       y: height - 174,
       size: 8,
@@ -201,7 +215,7 @@ function List() {
     })
 
     // Kilometraje
-    page.drawText('113.500', {
+    page.drawText(element.currentKm, {
       x: 325,
       y: height - 143,
       size: 8,
@@ -211,15 +225,15 @@ function List() {
     // Número tarjeta operación
     page.drawText('298455', {
       x: 390,
-      y: height - 163,
+      y: height - 164,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
 
     // Identificación del conductor
-    page.drawText('93180662', {
+    page.drawText(element.userDriver[0].dni, {
       x: 405,
-      y: height - 173,
+      y: height - 175,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
@@ -227,7 +241,7 @@ function List() {
     // Identificación del Propietario
     page.drawText('901158731', {
       x: 410,
-      y: height - 183,
+      y: height - 186,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
@@ -235,7 +249,7 @@ function List() {
     // DETALLE PREOPERACIONAL DIARIO
 
     // Limpia Parabrisas
-    page.drawText('SI', {
+    page.drawText(element.wiperWasher, {
       x: 475,
       y: height - 244,
       size: 8,
@@ -243,31 +257,23 @@ function List() {
     })
 
     // Freno de Emergencia
-    page.drawText('SI', {
+    page.drawText(element.emergencyBrake, {
       x: 475,
       y: height - 257,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
 
-    // Freno de Emergencia
-    page.drawText('SI', {
+    // Pito
+    page.drawText(element.whistle, {
       x: 475,
       y: height - 270,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
 
-    // Pito
-    page.drawText('SI', {
-      x: 475,
-      y: height - 283,
-      size: 8,
-      color: rgb(0, 0, 0 , 1),
-    })
-
     // Cinturones de Seguridad
-    page.drawText('SI', {
+    page.drawText(element.safetyBelts, {
       x: 475,
       y: height - 283,
       size: 8,
@@ -275,7 +281,7 @@ function List() {
     })
 
     // Elevavidrios
-    page.drawText('SI', {
+    page.drawText("Agregar", {
       x: 475,
       y: height - 296,
       size: 8,
@@ -283,7 +289,7 @@ function List() {
     })
 
     // Iluminación
-    page.drawText('SI', {
+    page.drawText("Agregar", {
       x: 475,
       y: height - 309,
       size: 8,
@@ -291,7 +297,7 @@ function List() {
     })
 
     // Direccionales
-    page.drawText('SI', {
+    page.drawText("Agregar", {
       x: 475,
       y: height - 322,
       size: 8,
@@ -299,7 +305,7 @@ function List() {
     })
 
     // Estacionarias
-    page.drawText('SI', {
+    page.drawText("Agregar", {
       x: 475,
       y: height - 335,
       size: 8,
@@ -307,7 +313,7 @@ function List() {
     })
 
     // Luces Altas
-    page.drawText('SI', {
+    page.drawText("Agregar", {
       x: 475,
       y: height - 348,
       size: 8,
@@ -315,15 +321,15 @@ function List() {
     })
 
     // Luces Bajas
-    page.drawText('SI', {
+    page.drawText("Agregar", {
       x: 475,
       y: height - 360,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
 
-     // Stop
-     page.drawText('SI', {
+    // Stop
+    page.drawText("Agregar", {
       x: 475,
       y: height - 372,
       size: 8,
@@ -331,7 +337,7 @@ function List() {
     })
 
     // Reverso
-    page.drawText('SI', {
+    page.drawText("Agregar", {
       x: 475,
       y: height - 384,
       size: 8,
@@ -339,7 +345,7 @@ function List() {
     })
 
     // Batería
-    page.drawText('SI', {
+    page.drawText("Agregar", {
       x: 475,
       y: height - 396,
       size: 8,
@@ -347,7 +353,7 @@ function List() {
     })
 
     // Desgaste Llantas
-    page.drawText('SI', {
+    page.drawText("Agregar", {
       x: 475,
       y: height - 409,
       size: 8,
@@ -355,7 +361,7 @@ function List() {
     })
 
     // Estado Llantas
-    page.drawText('SI', {
+    page.drawText("Agregar", {
       x: 475,
       y: height - 422,
       size: 8,
@@ -363,7 +369,7 @@ function List() {
     })
 
     // Presión Aire Llantas
-    page.drawText('SI', {
+    page.drawText("Agregar", {
       x: 475,
       y: height - 435,
       size: 8,
@@ -371,7 +377,7 @@ function List() {
     })
 
     // Fugas de Motor
-    page.drawText('SI', {
+    page.drawText("Agregar", {
       x: 475,
       y: height - 449,
       size: 8,
@@ -379,7 +385,7 @@ function List() {
     })
 
     // Fugas en Frenos
-    page.drawText('SI', {
+    page.drawText("Agregar", {
       x: 475,
       y: height - 463,
       size: 8,
@@ -387,7 +393,7 @@ function List() {
     })
 
     // Tensión Correas
-    page.drawText('SI', {
+    page.drawText(element.beltTension, {
       x: 475,
       y: height - 476,
       size: 8,
@@ -395,7 +401,7 @@ function List() {
     })
 
     // Filtros Húmedos
-    page.drawText('SI', {
+    page.drawText("Agregar", {
       x: 475,
       y: height - 489,
       size: 8,
@@ -403,7 +409,7 @@ function List() {
     })
 
     // Aceite de Motor
-    page.drawText('SI', {
+    page.drawText("Agregar", {
       x: 475,
       y: height - 501,
       size: 8,
@@ -411,7 +417,7 @@ function List() {
     })
 
     // Aceite Transmisión
-    page.drawText('SI', {
+    page.drawText("Agregar", {
       x: 475,
       y: height - 512,
       size: 8,
@@ -419,7 +425,7 @@ function List() {
     })
 
     // Refrigerante
-    page.drawText('SI', {
+    page.drawText("Agregar", {
       x: 475,
       y: height - 523,
       size: 8,
@@ -427,7 +433,7 @@ function List() {
     })
 
     // Agua Limpiabrisas
-    page.drawText('SI', {
+    page.drawText("Agregar", {
       x: 475,
       y: height - 534,
       size: 8,
@@ -435,7 +441,7 @@ function List() {
     })
 
     // Aditivos Radiador
-    page.drawText('SI', {
+    page.drawText("Agregar", {
       x: 475,
       y: height - 545,
       size: 8,
@@ -443,7 +449,7 @@ function List() {
     })
 
     // Equipo de Carretera
-    page.drawText('SI', {
+    page.drawText("Agregar", {
       x: 475,
       y: height - 556,
       size: 8,
@@ -451,7 +457,7 @@ function List() {
     })
 
     // Botiquín
-    page.drawText('SI', {
+    page.drawText("Agregar", {
       x: 475,
       y: height - 567,
       size: 8,
@@ -459,7 +465,7 @@ function List() {
     })
 
     // Extintor
-    page.drawText('SI', {
+    page.drawText("Agregar", {
       x: 475,
       y: height - 578,
       size: 8,
@@ -467,7 +473,7 @@ function List() {
     })
 
     // Cruceta
-    page.drawText('SI', {
+    page.drawText("Agregar", {
       x: 475,
       y: height - 589,
       size: 8,
@@ -475,7 +481,7 @@ function List() {
     })
 
     // Gato
-    page.drawText('SI', {
+    page.drawText("Agregar", {
       x: 475,
       y: height - 600,
       size: 8,
@@ -483,7 +489,7 @@ function List() {
     })
 
     // Tacos
-    page.drawText('SI', {
+    page.drawText("Agregar", {
       x: 475,
       y: height - 611,
       size: 8,
@@ -491,7 +497,7 @@ function List() {
     })
 
     // Señales
-    page.drawText('SI', {
+    page.drawText("Agregar", {
       x: 475,
       y: height - 622,
       size: 8,
@@ -499,7 +505,7 @@ function List() {
     })
 
     // Chaleco
-    page.drawText('SI', {
+    page.drawText("Agregar", {
       x: 475,
       y: height - 633,
       size: 8,
@@ -507,7 +513,7 @@ function List() {
     })
 
     // Linterna
-    page.drawText('SI', {
+    page.drawText("Agregar", {
       x: 475,
       y: height - 644,
       size: 8,
@@ -515,7 +521,7 @@ function List() {
     })
 
     // ¿Porta Guantes?
-    page.drawText('SI', {
+    page.drawText("Agregar", {
       x: 475,
       y: height - 654,
       size: 8,
@@ -523,7 +529,7 @@ function List() {
     })
 
     // ¿Porta su Tapabocas?
-    page.drawText('SI', {
+    page.drawText("Agregar", {
       x: 475,
       y: height - 665,
       size: 8,
@@ -531,7 +537,7 @@ function List() {
     })
 
     // ¿Porta Gel Antibacterial o Alcohol?
-    page.drawText('SI', {
+    page.drawText("Agregar", {
       x: 475,
       y: height - 676,
       size: 8,
@@ -539,7 +545,7 @@ function List() {
     })
 
     // Conductor
-    page.drawText('JORGE ALBERTO NAGED ORTIZ', {
+    page.drawText(element.userDriver[0].names + " " + element.userDriver[0].surnames, {
       x: 370,
       y: height - 726,
       size: 8,
@@ -547,9 +553,9 @@ function List() {
     })
 
     const pdfBytes = await pdfDoc.save()
-
-    // Trigger the browser to download the PDF document
-    download(pdfBytes, "pdf-lib_form_creation_example.pdf", "application/pdf");
+    return new Blob([pdfBytes], { type: "application/pdf" });
+    // Trigger the browser to download the PDF document 
+    // download(pdfBytes,`preoperacional_diaria.pdf`, "application/pdf");
   }
 
   // const dowlandPdfMonthly = () => {}

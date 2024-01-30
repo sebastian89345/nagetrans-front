@@ -74,6 +74,7 @@ const DefaultTable = ({ data , nms , updateId , deleteId , selectCheck}) => {
     } else if (nms === "listCheck") {
 
       th = <>
+        <th scope="col">Preoperacional diaria</th>
         <th scope="col">Placa</th>
         <th scope="col">Dni</th>
         <th scope="col">Kilometraje actual</th>
@@ -121,6 +122,9 @@ const DefaultTable = ({ data , nms , updateId , deleteId , selectCheck}) => {
     } else if (nms === "listCheck") {
 
       td = <>
+        <td className='text-center'>
+          <input type="checkbox" className="form-check-input" onChange={() => selectCheck(item)} />
+        </td>
         <td>{item.userVehicle[0].placa}</td>
         <td>{item.userDriver[0].dni}</td>
         <td>{item.currentKm}</td>
@@ -146,7 +150,6 @@ const DefaultTable = ({ data , nms , updateId , deleteId , selectCheck}) => {
           <table className="table table-striped mt-3">
             <thead className='thead-dark'>
               <tr>
-                <th scope="col">Preoperacional diaria</th>
                 {responseTh()}
                 <th scope="col">Actualizar</th>
                 <th scope="col">Eliminar</th>
@@ -155,9 +158,6 @@ const DefaultTable = ({ data , nms , updateId , deleteId , selectCheck}) => {
             <tbody>
               {datosPaginaActual.map((item, index) => (
                 <tr key={index}>
-                  <td className='text-center'>
-                    <input type="checkbox" className="form-check-input" onChange={() => selectCheck(item)} />
-                  </td>
                   {responseTd(item)}
                   <td>
                     <button onClick={() => updateId(item._id,item)} type="button" className="btn btn-primary Default-table-edit mr-4">Editar</button>

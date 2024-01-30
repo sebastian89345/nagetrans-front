@@ -223,9 +223,9 @@ function Create() {
         // console.log(propiedad);
         // console.log(body[propiedad]);
         if(body[propiedad] === true){
-          newObjt[`${propiedad}`] = `Bueno`;
+          newObjt[`${propiedad}`] = `Si`;
         } else if (body[propiedad] === false) {
-          newObjt[`${propiedad}`] = `Malo`;
+          newObjt[`${propiedad}`] = `No`;
         }
       }
     }
