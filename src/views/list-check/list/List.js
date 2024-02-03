@@ -281,7 +281,7 @@ function List() {
     })
 
     // Elevavidrios
-    page.drawText("Agregar", {
+    page.drawText(element.glassLifter, {
       x: 475,
       y: height - 296,
       size: 8,
@@ -289,7 +289,7 @@ function List() {
     })
 
     // Iluminación
-    page.drawText("Agregar", {
+    page.drawText(element.lightning, {
       x: 475,
       y: height - 309,
       size: 8,
@@ -297,7 +297,7 @@ function List() {
     })
 
     // Direccionales
-    page.drawText("Agregar", {
+    page.drawText(element.directionals, {
       x: 475,
       y: height - 322,
       size: 8,
@@ -305,7 +305,7 @@ function List() {
     })
 
     // Estacionarias
-    page.drawText("Agregar", {
+    page.drawText(element.stationary, {
       x: 475,
       y: height - 335,
       size: 8,
@@ -313,7 +313,7 @@ function List() {
     })
 
     // Luces Altas
-    page.drawText("Agregar", {
+    page.drawText(element.highBeams, {
       x: 475,
       y: height - 348,
       size: 8,
@@ -321,7 +321,7 @@ function List() {
     })
 
     // Luces Bajas
-    page.drawText("Agregar", {
+    page.drawText(element.lowLights, {
       x: 475,
       y: height - 360,
       size: 8,
@@ -329,7 +329,7 @@ function List() {
     })
 
     // Stop
-    page.drawText("Agregar", {
+    page.drawText(element.stop, {
       x: 475,
       y: height - 372,
       size: 8,
@@ -337,7 +337,7 @@ function List() {
     })
 
     // Reverso
-    page.drawText("Agregar", {
+    page.drawText(element.reverse, {
       x: 475,
       y: height - 384,
       size: 8,
@@ -345,7 +345,7 @@ function List() {
     })
 
     // Batería
-    page.drawText("Agregar", {
+    page.drawText(element.battery, {
       x: 475,
       y: height - 396,
       size: 8,
@@ -353,7 +353,7 @@ function List() {
     })
 
     // Desgaste Llantas
-    page.drawText("Agregar", {
+    page.drawText(element.tireWear, {
       x: 475,
       y: height - 409,
       size: 8,
@@ -361,7 +361,7 @@ function List() {
     })
 
     // Estado Llantas
-    page.drawText("Agregar", {
+    page.drawText(element.tireCondition, {
       x: 475,
       y: height - 422,
       size: 8,
@@ -369,7 +369,7 @@ function List() {
     })
 
     // Presión Aire Llantas
-    page.drawText("Agregar", {
+    page.drawText(element.tireAirPressure, {
       x: 475,
       y: height - 435,
       size: 8,
@@ -377,7 +377,7 @@ function List() {
     })
 
     // Fugas de Motor
-    page.drawText("Agregar", {
+    page.drawText(element.engineLeaks, {
       x: 475,
       y: height - 449,
       size: 8,
@@ -385,7 +385,7 @@ function List() {
     })
 
     // Fugas en Frenos
-    page.drawText("Agregar", {
+    page.drawText(element.brakeLeaks, {
       x: 475,
       y: height - 463,
       size: 8,
@@ -401,7 +401,7 @@ function List() {
     })
 
     // Filtros Húmedos
-    page.drawText("Agregar", {
+    page.drawText(element.wetFilters, {
       x: 475,
       y: height - 489,
       size: 8,
@@ -409,7 +409,7 @@ function List() {
     })
 
     // Aceite de Motor
-    page.drawText("Agregar", {
+    page.drawText(element.motorOil, {
       x: 475,
       y: height - 501,
       size: 8,
@@ -417,7 +417,7 @@ function List() {
     })
 
     // Aceite Transmisión
-    page.drawText("Agregar", {
+    page.drawText(element.transmissionOil, {
       x: 475,
       y: height - 512,
       size: 8,
@@ -425,7 +425,7 @@ function List() {
     })
 
     // Refrigerante
-    page.drawText("Agregar", {
+    page.drawText(element.refrigerant, {
       x: 475,
       y: height - 523,
       size: 8,
@@ -433,7 +433,7 @@ function List() {
     })
 
     // Agua Limpiabrisas
-    page.drawText("Agregar", {
+    page.drawText(element.windshieldWiperWater, {
       x: 475,
       y: height - 534,
       size: 8,
@@ -441,7 +441,7 @@ function List() {
     })
 
     // Aditivos Radiador
-    page.drawText("Agregar", {
+    page.drawText(element.radiatorAdditives, {
       x: 475,
       y: height - 545,
       size: 8,
@@ -449,7 +449,7 @@ function List() {
     })
 
     // Equipo de Carretera
-    page.drawText("Agregar", {
+    page.drawText(element.roadTeam, {
       x: 475,
       y: height - 556,
       size: 8,
@@ -457,7 +457,7 @@ function List() {
     })
 
     // Botiquín
-    page.drawText("Agregar", {
+    page.drawText(element.firstAidKit, {
       x: 475,
       y: height - 567,
       size: 8,
@@ -465,7 +465,7 @@ function List() {
     })
 
     // Extintor
-    page.drawText("Agregar", {
+    page.drawText(element.extinguisher, {
       x: 475,
       y: height - 578,
       size: 8,
@@ -473,7 +473,7 @@ function List() {
     })
 
     // Cruceta
-    page.drawText("Agregar", {
+    page.drawText(element.crossPiece, {
       x: 475,
       y: height - 589,
       size: 8,
@@ -481,7 +481,7 @@ function List() {
     })
 
     // Gato
-    page.drawText("Agregar", {
+    page.drawText(element.cat, {
       x: 475,
       y: height - 600,
       size: 8,
@@ -489,7 +489,7 @@ function List() {
     })
 
     // Tacos
-    page.drawText("Agregar", {
+    page.drawText(element.tacos, {
       x: 475,
       y: height - 611,
       size: 8,
@@ -497,7 +497,7 @@ function List() {
     })
 
     // Señales
-    page.drawText("Agregar", {
+    page.drawText(element.signs, {
       x: 475,
       y: height - 622,
       size: 8,
@@ -505,7 +505,7 @@ function List() {
     })
 
     // Chaleco
-    page.drawText("Agregar", {
+    page.drawText(element.vest, {
       x: 475,
       y: height - 633,
       size: 8,
@@ -513,7 +513,7 @@ function List() {
     })
 
     // Linterna
-    page.drawText("Agregar", {
+    page.drawText(element.flashlight, {
       x: 475,
       y: height - 644,
       size: 8,
@@ -521,7 +521,7 @@ function List() {
     })
 
     // ¿Porta Guantes?
-    page.drawText("Agregar", {
+    page.drawText(element.gloveHolder, {
       x: 475,
       y: height - 654,
       size: 8,
@@ -529,7 +529,7 @@ function List() {
     })
 
     // ¿Porta su Tapabocas?
-    page.drawText("Agregar", {
+    page.drawText(element.wearYourFaceMask, {
       x: 475,
       y: height - 665,
       size: 8,
@@ -537,7 +537,7 @@ function List() {
     })
 
     // ¿Porta Gel Antibacterial o Alcohol?
-    page.drawText("Agregar", {
+    page.drawText(element.antibacterialGelOrAlcoholHolder, {
       x: 475,
       y: height - 676,
       size: 8,
