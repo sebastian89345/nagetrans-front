@@ -16,6 +16,7 @@ import iconCar from '../../assets/img/bx-car.png';
 import iconCheckCircle from '../../assets/img/bx-check-circle.png';
 import iconAccordion from '../../assets/img/bx-align-left.png';
 
+
 //vistas 
 import ListUser from '../user/list/List';
 import ListRole from '../role/list/List';
@@ -245,7 +246,7 @@ function Home() {
           </div>
         </div>
         <div className='home-fila1'>
-            <NavbarHome logout={logout} />
+            <NavbarHome logout={logout} email={dataListLogin.data.response.data.email} user={dataListLogin.data.response.data.user} />
             {dashboards()}
         </div>
       </div> 
@@ -260,8 +261,8 @@ function Home() {
                 <div className='home-mobile-sidebar-container-img'>
                     <img className='home-mobile-sidebar-img' src={logo} alt='logo de nagetrans' />
                     <div className='derecha'>
-                      <p className='home-mobile-sidebar-title-email'>nagetrans@gmail.com</p>
-                      <p className='home-mobile-sidebar-title-user'>SWT222</p>
+                      <p className='home-mobile-sidebar-title-email'>{dataListLogin.data.response.data.email}</p>
+                      <p className='home-mobile-sidebar-title-user'>{dataListLogin.data.response.data.user}</p>
                     </div>
                 </div>
                 <div className='home-mobile-sidebar-sidebar-list'>

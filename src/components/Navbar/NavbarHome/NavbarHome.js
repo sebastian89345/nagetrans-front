@@ -8,8 +8,11 @@ import './NavbarHome.css';
 import arrow from '../../../assets/img/arrow.png';
 import logo from '../../../assets/img/logo.png';
 import menu from '../../../assets/img/menu.png';
+import bellWeb from '../../../assets/img/bx-bell-web.png';
+import bellMobile from '../../../assets/img/bx-bell-mobile.png';
+import circle from '../../../assets/img/bxs-circle.png';
 
-function NavbarHome({ logout }) {
+function NavbarHome({ logout,email,user }) {
 
     const [width, setWidth] = useState(window.innerWidth);
       
@@ -29,31 +32,51 @@ function NavbarHome({ logout }) {
       {width > 1200  
         ? <div className='home-container-navbar'>
             <div className='home-navbar-flex-container'>
-              <div className="dropdown">
+
+              <div className='home-navbar-position'>
+                <div className="dropdown">
                   <p id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" className='home-navbar-tiltle'>
-                    nagetrans@gmail.com <img src={arrow} alt='icono de la flecha' /> 
+                    <img className='home-navbar-img-circle' src={circle} alt='' />
+                    <img className='home-navbar-img-bell' src={bellWeb} alt='' />
+                  </p>
+                  <div className="dropdown-menu dropdown-menu-bell" aria-labelledby="dropdownMenuButton">
+
+                    <div>
+                    </div>       
+
+                  </div>
+                </div>
+
+                <div className="dropdown">
+                  <p id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" className='home-navbar-tiltle'>
+                    {email} <img src={arrow} alt='icono de la flecha' /> 
                   </p>
                   <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <div className='home-logout-container-img form-group'>
-                      <img className='home-logout-img' src={logo} alt='logo de nagetrans' />
+                    <div className='form-group center-text'>
+                      <p className='home-logout-title-email'>{email}</p>
                     </div>
                     <div className='form-group center-text'>
-                      <p className='home-logout-title-email'>nagetrans@gmail.com</p>
-                    </div>
-                    <div className='form-group center-text'>
-                      <p className='home-logout-title-user'>SWT2222</p>
+                      <p className='home-logout-title-user'>{user}</p>
                     </div>
                     <div className='form-group center-text'>
                       <button onClick={logout} className='home-logout-button' type='button' >Cerrar session</button>
                     </div>
                   </div>
+                </div>
+
               </div>
+
             </div>
           </div> 
         : <div className='home-mobile-container-navbar'>
             <div className='home-mobile-navbar-flex-container'>
               <img onClick={open} className='home-mobile-navbar-menu' src={menu} alt='imagen del menu' />
-              <img className='home-mobile-navbar-logo' src={logo} alt='logo de nagetrans' />
+
+                <div>
+                  <img className='home-navbar-img-circle' src={circle} alt='' />
+                  <img className='home-navbar-img-bell' src={bellMobile} alt='' />
+                </div>
+              
             </div>
           </div>
     }
