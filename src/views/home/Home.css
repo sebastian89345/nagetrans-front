@@ -81,12 +81,9 @@
 @media (max-width: 1200px) { 
   
   .home-mobile-container {
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
     background-color: #D9D9D9;
     width: 100%;
-    height: 90%;
+    /* height: 90%; */
   }
 
   .home-sidebar-container-close-img {

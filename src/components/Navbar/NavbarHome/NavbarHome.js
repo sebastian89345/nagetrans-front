@@ -72,10 +72,10 @@ function NavbarHome({ logout,email,user }) {
             <div className='home-mobile-navbar-flex-container'>
               <img onClick={open} className='home-mobile-navbar-menu' src={menu} alt='imagen del menu' />
 
-                <div>
-                  <img className='home-navbar-img-circle' src={circle} alt='' />
-                  <img className='home-navbar-img-bell' src={bellMobile} alt='' />
-                </div>
+              <div>
+                <img className='home-navbar-img-circle' src={circle} alt='' />
+                <img className='home-navbar-img-bell' src={bellMobile} alt='' />
+              </div>
               
             </div>
           </div>
