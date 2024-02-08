@@ -2,10 +2,10 @@ import axios from 'axios';
 import config from "../constant/services.json";
 import { GET_LISTCHECK_ID,GET_LISTCHECK_ALL } from '../constant/constant';
 
-export const getListCheckAIdService = () => async (dispatch, getState) => {
+export const getListCheckAIdService = (id) => async (dispatch, getState) => {
     try {
-        const res = await axios.get(config.urlProd+config.listCheck.urlListCheck);
-        // console.log(res);
+        const res = await axios.get(config.urlProd+config.listCheck.urlListCheck+id);
+        console.log(res);
         let result = res.data.response.response;
         if (res.data.response.status === 200) {
             dispatch({

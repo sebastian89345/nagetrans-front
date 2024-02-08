@@ -20,7 +20,7 @@ import { getListCheckAllService , deleteListCheckService  } from "../../../store
 import Swal from 'sweetalert2';
 
 // pdf-lib
-import { PDFDocument, StandardFonts, rgb } from 'pdf-lib';
+import { PDFDocument, rgb } from 'pdf-lib';
 
 //dowland
 import download  from 'downloadjs';
@@ -33,13 +33,13 @@ function List() {
   const [view, setView] = useState({list:true,create:false,update:false});
   const [infoUpdate, setInfoUpdate] = useState({});
   const dataList = useSelector((store) => store.listCheckReducer);
-  const dispatch = useDispatch();
-
+  
   const [opcionPreoperacional, setOpcionPreoperacional] = useState([]);
   const [opcionSelectPreoperacional, setOpcionSelectPreoperacional] = useState('');
   const [inputstartLicense, setInputstartLicense] = useState("");
   const [dowmlandPdfDiary, setDowmlandPdfDiary] = useState([]);
   // const [dowmlandPdfMonthly, setDowmlandPdfMonthly] = useState([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setOpcionPreoperacional([{value:"Preoperacional diaria"},{value:"Preoperacional mensual"}])
@@ -49,6 +49,25 @@ function List() {
   useEffect(() => {
     dispatch(getListCheckAllService());
   }, [dispatch])
+
+  useEffect(() => {
+    const resultadosFiltrados = dataList.data;
+    // Ordena la matriz de objetos según la fecha
+    resultadosFiltrados.sort(function(a, b) {
+      // Convierte las cadenas de fecha en objetos de fecha para comparar
+      var dateA = parseDate(a.date);
+      var dateB = parseDate(b.date);
+      // Compara las fechas
+      return dateB - dateA; // De mayor a menor
+    });
+  }, [dataList])
+  
+  // Función para convertir una cadena de fecha en un objeto Date
+  function parseDate(str) {
+    var parts = str.split(/[- :]/);
+    // Asegúrate de usar el formato adecuado para el objeto Date
+    return new Date(parts[2], parts[1] - 1, parts[0], parts[3], parts[4]);
+  }
 
   //Esto es para actulizar la lista en el create y update y nada mas
   const getAll = () => {
@@ -148,7 +167,7 @@ function List() {
     const pdfDoc = await PDFDocument.load(pdf);
 
     const page = pdfDoc.getPage(0);
-    const { width, height } = page.getSize();
+    const { height } = page.getSize();
 
     // nit
     page.drawText('901158731-3', {

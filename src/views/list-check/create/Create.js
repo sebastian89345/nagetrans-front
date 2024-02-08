@@ -8,7 +8,7 @@ import {  useSelector,useDispatch } from "react-redux";
 
 //Actions
 import { getUserAllService } from "../../../store/action/userAction";
-import { createListCheckService } from "../../../store/action/listCheckAction";
+import { getListCheckAllService,createListCheckService } from "../../../store/action/listCheckAction";
 
 //id de los roles
 import roleService from '../../../libs/helpers/role.json';
@@ -19,6 +19,8 @@ import Swal from 'sweetalert2';
 function Create() {
 
   const { conductor } = roleService;
+  const [runEffect, setRunEffect] = useState(false);
+  const [createListCheck, setCreateListCheck] = useState(false);
   const [opcionUser, setOpcionUser] = useState([]);
   const [userVehicle, setUserVehicle] = useState([]);
   const [opcionSelectUser, setOpcionSelectUser] = useState('');
@@ -76,22 +78,88 @@ function Create() {
   const [errorCurrentKm, setErrorCurrentKm] = useState("");
   const dataListUser = useSelector((store) => store.userReducer);
   const dataListLogin = useSelector((store) => store.loginReducer);
+  const dataListListCheck = useSelector((store) => store.listCheckReducer);
   const dispatch = useDispatch();
   
   useEffect(() => {
     try {
       dispatch(getUserAllService())
+      dispatch(getListCheckAllService())
     } catch (error) {
       console.log(error);
     }
   }, [dispatch])
 
+  //valida si el vehiculo ya registro una lista de chequeo el dia actual
+  useEffect(() => {
+    try {
+      const resultadosFiltrados = dataListListCheck.data.filter(objeto => objeto.userVehicle[0]._id === dataListLogin.data.response.data._id);
+
+      if(resultadosFiltrados.length > 0 && runEffect !== true) {
+        // Ordena la matriz de objetos según la fecha
+        resultadosFiltrados.sort(function(a, b) {
+          // Convierte las cadenas de fecha en objetos de fecha para comparar
+          let dateA = parseDate(a.date);
+          let dateB = parseDate(b.date);
+          // Compara las fechas
+          return dateB - dateA; // De mayor a menor
+        });
+
+        // Compara la fecha de la ultima lista de chequeo de este usuario y la fecha actual
+        let dateNow = date();
+        let dates = setSpace(resultadosFiltrados[0].date);
+
+        if (dates[0] === dateNow) {
+          Swal.fire({
+            title: "Preoperacional ya realizada!",
+            text: "Este vehiculo , ya realizo su lista del día",
+            icon: "warning"
+          });
+          setCreateListCheck(false);
+        } else {
+          setCreateListCheck(true);
+        }
+
+        setRunEffect(true);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, [dataListListCheck,dataListLogin,runEffect])
+  
+  // Carga las otras listas
   useEffect(() => {
     let resultadosFiltrados = dataListUser.data.filter(objeto => objeto.role[0]._id === conductor && objeto.show === "Si");
     setOpcionUser(resultadosFiltrados);
     setUserVehicle(dataListLogin.data.response.data._id);
   }, [dataListLogin,dataListUser,conductor])
-  
+
+  const date = () => {
+    // Obtener la fecha actual
+    const fechaActual = new Date();
+
+    // Formatear manualmente la fecha según el formato deseado
+    const year = fechaActual.getFullYear();
+    const month = (fechaActual.getMonth() + 1).toString().padStart(2, '0'); // Los meses son indexados desde 0
+    const day = fechaActual.getDate().toString().padStart(2, '0');
+
+    const fechaFormateada = `${day}-${month}-${year}`;
+    return fechaFormateada;
+  }
+
+  // Función para convertir una cadena de fecha en un objeto Date
+  const parseDate = (str) => {
+    let parts = str.split(/[- :]/);
+    // Asegúrate de usar el formato adecuado para el objeto Date
+    return new Date(parts[2], parts[1] - 1, parts[0], parts[3], parts[4]);
+  }
+
+  // Función para separar una cadena por espacios
+  const setSpace = (str) => {
+    let parts = str.split(/[ ]/);
+    return parts
+  }
+
   const resetInput = () => {
     //revision Interna
     setWiperWasher(false);
@@ -212,7 +280,11 @@ function Create() {
     const month = (fechaActual.getMonth() + 1).toString().padStart(2, '0'); // Los meses son indexados desde 0
     const day = fechaActual.getDate().toString().padStart(2, '0');
 
-    const fechaFormateada = `${year}-${month}-${day}`;
+    // Obtener la hora actual en Colombia
+    const options = { timeZone: 'America/Bogota', hour12: true, hour: 'numeric', minute: 'numeric' };
+    const horaActual = fechaActual.toLocaleTimeString('en-US', options);
+
+    const fechaFormateada = `${day}-${month}-${year} ${horaActual}`;
     return fechaFormateada;
   }
 
@@ -279,49 +351,59 @@ function Create() {
   }
 
   const create = async () => {
-    let dateNows = dateNow();
-    let validates = validate();
-    if (validates) {
-      let setChangeToogles = setChangeToogle();
-      let body = { 
-        userVehicle:userVehicle,
-        userDriver:opcionSelectUser,
-        date:dateNows,
-        oilChange:oilChange,
-        currentKm:currentKm,
-        dateExtinguisherExpiration:dateExtinguisherExpiration,
-        observation:observation,
-    }
-      const objetoCombinado = { ...body, ...setChangeToogles };
-      let response = await dispatch(createListCheckService(objetoCombinado));
-      if(response.error === undefined){
-        switch (response.response.status) {
-          case 201:
-              resetInput();
-              Swal.fire({
-                title: "Creado!",
-                text: "Fue creado con exito",
-                icon: "success"
-              });
-            break;
-          default:
-              console.log(response.response);
-              Swal.fire({
-                title: "Error!",
-                text: "Ocurrio un error al crearlo",
-                icon: "error"
-              });
-            break;
-        }
-      } else {
-        console.log(response.error);
-        Swal.fire({
-          title: "Error!",
-          text: "Eror al crearlo",
-          icon: "error"
-        });
+    if(createListCheck === true){
+      let dateNows = dateNow();
+      let validates = validate();
+      if (validates) {
+        let setChangeToogles = setChangeToogle();
+        let body = { 
+          userVehicle:userVehicle,
+          userDriver:opcionSelectUser,
+          date:dateNows,
+          oilChange:oilChange,
+          currentKm:currentKm,
+          dateExtinguisherExpiration:dateExtinguisherExpiration,
+          observation:observation,
       }
+        const objetoCombinado = { ...body, ...setChangeToogles };
+        let response = await dispatch(createListCheckService(objetoCombinado));
+        if(response.error === undefined){
+          switch (response.response.status) {
+            case 201:
+                resetInput();
+                setCreateListCheck(false);
+                Swal.fire({
+                  title: "Creado!",
+                  text: "Fue creado con exito",
+                  icon: "success"
+                });
+              break;
+            default:
+                console.log(response.response);
+                Swal.fire({
+                  title: "Error!",
+                  text: "Ocurrio un error al crearlo",
+                  icon: "error"
+                });
+              break;
+          }
+        } else {
+          console.log(response.error);
+          Swal.fire({
+            title: "Error!",
+            text: "Eror al crearlo",
+            icon: "error"
+          });
+        }
+      }
+    } else {
+      Swal.fire({
+        title: "Preoperacional ya realizada!",
+        text: "Este vehiculo , ya realizo su lista del día",
+        icon: "warning"
+      });
     }
+    
   }
 
   return (
