@@ -49,13 +49,6 @@ function Home() {
     const dataListLogin = useSelector((store) => store.loginReducer);
     const navigate = useNavigate();
 
-    useEffect(() => {
-      const handleResize = () => {
-        setWidth(window.innerWidth);
-      };
-      window.addEventListener('resize', handleResize);
-    }, [width])
-
     const [changeColor, setChangeColor] = useState([
       { name:"listCheck", list:false, buttons:"", icon:"" },
       { name:"user", list:false, buttons:"", icon:"" },
@@ -73,6 +66,35 @@ function Home() {
       { name:"listCheckVehicle",list:false,buttons:"", icon:"" }
     ]); 
 
+    useEffect(() => {
+      const handleResize = () => {
+        setWidth(window.innerWidth);
+      };
+      window.addEventListener('resize', handleResize);
+    }, [width])
+
+    //open list check
+    useEffect(() => {
+      if (dataListLogin.data.response.data.role[0]._id === vehiculo) {
+        setChangeColor([
+          { name:"listCheck", list:false, buttons:"", icon:"" },
+          { name:"user", list:false, buttons:"", icon:"" },
+          { name:"documentVehicle", list:false, buttons:"", icon:"" },
+          { name:"documentDriver", list:false, buttons:"", icon:"" },
+          { name:"role", list:false, buttons:"", icon:"" },
+          { name:"status", list:false, buttons:"", icon:"" },
+          { name:"brand", list:false, buttons:"", icon:"" },
+          { name:"model", list:false, buttons:"", icon:"" },
+          { name:"type", list:false, buttons:"", icon:"" },
+          { name:"arl",list:false,buttons:"", icon:"" },
+          { name:"afp",list:false,buttons:"", icon:"" },
+          { name:"eps",list:false,buttons:"", icon:"" },
+          { name:"compensationBox",list:false,buttons:"", icon:"" },
+          { name:"listCheckVehicle",list:true,buttons:"", icon:"" }
+        ])
+      }
+    }, [dataListLogin,vehiculo])
+    
     const closeSidebar = () => {
       const offcanvasModal = document.getElementById('offcanvasModal');
       offcanvasModal.style.left = '-300px';
@@ -186,6 +208,9 @@ function Home() {
           <>
             <button name={changeColor[13].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[13].buttons}  mb-1`}>
               <img className={`home-sidebar-icon ${changeColor[13].icon}`} src={iconTask} alt='nose' /> Lista de chequeo
+            </button>
+            <button name={changeColor[2].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[2].buttons} mb-1`}>
+                <img className={`home-sidebar-icon ${changeColor[2].icon}`} src={iconSheet} alt='nose' /> Papeles vehiculo
             </button>
           </>
         </> 

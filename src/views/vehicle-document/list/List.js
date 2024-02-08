@@ -19,11 +19,17 @@ import { getVehicleDocumentAllService , deleteVehicleDocumentService  } from "..
 //Alertas 
 import Swal from 'sweetalert2';
 
+//Roles existentes
+import roleService from '../../../libs/helpers/role.json'
+
 function List() {
+
+  const { adminstrador } = roleService;
   const [view, setView] = useState({list:true,create:false,update:false});
   const [infoUpdate, setInfoUpdate] = useState({});
   const [dataListDriver, setDataListDriver] = useState([]);
   const dataList = useSelector((store) => store.vehicleDocumentReducer);
+  const dataListLogin = useSelector((store) => store.loginReducer);
   const dispatch = useDispatch();
 
   //Aqui hago la consulta a la base de datos y la agrego el payload al redux
@@ -42,23 +48,40 @@ function List() {
   }
 
   const handleCreate = () => {
-    setView({list:false,create:true})
+    if (dataListLogin.data.response.data.role[0]._id === adminstrador) {
+      setView({list:false,create:true})
+    } else {
+      Swal.fire({
+        title: "Acceso denegado!",
+        text: "Acceso no autorizado, para crear un nuevo documento",
+        icon: "warning"
+      });
+    }
   }
 
   const deleteInfo = (id) => {
-     Swal.fire({
-      title: "¿ Estas seguro de eliminarlo ?",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      cancelButtonText: "Cancelar",
-      confirmButtonText: "Si, eliminar!"
-    }).then((result) => {
-      if (result.isConfirmed) {
-        alertDelete(id);
-      }
-    });
+    if (dataListLogin.data.response.data.role[0]._id === adminstrador) {
+      Swal.fire({
+        title: "¿ Estas seguro de eliminarlo ?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        cancelButtonText: "Cancelar",
+        confirmButtonText: "Si, eliminar!"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          alertDelete(id);
+        }
+      });
+    } else {
+      Swal.fire({
+        title: "Acceso denegado!",
+        text: "Acceso no autorizado, para eliminar este documento",
+        icon: "warning"
+      });
+    }
+    
   }
 
   const alertDelete = async (id) => {
@@ -98,6 +121,15 @@ function List() {
     setView({list:false,update:true})
   }
 
+  const selectList = () => {
+    if (dataListLogin.data.response.data.role[0]._id === adminstrador) {
+      return <DefaultTable data={dataListDriver} nms={"vehicleDocument"} deleteId={deleteInfo} updateId={updateInfo} />
+    } else {
+      let resultadosFiltrados = dataList.data.filter(objeto => objeto.users[0]._id === dataListLogin.data.response.data._id);
+      return <DefaultTable data={resultadosFiltrados} nms={"vehicleDocument"} deleteId={deleteInfo} updateId={updateInfo} />
+    }
+  }
+
   return (
     <div className='list-vehicleDocument-main'>
       { view.list === true ?
@@ -105,7 +137,7 @@ function List() {
           <div className='list-vehicleDocument-main-button'>
             <button onClick={handleCreate} type="button" className="list-vehicleDocument-button-title btn btn-primary">Crear</button>
           </div> 
-          <DefaultTable data={dataListDriver} nms={"vehicleDocument"} deleteId={deleteInfo} updateId={updateInfo} />
+          {selectList()}
         </>
         : view.create === true ?
           <Create setView={setView} getAll={getAll} />
