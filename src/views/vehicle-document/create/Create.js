@@ -354,6 +354,16 @@ function Create({ setView,getAll }) {
     return isValid;
   };
 
+  // Función para formatear la fecha al formato dd/mm/año
+  const formatDate = (date) => {
+    const d = new Date(date);
+    const day = d.getDate() + 1;
+    const month = d.getMonth() + 1;
+    const year = d.getFullYear();
+    // console.log(`${day < 10 ? '0' + day : day}/${month < 10 ? '0' + month : month}/${year}`);
+    return `${day < 10 ? '0' + day : day}-${month < 10 ? '0' + month : month}-${year}`;
+  };
+
   const create = async () => {
     let validates = validate();
     if (validates) {
@@ -367,20 +377,20 @@ function Create({ setView,getAll }) {
         sureRccece:opcionSelectSureRccece, 
         extract:opcionSelectExtract, 
         preventiveReview:opcionSelectPreventiveReview, 
-        dateStartSoat:inputDateStartSoat,
-        dateStartMechanicalTechnician:inputDateStartMechanicalTechnician,
-        dateStartCardOperations:inputDateStartCardOperations,
-        dateStartCardProperties:inputDateStartCardProperties,
-        dateStartSureRccece:inputDateStartSureRccece,
-        dateStartExtract:inputDateStartExtract,
-        dateStartPreventiveReview:inputDateStartPreventiveReview,
-        dateExpirationSoat:inputDateExpirationSoat,
-        dateExpirationMechanicalTechnician:inputDateExpirationMechanicalTechnician,
-        dateExpirationCardOperations:inputDateExpirationCardOperations,
-        dateExpirationCardProperties:inputDateExpirationCardProperties,
-        dateExpirationSureRccece:inputDateExpirationSureRccece,
-        dateExpirationExtract:inputDateExpirationExtract,
-        dateExpirationPreventiveReview:inputDateExpirationPreventiveReview
+        dateStartSoat:formatDate(inputDateStartSoat),
+        dateStartMechanicalTechnician:formatDate(inputDateStartMechanicalTechnician),
+        dateStartCardOperations:formatDate(inputDateStartCardOperations),
+        dateStartCardProperties:formatDate(inputDateStartCardProperties),
+        dateStartSureRccece:formatDate(inputDateStartSureRccece),
+        dateStartExtract:formatDate(inputDateStartExtract),
+        dateStartPreventiveReview:formatDate(inputDateStartPreventiveReview),
+        dateExpirationSoat:formatDate(inputDateExpirationSoat),
+        dateExpirationMechanicalTechnician:formatDate(inputDateExpirationMechanicalTechnician),
+        dateExpirationCardOperations:formatDate(inputDateExpirationCardOperations),
+        dateExpirationCardProperties:formatDate(inputDateExpirationCardProperties),
+        dateExpirationSureRccece:formatDate(inputDateExpirationSureRccece),
+        dateExpirationExtract:formatDate(inputDateExpirationExtract),
+        dateExpirationPreventiveReview:formatDate(inputDateExpirationPreventiveReview)
       }
       let response = await dispatch(createVehicleDocumentService(body));
       if(response.error === undefined){

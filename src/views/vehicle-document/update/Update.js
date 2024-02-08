@@ -98,31 +98,41 @@ function Update({ infoUpdate,setView,getAll }) {
   }, [dataListUser,vehiculo])
   
   useEffect(() => {
-    setOpcionSelectUser(infoUpdate.item.users[0]._id);
-    setOpcionSelectSoat(infoUpdate.item.soat);
-    setOpcionSelectMechanicalTechnician(infoUpdate.item.mechanicalTechnician);
-    setOpcionSelectOperationsCard(infoUpdate.item.operationsCard);
-    setOpcionSelectPropertyCards(infoUpdate.item.propertyCards);
-    setOpcionSelectSureRccece(infoUpdate.item.sureRccece);
-    setOpcionSelectExtract(infoUpdate.item.extract);
-    setOpcionSelectPreventiveReview(infoUpdate.item.preventiveReview);
-    setInputDateStartSoat(infoUpdate.item.dateStartSoat);
-    setInputDateStartMechanicalTechnician(infoUpdate.item.dateStartMechanicalTechnician);
-    setInputDateStartCardOperations(infoUpdate.item.dateStartCardOperations);
-    setInputDateStartCardProperties(infoUpdate.item.dateStartCardProperties);
-    setInputDateStartSureRccece(infoUpdate.item.dateStartSureRccece);
-    setInputDateStartExtract(infoUpdate.item.dateStartExtract);
-    setInputDateStartPreventiveReview(infoUpdate.item.dateStartPreventiveReview);
-    setInputDateExpirationSoat(infoUpdate.item.dateExpirationSoat);
-    setInputDateExpirationMechanicalTechnician(infoUpdate.item.dateExpirationMechanicalTechnician);
-    setInputDateExpirationCardOperations(infoUpdate.item.dateExpirationCardOperations);
-    setInputDateExpirationCardProperties(infoUpdate.item.dateExpirationCardProperties);
-    setInputDateExpirationSureRccece(infoUpdate.item.dateExpirationSureRccece);
-    setInputDateExpirationExtract(infoUpdate.item.dateExpirationExtract);
-    setInputDateExpirationPreventiveReview(infoUpdate.item.dateExpirationPreventiveReview);
-    //eslint-disable-next-line
-  }, [])
+      setOpcionSelectUser(infoUpdate.item.users[0]._id);
+      setOpcionSelectSoat(infoUpdate.item.soat);
+      setOpcionSelectMechanicalTechnician(infoUpdate.item.mechanicalTechnician);
+      setOpcionSelectOperationsCard(infoUpdate.item.operationsCard);
+      setOpcionSelectPropertyCards(infoUpdate.item.propertyCards);
+      setOpcionSelectSureRccece(infoUpdate.item.sureRccece);
+      setOpcionSelectExtract(infoUpdate.item.extract);
+      setOpcionSelectPreventiveReview(infoUpdate.item.preventiveReview);
+      setInputDateStartSoat(formatDate(infoUpdate.item.dateStartSoat));
+      setInputDateStartMechanicalTechnician(formatDate(infoUpdate.item.dateStartMechanicalTechnician));
+      setInputDateStartCardOperations(formatDate(infoUpdate.item.dateStartCardOperations));
+      setInputDateStartCardProperties(formatDate(infoUpdate.item.dateStartCardProperties));
+      setInputDateStartSureRccece(formatDate(infoUpdate.item.dateStartSureRccece));
+      setInputDateStartExtract(formatDate(infoUpdate.item.dateStartExtract));
+      setInputDateStartPreventiveReview(formatDate(infoUpdate.item.dateStartPreventiveReview));
+      setInputDateExpirationSoat(formatDate(infoUpdate.item.dateExpirationSoat));
+      setInputDateExpirationMechanicalTechnician(formatDate(infoUpdate.item.dateExpirationMechanicalTechnician));
+      setInputDateExpirationCardOperations(formatDate(infoUpdate.item.dateExpirationCardOperations));
+      setInputDateExpirationCardProperties(formatDate(infoUpdate.item.dateExpirationCardProperties));
+      setInputDateExpirationSureRccece(formatDate(infoUpdate.item.dateExpirationSureRccece));
+      setInputDateExpirationExtract(formatDate(infoUpdate.item.dateExpirationExtract));
+      setInputDateExpirationPreventiveReview(formatDate(infoUpdate.item.dateExpirationPreventiveReview));
+  }, [infoUpdate])
   
+  // Función para formatear la fecha al formato yyyy-mm-dd
+  const formatDate = (date) => {
+    let result = date.split('-');
+    let day = result[0];
+    let month = result[1];
+    let year = result[2];
+    let dates = year+"-"+month+"-"+day
+    // console.log(year+"-"+month+"-"+day);
+    return dates
+  };
+
   const returnWindow = () => {
     setView({list:true});
     getAll();
@@ -327,6 +337,16 @@ function Update({ infoUpdate,setView,getAll }) {
     return isValid;
   };
 
+  // Función para formatear la fecha al formato dd-mm-yyyy
+  const formatDates = (date) => {
+    const d = new Date(date);
+    const day = d.getDate() + 1;
+    const month = d.getMonth() + 1;
+    const year = d.getFullYear();
+    // console.log(`${day < 10 ? '0' + day : day}/${month < 10 ? '0' + month : month}/${year}`);
+    return `${day < 10 ? '0' + day : day}-${month < 10 ? '0' + month : month}-${year}`;
+  };
+
   const edit = async () => {
     let validates = validate();
     if(validates) { 
@@ -340,20 +360,20 @@ function Update({ infoUpdate,setView,getAll }) {
           sureRccece:opcionSelectSureRccece, 
           extract:opcionSelectExtract, 
           preventiveReview:opcionSelectPreventiveReview, 
-          dateStartSoat:inputDateStartSoat,
-          dateStartMechanicalTechnician:inputDateStartMechanicalTechnician,
-          dateStartCardOperations:inputDateStartCardOperations,
-          dateStartCardProperties:inputDateStartCardProperties,
-          dateStartSureRccece:inputDateStartSureRccece,
-          dateStartExtract:inputDateStartExtract,
-          dateStartPreventiveReview:inputDateStartPreventiveReview,
-          dateExpirationSoat:inputDateExpirationSoat,
-          dateExpirationMechanicalTechnician:inputDateExpirationMechanicalTechnician,
-          dateExpirationCardOperations:inputDateExpirationCardOperations,
-          dateExpirationCardProperties:inputDateExpirationCardProperties,
-          dateExpirationSureRccece:inputDateExpirationSureRccece,
-          dateExpirationExtract:inputDateExpirationExtract,
-          dateExpirationPreventiveReview:inputDateExpirationPreventiveReview 
+          dateStartSoat:formatDates(inputDateStartSoat),
+          dateStartMechanicalTechnician:formatDates(inputDateStartMechanicalTechnician),
+          dateStartCardOperations:formatDates(inputDateStartCardOperations),
+          dateStartCardProperties:formatDates(inputDateStartCardProperties),
+          dateStartSureRccece:formatDates(inputDateStartSureRccece),
+          dateStartExtract:formatDates(inputDateStartExtract),
+          dateStartPreventiveReview:formatDates(inputDateStartPreventiveReview),
+          dateExpirationSoat:formatDates(inputDateExpirationSoat),
+          dateExpirationMechanicalTechnician:formatDates(inputDateExpirationMechanicalTechnician),
+          dateExpirationCardOperations:formatDates(inputDateExpirationCardOperations),
+          dateExpirationCardProperties:formatDates(inputDateExpirationCardProperties),
+          dateExpirationSureRccece:formatDates(inputDateExpirationSureRccece),
+          dateExpirationExtract:formatDates(inputDateExpirationExtract),
+          dateExpirationPreventiveReview:formatDates(inputDateExpirationPreventiveReview)
         }
         let response = await dispatch(updateVehicleDocumentService(body));
         if(response.error === undefined){

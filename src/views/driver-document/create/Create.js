@@ -198,6 +198,16 @@ function Create({ setView,getAll }) {
     return isValid;
   };
 
+  // Función para formatear la fecha al formato dd/mm/año
+  const formatDate = (date) => {
+    const d = new Date(date);
+    const day = d.getDate() + 1;
+    const month = d.getMonth() + 1;
+    const year = d.getFullYear();
+    // console.log(`${day < 10 ? '0' + day : day}/${month < 10 ? '0' + month : month}/${year}`);
+    return `${day < 10 ? '0' + day : day}-${month < 10 ? '0' + month : month}-${year}`;
+  };
+
   const create = async () => {
     let validates = validate();
     if (validates) {
@@ -205,8 +215,8 @@ function Create({ setView,getAll }) {
       let body = { 
         users:opcionSelectUser,
         numberLicense:inputnumberLicense,
-        startLicense:inputstartLicense,
-        expirationLicense:inputExpirationLicense,
+        startLicense:formatDate(inputstartLicense),
+        expirationLicense:formatDate(inputExpirationLicense),
         arl:opcionSelectArl,afp:opcionSelectAfp,
         eps:opcionSelectEps,
         compesationBox:opcionSelectCompensationBox 

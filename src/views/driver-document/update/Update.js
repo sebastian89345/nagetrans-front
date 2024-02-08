@@ -79,8 +79,8 @@ function Update({ infoUpdate,setView,getAll }) {
   useEffect(() => {
     setOpcionSelectUser(infoUpdate.item.users[0]._id);
     setInputnumberLicense(infoUpdate.item.numberLicense);
-    setInputstartLicense(infoUpdate.item.startLicense);
-    setInputExpirationLicense(infoUpdate.item.expirationLicense);
+    setInputstartLicense(formatDate(infoUpdate.item.startLicense));
+    setInputExpirationLicense(formatDate(infoUpdate.item.expirationLicense));
     setOpcionSelectArl(infoUpdate.item.arl[0]._id);
     setOpcionSelectAfp(infoUpdate.item.afp[0]._id);
     setOpcionSelectEps(infoUpdate.item.eps[0]._id);
@@ -88,6 +88,17 @@ function Update({ infoUpdate,setView,getAll }) {
     //eslint-disable-next-line
   }, [])
   
+  // Función para formatear la fecha al formato yyyy-mm-dd
+  const formatDate = (date) => {
+    let result = date.split('-');
+    let day = result[0];
+    let month = result[1];
+    let year = result[2];
+    let dates = year+"-"+month+"-"+day
+    // console.log(year+"-"+month+"-"+day);
+    return dates
+  };
+
   const returnWindow = () => {
     setView({list:true});
     getAll();
@@ -187,6 +198,16 @@ function Update({ infoUpdate,setView,getAll }) {
     return isValid;
   };
 
+  // Función para formatear la fecha al formato dd-mm-yyyy
+  const formatDates = (date) => {
+    const d = new Date(date);
+    const day = d.getDate() + 1;
+    const month = d.getMonth() + 1;
+    const year = d.getFullYear();
+    // console.log(`${day < 10 ? '0' + day : day}/${month < 10 ? '0' + month : month}/${year}`);
+    return `${day < 10 ? '0' + day : day}-${month < 10 ? '0' + month : month}-${year}`;
+  };
+
   const edit = async () => {
     let validates = validate();
     if(validates) { 
@@ -194,8 +215,8 @@ function Update({ infoUpdate,setView,getAll }) {
           id:infoUpdate.item._id,
           users:opcionSelectUser,
           numberLicense:inputnumberLicense,
-          startLicense:inputstartLicense,
-          expirationLicense:inputExpirationLicense,
+          startLicense:formatDates(inputstartLicense),
+          expirationLicense:formatDates(inputExpirationLicense),
           arl:opcionSelectArl,afp:opcionSelectAfp,
           eps:opcionSelectEps,
           compesationBox:opcionSelectCompensationBox 

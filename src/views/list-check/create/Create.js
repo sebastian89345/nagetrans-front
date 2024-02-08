@@ -20,7 +20,7 @@ function Create() {
 
   const { conductor } = roleService;
   const [runEffect, setRunEffect] = useState(false);
-  const [createListCheck, setCreateListCheck] = useState(false);
+  const [createListCheck, setCreateListCheck] = useState(true);
   const [opcionUser, setOpcionUser] = useState([]);
   const [userVehicle, setUserVehicle] = useState([]);
   const [opcionSelectUser, setOpcionSelectUser] = useState('');
@@ -93,9 +93,12 @@ function Create() {
   //valida si el vehiculo ya registro una lista de chequeo el dia actual
   useEffect(() => {
     try {
-      const resultadosFiltrados = dataListListCheck.data.filter(objeto => objeto.userVehicle[0]._id === dataListLogin.data.response.data._id);
 
-      if(resultadosFiltrados.length > 0 && runEffect !== true) {
+      if(dataListListCheck.length > 0 && runEffect !== true) {
+
+        //Realiza un filtro para la informacion
+        const resultadosFiltrados = dataListListCheck.data.filter(objeto => objeto.userVehicle[0]._id === dataListLogin.data.response.data._id);
+
         // Ordena la matriz de objetos según la fecha
         resultadosFiltrados.sort(function(a, b) {
           // Convierte las cadenas de fecha en objetos de fecha para comparar

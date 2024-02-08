@@ -601,7 +601,7 @@ function List() {
             opcionSelectPreoperacional === "Preoperacional diaria" ? 
               <>
                 <div>
-                  <button onClick={dowlandPdfDiary}>Descargar 1</button>
+                  <button type='button' className='btn btn-danger' onClick={dowlandPdfDiary}>Descargar</button>
                 </div>
               </> 
             : opcionSelectPreoperacional === "Preoperacional mensual" ? 
@@ -611,7 +611,7 @@ function List() {
                   <input value={inputstartLicense} onChange={(e) => setInputstartLicense(e.target.value)} type="date" className='list-listCheck-input-date form-control' />
                 </div>
                 <div>
-                  {/* <button onCanPlay={dowlandPdfMonthly}>Descargar 2</button> */}
+                  {/* <button type='button' className='btn btn-danger' onCanPlay={dowlandPdfMonthly}>Descargar</button> */}
                 </div>
               </> 
             : <></>
