@@ -354,7 +354,7 @@ function Create({ setView,getAll }) {
     return isValid;
   };
 
-  // Función para formatear la fecha al formato dd/mm/año
+  // Función para formatear la fecha al formato dd-mm-yyyy
   const formatDate = (date) => {
     const d = new Date(date);
     const day = d.getDate() + 1;

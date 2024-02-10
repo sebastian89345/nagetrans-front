@@ -16,7 +16,6 @@ import iconCar from '../../assets/img/bx-car.png';
 import iconCheckCircle from '../../assets/img/bx-check-circle.png';
 import iconAccordion from '../../assets/img/bx-align-left.png';
 
-
 //vistas 
 import ListUser from '../user/list/List';
 import ListRole from '../role/list/List';
@@ -40,14 +39,21 @@ import { useNavigate } from 'react-router-dom';
 import roleService from '../../libs/helpers/role.json';
 
 // Redux
-import {  useSelector } from "react-redux";
+import {  useSelector, useDispatch } from "react-redux";
+
+// actios
+import { getVehicleDocumentAllService } from '../../store/action/vehicleDocumentAction'
 
 function Home() {
 
     const { adminstrador,vehiculo } = roleService;
+    const [runEffects, setRunEffects] = useState(false);
+    const [newMtzVehicle, setNewMtzVehicle] = useState([]);
     const [width, setWidth] = useState(window.innerWidth);
     const dataListLogin = useSelector((store) => store.loginReducer);
+    const dataListVehicleDocument = useSelector((store) => store.vehicleDocumentReducer);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const [changeColor, setChangeColor] = useState([
       { name:"listCheck", list:false, buttons:"", icon:"" },
@@ -94,7 +100,75 @@ function Home() {
         ])
       }
     }, [dataListLogin,vehiculo])
+
+    //Aqui hago la peticion a los documentos del vehiculo 
+    useEffect(() => {
+      try {
+        dispatch(getVehicleDocumentAllService())
+      } catch (error) {
+        console.log(error);
+      }
+    }, [dispatch])
     
+    // Aqui hago la logica para las notificaciones
+    useEffect(() => {
+      if (dataListVehicleDocument.data.length > 0 && runEffects !== true) {
+        let resultadosFiltrados = dataListVehicleDocument.data.filter(objeto => objeto.users[0].show === "Si");
+        let newMtz = [];
+        for (let i = 0; i < resultadosFiltrados.length; i++) {
+
+          const element = resultadosFiltrados[i];
+          // console.log(element);
+          let obj = {};
+           
+          let expireSoat = formatDate(element.dateExpirationSoat);
+          let expirationMechanicalTechnician = formatDate(element.dateExpirationMechanicalTechnician);
+          let expirationCardOperations = formatDate(element.dateExpirationCardOperations);
+          let expirationCardProperties = formatDate(element.dateExpirationCardProperties);
+          let expirationSureRccece = formatDate(element.dateExpirationSureRccece);
+          let expirationExtract = formatDate(element.dateExpirationExtract);
+          let expirationPreventiveReview = formatDate(element.dateExpirationPreventiveReview);
+
+          if(expireSoat < 8) { obj.expireSoat = element.dateExpirationSoat }
+          if(expirationMechanicalTechnician < 8) { obj.expirationMechanicalTechnician = element.expirationMechanicalTechnician }
+          if(expirationCardOperations < 8) { obj.expirationCardOperations = element.dateExpirationCardOperations }
+          if(expirationCardProperties < 8) { obj.expirationCardProperties = element.dateExpirationCardProperties }
+          if(expirationSureRccece < 8) { obj.expirationSureRccece = element.dateExpirationSureRccece }
+          if(expirationExtract < 8) { obj.expirationExtract = element.dateExpirationExtract }
+          if(expirationPreventiveReview < 8) { obj.expirationPreventiveReview = element.dateExpirationPreventiveReview }
+          if (Object.keys(obj).length !== 0) { 
+            obj.placa = element.users[0].placa
+            newMtz.push(obj)
+          }
+          
+        }
+        setNewMtzVehicle(newMtz);
+        setRunEffects(true);
+      }
+    }, [dataListVehicleDocument,dataListLogin,runEffects])
+
+    // Función para formatear las fechas
+    const formatDate = (date) => {
+      //convierte las fechas a yyyy-mm-dd
+      let result = date.split('-');
+      let dayEx = result[0];
+      let monthEx = result[1];
+      let yearEx = result[2];
+      let dateEx = yearEx+"-"+monthEx+"-"+dayEx
+
+      //convierto y traigo la fecha actual
+      const dateExpire = new Date(dateEx);
+      const dateNow = new Date();
+
+      // Calcular la diferencia en milisegundos
+      let diferencia_ms = dateExpire - dateNow;
+
+      // Convertir la diferencia de milisegundos a días
+      let dias = Math.round(diferencia_ms / (1000 * 60 * 60 * 24));
+
+      return dias;
+    };
+
     const closeSidebar = () => {
       const offcanvasModal = document.getElementById('offcanvasModal');
       offcanvasModal.style.left = '-300px';
@@ -271,12 +345,12 @@ function Home() {
           </div>
         </div>
         <div className='home-fila1'>
-            <NavbarHome logout={logout} email={dataListLogin.data.response.data.email} user={dataListLogin.data.response.data.user} />
+            <NavbarHome logout={logout} email={dataListLogin.data.response.data.email} user={dataListLogin.data.response.data.user} dataNotification={newMtzVehicle} />
             {dashboards()}
         </div>
       </div> 
       : <>
-          <NavbarHome />
+          <NavbarHome email={dataListLogin.data.response.data.email} user={dataListLogin.data.response.data.user} dataNotification={newMtzVehicle} />
           <div className='home-mobile-container'>
             <div id="offcanvasModal" className="home-offcanvas-modal">
               <div className="home-offcanvas-content">

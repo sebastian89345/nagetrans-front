@@ -94,7 +94,7 @@ function Create() {
   useEffect(() => {
     try {
 
-      if(dataListListCheck.length > 0 && runEffect !== true) {
+      if(dataListListCheck.data.length > 0 && runEffect !== true) {
 
         //Realiza un filtro para la informacion
         const resultadosFiltrados = dataListListCheck.data.filter(objeto => objeto.userVehicle[0]._id === dataListLogin.data.response.data._id);
