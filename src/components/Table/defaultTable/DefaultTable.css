@@ -13,3 +13,7 @@
     font-size: 20px;
     font-family: 'poppins';
 }
+
+.DefaultTable-table-width{
+    min-width: 180px;
+}

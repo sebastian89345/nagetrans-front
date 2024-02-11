@@ -129,7 +129,7 @@ const DefaultTable = ({ data , nms , updateId , deleteId , selectCheck}) => {
         <td>{item.userDriver[0].dni}</td>
         <td>{item.currentKm}</td>
         <td>{item.oilChange}</td>
-        <td>{item.date}</td>
+        <td className='DefaultTable-table-width'>{item.date}</td>
       </>
 
   } else if (nms === "role" || nms === "status" || nms === "brand" || nms === "model" || nms === "type" || nms === "arl" || nms === "afp" || nms === "eps" || nms === "compensationBox") {

@@ -113,7 +113,14 @@ function Home() {
     // Aqui hago la logica para las notificaciones
     useEffect(() => {
       if (dataListVehicleDocument.data.length > 0 && runEffects !== true) {
-        let resultadosFiltrados = dataListVehicleDocument.data.filter(objeto => objeto.users[0].show === "Si");
+
+        let resultadosFiltrados;
+        if(dataListLogin.data.response.data.role[0]._id === adminstrador){
+          resultadosFiltrados = dataListVehicleDocument.data.filter(objeto => objeto.users[0].show === "Si");
+        } else {
+          resultadosFiltrados = dataListVehicleDocument.data.filter(objeto => objeto.users[0].show === "Si" && objeto.users[0]._id === dataListLogin.data.response.data._id);
+        }
+
         let newMtz = [];
         for (let i = 0; i < resultadosFiltrados.length; i++) {
 
@@ -145,7 +152,7 @@ function Home() {
         setNewMtzVehicle(newMtz);
         setRunEffects(true);
       }
-    }, [dataListVehicleDocument,dataListLogin,runEffects])
+    }, [dataListVehicleDocument,dataListLogin,runEffects,adminstrador])
 
     // Función para formatear las fechas
     const formatDate = (date) => {
