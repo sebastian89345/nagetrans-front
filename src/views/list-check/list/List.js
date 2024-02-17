@@ -28,7 +28,6 @@ import download  from 'downloadjs';
 //documentos
 import pdfDiary from '../../../docs/pdfDiary.pdf';
 
-
 function List() {
   const [view, setView] = useState({list:true,create:false,update:false});
   const [infoUpdate, setInfoUpdate] = useState({});

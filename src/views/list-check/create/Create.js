@@ -26,54 +26,97 @@ function Create() {
   const [opcionSelectUser, setOpcionSelectUser] = useState('');
   const [oilChange, setOilChange] = useState("");
   const [currentKm, setCurrentKm] = useState("");
-  const [dateExtinguisherExpiration, setDateExtinguisherExpiration] = useState("");
   const [observation, setObservation] = useState("");
-  //revision Interna
-  const [wiperWasher, setWiperWasher] = useState(false);
-  const [emergencyBrake, setEmergencyBrake] = useState(false);
+  //ESTADO DE PRESENTACIÓN
+  const [internalToilet, setInternalToilet] = useState(false);
+  const [externalToilet, setExternalToilet] = useState(false);
+  const [cans, setCans] = useState(false);
+  const [paint, setPaint] = useState(false);
+  //ESTADO DE COMODIDAD
+  const [airConditioning, setAirConditioning] = useState(false);
+  const [chairs, setChairs] = useState(false);
+  const [lighter, setLighter] = useState(false);
+  const [interiorOrCeilingLight, setInteriorOrCeilingLight] = useState(false);
+  //NIVELES Y PERDIDA DE LIQUIDOS
+  const [engineOilLevel, setEngineOilLevel] = useState(false);
+  const [brakeFluidLevel, setBrakeFluidLevel] = useState(false);
+  const [radiatorWaterLevel, setRadiatorWaterLevel] = useState(false);
+  const [batteryWaterLevel, setBatteryWaterLevel] = useState(false);
+  const [hydraulicOilLevel, setHydraulicOilLevel] = useState(false);
+  const [acpmLeaks, setAcpmLeaks] = useState(false);
+  const [waterLeaks, setWaterLeaks] = useState(false);
+  const [transmissionOilLeaks, setTransmissionOilLeaks] = useState(false);
+  const [boxOilLeak, setBoxOilLeak] = useState(false);
+  const [brakeFluidLeaks, setBrakeFluidLeaks] = useState(false);
+  //TABLERO DE CONTROL
+  const [tableLight, setTableLight] = useState(false);
+  const [fuelLevel, setFuelLevel] = useState(false);
+  const [odometer, setOdometer] = useState(false);
   const [whistle, setWhistle] = useState(false);
-  const [safetyBelts, setSafetyBelts] = useState(false);
-  const [glassLifter, setGlassLifter] = useState(false);
-  const [lightning, setLightning] = useState(false);
-  //Revisión Externa
-  const [directionals, setDirectionals] = useState(false);
-  const [stationary, setStationary] = useState(false);
+  const [tachometer, setTachometer] = useState(false);
+  const [speedometer, setSpeedometer] = useState(false);
+  const [oilIndicator, setOilIndicator] = useState(false);
+  const [temperatureIndicator, setTemperatureIndicator] = useState(false);
+  //SEGURIDAD PASIVA
+  const [seatBelts, setSeatBelts] = useState(false);
+  const [airbags, setAirbags] = useState(false);
+  const [crystals, setCrystals] = useState(false);
+  const [headrest, setHeadrest] = useState(false);
+  const [mirrorStatus, setMirrorStatus] = useState(false);
+  const [rightSideMirror, setRightSideMirror] = useState(false);
+  const [leftSideMirror, setLeftSideMirror] = useState(false);
+  const [rearViewMirror, setRearViewMirror] = useState(false);
+  //SEGURIDAD ACTIVA
+  const [addressStatus, setAddressStatus] = useState(false);
+  const [frontSuspensionCondition, setFrontSuspensionCondition] = useState(false);
+  const [shockAbsorbers, setShockAbsorbers] = useState(false);
+  const [rearSuspensionStatus, setRearSuspensionStatus] = useState(false);
+  const [windshieldCondition, setWindshieldCondition] = useState(false);
+  const [frontGlass, setFrontGlass] = useState(false);
+  //ESTADO LUCES
+  const [mediumLights, setMediumLights] = useState(false);
   const [highBeams, setHighBeams] = useState(false);
   const [lowLights, setLowLights] = useState(false);
-  const [stop, setStop] = useState(false);
-  const [reverse, setReverse] = useState(false);
-  const [battery, setBattery] = useState(false);
-  const [tireWear, setTireWear] = useState(false);
-  const [tireCondition, setTireCondition] = useState(false);
+  const [leftDirectionalFront, setLeftDirectionalFront] = useState(false);
+  const [directionalRightFront, setDirectionalRightFront] = useState(false);
+  const [leftDirectionalRear, setLeftDirectionalRear] = useState(false);
+  const [directionalRightRear, setDirectionalRightRear] = useState(false);
+  const [parkingLights, setParkingLights] = useState(false);
+  const [brakeLight, setBrakeLight] = useState(false);
+  const [reverseLight, setReverseLight] = useState(false);
+  const [explorerFogLights, setExplorerFogLights] = useState(false);
+  //ESTADO LLANTAS
+  const [rightFront, setRightFront] = useState(false);
+  const [leftFront, setLeftFront] = useState(false);
+  const [rightRear, setRightRear] = useState(false);
+  const [rearLeft, setRearLeft] = useState(false);
+  const [replacement, setReplacement] = useState(false);
   const [tireAirPressure, setTireAirPressure] = useState(false);
-  //Motor
-  const [engineLeaks, setEngineLeaks] = useState(false); 
-  const [brakeLeaks, setBrakeLeaks] = useState(false);
-  const [beltTension, setBeltTension] = useState(false);
-  const [wetFilters, setWetFilters] = useState(false); 
-  //Niveles
-  const [motorOil, setMotorOil] = useState(false);
-  const [transmissionOil, setTransmissionOil] = useState(false);
-  const [refrigerant, setRefrigerant] = useState(false);
-  const [windshieldWiperWater, setWindshieldWiperWater] = useState(false);
-  const [radiatorAdditives, setRadiatorAdditives] = useState(false);
-  const [roadTeam, setRoadTeam] = useState(false);
+  //FRENOS
+  const [brakeCondition, setBrakeCondition] = useState(false);
+  const [handBrake, setHandBrake] = useState(false);
+  const [tablets, setTablets] = useState(false);
+  //EQUIPO DE CARRETERA
+  const [oneJackWithTheCapacityToRaiseTheVehicle, setOneJackWithTheCapacityToRaiseTheVehicle] = useState(false);
+  const [oneReflectiveVest, setOneReflectiveVest] = useState(false);
+  const [twoBlocksToBlockTheVehicle, setTwoBlocksToBlockTheVehicle] = useState(false);
+  const [twoRoadSigns, setTwoRoadSigns] = useState(false);
+  const [onePairOfIndustrialGloves, setOnePairOfIndustrialGloves] = useState(false);
+  const [oneCrosshead, setOneCrosshead] = useState(false);
+  const [fireExtinguisher, setFireExtinguisher] = useState(false);
+  const [flashLight, setFlashLight] = useState(false);
+  const [toolBox, setToolBox] = useState(false);
   const [firstAidKit, setFirstAidKit] = useState(false);
-  //Kit Herramientas
-  const [extinguisher, setExtinguisher] = useState(false);
-  const [crossPiece, setCrossPiece] = useState(false);
-  const [cat, setCat] = useState(false);
-  const [tacos, setTacos] = useState(false);
-  const [signs, setSigns] = useState(false);
-  const [vest, setVest] = useState(false);
-  const [flashlight, setFlashlight] = useState(false);
-  //Elementos de bioseguridad
-  const [gloveHolder, setGloveHolder] = useState(false);
-  const [wearYourFaceMask, setWearYourFaceMask] = useState(false);
-  const [antibacterialGelOrAlcoholHolder, setAntibacterialGelOrAlcoholHolder] = useState(false);
+  //DOCUMENTOS DEL VEHÍCULO
+  const [soat, setSoat] = useState(false);
+  const [technomechanicalReviewAndGasCertification, setTechnomechanicalReviewAndGasCertification] = useState(false);
+  const [contractualAndNonContractualInsurance, setContractualAndNonContractualInsurance] = useState(false);
+  const [preventive, setPreventive] = useState(false);
+  const [operationCard, setOperationCard] = useState(false);
+  const [propertyCard, setPropertyCard] = useState(false);
+  const [drivingLicense, setDrivingLicense] = useState(false);
   //end
   const [errorUser, setErrorUser] = useState("");
-  const [errorDateExtinguisherExpiration, setErrorDateExtinguisherExpiration] = useState("");
   const [errorOilChange, setErrorOilChange] = useState("");
   const [errorCurrentKm, setErrorCurrentKm] = useState("");
   const dataListUser = useSelector((store) => store.userReducer);
@@ -165,51 +208,7 @@ function Create() {
 
   const resetInput = () => {
     //revision Interna
-    setWiperWasher(false);
-    setEmergencyBrake(false);
-    setWhistle(false);
-    setSafetyBelts(false);
-    setGlassLifter(false); 
-    setLightning(false); 
-    //Revisión Externa
-    setDirectionals(false);
-    setStationary(false);
-    setHighBeams(false);
-    setLowLights(false);
-    setStop(false);
-    setReverse(false);
-    setBattery(false);
-    setTireWear(false);
-    setTireCondition(false);
-    setTireAirPressure(false);
-    //Motor
-    setEngineLeaks(false);
-    setBrakeLeaks(false);
-    setBeltTension(false);
-    setWetFilters(false);
-    //Niveles
-    setMotorOil(false);
-    setTransmissionOil(false);
-    setRefrigerant(false);
-    setWindshieldWiperWater(false);
-    setRadiatorAdditives(false);
-    setRoadTeam(false);
-    setFirstAidKit(false);
-    //Kit Herramientas
-    setExtinguisher(false);
-    setCrossPiece(false);
-    setCat(false);
-    setTacos(false);
-    setSigns(false);
-    setVest(false);
-    setFlashlight(false);
-    //Elementos de bioseguridad
-    setGloveHolder(false);
-    setWearYourFaceMask(false);
-    setAntibacterialGelOrAlcoholHolder(false);
-
-    //Date
-    setDateExtinguisherExpiration("");
+    // setWiperWasher(false);
 
     //Select
     setOpcionSelectUser("");
@@ -245,14 +244,6 @@ function Create() {
       isValid = false;
     } else {
       setErrorUser("");
-    }
-
-    const dateExtinguisherExpirationError = validateField(dateExtinguisherExpiration, 'vencimiento extintor', /^\d{4}-\d{2}-\d{2}$/, 4);
-    if (dateExtinguisherExpirationError) {
-      setErrorDateExtinguisherExpiration(dateExtinguisherExpirationError);
-      isValid = false;
-    } else {
-      setErrorDateExtinguisherExpiration("");
     }
 
     const currentKmError = validateField(currentKm, 'kilometraje actual', /\S/, 1);
@@ -294,48 +285,8 @@ function Create() {
   const setChangeToogle = () => {
     let body = {
        //revision Interna
-      wiperWasher:wiperWasher,
-      emergencyBrake:emergencyBrake,
-      whistle:whistle,
-      safetyBelts:safetyBelts,
-      glassLifter:glassLifter, 
-      lightning:lightning, 
-      //Revisión Externa 
-      directionals:directionals,
-      stationary:stationary,
-      highBeams:highBeams,
-      lowLights:lowLights,
-      stop:stop,
-      reverse:reverse,
-      battery:battery,
-      tireWear:tireWear,
-      tireCondition:tireCondition,
-      tireAirPressure:tireAirPressure,
-      //Motor
-      engineLeaks:engineLeaks,
-      brakeLeaks:brakeLeaks,
-      beltTension:beltTension,
-      wetFilters:wetFilters,
-      //Niveles
-      motorOil:motorOil,
-      transmissionOil:transmissionOil,
-      refrigerant:refrigerant,
-      windshieldWiperWater:windshieldWiperWater,
-      radiatorAdditives:radiatorAdditives,
-      roadTeam:roadTeam,
-      firstAidKit:firstAidKit,
-      //Kit Herramientas
-      extinguisher:extinguisher,
-      crossPiece:crossPiece,
-      cat:cat,
-      tacos:tacos,
-      signs:signs,
-      vest:vest,
-      flashlight:flashlight,
-      //Elementos de bioseguridad
-      gloveHolder:gloveHolder,
-      wearYourFaceMask:wearYourFaceMask,
-      antibacterialGelOrAlcoholHolder:antibacterialGelOrAlcoholHolder
+      // wiperWasher:wiperWasher,
+      
     }
 
     let newObjt = {};
@@ -365,7 +316,6 @@ function Create() {
           date:dateNows,
           oilChange:oilChange,
           currentKm:currentKm,
-          dateExtinguisherExpiration:dateExtinguisherExpiration,
           observation:observation,
       }
         const objetoCombinado = { ...body, ...setChangeToogles };
@@ -433,24 +383,190 @@ function Create() {
                 {errorUser && <p style={{ color: 'red' }}>{errorUser}</p>}
               </div>
 
-              {/* Revision interna */}
+              {/* ESTADO DE PRESENTACIÓN */}
 
-              <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Limpia Parabrisas :</label>
+            <h1 className="text-primary">Estado de presentación</h1>
+    
+            <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">Aseo interno :</label>
                 <label className="toggle-container">
-                  <input checked={wiperWasher} onChange={(e) => setWiperWasher(!wiperWasher)} type="checkbox" className="toggle-checkbox" />
+                  <input checked={internalToilet} onChange={(e) => setInternalToilet(!internalToilet)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
                 </label>
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Freno de Emergencia :</label>
+                <label htmlFor="exampleInputEmail1">Aseo externo :</label>
                 <label className="toggle-container">
-                  <input checked={emergencyBrake} onChange={(e) => setEmergencyBrake(!emergencyBrake)} type="checkbox" className="toggle-checkbox" />
+                  <input checked={externalToilet} onChange={(e) => setExternalToilet(!externalToilet)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
                 </label>
               </div>
-              
+
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">Latas :</label>
+                <label className="toggle-container">
+                  <input checked={cans} onChange={(e) => setCans(!cans)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>
+
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">Pintura :</label>
+                <label className="toggle-container">
+                  <input checked={paint} onChange={(e) => setPaint(!paint)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>
+
+              {/* ESTADO DE COMODIDAD */}
+
+              <h1 className="text-primary">Estado de comodidad</h1>
+            
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">Aire acondicionado :</label>
+                <label className="toggle-container">
+                  <input checked={airConditioning} onChange={(e) => setAirConditioning(!airConditioning)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>
+
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">Silletería :</label>
+                <label className="toggle-container">
+                  <input checked={chairs} onChange={(e) => setChairs(!chairs)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>
+
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">Encendedor :</label>
+                <label className="toggle-container">
+                  <input checked={lighter} onChange={(e) => setLighter(!lighter)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>
+
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">Luz Interior o de techo :</label>
+                <label className="toggle-container">
+                  <input checked={interiorOrCeilingLight} onChange={(e) => setInteriorOrCeilingLight(!interiorOrCeilingLight)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>
+
+              {/* NIVELES Y PERDIDA DE LIQUIDOS */}
+
+              <h1 className="text-primary">Niveles y perdida de liquidos</h1>
+
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">Nivel de Aceite de motor :</label>
+                <label className="toggle-container">
+                  <input checked={engineOilLevel} onChange={(e) => setEngineOilLevel(!engineOilLevel)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>
+
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">Nivel de liquido de frenos :</label>
+                <label className="toggle-container">
+                  <input checked={brakeFluidLevel} onChange={(e) => setBrakeFluidLevel(!brakeFluidLevel)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>
+
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">Nivel de agua del radiador :</label>
+                <label className="toggle-container">
+                  <input checked={radiatorWaterLevel} onChange={(e) => setRadiatorWaterLevel(!radiatorWaterLevel)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>
+
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">Nivel de agua de la batería :</label>
+                <label className="toggle-container">
+                  <input checked={batteryWaterLevel} onChange={(e) => setBatteryWaterLevel(!batteryWaterLevel)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>
+
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">Nivel de aceite hidráulico :</label>
+                <label className="toggle-container">
+                  <input checked={hydraulicOilLevel} onChange={(e) => setHydraulicOilLevel(!hydraulicOilLevel)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>
+
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">Fugas de A.C.P.M :</label>
+                <label className="toggle-container">
+                  <input checked={acpmLeaks} onChange={(e) => setAcpmLeaks(!acpmLeaks)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>
+
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">Fugas de Agua :</label>
+                <label className="toggle-container">
+                  <input checked={waterLeaks} onChange={(e) => setWaterLeaks(!waterLeaks)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>
+
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">Fugas de Aceite de transmisión :</label>
+                <label className="toggle-container">
+                  <input checked={transmissionOilLeaks} onChange={(e) => setTransmissionOilLeaks(!transmissionOilLeaks)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>
+
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">Fuga aceite de caja :</label>
+                <label className="toggle-container">
+                  <input checked={boxOilLeak} onChange={(e) => setBoxOilLeak(!boxOilLeak)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>
+
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">Fugas de líquidos de frenos :</label>
+                <label className="toggle-container">
+                  <input checked={brakeFluidLeaks} onChange={(e) => setBrakeFluidLeaks(!brakeFluidLeaks)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>
+
+              {/* TABLERO DE CONTROL */}
+
+              <h1 className="text-primary">Tablero y control</h1>
+
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">Luces de Tablero :</label>
+                <label className="toggle-container">
+                  <input checked={tableLight} onChange={(e) => setTableLight(!tableLight)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>
+
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">Nivel de Combustible :</label>
+                <label className="toggle-container">
+                  <input checked={fuelLevel} onChange={(e) => setFuelLevel(!fuelLevel)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>
+
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">Odómetro :</label>
+                <label className="toggle-container">
+                  <input checked={odometer} onChange={(e) => setOdometer(!odometer)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>
+
               <div className='mt-4 listCheck-create-main-input'>
                 <label htmlFor="exampleInputEmail1">Pito :</label>
                 <label className="toggle-container">
@@ -460,43 +576,165 @@ function Create() {
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Cinturones de Seguridad :</label>
+                <label htmlFor="exampleInputEmail1">Tacómetro :</label>
                 <label className="toggle-container">
-                  <input checked={safetyBelts} onChange={(e) => setSafetyBelts(!safetyBelts)} type="checkbox" className="toggle-checkbox" />
+                  <input checked={tachometer} onChange={(e) => setTachometer(!tachometer)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
                 </label>
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Elevavidrios :</label>
+                <label htmlFor="exampleInputEmail1">Velocímetro :</label>
                 <label className="toggle-container">
-                  <input checked={glassLifter} onChange={(e) => setGlassLifter(!glassLifter)} type="checkbox" className="toggle-checkbox" />
+                  <input checked={speedometer} onChange={(e) => setSpeedometer(!speedometer)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
                 </label>
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Iluminación :</label>
+                <label htmlFor="exampleInputEmail1">Indicador de Aceite :</label>
                 <label className="toggle-container">
-                  <input checked={lightning} onChange={(e) => setLightning(!lightning)} type="checkbox" className="toggle-checkbox" />
+                  <input checked={oilIndicator} onChange={(e) => setOilIndicator(!oilIndicator)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>
+
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">Indicador de Temperatura :</label>
+                <label className="toggle-container">
+                  <input checked={temperatureIndicator} onChange={(e) => setTemperatureIndicator(!temperatureIndicator)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
                 </label>
               </div>
               
-              {/* Revisión Externa */}
+              {/* SEGURIDAD PASIVA */}
+
+              <h1 className="text-primary">Seguridad pasiva</h1>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Direccionales :</label>
+                <label htmlFor="exampleInputEmail1">Cinturones de Seguridad :</label>
                 <label className="toggle-container">
-                  <input checked={directionals} onChange={(e) => setDirectionals(!directionals)} type="checkbox" className="toggle-checkbox" />
+                  <input checked={seatBelts} onChange={(e) => setSeatBelts(!seatBelts)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
                 </label>
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Estacionarias :</label>
+                <label htmlFor="exampleInputEmail1">Airbags :</label>
                 <label className="toggle-container">
-                  <input checked={stationary} onChange={(e) => setStationary(!stationary)} type="checkbox" className="toggle-checkbox" />
+                  <input checked={airbags} onChange={(e) => setAirbags(!airbags)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>
+
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">Cristales (Vidrios) :</label>
+                <label className="toggle-container">
+                  <input checked={crystals} onChange={(e) => setCrystals(!crystals)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>
+
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">Apoyacabezas :</label>
+                <label className="toggle-container">
+                  <input checked={headrest} onChange={(e) => setHeadrest(!headrest)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>
+
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">Estado Espejos :</label>
+                <label className="toggle-container">
+                  <input checked={mirrorStatus} onChange={(e) => setMirrorStatus(!mirrorStatus)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>
+
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">Espejo Lateral Derecho :</label>
+                <label className="toggle-container">
+                  <input checked={rightSideMirror} onChange={(e) => setRightSideMirror(!rightSideMirror)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>
+
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">Espejo Lateral Izquierdo :</label>
+                <label className="toggle-container">
+                  <input checked={leftSideMirror} onChange={(e) => setLeftSideMirror(!leftSideMirror)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>
+
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">Espejo Retrovisor :</label>
+                <label className="toggle-container">
+                  <input checked={rearViewMirror} onChange={(e) => setRearViewMirror(!rearViewMirror)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>
+
+              {/* SEGURIDAD ACTIVA */}
+
+              <h1 className="text-primary">Seguridad activa</h1>
+
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">Estado de la Dirección :</label>
+                <label className="toggle-container">
+                  <input checked={addressStatus} onChange={(e) => setAddressStatus(!addressStatus)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>
+
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">Estado Suspensión Delantera :</label>
+                <label className="toggle-container">
+                  <input checked={frontSuspensionCondition} onChange={(e) => setFrontSuspensionCondition(!frontSuspensionCondition)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>
+
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">Amortiguadores :</label>
+                <label className="toggle-container">
+                  <input checked={shockAbsorbers} onChange={(e) => setShockAbsorbers(!shockAbsorbers)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>
+
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">Estado suspensión Trasera :</label>
+                <label className="toggle-container">
+                  <input checked={rearSuspensionStatus} onChange={(e) => setRearSuspensionStatus(!rearSuspensionStatus)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>
+
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">Estado Parabrisas :</label>
+                <label className="toggle-container">
+                  <input checked={windshieldCondition} onChange={(e) => setWindshieldCondition(!windshieldCondition)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>
+
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">Vidrio Frontal :</label>
+                <label className="toggle-container">
+                  <input checked={frontGlass} onChange={(e) => setFrontGlass(!frontGlass)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>
+
+              {/* ESTADO LUCES */}
+
+              <h1 className="text-primary">Estado luces</h1>
+
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">Luces Medias :</label>
+                <label className="toggle-container">
+                  <input checked={mediumLights} onChange={(e) => setMediumLights(!mediumLights)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
                 </label>
               </div>
@@ -518,200 +756,205 @@ function Create() {
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Stop :</label>
+                <label htmlFor="exampleInputEmail1">Direccional Izquie. Delant. :</label>
                 <label className="toggle-container">
-                  <input checked={stop} onChange={(e) => setStop(!stop)} type="checkbox" className="toggle-checkbox" />
+                  <input checked={leftDirectionalFront} onChange={(e) => setLeftDirectionalFront(!leftDirectionalFront)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
                 </label>
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Reverso :</label>
+                <label htmlFor="exampleInputEmail1">Direccional Derec. Delant. :</label>
                 <label className="toggle-container">
-                  <input checked={reverse} onChange={(e) => setReverse(!reverse)} type="checkbox" className="toggle-checkbox" />
+                  <input checked={directionalRightFront} onChange={(e) => setDirectionalRightFront(!directionalRightFront)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
                 </label>
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Batería :</label>
+                <label htmlFor="exampleInputEmail1">Direccional Izquie. Trasera :</label>
                 <label className="toggle-container">
-                  <input checked={battery} onChange={(e) => setBattery(!battery)} type="checkbox" className="toggle-checkbox" />
+                  <input checked={leftDirectionalRear} onChange={(e) => setLeftDirectionalRear(!leftDirectionalRear)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
                 </label>
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Desgaste Llantas :</label>
+                <label htmlFor="exampleInputEmail1">Direccional Derec. Trasera :</label>
                 <label className="toggle-container">
-                  <input checked={tireWear} onChange={(e) => setTireWear(!tireWear)} type="checkbox" className="toggle-checkbox" />
+                  <input checked={directionalRightRear} onChange={(e) => setDirectionalRightRear(!directionalRightRear)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
                 </label>
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Estado Llantas :</label>
+                <label htmlFor="exampleInputEmail1">Luces de Parqueo :</label>
                 <label className="toggle-container">
-                  <input checked={tireCondition} onChange={(e) => setTireCondition(!tireCondition)} type="checkbox" className="toggle-checkbox" />
+                  <input checked={parkingLights} onChange={(e) => setParkingLights(!parkingLights)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
                 </label>
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Presión Aire Llantas :</label>
+                <label htmlFor="exampleInputEmail1">Luz Freno :</label>
+                <label className="toggle-container">
+                  <input checked={brakeLight} onChange={(e) => setBrakeLight(!brakeLight)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>
+
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">Luz Reverso :</label>
+                <label className="toggle-container">
+                  <input checked={reverseLight} onChange={(e) => setReverseLight(!reverseLight)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>
+
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">L. Antiniebla Exploradoras :</label>
+                <label className="toggle-container">
+                  <input checked={explorerFogLights} onChange={(e) => setExplorerFogLights(!explorerFogLights)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>
+
+              {/* ESTADO LLANTAS */}
+
+              <h1 className="text-primary">Estado llantas</h1>
+
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">Delantera Derecha :</label>
+                <label className="toggle-container">
+                  <input checked={rightFront} onChange={(e) => setRightFront(!rightFront)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>
+
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">Delantera Izquierda :</label>
+                <label className="toggle-container">
+                  <input checked={leftFront} onChange={(e) => setLeftFront(!leftFront)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>
+
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">Trasera Derecha :</label>
+                <label className="toggle-container">
+                  <input checked={rightRear} onChange={(e) => setRightRear(!rightRear)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>
+
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">Trasera Izquierda :</label>
+                <label className="toggle-container">
+                  <input checked={rearLeft} onChange={(e) => setRearLeft(!rearLeft)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>
+
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">Repuesto :</label>
+                <label className="toggle-container">
+                  <input checked={replacement} onChange={(e) => setReplacement(!replacement)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>
+
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">Presión aire llanta :</label>
                 <label className="toggle-container">
                   <input checked={tireAirPressure} onChange={(e) => setTireAirPressure(!tireAirPressure)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
                 </label>
               </div>
+              
+              {/* FRENOS */}
 
-              {/* Motor */}
-
+              <h1 className="text-primary">Frenos</h1>
+             
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Fugas de Motor :</label>
+                <label htmlFor="exampleInputEmail1">Estado de los Frenos :</label>
                 <label className="toggle-container">
-                  <input checked={engineLeaks} onChange={(e) => setEngineLeaks(!engineLeaks)} type="checkbox" className="toggle-checkbox" />
+                  <input checked={brakeCondition} onChange={(e) => setBrakeCondition(!brakeCondition)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
                 </label>
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Fugas en Frenos :</label>
+                <label htmlFor="exampleInputEmail1">Freno de Mano :</label>
                 <label className="toggle-container">
-                  <input checked={brakeLeaks} onChange={(e) => setBrakeLeaks(!brakeLeaks)} type="checkbox" className="toggle-checkbox" />
+                  <input checked={handBrake} onChange={(e) => setHandBrake(!handBrake)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
                 </label>
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Tensión Correas :</label>
+                <label htmlFor="exampleInputEmail1">Pastillas :</label>
                 <label className="toggle-container">
-                  <input checked={beltTension} onChange={(e) => setBeltTension(!beltTension)} type="checkbox" className="toggle-checkbox" />
+                  <input checked={tablets} onChange={(e) => setTablets(!tablets)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>
+
+              {/* EQUIPO DE CARRETERA */}
+
+              <h1 className="text-primary">Equipo de carretera</h1>
+
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">1 gato con capacidad para elevar el vehículo :</label>
+                <label className="toggle-container">
+                  <input checked={oneJackWithTheCapacityToRaiseTheVehicle} onChange={(e) => setOneJackWithTheCapacityToRaiseTheVehicle(!oneJackWithTheCapacityToRaiseTheVehicle)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
                 </label>
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Filtros Húmedos :</label>
+                <label htmlFor="exampleInputEmail1">1 chaleco reflectivo :</label>
                 <label className="toggle-container">
-                  <input checked={wetFilters} onChange={(e) => setWetFilters(!wetFilters)} type="checkbox" className="toggle-checkbox" />
-                  <div className="toggle-slider"></div>
-                </label>
-              </div>
-
-              {/* Niveles */}
-
-              <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Aceite de Motor :</label>
-                <label className="toggle-container">
-                  <input checked={motorOil} onChange={(e) => setMotorOil(!motorOil)} type="checkbox" className="toggle-checkbox" />
+                  <input checked={oneReflectiveVest} onChange={(e) => setOneReflectiveVest(!oneReflectiveVest)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
                 </label>
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Aceite Transmisión :</label>
+                <label htmlFor="exampleInputEmail1">2 tacos para bloquear el vehículo :</label>
                 <label className="toggle-container">
-                  <input checked={transmissionOil} onChange={(e) => setTransmissionOil(!transmissionOil)} type="checkbox" className="toggle-checkbox" />
+                  <input checked={twoBlocksToBlockTheVehicle} onChange={(e) => setTwoBlocksToBlockTheVehicle(!twoBlocksToBlockTheVehicle)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
                 </label>
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Refrigerante :</label>
+                <label htmlFor="exampleInputEmail1">2 señales de carretera; conos o triangulos :</label>
                 <label className="toggle-container">
-                  <input checked={refrigerant} onChange={(e) => setRefrigerant(!refrigerant)} type="checkbox" className="toggle-checkbox" />
+                  <input checked={twoRoadSigns} onChange={(e) => setTwoRoadSigns(!twoRoadSigns)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
                 </label>
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Agua Limpiabrisas :</label>
+                <label htmlFor="exampleInputEmail1">1 par de guantes industriales :</label>
                 <label className="toggle-container">
-                  <input checked={windshieldWiperWater} onChange={(e) => setWindshieldWiperWater(!windshieldWiperWater)} type="checkbox" className="toggle-checkbox" />
+                  <input checked={onePairOfIndustrialGloves} onChange={(e) => setOnePairOfIndustrialGloves(!onePairOfIndustrialGloves)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
                 </label>
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Aditivos Radiador :</label>
+                <label htmlFor="exampleInputEmail1">1 cruceta :</label>
                 <label className="toggle-container">
-                  <input checked={radiatorAdditives} onChange={(e) => setRadiatorAdditives(!radiatorAdditives)} type="checkbox" className="toggle-checkbox" />
+                  <input checked={oneCrosshead} onChange={(e) => setOneCrosshead(!oneCrosshead)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
                 </label>
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Equipo de Carretera :</label>
+                <label htmlFor="exampleInputEmail1">Extinguidor de fuego( capacidad mín. 5 lb) :</label>
                 <label className="toggle-container">
-                  <input checked={roadTeam} onChange={(e) => setRoadTeam(!roadTeam)} type="checkbox" className="toggle-checkbox" />
-                  <div className="toggle-slider"></div>
-                </label>
-              </div>
-
-              <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Botiquín :</label>
-                <label className="toggle-container">
-                  <input checked={firstAidKit} onChange={(e) => setFirstAidKit(!firstAidKit)} type="checkbox" className="toggle-checkbox" />
-                  <div className="toggle-slider"></div>
-                </label>
-              </div>
-
-              {/* Kit Herramientas */}
-
-              <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Extintor :</label>
-                <label className="toggle-container">
-                  <input checked={extinguisher} onChange={(e) => setExtinguisher(!extinguisher)} type="checkbox" className="toggle-checkbox" />
-                  <div className="toggle-slider"></div>
-                </label>
-              </div>
-
-              <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Vencimiento extintor :</label>
-                <input value={dateExtinguisherExpiration} onChange={(e) => setDateExtinguisherExpiration(e.target.value)} type="date" className='listCheck-create-input form-control' />
-              </div>
-
-              <div className='mt-4'>
-                {errorDateExtinguisherExpiration && <p style={{ color: 'red' }}>{errorDateExtinguisherExpiration}</p>}
-              </div>
-
-              <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Cruceta :</label>
-                <label className="toggle-container">
-                  <input checked={crossPiece} onChange={(e) => setCrossPiece(!crossPiece)} type="checkbox" className="toggle-checkbox" />
-                  <div className="toggle-slider"></div>
-                </label>
-              </div>
-
-              <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Gato :</label>
-                <label className="toggle-container">
-                  <input checked={cat} onChange={(e) => setCat(!cat)} type="checkbox" className="toggle-checkbox" />
-                  <div className="toggle-slider"></div>
-                </label>
-              </div>
-
-              <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Tacos :</label>
-                <label className="toggle-container">
-                  <input checked={tacos} onChange={(e) => setTacos(!tacos)} type="checkbox" className="toggle-checkbox" />
-                  <div className="toggle-slider"></div>
-                </label>
-              </div>
-
-              <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Señales :</label>
-                <label className="toggle-container">
-                  <input checked={signs} onChange={(e) => setSigns(!signs)} type="checkbox" className="toggle-checkbox" />
-                  <div className="toggle-slider"></div>
-                </label>
-              </div>
-
-              <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Chaleco :</label>
-                <label className="toggle-container">
-                  <input checked={vest} onChange={(e) => setVest(!vest)} type="checkbox" className="toggle-checkbox" />
+                  <input checked={fireExtinguisher} onChange={(e) => setFireExtinguisher(!fireExtinguisher)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
                 </label>
               </div>
@@ -719,37 +962,87 @@ function Create() {
               <div className='mt-4 listCheck-create-main-input'>
                 <label htmlFor="exampleInputEmail1">Linterna :</label>
                 <label className="toggle-container">
-                  <input checked={flashlight} onChange={(e) => setFlashlight(!flashlight)} type="checkbox" className="toggle-checkbox" />
-                  <div className="toggle-slider"></div>
-                </label>
-              </div>
-
-              {/* Elementos de bioseguridad */}
-
-              <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">¿Porta Guantes? :</label>
-                <label className="toggle-container">
-                  <input checked={gloveHolder} onChange={(e) => setGloveHolder(!gloveHolder)} type="checkbox" className="toggle-checkbox" />
+                  <input checked={flashLight} onChange={(e) => setFlashLight(!flashLight)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
                 </label>
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">¿Porta su Tapabocas? :</label>
+                <label htmlFor="exampleInputEmail1">caja de herramientas (alicates, destornilladores de pala y estrella, llave de expansión y fijas) :</label>
                 <label className="toggle-container">
-                  <input checked={wearYourFaceMask} onChange={(e) => setWearYourFaceMask(!wearYourFaceMask)} type="checkbox" className="toggle-checkbox" />
+                  <input checked={toolBox} onChange={(e) => setToolBox(!toolBox)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
                 </label>
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">¿Porta Gel Antibacterial o Alcohol? :</label>
+                <label htmlFor="exampleInputEmail1">Botiquín de primeros auxilios :</label>
                 <label className="toggle-container">
-                  <input checked={antibacterialGelOrAlcoholHolder} onChange={(e) => setAntibacterialGelOrAlcoholHolder(!antibacterialGelOrAlcoholHolder)} type="checkbox" className="toggle-checkbox" />
+                  <input checked={firstAidKit} onChange={(e) => setFirstAidKit(!firstAidKit)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>              
+
+              {/* DOCUMENTOS DEL VEHÍCULO */}
+
+              <h1 className="text-primary">Documentos del vehiculo</h1>
+
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">Soat :</label>
+                <label className="toggle-container">
+                  <input checked={soat} onChange={(e) => setSoat(!soat)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
                 </label>
               </div>
 
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">Revisión Tecnomecánica y Certificación de Gases :</label>
+                <label className="toggle-container">
+                  <input checked={technomechanicalReviewAndGasCertification} onChange={(e) => setTechnomechanicalReviewAndGasCertification(!technomechanicalReviewAndGasCertification)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>
+
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">Seguro contractual y extracontractual :</label>
+                <label className="toggle-container">
+                  <input checked={contractualAndNonContractualInsurance} onChange={(e) => setContractualAndNonContractualInsurance(!contractualAndNonContractualInsurance)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>
+
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">Preventiva :</label>
+                <label className="toggle-container">
+                  <input checked={preventive} onChange={(e) => setPreventive(!preventive)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>
+
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">Tarjeta de operación :</label>
+                <label className="toggle-container">
+                  <input checked={operationCard} onChange={(e) => setOperationCard(!operationCard)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>
+
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">Tarjeta de propiedad :</label>
+                <label className="toggle-container">
+                  <input checked={propertyCard} onChange={(e) => setPropertyCard(!propertyCard)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>
+
+              <div className='mt-4 listCheck-create-main-input'>
+                <label htmlFor="exampleInputEmail1">Licencia de conducción :</label>
+                <label className="toggle-container">
+                  <input checked={drivingLicense} onChange={(e) => setDrivingLicense(!drivingLicense)} type="checkbox" className="toggle-checkbox" />
+                  <div className="toggle-slider"></div>
+                </label>
+              </div>
+              
               {/* no tocar */}
 
               <div className='mt-4 listCheck-create-main-input'>
