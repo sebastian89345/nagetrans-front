@@ -14,6 +14,14 @@
     font-family: 'poppins';
 }
 
+.DefaultTable-header-th-width {
+    min-width: 230px;
+}
+
 .DefaultTable-table-width{
     min-width: 180px;
+}
+
+.DefaultTable-check {
+    position: relative !important;
 }
