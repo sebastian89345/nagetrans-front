@@ -33,6 +33,10 @@
   color: #6c757d;
 }
 
+.listCheck-create-title-lst {
+  font-size: 25px;
+}
+
 .listCheck-create-main-input {
   display: flex;
   flex-direction: column;

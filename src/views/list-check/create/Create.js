@@ -207,8 +207,94 @@ function Create() {
   }
 
   const resetInput = () => {
-    //revision Interna
-    // setWiperWasher(false);
+    //ESTADO DE PRESENTACIÓN
+    setInternalToilet(false);
+    setExternalToilet(false);
+    setCans(false);
+    setPaint(false);
+    //ESTADO DE COMODIDAD
+    setAirConditioning(false);
+    setChairs(false);
+    setLighter(false);
+    setInteriorOrCeilingLight(false);
+    //NIVELES Y PERDIDA DE LIQUIDOS
+    setEngineOilLevel(false);
+    setBrakeFluidLevel(false);
+    setRadiatorWaterLevel(false);
+    setBatteryWaterLevel(false);
+    setHydraulicOilLevel(false);
+    setAcpmLeaks(false);
+    setWaterLeaks(false);
+    setTransmissionOilLeaks(false);
+    setBoxOilLeak(false);
+    setBrakeFluidLeaks(false);
+    //TABLERO DE CONTROL
+    setTableLight(false);
+    setFuelLevel(false);
+    setOdometer(false);
+    setWhistle(false);
+    setTachometer(false);
+    setSpeedometer(false);
+    setOilIndicator(false);
+    setTemperatureIndicator(false);
+    //SEGURIDAD PASIVA
+    setSeatBelts(false);
+    setAirbags(false);
+    setCrystals(false);
+    setHeadrest(false);
+    setMirrorStatus(false);
+    setRightSideMirror(false);
+    setLeftSideMirror(false);
+    setRearViewMirror(false);
+    //SEGURIDAD ACTIVA
+    setAddressStatus(false);
+    setFrontSuspensionCondition(false);
+    setShockAbsorbers(false);
+    setRearSuspensionStatus(false);
+    setWindshieldCondition(false);
+    setFrontGlass(false);
+    //ESTADO LUCES
+    setMediumLights(false);
+    setHighBeams(false);
+    setLowLights(false);
+    setLeftDirectionalFront(false);
+    setDirectionalRightFront(false);
+    setLeftDirectionalRear(false);
+    setDirectionalRightRear(false);
+    setParkingLights(false);
+    setBrakeLight(false);
+    setReverseLight(false);
+    setExplorerFogLights(false);
+    //ESTADO LLANTAS
+    setRightFront(false);
+    setLeftFront(false);
+    setRightRear(false);
+    setRearLeft(false);
+    setReplacement(false);
+    setTireAirPressure(false);
+    //FRENOS
+    setBrakeCondition(false);
+    setHandBrake(false);
+    setTablets(false);
+    //EQUIPO DE CARRETERA
+    setOneJackWithTheCapacityToRaiseTheVehicle(false);
+    setOneReflectiveVest(false);
+    setTwoBlocksToBlockTheVehicle(false);
+    setTwoRoadSigns(false);
+    setOnePairOfIndustrialGloves(false);
+    setOneCrosshead(false);
+    setFireExtinguisher(false);
+    setFlashLight(false);
+    setToolBox(false);
+    setFirstAidKit(false);
+    //DOCUMENTOS DEL VEHÍCULO
+    setSoat(false);
+    setTechnomechanicalReviewAndGasCertification(false);
+    setContractualAndNonContractualInsurance(false);
+    setPreventive(false);
+    setOperationCard(false);
+    setPropertyCard(false);
+    setDrivingLicense(false);
 
     //Select
     setOpcionSelectUser("");
@@ -284,9 +370,94 @@ function Create() {
 
   const setChangeToogle = () => {
     let body = {
-       //revision Interna
-      // wiperWasher:wiperWasher,
-      
+      //ESTADO DE PRESENTACIÓN
+      internalToilet:internalToilet,
+      externalToilet:externalToilet,
+      cans:cans,
+      paint:paint,
+      //ESTADO DE COMODIDAD
+      airConditioning:airConditioning,
+      chairs:chairs,
+      lighter:lighter,
+      interiorOrCeilingLight:interiorOrCeilingLight,
+      //NIVELES Y PERDIDA DE LIQUIDOS
+      engineOilLevel:engineOilLevel,
+      brakeFluidLevel:brakeFluidLevel,
+      radiatorWaterLevel:radiatorWaterLevel,
+      batteryWaterLevel:batteryWaterLevel,
+      hydraulicOilLevel:hydraulicOilLevel,
+      acpmLeaks:acpmLeaks,
+      waterLeaks:waterLeaks,
+      transmissionOilLeaks:transmissionOilLeaks,
+      boxOilLeak:boxOilLeak,
+      brakeFluidLeaks:brakeFluidLeaks,
+      //TABLERO DE CONTROL
+      tableLight:tableLight,
+      fuelLevel:fuelLevel,
+      odometer:odometer,
+      whistle:whistle,
+      tachometer:tachometer,
+      speedometer:speedometer,
+      oilIndicator:oilIndicator,
+      temperatureIndicator:temperatureIndicator,
+      //SEGURIDAD PASIVA
+      seatBelts:seatBelts,
+      airbags:airbags,
+      crystals:crystals,
+      headrest:headrest,
+      mirrorStatus:mirrorStatus,
+      rightSideMirror:rightSideMirror,
+      leftSideMirror:leftSideMirror,
+      rearViewMirror:rearViewMirror,
+      //SEGURIDAD ACTIVA
+      addressStatus:addressStatus,
+      frontSuspensionCondition:frontSuspensionCondition,
+      shockAbsorbers:shockAbsorbers,
+      rearSuspensionStatus:rearSuspensionStatus,
+      windshieldCondition:windshieldCondition,
+      frontGlass:frontGlass,
+      //ESTADO LUCES
+      mediumLights:mediumLights,
+      highBeams:highBeams,
+      lowLights:lowLights,
+      leftDirectionalFront:leftDirectionalFront,
+      directionalRightFront:directionalRightFront,
+      leftDirectionalRear:leftDirectionalRear,
+      directionalRightRear:directionalRightRear,
+      parkingLights:parkingLights,
+      brakeLight:brakeLight,
+      reverseLight:reverseLight,
+      explorerFogLights:explorerFogLights,
+      //ESTADO LLANTAS
+      rightFront:rightFront,
+      leftFront:leftFront,
+      rightRear:rightRear,
+      rearLeft:rearLeft,
+      replacement:replacement,
+      tireAirPressure:tireAirPressure,
+      //FRENOS
+      brakeCondition:brakeCondition,
+      handBrake:handBrake,
+      tablets:tablets,
+      //EQUIPO DE CARRETERA
+      oneJackWithTheCapacityToRaiseTheVehicle:oneJackWithTheCapacityToRaiseTheVehicle,
+      oneReflectiveVest:oneReflectiveVest,
+      twoBlocksToBlockTheVehicle:twoBlocksToBlockTheVehicle,
+      twoRoadSigns:twoRoadSigns,
+      onePairOfIndustrialGloves:onePairOfIndustrialGloves,
+      oneCrosshead:oneCrosshead,
+      fireExtinguisher:fireExtinguisher,
+      flashLight:flashLight,
+      toolBox:toolBox,
+      firstAidKit:firstAidKit,
+      //DOCUMENTOS DEL VEHÍCULO
+      soat:soat,
+      technomechanicalReviewAndGasCertification:technomechanicalReviewAndGasCertification,
+      contractualAndNonContractualInsurance:contractualAndNonContractualInsurance,
+      preventive:preventive,
+      operationCard:operationCard,
+      propertyCard:propertyCard,
+      drivingLicense:drivingLicense
     }
 
     let newObjt = {};
@@ -363,7 +534,7 @@ function Create() {
     <div className='listCheck-create-card-main'>
         <div className='listCheck-create-card card'>
             <div className='card-body'>
-              <div className=' text-center'>
+              <div className='text-center'>
                 <p className='listCheck-create-title'>Crear una preoperacional</p>
               </div>
 
@@ -383,9 +554,11 @@ function Create() {
                 {errorUser && <p style={{ color: 'red' }}>{errorUser}</p>}
               </div>
 
-              {/* ESTADO DE PRESENTACIÓN */}
+            {/* ESTADO DE PRESENTACIÓN */}
 
-            <h1 className="text-primary">Estado de presentación</h1>
+            <div className='mt-4'>
+              <p className="listCheck-create-title-lst text-info">Estado de presentación</p>
+            </div>
     
             <div className='mt-4 listCheck-create-main-input'>
                 <label htmlFor="exampleInputEmail1">Aseo interno :</label>
@@ -421,7 +594,9 @@ function Create() {
 
               {/* ESTADO DE COMODIDAD */}
 
-              <h1 className="text-primary">Estado de comodidad</h1>
+              <div className='mt-4'>
+                <p className="listCheck-create-title-lst text-info">Estado de comodidad</p>
+              </div>
             
               <div className='mt-4 listCheck-create-main-input'>
                 <label htmlFor="exampleInputEmail1">Aire acondicionado :</label>
@@ -457,7 +632,9 @@ function Create() {
 
               {/* NIVELES Y PERDIDA DE LIQUIDOS */}
 
-              <h1 className="text-primary">Niveles y perdida de liquidos</h1>
+              <div className='mt-4'>
+                <p className="listCheck-create-title-lst text-info">Niveles y perdida de liquidos</p>
+              </div>
 
               <div className='mt-4 listCheck-create-main-input'>
                 <label htmlFor="exampleInputEmail1">Nivel de Aceite de motor :</label>
@@ -541,7 +718,9 @@ function Create() {
 
               {/* TABLERO DE CONTROL */}
 
-              <h1 className="text-primary">Tablero y control</h1>
+              <div className='mt-4'>
+                <p className="listCheck-create-title-lst text-info">Tablero y control</p>
+              </div>
 
               <div className='mt-4 listCheck-create-main-input'>
                 <label htmlFor="exampleInputEmail1">Luces de Tablero :</label>
@@ -609,7 +788,9 @@ function Create() {
               
               {/* SEGURIDAD PASIVA */}
 
-              <h1 className="text-primary">Seguridad pasiva</h1>
+              <div className='mt-4'>
+                <p className="listCheck-create-title-lst text-info">Seguridad pasiva</p>
+              </div>
 
               <div className='mt-4 listCheck-create-main-input'>
                 <label htmlFor="exampleInputEmail1">Cinturones de Seguridad :</label>
@@ -677,7 +858,9 @@ function Create() {
 
               {/* SEGURIDAD ACTIVA */}
 
-              <h1 className="text-primary">Seguridad activa</h1>
+              <div className='mt-4'>
+                <p className="listCheck-create-title-lst text-info">Seguridad activa</p>
+              </div>
 
               <div className='mt-4 listCheck-create-main-input'>
                 <label htmlFor="exampleInputEmail1">Estado de la Dirección :</label>
@@ -729,7 +912,9 @@ function Create() {
 
               {/* ESTADO LUCES */}
 
-              <h1 className="text-primary">Estado luces</h1>
+              <div className='mt-4'>
+                <p className="listCheck-create-title-lst text-info">Estado luces</p>
+              </div>
 
               <div className='mt-4 listCheck-create-main-input'>
                 <label htmlFor="exampleInputEmail1">Luces Medias :</label>
@@ -821,7 +1006,9 @@ function Create() {
 
               {/* ESTADO LLANTAS */}
 
-              <h1 className="text-primary">Estado llantas</h1>
+              <div className='mt-4'>
+                <p className="listCheck-create-title-lst text-info">Estado llantas</p>
+              </div>
 
               <div className='mt-4 listCheck-create-main-input'>
                 <label htmlFor="exampleInputEmail1">Delantera Derecha :</label>
@@ -873,7 +1060,9 @@ function Create() {
               
               {/* FRENOS */}
 
-              <h1 className="text-primary">Frenos</h1>
+              <div className='mt-4'>
+                <p className="listCheck-create-title-lst text-info">Frenos</p>
+              </div>
              
               <div className='mt-4 listCheck-create-main-input'>
                 <label htmlFor="exampleInputEmail1">Estado de los Frenos :</label>
@@ -901,7 +1090,9 @@ function Create() {
 
               {/* EQUIPO DE CARRETERA */}
 
-              <h1 className="text-primary">Equipo de carretera</h1>
+              <div className='mt-4'>
+                <p className="listCheck-create-title-lst text-info">Equipo de carretera</p>
+              </div>
 
               <div className='mt-4 listCheck-create-main-input'>
                 <label htmlFor="exampleInputEmail1">1 gato con capacidad para elevar el vehículo :</label>
@@ -985,7 +1176,9 @@ function Create() {
 
               {/* DOCUMENTOS DEL VEHÍCULO */}
 
-              <h1 className="text-primary">Documentos del vehiculo</h1>
+              <div className='mt-4'>
+                <p className="listCheck-create-title-lst text-info">Documentos del vehiculo</p>
+              </div>
 
               <div className='mt-4 listCheck-create-main-input'>
                 <label htmlFor="exampleInputEmail1">Soat :</label>
