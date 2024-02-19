@@ -31,13 +31,13 @@ import pdfDiary from '../../../docs/pdfDiary.pdf';
 function List() {
   const [view, setView] = useState({list:true,create:false,update:false});
   const [infoUpdate, setInfoUpdate] = useState({});
-  const dataList = useSelector((store) => store.listCheckReducer);
   
   const [opcionPreoperacional, setOpcionPreoperacional] = useState([]);
   const [opcionSelectPreoperacional, setOpcionSelectPreoperacional] = useState('');
   const [inputstartLicense, setInputstartLicense] = useState("");
   const [dowmlandPdfDiary, setDowmlandPdfDiary] = useState([]);
   // const [dowmlandPdfMonthly, setDowmlandPdfMonthly] = useState([]);
+  const dataList = useSelector((store) => store.listCheckReducer);
   const dispatch = useDispatch();
 
   useEffect(() => {
