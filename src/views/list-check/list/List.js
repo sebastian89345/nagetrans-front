@@ -151,7 +151,7 @@ function List() {
         // console.log(element);
         const pdfBytes = await createPdf(element,i);
         download(pdfBytes, `preoperacional_diaria_${i}.pdf`, "application/pdf");
-        await esperar(1000);
+        await esperar(2000);
       }
     }
   }
@@ -161,411 +161,816 @@ function List() {
   }
 
   const createPdf = async (element,i) => {
-    console.log(element);
+    // console.log(element);
     const pdf = await fetch(pdfDiary).then((res) => res.arrayBuffer());
     const pdfDoc = await PDFDocument.load(pdf);
 
     const page = pdfDoc.getPage(0);
+    const page1 = pdfDoc.getPage(1);
     const { height } = page.getSize();
-
-    // nit
-    page.drawText('901158731-3', {
-      x: 195,
-      y: height - 98,
-      size: 9,
-      color: rgb(0, 0, 0 , 1),
-    })
+    // const { height } = page1.getSize();
 
     // Fecha preoperacional
-    page.drawText('23/12/2023', {
-      x: 155,
-      y: height - 143,
-      size: 8,
-      color: rgb(0, 0, 0 , 1),
-    })
-
-    // Placa
-    page.drawText(element.userVehicle[0].placa, {
-      x: 80,
-      y: height - 153,
-      size: 8,
-      color: rgb(0, 0, 0 , 1),
-    })
-
-    // Modelo
-    page.drawText(element.userVehicle[0].model[0].name, {
-      x: 205,
-      y: height - 153,
-      size: 8,
-      color: rgb(0, 0, 0 , 1),
-    })
-
-    // // Marca
-    page.drawText(element.userVehicle[0].brand[0].name, {
-      x: 300,
-      y: height - 153,
-      size: 8,
-      color: rgb(0, 0, 0 , 1),
-    })
-
-    // // Clase
-    page.drawText(element.userVehicle[0].types[0].name, {
-      x: 430,
-      y: height - 153,
-      size: 8,
-      color: rgb(0, 0, 0 , 1),
-    })
-    
-    // Número interno
-    page.drawText('0', {
-      x: 125,
-      y: height - 164,
-      size: 8,
-      color: rgb(0, 0, 0 , 1),
-    })
-
-    // Conductor
-    page.drawText(element.userDriver[0].names + " " + element.userDriver[0].surnames, {
-      x: 100,
-      y: height - 174,
+    let date = element.date.split(' ');
+    page.drawText(date[0], {
+      x: 156,
+      y: height - 125,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
 
     // Kilometraje
     page.drawText(element.currentKm, {
-      x: 325,
-      y: height - 143,
+      x: 290,
+      y: height - 125,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
 
-    // Número tarjeta operación
-    page.drawText('298455', {
-      x: 390,
-      y: height - 164,
+    // Cambio de aceite
+    page.drawText(element.oilChange, {
+      x: 490,
+      y: height - 125,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    
+    // Placa
+    page.drawText(element.userVehicle[0].placa, {
+      x: 80,
+      y: height - 147,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Modelo
+    page.drawText(element.userVehicle[0].model[0].name, {
+      x: 215,
+      y: height - 147,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Marca
+    page.drawText(element.userVehicle[0].brand[0].name, {
+      x: 340,
+      y: height - 147,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Clase
+    page.drawText(element.userVehicle[0].types[0].name, {
+      x: 463,
+      y: height - 147,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Número interno
+    let internalNumberString = element.userVehicle[0].internalNumber.toString();
+    page.drawText(internalNumberString, {
+      x: 127,
+      y: height - 171,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
 
     // Identificación del conductor
     page.drawText(element.userDriver[0].dni, {
-      x: 405,
-      y: height - 175,
+      x: 447,
+      y: height - 171,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Conductor
+    page.drawText(element.userDriver[0].names + ' ' + element.userDriver[0].surnames, {
+      x: 107,
+      y: height - 181,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
 
     // Identificación del Propietario
-    page.drawText('901158731', {
-      x: 410,
-      y: height - 186,
+    page.drawText("1007843640", {
+      x: 450,
+      y: height - 181,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
 
-    // DETALLE PREOPERACIONAL DIARIO
-
-    // Limpia Parabrisas
-    page.drawText(element.wiperWasher, {
-      x: 475,
-      y: height - 244,
+    // Propietario
+    page.drawText(element.userDriver[0].names + ' ' + element.userDriver[0].surnames, {
+      x: 107,
+      y: height - 193,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
 
-    // Freno de Emergencia
-    page.drawText(element.emergencyBrake, {
-      x: 475,
-      y: height - 257,
+    // ESTADO DE PRESENTACIÓN
+
+    // Aseo interno
+    page.drawText(element.internalToilet, {
+      x: 500,
+      y: height - 227,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Aseo externo
+    page.drawText(element.externalToilet, {
+      x: 500,
+      y: height - 238,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Latas
+    page.drawText(element.cans, {
+      x: 500,
+      y: height - 249,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Pintura
+    page.drawText(element.paint, {
+      x: 500,
+      y: height - 260,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // ESTADO DE COMODIDAD
+
+    // Aire Acondicionado
+    page.drawText(element.airConditioning, {
+      x: 500,
+      y: height - 273,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Silletería (Anclaje, estado)
+    page.drawText(element.chairs, {
+      x: 500,
+      y: height - 285,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Encendedor
+    page.drawText(element.lighter, {
+      x: 500,
+      y: height - 296,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Luz Interior o de techo
+    page.drawText(element.interiorOrCeilingLight, {
+      x: 500,
+      y: height - 307,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // NIVELES Y PERDIDA DE LIQUIDOS
+
+    // Nivel de Aceite de motor
+    page.drawText(element.engineOilLevel, {
+      x: 500,
+      y: height - 318,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Nivel de liquido de frenos
+    page.drawText(element.brakeFluidLevel, {
+      x: 500,
+      y: height - 330,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Nivel de agua del radiador
+    page.drawText(element.radiatorWaterLevel, {
+      x: 500,
+      y: height - 342,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Nivel de agua de la batería
+    page.drawText(element.batteryWaterLevel, {
+      x: 500,
+      y: height - 353,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Nivel de aceite hidráulico
+    page.drawText(element.hydraulicOilLevel, {
+      x: 500,
+      y: height - 364,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Fugas de A.C.P.M
+     page.drawText(element.acpmLeaks, {
+      x: 500,
+      y: height - 374,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Fugas de Agua
+    page.drawText(element.waterLeaks, {
+      x: 500,
+      y: height - 385,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Fugas de Aceite de transmisión
+    page.drawText(element.transmissionOilLeaks, {
+      x: 500,
+      y: height - 396,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Fuga aceite de caja
+    page.drawText(element.boxOilLeak, {
+      x: 500,
+      y: height - 407,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Fugas de líquidos de frenos
+    page.drawText(element.brakeFluidLeaks, {
+      x: 500,
+      y: height - 418,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // TABLERO DE CONTROL
+
+    // Luces de Tablero
+    page.drawText(element.tableLight, {
+      x: 500,
+      y: height - 429,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Nivel de Combustible
+    page.drawText(element.fuelLevel, {
+      x: 500,
+      y: height - 440,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Odómetro
+    page.drawText(element.odometer, {
+      x: 500,
+      y: height - 451,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
 
     // Pito
     page.drawText(element.whistle, {
-      x: 475,
-      y: height - 270,
+      x: 500,
+      y: height - 462,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
 
-    // Cinturones de Seguridad
-    page.drawText(element.safetyBelts, {
-      x: 475,
-      y: height - 283,
+    // Tacómetro
+    page.drawText(element.tachometer, {
+      x: 500,
+      y: height - 473,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
 
-    // Elevavidrios
-    page.drawText(element.glassLifter, {
-      x: 475,
-      y: height - 296,
+    // Velocímetro
+    page.drawText(element.speedometer, {
+      x: 500,
+      y: height - 484,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
 
-    // Iluminación
-    page.drawText(element.lightning, {
-      x: 475,
-      y: height - 309,
+    // Indicador de Aceite
+    page.drawText(element.oilIndicator, {
+      x: 500,
+      y: height - 495,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
 
-    // Direccionales
-    page.drawText(element.directionals, {
-      x: 475,
-      y: height - 322,
+    // Indicador de Temperatura
+    page.drawText(element.temperatureIndicator, {
+      x: 500,
+      y: height - 506,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
 
-    // Estacionarias
-    page.drawText(element.stationary, {
-      x: 475,
-      y: height - 335,
+     // SEGURIDAD PASIVA
+
+     // Cinturones de Seguridad
+    page.drawText(element.seatBelts, {
+      x: 500,
+      y: height - 517,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Airbags
+    page.drawText(element.airbags, {
+      x: 500,
+      y: height - 528,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Cristales (Vidrios)
+    page.drawText(element.crystals, {
+      x: 500,
+      y: height - 539,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Apoyacabezas
+    page.drawText(element.headrest, {
+      x: 500,
+      y: height - 550,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Estado Espejos
+    page.drawText(element.mirrorStatus, {
+      x: 500,
+      y: height - 561,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Espejo Lateral Derecho
+    page.drawText(element.rightSideMirror, {
+      x: 500,
+      y: height - 572,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Espejo Lateral Izquierdo
+    page.drawText(element.leftSideMirror, {
+      x: 500,
+      y: height - 583,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Espejo Retrovisor
+    page.drawText(element.rearViewMirror, {
+      x: 500,
+      y: height - 594,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    //SEGURIDAD ACTIVA
+
+    // Estado de la Dirección
+    page.drawText(element.addressStatus, {
+      x: 500,
+      y: height - 604,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Estado Suspensión Delantera
+    page.drawText(element.frontSuspensionCondition, {
+      x: 500,
+      y: height - 615,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Amortiguadores
+    page.drawText(element.shockAbsorbers, {
+      x: 500,
+      y: height - 626,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Estado suspensión Trasera
+    page.drawText(element.rearSuspensionStatus, {
+      x: 500,
+      y: height - 637,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Estado Parabrisas
+    page.drawText(element.windshieldCondition, {
+      x: 500,
+      y: height - 648,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Vidrio Frontal
+    page.drawText(element.frontGlass, {
+      x: 500,
+      y: height - 659,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    //Page 2
+
+    //ESTADO LUCES
+
+    // Luces Medias
+    page1.drawText(element.mediumLights, {
+      x: 500,
+      y: height - 93,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
 
     // Luces Altas
-    page.drawText(element.highBeams, {
-      x: 475,
-      y: height - 348,
+    page1.drawText(element.highBeams, {
+      x: 500,
+      y: height - 104,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
 
     // Luces Bajas
-    page.drawText(element.lowLights, {
-      x: 475,
-      y: height - 360,
+    page1.drawText(element.lowLights, {
+      x: 500,
+      y: height - 115,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
 
-    // Stop
-    page.drawText(element.stop, {
-      x: 475,
-      y: height - 372,
+    // Direccional Izquie. Delant.
+    page1.drawText(element.leftDirectionalFront, {
+      x: 500,
+      y: height - 127,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
 
-    // Reverso
-    page.drawText(element.reverse, {
-      x: 475,
-      y: height - 384,
+    // Direccional Derec. Delant.
+    page1.drawText(element.directionalRightFront, {
+      x: 500,
+      y: height - 138,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
 
-    // Batería
-    page.drawText(element.battery, {
-      x: 475,
-      y: height - 396,
+    // Direccional Izquie. Trasera
+    page1.drawText(element.leftDirectionalRear, {
+      x: 500,
+      y: height - 149,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
 
-    // Desgaste Llantas
-    page.drawText(element.tireWear, {
-      x: 475,
-      y: height - 409,
+    // Direccional Derec. Trasera
+    page1.drawText(element.directionalRightRear, {
+      x: 500,
+      y: height - 161,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
 
-    // Estado Llantas
-    page.drawText(element.tireCondition, {
-      x: 475,
-      y: height - 422,
+    // Luces de Parqueo
+    page1.drawText(element.parkingLights, {
+      x: 500,
+      y: height - 172,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
 
-    // Presión Aire Llantas
-    page.drawText(element.tireAirPressure, {
-      x: 475,
-      y: height - 435,
+    // Luz Freno
+    page1.drawText(element.brakeLight, {
+      x: 500,
+      y: height - 183,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
 
-    // Fugas de Motor
-    page.drawText(element.engineLeaks, {
-      x: 475,
-      y: height - 449,
+    // Luz Reverso
+    page1.drawText(element.reverseLight, {
+      x: 500,
+      y: height - 195,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
 
-    // Fugas en Frenos
-    page.drawText(element.brakeLeaks, {
-      x: 475,
-      y: height - 463,
+    // L. Antiniebla Exploradoras
+    page1.drawText(element.explorerFogLights, {
+      x: 500,
+      y: height - 207,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
 
-    // Tensión Correas
-    page.drawText(element.beltTension, {
-      x: 475,
-      y: height - 476,
+    //ESTADO LLANTAS
+
+    // Delantera Derecha
+    page1.drawText(element.rightFront, {
+      x: 500,
+      y: height - 219,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
 
-    // Filtros Húmedos
-    page.drawText(element.wetFilters, {
-      x: 475,
-      y: height - 489,
+    // Delantera Izquierda
+    page1.drawText(element.leftFront, {
+      x: 500,
+      y: height - 230,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
 
-    // Aceite de Motor
-    page.drawText(element.motorOil, {
-      x: 475,
-      y: height - 501,
+    // Trasera Derecha
+    page1.drawText(element.rightRear, {
+      x: 500,
+      y: height - 242,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
 
-    // Aceite Transmisión
-    page.drawText(element.transmissionOil, {
-      x: 475,
-      y: height - 512,
+    // Trasera Izquierda
+    page1.drawText(element.rearLeft, {
+      x: 500,
+      y: height - 254,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
 
-    // Refrigerante
-    page.drawText(element.refrigerant, {
-      x: 475,
-      y: height - 523,
+    // Repuesto
+    page1.drawText(element.replacement, {
+      x: 500,
+      y: height - 266,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
 
-    // Agua Limpiabrisas
-    page.drawText(element.windshieldWiperWater, {
-      x: 475,
-      y: height - 534,
+    // Presión aire llanta
+    page1.drawText(element.tireAirPressure, {
+      x: 500,
+      y: height - 277,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
 
-    // Aditivos Radiador
-    page.drawText(element.radiatorAdditives, {
-      x: 475,
-      y: height - 545,
+    //FRENOS
+
+    // Estado de los Frenos
+    page1.drawText(element.brakeCondition, {
+      x: 500,
+      y: height - 288,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
 
-    // Equipo de Carretera
-    page.drawText(element.roadTeam, {
-      x: 475,
-      y: height - 556,
+    // Freno de Mano
+    page1.drawText(element.handBrake, {
+      x: 500,
+      y: height - 299,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
 
-    // Botiquín
-    page.drawText(element.firstAidKit, {
-      x: 475,
-      y: height - 567,
+    // Pastillas
+    page1.drawText(element.tablets, {
+      x: 500,
+      y: height - 311,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
 
-    // Extintor
-    page.drawText(element.extinguisher, {
-      x: 475,
-      y: height - 578,
+    //EQUIPO DE CARRETERA
+
+    // 1 gato con capacidad para elevar el vehículo
+    page1.drawText(element.oneJackWithTheCapacityToRaiseTheVehicle, {
+      x: 500,
+      y: height - 322,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
 
-    // Cruceta
-    page.drawText(element.crossPiece, {
-      x: 475,
-      y: height - 589,
+    // 1 chaleco reflectivo
+    page1.drawText(element.oneReflectiveVest, {
+      x: 500,
+      y: height - 334,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
 
-    // Gato
-    page.drawText(element.cat, {
-      x: 475,
-      y: height - 600,
+    // 2 tacos para bloquear el vehículo
+    page1.drawText(element.twoBlocksToBlockTheVehicle, {
+      x: 500,
+      y: height - 345,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
 
-    // Tacos
-    page.drawText(element.tacos, {
-      x: 475,
-      y: height - 611,
+    // 2 señales de carretera; conos o triangulos
+    page1.drawText(element.twoRoadSigns, {
+      x: 500,
+      y: height - 357,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
 
-    // Señales
-    page.drawText(element.signs, {
-      x: 475,
-      y: height - 622,
+    // 1 par de guantes industriales
+    page1.drawText(element.onePairOfIndustrialGloves, {
+      x: 500,
+      y: height - 368,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
 
-    // Chaleco
-    page.drawText(element.vest, {
-      x: 475,
-      y: height - 633,
+    // 1 cruceta
+    page1.drawText(element.oneCrosshead, {
+      x: 500,
+      y: height - 380,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Extinguidor de fuego( capacidad mín. 5 lb)
+    page1.drawText(element.fireExtinguisher, {
+      x: 500,
+      y: height - 392,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
 
     // Linterna
-    page.drawText(element.flashlight, {
-      x: 475,
-      y: height - 644,
+    page1.drawText(element.flashLight, {
+      x: 500,
+      y: height - 404,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
 
-    // ¿Porta Guantes?
-    page.drawText(element.gloveHolder, {
-      x: 475,
-      y: height - 654,
+    // caja de herramientas ( alicates, destornilladores de pala y estrella, llave de expansión y fijas )
+    page1.drawText(element.toolBox, {
+      x: 500,
+      y: height - 419,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
 
-    // ¿Porta su Tapabocas?
-    page.drawText(element.wearYourFaceMask, {
-      x: 475,
-      y: height - 665,
+    // Botiquín de primeros auxilios
+    page1.drawText(element.firstAidKit, {
+      x: 500,
+      y: height - 437,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
 
-    // ¿Porta Gel Antibacterial o Alcohol?
-    page.drawText(element.antibacterialGelOrAlcoholHolder, {
-      x: 475,
-      y: height - 676,
+    //DOCUMENTOS DEL VEHÍCULO
+
+    // Soat
+    page1.drawText(element.soat, {
+      x: 500,
+      y: height - 449,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Revisión Tecnomecánica y Certificación de Gases
+    page1.drawText(element.technomechanicalReviewAndGasCertification, {
+      x: 500,
+      y: height - 461,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // seguro contractual y extracontractual
+    page1.drawText(element.contractualAndNonContractualInsurance, {
+      x: 500,
+      y: height - 473,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Preventiva
+    page1.drawText(element.preventive, {
+      x: 500,
+      y: height - 485,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Tarjeta de operación
+    page1.drawText(element.operationCard, {
+      x: 500,
+      y: height - 496,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Tarjeta de propiedad
+    page1.drawText(element.propertyCard, {
+      x: 500,
+      y: height - 508,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Licencia de conducción
+    page1.drawText(element.drivingLicense, {
+      x: 500,
+      y: height - 520,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Observacion
+    if (element.observation !== "") {
+      let trozos = dividirCadena(element.observation, 80);
+      if (trozos.length === 1) {
+        // Observacion 1
+        page1.drawText(trozos[0], {
+          x: 185,
+          y: height - 534,
+          size: 8,
+          color: rgb(0, 0, 0 , 1),
+        })
+      } else if (trozos.length === 2) {
+        // Observacion 1
+        page1.drawText(trozos[0], {
+          x: 185,
+          y: height - 534,
+          size: 8,
+          color: rgb(0, 0, 0 , 1),
+        })
+        // Observacion 2
+        page1.drawText(trozos[0], {
+          x: 185,
+          y: height - 542,
+          size: 8,
+          color: rgb(0, 0, 0 , 1),
+        })
+      } else if (trozos.length === 3) {
+        // Observacion 1
+        page1.drawText(trozos[0], {
+          x: 185,
+          y: height - 534,
+          size: 8,
+          color: rgb(0, 0, 0 , 1),
+        })
+        // Observacion 2
+        page1.drawText(trozos[0], {
+          x: 185,
+          y: height - 542,
+          size: 8,
+          color: rgb(0, 0, 0 , 1),
+        })
+         // Observacion 3
+         page1.drawText(trozos[0], {
+          x: 185,
+          y: height - 550,
+          size: 8,
+          color: rgb(0, 0, 0 , 1),
+        })
+      }
+    }
+
+    // Propietario
+    page1.drawText(element.userDriver[0].names + ' ' + element.userDriver[0].surnames, {
+      x: 145,
+      y: height - 590,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
 
     // Conductor
-    page.drawText(element.userDriver[0].names + " " + element.userDriver[0].surnames, {
-      x: 370,
-      y: height - 726,
+    page1.drawText(element.userDriver[0].names + ' ' + element.userDriver[0].surnames, {
+      x: 390,
+      y: height - 590,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
@@ -575,6 +980,14 @@ function List() {
     // Trigger the browser to download the PDF document 
     // download(pdfBytes,`preoperacional_diaria.pdf`, "application/pdf");
   }
+
+  function dividirCadena(cadena, longitud) {
+    let substrings = [];
+    for (let i = 0; i < cadena.length; i += longitud) {
+      substrings.push(cadena.substring(i, i + longitud));
+    }
+    return substrings;
+}
 
   // const dowlandPdfMonthly = () => {}
 
