@@ -253,7 +253,7 @@ function List() {
     })
 
     // Identificación del Propietario
-    page.drawText("1007843640", {
+    page.drawText("Cedula doña maria", {
       x: 450,
       y: height - 181,
       size: 8,
@@ -261,7 +261,7 @@ function List() {
     })
 
     // Propietario
-    page.drawText(element.userDriver[0].names + ' ' + element.userDriver[0].surnames, {
+    page.drawText("Nombre completo doña maria", {
       x: 107,
       y: height - 193,
       size: 8,
@@ -960,7 +960,7 @@ function List() {
     }
 
     // Propietario
-    page1.drawText(element.userDriver[0].names + ' ' + element.userDriver[0].surnames, {
+    page1.drawText("Nombre completo doña maria", {
       x: 145,
       y: height - 590,
       size: 8,

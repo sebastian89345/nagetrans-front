@@ -32,6 +32,7 @@ function Create({ setView,getAll }) {
   const [inputSurname, setInputSurname] = useState("");
   const [inputPhone, setInputPhone] = useState("");
   const [inputPlaca, setInputPlaca] = useState("");
+  const [inputInternalNumber, setInputInternalNumber] = useState("");
   const [inputEmail, setInputEmail] = useState("");
   const [inputPassword, setInputPassword] = useState("");
   const [errorUser, setErrorUser] = useState('');
@@ -42,6 +43,7 @@ function Create({ setView,getAll }) {
   const [errorEmail, setErrorEmail] = useState('');
   const [errorPassword, setErrorPassword] = useState('');
   const [errorPlaca, setErrorPlaca] = useState('');
+  const [errorInternalNumber, setErrorInternalNumber] = useState('');
   const [errorRole, setErrorRole] = useState('');
   const [errorStatus, setErrorStatus] = useState('');
   const [errorBrand, setErrorBrand] = useState('');
@@ -106,6 +108,7 @@ function Create({ setView,getAll }) {
     setInputEmail("")
     setInputPassword("")
     setInputPlaca("")
+    setInputInternalNumber("")
 
     //Este formatea los select
     setOpcionSelectStatus("")
@@ -129,6 +132,7 @@ function Create({ setView,getAll }) {
     setErrorModel("")
     setErrorType("")
     setErrorShow("")
+    setErrorInternalNumber("")
   }
 
   const handleChangeRole = (e) => {
@@ -149,6 +153,14 @@ function Create({ setView,getAll }) {
     const esValido = e.target.validity.valid;
     if (esValido) {
       setInputPhone(e.target.value);
+    }
+  } 
+
+  const handleChangeInternalNumber = (e) => {
+    // valida que solo se escriban numeros
+    const esValido = e.target.validity.valid;
+    if (esValido) {
+      setInputInternalNumber(e.target.value);
     }
   } 
 
@@ -185,6 +197,14 @@ function Create({ setView,getAll }) {
       isValid = false;
     } else {
       setErrorPlaca("");
+    }
+
+    const inputInternalNumberError = validateField(inputInternalNumber, 'Numero interno', /^[0-9]+$/, 1);
+    if (inputInternalNumberError) {
+      setErrorInternalNumber(inputInternalNumberError);
+      isValid = false;
+    } else {
+      setErrorInternalNumber("");
     }
 
     const emailError = validateField(inputEmail, 'correo', /^.+$/, 4);
@@ -344,9 +364,7 @@ function Create({ setView,getAll }) {
   };
 
   const create = async () => {
-
     if (opcionSelectRole === adminstrador || opcionSelectRole === conductor ) {
-
       let validateDrivers = validateDriver();
       let body = { 
         user:inputUser,dni:inputDni,names:inputName,
@@ -363,12 +381,19 @@ function Create({ setView,getAll }) {
       
       let validateVehicles = validateVehicle();
       let body = { 
-        user:inputUser,placa:inputPlaca,email:inputEmail,
-        role:opcionSelectRole,status:opcionSelectStatus,
-        brand:opcionSelectBrand,model:opcionSelectModel,
-        types:opcionSelectType,password:inputPassword,
+        user:inputUser,
+        placa:inputPlaca,
+        internalNumber:parseFloat(inputInternalNumber),
+        email:inputEmail,
+        role:opcionSelectRole,
+        status:opcionSelectStatus,
+        brand:opcionSelectBrand,
+        model:opcionSelectModel,
+        types:opcionSelectType,
+        password:inputPassword,
         show:opcionSelectShow 
       }
+      console.log(body);
       if (validateVehicles) {
         createUser(body);
       }
@@ -494,6 +519,15 @@ function Create({ setView,getAll }) {
 
                       <div className='mt-4'>
                         {errorPlaca && <p style={{ color: 'red' }}>{errorPlaca}</p>}
+                      </div>
+
+                      <div className='mt-4 user-create-main-input'>
+                        <label htmlFor="exampleInputEmail1">Número interno:</label>
+                          <input value={inputInternalNumber} onChange={handleChangeInternalNumber} pattern="[0-9]{0,13}" type="text" className="user-create-input form-control" placeholder="Número interno" />
+                      </div>
+
+                      <div className='mt-4'>
+                        {errorInternalNumber && <p style={{ color: 'red' }}>{errorInternalNumber}</p>}
                       </div>
 
                       <div className='mt-4 user-create-main-input form-group'>
