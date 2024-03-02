@@ -32,10 +32,6 @@ function Create({ setView }) {
       setError('El campo no puede estar en blanco.');
       message = false;
       return message
-    } else if (inputName.includes(' ')) {
-      setError('El campo no puede contener espacios en blanco.');
-      message = false;
-      return message 
     } else if (inputName.length < 4) {
       setError(`El campo debe tener al menos ${4} caracteres.`);
       message = false;

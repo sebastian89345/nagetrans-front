@@ -267,14 +267,14 @@ function Home() {
                   <img className={`home-sidebar-icon ${changeColor[11].icon}`} src={iconSheet} alt='nose' /> Eps
                 </button>
                 <button name={changeColor[12].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[12].buttons} mb-1`}>
-                  <img className={`home-sidebar-icon ${changeColor[12].icon}`} src={iconSheet} alt='nose' /> Caja de compensacion
+                  <img className={`home-sidebar-icon ${changeColor[12].icon}`} src={iconSheet} alt='nose' /> Caja de compensación
                 </button>
               </div>
             </>
               {/* papeles del vehciculo */}
             <>
               <button name={changeColor[2].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[2].buttons} mb-1`}>
-                <img className={`home-sidebar-icon ${changeColor[2].icon}`} src={iconSheet} alt='nose' /> Papeles vehiculo
+                <img className={`home-sidebar-icon ${changeColor[2].icon}`} src={iconSheet} alt='nose' /> Papeles vehículo
               </button>
             </>
               {/* lista de chequeo */}
@@ -291,7 +291,7 @@ function Home() {
               <img className={`home-sidebar-icon ${changeColor[13].icon}`} src={iconTask} alt='nose' /> Lista de chequeo
             </button>
             <button name={changeColor[2].name} onClick={changeColorClick} className={`home-sidebar-links ${changeColor[2].buttons} mb-1`}>
-                <img className={`home-sidebar-icon ${changeColor[2].icon}`} src={iconSheet} alt='nose' /> Papeles vehiculo
+                <img className={`home-sidebar-icon ${changeColor[2].icon}`} src={iconSheet} alt='nose' /> Papeles vehículo
             </button>
           </>
         </> 

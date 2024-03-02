@@ -160,7 +160,7 @@ function Update({ infoUpdate,setView,getAll }) {
   const validateVehicle = () => {
     let isValid = true;
 
-    const userError = validateField(inputUser, 'usuario',/^.+$/, 4);
+    const userError = validateField(inputUser, 'usuario',/^[a-zA-ZñÑ0-9\s]+$/, 4);
     if (userError) {
       setErrorUser(userError);
       isValid = false;
@@ -168,7 +168,7 @@ function Update({ infoUpdate,setView,getAll }) {
       setErrorUser("");
     }
 
-    const placaError = validateField(inputPlaca, 'placa',/^.+$/, 4);
+    const placaError = validateField(inputPlaca, 'placa',/^[a-zA-ZñÑ0-9\s]+$/, 4);
     if (placaError) {
       setErrorPlaca(placaError);
       isValid = false;
@@ -240,7 +240,7 @@ function Update({ infoUpdate,setView,getAll }) {
   const validateDriver = () => {
     let isValid = true;
 
-    const userError = validateField(inputUser, 'usuario',/^.+$/, 4);
+    const userError = validateField(inputUser, 'usuario',/^[a-zA-ZñÑ0-9\s]+$/, 4);
     if (userError) {
       setErrorUser(userError);
       isValid = false;
@@ -256,7 +256,7 @@ function Update({ infoUpdate,setView,getAll }) {
       setErrorDni("");
     }
 
-    const nameError = validateField(inputName, 'nombres',/^.+$/, 4);
+    const nameError = validateField(inputName, 'nombres',/^[a-zA-ZñÑ0-9\s]+$/, 4);
     if (nameError) {
       setErrorName(nameError);
       isValid = false;
@@ -264,7 +264,7 @@ function Update({ infoUpdate,setView,getAll }) {
       setErrorName("");
     }
 
-    const surnameError = validateField(inputSurname, 'apellidos',/^.+$/, 4);
+    const surnameError = validateField(inputSurname, 'apellidos',/^[a-zA-ZñÑ0-9\s]+$/, 4);
     if (surnameError) {
       setErrorSurname(surnameError);
       isValid = false;
@@ -322,10 +322,14 @@ function Update({ infoUpdate,setView,getAll }) {
 
       let validateDrivers = validateDriver();
       let body = { 
-        id:infoUpdate.item._id,names:inputName,
-        surnames:inputSurname,phoneNumber:inputPhone,
-        email:inputEmail,role:opcionSelectRole,
-        status:opcionSelectStatus,show:opcionSelectShow 
+        id:infoUpdate.item._id,
+        names:inputName,
+        surnames:inputSurname,
+        phoneNumber:inputPhone,
+        email:inputEmail,
+        role:opcionSelectRole,
+        status:opcionSelectStatus,
+        show:opcionSelectShow 
       }
       if (validateDrivers) {
         editUser(body);
@@ -393,7 +397,7 @@ function Update({ infoUpdate,setView,getAll }) {
                 <img onClick={returnWindow} src={arrow} className='user-update-img' alt='img' />
               </div>
               <div className='text-center'>
-                <p className='user-update-title'>Crear un nuevo usuario</p>
+                <p className='user-update-title'>Editar un usuario</p>
               </div>
 
               <div className='user-update-position-content-form'>

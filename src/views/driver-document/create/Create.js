@@ -27,7 +27,6 @@ function Create({ setView,getAll }) {
 
   const { conductor } = roleService;
   const [inputnumberLicense, setInputnumberLicense] = useState("");
-  const [inputstartLicense, setInputstartLicense] = useState("");
   const [inputExpirationLicense, setInputExpirationLicense] = useState("");
   const [opcionUser, setOpcionUser] = useState([]);
   const [opcionAfp, setOpcionAfp] = useState([]);
@@ -41,7 +40,6 @@ function Create({ setView,getAll }) {
   const [opcionSelectCompensationBox, setOpcionSelectCompensationBox] = useState('');
   const [errorUser, setErrorUser] = useState('');
   const [errorNumberLicense, setErrorNumberLicense] = useState('');
-  const [errorStartLicense, setErrorStartLicense] = useState('');
   const [errorExpirationLicense, setErrorExpirationLicense] = useState('');
   const [errorAfp, setErrorAfp] = useState('');
   const [errorArl, setErrorArl] = useState('');
@@ -83,7 +81,6 @@ function Create({ setView,getAll }) {
   const resetInput = () => {
     //Este formatea los inputs
     setInputnumberLicense("");
-    setInputstartLicense("");
     setInputExpirationLicense("");
 
     //Este formatea los select
@@ -100,7 +97,6 @@ function Create({ setView,getAll }) {
     setErrorArl("");
     setErrorEps("");
     setErrorCompensationBox("");
-    setErrorStartLicense("");
     setErrorExpirationLicense("");
   }
 
@@ -145,14 +141,6 @@ function Create({ setView,getAll }) {
       isValid = false;
     } else {
       setErrorNumberLicense("");
-    }
-
-    const startLicenseError = validateField(inputstartLicense, 'comienzo de la licensia', /^\d{4}-\d{2}-\d{2}$/, 4);
-    if (startLicenseError) {
-      setErrorStartLicense(startLicenseError);
-      isValid = false;
-    } else {
-      setErrorStartLicense("");
     }
 
     const expirationtLicenseError = validateField(inputExpirationLicense, 'expiracion de la licensia', /^\d{4}-\d{2}-\d{2}$/, 4);
@@ -215,7 +203,6 @@ function Create({ setView,getAll }) {
       let body = { 
         users:opcionSelectUser,
         numberLicense:inputnumberLicense,
-        startLicense:formatDate(inputstartLicense),
         expirationLicense:formatDate(inputExpirationLicense),
         arl:opcionSelectArl,afp:opcionSelectAfp,
         eps:opcionSelectEps,
@@ -289,15 +276,6 @@ function Create({ setView,getAll }) {
 
                       <div className='mt-4'>
                           {errorNumberLicense && <p style={{ color: 'red' }}>{errorNumberLicense}</p>}
-                        </div>
-
-                      <div className='mt-4 user-create-main-input'>
-                        <label htmlFor="exampleInputEmail1">Inicio de la licencia:</label>
-                        <input value={inputstartLicense} onChange={(e) => setInputstartLicense(e.target.value)} type="date" className='user-create-input form-control' />
-                      </div>
-
-                      <div className='mt-4'>
-                        {errorStartLicense && <p style={{ color: 'red' }}>{errorStartLicense}</p>}
                       </div>
 
                       <div className='mt-4 user-create-main-input'>

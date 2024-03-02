@@ -68,7 +68,6 @@ function Create({ setView,getAll }) {
   const [errorDateExpirationSoat, setErrorDateExpirationSoat] = useState('');
   const [errorDateExpirationMechanicalTechnician, setErrorDateExpirationMechanicalTechnician] = useState('');
   const [errorDateExpirationCardOperations, setErrorDateExpirationCardOperations] = useState('');
-  const [errorDateExpirationCardProperties, setErrorDateExpirationCardProperties] = useState('');
   const [errorDateExpirationSureRccece, setErrorDateExpirationSureRccece] = useState('');
   const [errorDateStartExtract, setErrorDateStartExtract] = useState('');
   const [errorDateExpirationExtract, setErrorDateExpirationExtract] = useState('');
@@ -148,7 +147,6 @@ function Create({ setView,getAll }) {
     setErrorDateExpirationSoat("");
     setErrorDateExpirationMechanicalTechnician("");
     setErrorDateExpirationCardOperations("");
-    setErrorDateExpirationCardProperties("");
     setErrorDateExpirationSureRccece("");
     setErrorDateExpirationExtract("");
     setErrorDateExpirationPreventiveReview("");
@@ -292,14 +290,6 @@ function Create({ setView,getAll }) {
       isValid = false;
     } else {
       setErrorDateStartCardProperties("");
-    }
-
-    const dateExpirationCardPropertiesError = validateField(inputDateExpirationCardProperties, 'vencimiento tarjeta de propiedades', /^\d{4}-\d{2}-\d{2}$/, 4);
-    if (dateExpirationCardPropertiesError) {
-      setErrorDateExpirationCardProperties(dateExpirationCardPropertiesError);
-      isValid = false;
-    } else {
-      setErrorDateExpirationCardProperties("");
     }
 
     const dateStartSureRcceceError = validateField(inputDateStartSureRccece, 'inicio seguro rcc ece', /^\d{4}-\d{2}-\d{2}$/, 4);
@@ -593,7 +583,7 @@ function Create({ setView,getAll }) {
                       </div>
 
                       <div className='mt-4 vehicleDocument-create-main-input'>
-                        <label htmlFor="exampleInputEmail1">vencimiento de la tecnicomecanico:</label>
+                        <label htmlFor="exampleInputEmail1">Vencimiento de la tecnicomecanico:</label>
                         <input value={inputDateExpirationMechanicalTechnician} onChange={(e) => setInputDateExpirationMechanicalTechnician(e.target.value)} type="date" className='user-create-input form-control' />
                       </div>
 
@@ -626,15 +616,6 @@ function Create({ setView,getAll }) {
 
                       <div className='mt-4'>
                         {errorDateStartCardProperties && <p style={{ color: 'red' }}>{errorDateStartCardProperties}</p>}
-                      </div>
-
-                      <div className='mt-4 vehicleDocument-create-main-input'>
-                        <label htmlFor="exampleInputEmail1">Vencimiento de la tarjeta propiedades:</label>
-                        <input value={inputDateExpirationCardProperties} onChange={(e) => setInputDateExpirationCardProperties(e.target.value)} type="date" className='user-create-input form-control' />
-                      </div>
-
-                      <div className='mt-4'>
-                        {errorDateExpirationCardProperties && <p style={{ color: 'red' }}>{errorDateExpirationCardProperties}</p>}
                       </div>
 
                       <div className='mt-4 vehicleDocument-create-main-input'>

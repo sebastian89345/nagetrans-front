@@ -161,7 +161,7 @@ function List() {
   }
 
   const createPdf = async (element,i) => {
-    // console.log(element);
+    console.log(element);
     const pdf = await fetch(pdfDiary).then((res) => res.arrayBuffer());
     const pdfDoc = await PDFDocument.load(pdf);
 

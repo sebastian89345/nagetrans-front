@@ -259,7 +259,7 @@ function Create({ setView,getAll }) {
   const validateDriver = () => {
     let isValid = true;
 
-    const userError = validateField(inputUser, 'usuario', /^[a-zA-Z0-9_!@#$%^&*()-]+$/, 4);
+    const userError = validateField(inputUser, 'usuario', /^[a-zA-ZñÑ0-9\s]+$/, 4);
     if (userError) {
       setErrorUser(userError);
       isValid = false;
@@ -275,7 +275,7 @@ function Create({ setView,getAll }) {
       setErrorDni("");
     }
 
-    const nameError = validateField(inputName, 'nombres', /^[a-zA-Z0-9_\s]+$/, 4);
+    const nameError = validateField(inputName, 'nombres', /^[a-zA-ZñÑ0-9\s]+$/, 4);
     if (nameError) {
       setErrorName(nameError);
       isValid = false;
@@ -283,7 +283,7 @@ function Create({ setView,getAll }) {
       setErrorName("");
     }
 
-    const surnameError = validateField(inputSurname, 'apellidos', /^[a-zA-Z0-9_\s]+$/, 4);
+    const surnameError = validateField(inputSurname, 'apellidos', /^[a-zA-ZñÑ0-9\s]+$/, 4);
     if (surnameError) {
       setErrorSurname(surnameError);
       isValid = false;
@@ -450,7 +450,7 @@ function Create({ setView,getAll }) {
                   { opcionSelectRole === adminstrador || opcionSelectRole === conductor  ? 
                     <>
                       <div className='mt-4 user-create-main-input'>
-                        <label htmlFor="exampleInputEmail1">Cedula:</label>
+                        <label htmlFor="exampleInputEmail1">Cédula:</label>
                           <input value={inputDni} onChange={handleChangeDni} pattern="[0-9]{0,13}" type="text" className="user-create-input form-control" placeholder="Cedula" />
                       </div>
 

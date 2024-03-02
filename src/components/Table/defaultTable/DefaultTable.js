@@ -46,39 +46,39 @@ const DefaultTable = ({ data , nms , updateId , deleteId , selectCheck}) => {
     let th ;
     if(nms === "user"){
       th = <>
-        <th scope="col">usuario</th>
+        <th scope="col">Usuario</th>
         <th scope="col">Correo</th>
         <th scope="col">Rol</th>
         <th scope="col">Mostrar</th>
       </>
     } else if (nms === "driverDocument") {
       th = <>
-        <th scope="col">usuario</th>
-        <th scope="col">numero de licencia</th>
+        <th scope="col">Usuario</th>
+        <th scope="col">Número de licencia</th>
         <th scope="col">ARL</th>
         <th scope="col">AFP</th>
         <th scope="col">EPS</th>
-        <th scope="col">Caja de compensacion</th>
+        <th scope="col">Caja de compensación</th>
       </>
     } else if (nms === "vehicleDocument") {
       th = <>
-        <th scope="col">usuario</th>
+        <th scope="col">Usuario</th>
         <th scope="col">Soat</th>
-        <th scope="col">Tecnicomecanica</th>
-        <th scope="col">Tarjeta de operaciones</th>
-        <th scope="col">Tarjeta de propiedades</th>
-        <th scope="col">Segurorccece</th>
+        <th scope="col">Técnico mecánica</th>
+        <th scope="col">Tarjeta de operación</th>
+        <th scope="col">Tarjeta de propiedad</th>
+        <th scope="col">Seguro RCC RCE</th>
         <th scope="col">Extracto</th>
-        <th scope="col">Revision preventiva</th>
+        <th scope="col">Revisión preventiva</th>
       </>
     } else if (nms === "listCheck") {
 
       th = <>
         <th className="DefaultTable-header-th-width" scope="col">Preoperacional diaria</th>
         <th className="DefaultTable-header-th-width" scope="col">Placa</th>
-        <th className="DefaultTable-header-th-width" scope="col">Dni</th>
+        <th className="DefaultTable-header-th-width" scope="col">Cédula</th>
         <th className="DefaultTable-header-th-width" scope="col">Kilometraje actual</th>
-        <th className="DefaultTable-header-th-width" scope="col">Proximo cambio de aceite</th>
+        <th className="DefaultTable-header-th-width" scope="col">Proxímo cambio de aceite</th>
         <th className="DefaultTable-header-th-width" scope="col">Fecha</th>
 
         {/* ESTADO DE PRESENTACIÓN */}
