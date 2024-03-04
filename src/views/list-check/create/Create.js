@@ -535,13 +535,13 @@ function Create() {
         <div className='listCheck-create-card card'>
             <div className='card-body'>
               <div className='text-center'>
-                <p className='listCheck-create-title'>Crear una preoperacional</p>
+                <p className='listCheck-create-title'>Crear una Preoperacional</p>
               </div>
 
               <div className='mt-4 listCheck-create-main-input form-group'>
                 <label htmlFor="exampleInputEmail1">Conductor :</label>
                 <select value={opcionSelectUser} onChange={(e) => setOpcionSelectUser(e.target.value)} className='listCheck-create-input form-control'>
-                  <option value="">Selecciona una opción</option>
+                  <option value="">Selecciona una Opción</option>
                   {opcionUser.map((opcion, index) => (
                     <option key={index} value={opcion._id}>
                       {opcion.names}
@@ -557,11 +557,11 @@ function Create() {
             {/* ESTADO DE PRESENTACIÓN */}
 
             <div className='mt-4'>
-              <p className="listCheck-create-title-lst text-info">Estado de presentación</p>
+              <p className="listCheck-create-title-lst text-info">Estado de Presentación</p>
             </div>
     
             <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Aseo interno :</label>
+                <label htmlFor="exampleInputEmail1">Aseo Interno :</label>
                 <label className="toggle-container">
                   <input checked={internalToilet} onChange={(e) => setInternalToilet(!internalToilet)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
@@ -569,7 +569,7 @@ function Create() {
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Aseo externo :</label>
+                <label htmlFor="exampleInputEmail1">Aseo Externo :</label>
                 <label className="toggle-container">
                   <input checked={externalToilet} onChange={(e) => setExternalToilet(!externalToilet)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
@@ -595,11 +595,11 @@ function Create() {
               {/* ESTADO DE COMODIDAD */}
 
               <div className='mt-4'>
-                <p className="listCheck-create-title-lst text-info">Estado de comodidad</p>
+                <p className="listCheck-create-title-lst text-info">Estado de Comodidad</p>
               </div>
             
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Aire acondicionado :</label>
+                <label htmlFor="exampleInputEmail1">Aire Acondicionado :</label>
                 <label className="toggle-container">
                   <input checked={airConditioning} onChange={(e) => setAirConditioning(!airConditioning)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
@@ -623,7 +623,7 @@ function Create() {
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Luz Interior o de techo :</label>
+                <label htmlFor="exampleInputEmail1">Luz Interior o de Techo :</label>
                 <label className="toggle-container">
                   <input checked={interiorOrCeilingLight} onChange={(e) => setInteriorOrCeilingLight(!interiorOrCeilingLight)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
@@ -633,11 +633,11 @@ function Create() {
               {/* NIVELES Y PERDIDA DE LIQUIDOS */}
 
               <div className='mt-4'>
-                <p className="listCheck-create-title-lst text-info">Niveles y perdida de liquidos</p>
+                <p className="listCheck-create-title-lst text-info">Niveles y Perdida de Liquidos</p>
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Nivel de Aceite de motor :</label>
+                <label htmlFor="exampleInputEmail1">Nivel de Aceite de Motor :</label>
                 <label className="toggle-container">
                   <input checked={engineOilLevel} onChange={(e) => setEngineOilLevel(!engineOilLevel)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
@@ -645,7 +645,7 @@ function Create() {
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Nivel de liquido de frenos :</label>
+                <label htmlFor="exampleInputEmail1">Nivel de Liquido de Frenos :</label>
                 <label className="toggle-container">
                   <input checked={brakeFluidLevel} onChange={(e) => setBrakeFluidLevel(!brakeFluidLevel)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
@@ -653,7 +653,7 @@ function Create() {
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Nivel de agua del radiador :</label>
+                <label htmlFor="exampleInputEmail1">Nivel de Agua del Radiador :</label>
                 <label className="toggle-container">
                   <input checked={radiatorWaterLevel} onChange={(e) => setRadiatorWaterLevel(!radiatorWaterLevel)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
@@ -661,7 +661,7 @@ function Create() {
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Nivel de agua de la batería :</label>
+                <label htmlFor="exampleInputEmail1">Nivel de Agua de la Batería :</label>
                 <label className="toggle-container">
                   <input checked={batteryWaterLevel} onChange={(e) => setBatteryWaterLevel(!batteryWaterLevel)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
@@ -669,7 +669,7 @@ function Create() {
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Nivel de aceite hidráulico :</label>
+                <label htmlFor="exampleInputEmail1">Nivel de Aceite Hidráulico :</label>
                 <label className="toggle-container">
                   <input checked={hydraulicOilLevel} onChange={(e) => setHydraulicOilLevel(!hydraulicOilLevel)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
@@ -693,7 +693,7 @@ function Create() {
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Fugas de Aceite de transmisión :</label>
+                <label htmlFor="exampleInputEmail1">Fugas de Aceite de Transmisión :</label>
                 <label className="toggle-container">
                   <input checked={transmissionOilLeaks} onChange={(e) => setTransmissionOilLeaks(!transmissionOilLeaks)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
@@ -701,7 +701,7 @@ function Create() {
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Fuga aceite de caja :</label>
+                <label htmlFor="exampleInputEmail1">Fuga Aceite de Caja :</label>
                 <label className="toggle-container">
                   <input checked={boxOilLeak} onChange={(e) => setBoxOilLeak(!boxOilLeak)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
@@ -709,7 +709,7 @@ function Create() {
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Fugas de líquidos de frenos :</label>
+                <label htmlFor="exampleInputEmail1">Fugas de Líquidos de Frenos :</label>
                 <label className="toggle-container">
                   <input checked={brakeFluidLeaks} onChange={(e) => setBrakeFluidLeaks(!brakeFluidLeaks)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
@@ -719,7 +719,7 @@ function Create() {
               {/* TABLERO DE CONTROL */}
 
               <div className='mt-4'>
-                <p className="listCheck-create-title-lst text-info">Tablero y control</p>
+                <p className="listCheck-create-title-lst text-info">Tablero y Control</p>
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
@@ -789,7 +789,7 @@ function Create() {
               {/* SEGURIDAD PASIVA */}
 
               <div className='mt-4'>
-                <p className="listCheck-create-title-lst text-info">Seguridad pasiva</p>
+                <p className="listCheck-create-title-lst text-info">Seguridad Pasiva</p>
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
@@ -859,7 +859,7 @@ function Create() {
               {/* SEGURIDAD ACTIVA */}
 
               <div className='mt-4'>
-                <p className="listCheck-create-title-lst text-info">Seguridad activa</p>
+                <p className="listCheck-create-title-lst text-info">Seguridad Activa</p>
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
@@ -887,7 +887,7 @@ function Create() {
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Estado suspensión Trasera :</label>
+                <label htmlFor="exampleInputEmail1">Estado Suspensión Trasera :</label>
                 <label className="toggle-container">
                   <input checked={rearSuspensionStatus} onChange={(e) => setRearSuspensionStatus(!rearSuspensionStatus)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
@@ -913,7 +913,7 @@ function Create() {
               {/* ESTADO LUCES */}
 
               <div className='mt-4'>
-                <p className="listCheck-create-title-lst text-info">Estado luces</p>
+                <p className="listCheck-create-title-lst text-info">Estado Luces</p>
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
@@ -1007,7 +1007,7 @@ function Create() {
               {/* ESTADO LLANTAS */}
 
               <div className='mt-4'>
-                <p className="listCheck-create-title-lst text-info">Estado llantas</p>
+                <p className="listCheck-create-title-lst text-info">Estado Llantas</p>
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
@@ -1051,7 +1051,7 @@ function Create() {
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Presión aire llanta :</label>
+                <label htmlFor="exampleInputEmail1">Presión Aire Llanta :</label>
                 <label className="toggle-container">
                   <input checked={tireAirPressure} onChange={(e) => setTireAirPressure(!tireAirPressure)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
@@ -1091,11 +1091,11 @@ function Create() {
               {/* EQUIPO DE CARRETERA */}
 
               <div className='mt-4'>
-                <p className="listCheck-create-title-lst text-info">Equipo de carretera</p>
+                <p className="listCheck-create-title-lst text-info">Equipo de Carretera</p>
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">1 gato con capacidad para elevar el vehículo :</label>
+                <label htmlFor="exampleInputEmail1">1 Gato con Capacidad para Elevar el Vehículo :</label>
                 <label className="toggle-container">
                   <input checked={oneJackWithTheCapacityToRaiseTheVehicle} onChange={(e) => setOneJackWithTheCapacityToRaiseTheVehicle(!oneJackWithTheCapacityToRaiseTheVehicle)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
@@ -1103,7 +1103,7 @@ function Create() {
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">1 chaleco reflectivo :</label>
+                <label htmlFor="exampleInputEmail1">1 Chaleco Reflectivo :</label>
                 <label className="toggle-container">
                   <input checked={oneReflectiveVest} onChange={(e) => setOneReflectiveVest(!oneReflectiveVest)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
@@ -1111,7 +1111,7 @@ function Create() {
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">2 tacos para bloquear el vehículo :</label>
+                <label htmlFor="exampleInputEmail1">2 Tacos para Bloquear el Vehículo :</label>
                 <label className="toggle-container">
                   <input checked={twoBlocksToBlockTheVehicle} onChange={(e) => setTwoBlocksToBlockTheVehicle(!twoBlocksToBlockTheVehicle)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
@@ -1119,7 +1119,7 @@ function Create() {
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">2 señales de carretera; conos o triangulos :</label>
+                <label htmlFor="exampleInputEmail1">2 Señales de Carretera; Conos o Triangulos :</label>
                 <label className="toggle-container">
                   <input checked={twoRoadSigns} onChange={(e) => setTwoRoadSigns(!twoRoadSigns)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
@@ -1127,7 +1127,7 @@ function Create() {
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">1 par de guantes industriales :</label>
+                <label htmlFor="exampleInputEmail1">1 Par de Guantes Industriales :</label>
                 <label className="toggle-container">
                   <input checked={onePairOfIndustrialGloves} onChange={(e) => setOnePairOfIndustrialGloves(!onePairOfIndustrialGloves)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
@@ -1135,7 +1135,7 @@ function Create() {
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">1 cruceta :</label>
+                <label htmlFor="exampleInputEmail1">1 Cruceta :</label>
                 <label className="toggle-container">
                   <input checked={oneCrosshead} onChange={(e) => setOneCrosshead(!oneCrosshead)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
@@ -1143,7 +1143,7 @@ function Create() {
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Extinguidor de fuego( capacidad mín. 5 lb) :</label>
+                <label htmlFor="exampleInputEmail1">Extinguidor de Fuego( capacidad mín. 5 lb) :</label>
                 <label className="toggle-container">
                   <input checked={fireExtinguisher} onChange={(e) => setFireExtinguisher(!fireExtinguisher)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
@@ -1159,7 +1159,7 @@ function Create() {
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">caja de herramientas (alicates, destornilladores de pala y estrella, llave de expansión y fijas) :</label>
+                <label htmlFor="exampleInputEmail1">Caja de Herramientas (Alicates, Destornilladores de Pala y Estrella, Llave de Expansión y Fijas) :</label>
                 <label className="toggle-container">
                   <input checked={toolBox} onChange={(e) => setToolBox(!toolBox)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
@@ -1167,7 +1167,7 @@ function Create() {
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Botiquín de primeros auxilios :</label>
+                <label htmlFor="exampleInputEmail1">Botiquín de Primeros Auxilios :</label>
                 <label className="toggle-container">
                   <input checked={firstAidKit} onChange={(e) => setFirstAidKit(!firstAidKit)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
@@ -1177,7 +1177,7 @@ function Create() {
               {/* DOCUMENTOS DEL VEHÍCULO */}
 
               <div className='mt-4'>
-                <p className="listCheck-create-title-lst text-info">Documentos del vehiculo</p>
+                <p className="listCheck-create-title-lst text-info">Documentos del Vehículo</p>
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
@@ -1189,7 +1189,7 @@ function Create() {
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Revisión Tecnomecánica y Certificación de Gases :</label>
+                <label htmlFor="exampleInputEmail1">Revisión Técnico Mecánica y Certificación de Gases :</label>
                 <label className="toggle-container">
                   <input checked={technomechanicalReviewAndGasCertification} onChange={(e) => setTechnomechanicalReviewAndGasCertification(!technomechanicalReviewAndGasCertification)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
@@ -1197,7 +1197,7 @@ function Create() {
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Seguro contractual y extracontractual :</label>
+                <label htmlFor="exampleInputEmail1">Seguro Contractual y Extracontractual :</label>
                 <label className="toggle-container">
                   <input checked={contractualAndNonContractualInsurance} onChange={(e) => setContractualAndNonContractualInsurance(!contractualAndNonContractualInsurance)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
@@ -1213,7 +1213,7 @@ function Create() {
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Tarjeta de operación :</label>
+                <label htmlFor="exampleInputEmail1">Tarjeta de Operación :</label>
                 <label className="toggle-container">
                   <input checked={operationCard} onChange={(e) => setOperationCard(!operationCard)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
@@ -1221,7 +1221,7 @@ function Create() {
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Tarjeta de propiedad :</label>
+                <label htmlFor="exampleInputEmail1">Tarjeta de Propiedad :</label>
                 <label className="toggle-container">
                   <input checked={propertyCard} onChange={(e) => setPropertyCard(!propertyCard)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
@@ -1229,7 +1229,7 @@ function Create() {
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Licencia de conducción :</label>
+                <label htmlFor="exampleInputEmail1">Licencia de Conducción :</label>
                 <label className="toggle-container">
                   <input checked={drivingLicense} onChange={(e) => setDrivingLicense(!drivingLicense)} type="checkbox" className="toggle-checkbox" />
                   <div className="toggle-slider"></div>
@@ -1239,7 +1239,7 @@ function Create() {
               {/* no tocar */}
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Kilometraje actual :</label>
+                <label htmlFor="exampleInputEmail1">Kilometraje Actual :</label>
                 <input value={currentKm} onChange={(e) => setCurrentKm(e.target.value)} type="text" className="listCheck-create-input form-control" placeholder="Kilometraje actual" />
               </div>
 
@@ -1248,7 +1248,7 @@ function Create() {
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Proximo cambio de aceite :</label>
+                <label htmlFor="exampleInputEmail1">Próximo Cambio de Aceite :</label>
                 <input value={oilChange} onChange={(e) => setOilChange(e.target.value)} type="text" className="listCheck-create-input form-control" placeholder="Proximo cambio de aceite" />
               </div>
 
@@ -1257,7 +1257,7 @@ function Create() {
               </div>
 
               <div className='mt-4 listCheck-create-main-input'>
-                <label htmlFor="exampleInputEmail1">Observacion :</label>
+                <label htmlFor="exampleInputEmail1">Observación :</label>
                 <textarea value={observation} onChange={(e) => setObservation(e.target.value)} type="text" className="listCheck-create-input form-control" placeholder="Observacion" />
               </div>
 

@@ -247,7 +247,7 @@ function Create({ setView,getAll }) {
                     <img onClick={returnWindow} src={arrow} className='driverDocument-create-img' alt='img' />
                   </div>
                   <div className=' text-center'>
-                    <p className='driverDocument-create-title'>Crear un documento del conductor</p>
+                    <p className='driverDocument-create-title'>Crear un Documento del Conductor</p>
                   </div>
                   
                   <div className='driverDocument-create-position-content-form'>
@@ -256,7 +256,7 @@ function Create({ setView,getAll }) {
                       <div className='mt-4 driverDocument-create-main-input form-group'>
                         <label htmlFor="exampleInputEmail1">Usuario:</label>
                         <select value={opcionSelectUser} onChange={(e) => setOpcionSelectUser(e.target.value)} className='user-create-input form-control'>
-                          <option value="">Selecciona una opción</option>
+                          <option value="">Selecciona una Opción</option>
                           {opcionUser.map((opcion, index) => (
                             <option key={index} value={opcion._id}>
                               {opcion.dni + " " + opcion.names}
@@ -270,7 +270,7 @@ function Create({ setView,getAll }) {
                       </div>
 
                       <div className='mt-4 user-create-main-input'>
-                          <label htmlFor="exampleInputEmail1">Numero de licencia:</label>
+                          <label htmlFor="exampleInputEmail1">Número de Licencia:</label>
                           <input value={inputnumberLicense} onChange={handleChangeNumberLicense} pattern="[0-9]{0,13}" type="text" className="user-create-input form-control" placeholder="Numero de licencia" />
                       </div>
 
@@ -279,7 +279,7 @@ function Create({ setView,getAll }) {
                       </div>
 
                       <div className='mt-4 user-create-main-input'>
-                        <label htmlFor="exampleInputEmail1">Vencimiento de la licencia:</label>
+                        <label htmlFor="exampleInputEmail1">Vencimiento de la Licencia:</label>
                         <input value={inputExpirationLicense} onChange={(e) => setInputExpirationLicense(e.target.value)} type="date" className='user-create-input form-control' />
                       </div>
 
@@ -288,9 +288,9 @@ function Create({ setView,getAll }) {
                       </div>
 
                       <div className='mt-4 user-create-main-input form-group'>
-                        <label htmlFor="exampleInputEmail1">Arl:</label>
+                        <label htmlFor="exampleInputEmail1">ARL:</label>
                         <select value={opcionSelectArl} onChange={(e) => setOpcionSelectArl(e.target.value)} className='user-create-input form-control'>
-                          <option value="">Selecciona una opción</option>
+                          <option value="">Selecciona una Opción</option>
                           {opcionArl.map((opcion, index) => (
                             <option key={index} value={opcion._id}>
                               {opcion.name}
@@ -304,9 +304,9 @@ function Create({ setView,getAll }) {
                       </div>
 
                       <div className='mt-4 user-create-main-input form-group'>
-                        <label htmlFor="exampleInputEmail1">Afp:</label>
+                        <label htmlFor="exampleInputEmail1">AFP:</label>
                         <select value={opcionSelectAfp} onChange={(e) => setOpcionSelectAfp(e.target.value)} className='user-create-input form-control'>
-                          <option value="">Selecciona una opción</option>
+                          <option value="">Selecciona una Opción</option>
                           {opcionAfp.map((opcion, index) => (
                             <option key={index} value={opcion._id}>
                               {opcion.name}
@@ -320,9 +320,9 @@ function Create({ setView,getAll }) {
                       </div>
 
                       <div className='mt-4 user-create-main-input form-group'>
-                        <label htmlFor="exampleInputEmail1">Eps:</label>
+                        <label htmlFor="exampleInputEmail1">EPS:</label>
                         <select value={opcionSelectEps} onChange={(e) => setOpcionSelectEps(e.target.value)} className='user-create-input form-control'>
-                          <option value="">Selecciona una opción</option>
+                          <option value="">Selecciona una Opción</option>
                           {opcionEps.map((opcion, index) => (
                             <option key={index} value={opcion._id}>
                               {opcion.name}
@@ -336,9 +336,9 @@ function Create({ setView,getAll }) {
                       </div>
 
                       <div className='mt-4 user-create-main-input form-group'>
-                        <label>Caja de compensacion:</label>
+                        <label>Caja de Compensación:</label>
                         <select value={opcionSelectCompensationBox} onChange={(e) => setOpcionSelectCompensationBox(e.target.value)} className='user-create-input form-control'>
-                          <option value="">Selecciona una opción</option>
+                          <option value="">Selecciona una Opción</option>
                           {opcionCompensationBox.map((opcion, index) => (
                             <option key={index} value={opcion._id}>
                               {opcion.name}

@@ -600,7 +600,7 @@ function Update({ infoUpdate,setView,getAll }) {
                 <img onClick={returnWindow} src={arrow} className='listCheck-update-img' alt='img' />
               </div>
               <div className=' text-center'>
-                <p className='listCheck-update-title'>Editar una preoperacional</p>
+                <p className='listCheck-update-title'>Editar una Preoperacional</p>
               </div>
 
               <div className='driverDocument-create-position-content-form'>
@@ -609,7 +609,7 @@ function Update({ infoUpdate,setView,getAll }) {
                   <div className='mt-4 listCheck-create-main-input form-group'>
                     <label htmlFor="exampleInputEmail1">Conductor :</label>
                     <select value={opcionSelectUser} onChange={(e) => setOpcionSelectUser(e.target.value)} className='listCheck-create-input form-control'>
-                      <option value="">Selecciona una opción</option>
+                      <option value="">Selecciona una Opción</option>
                       {opcionUser.map((opcion, index) => (
                         <option key={index} value={opcion._id}>
                           {opcion.names}
@@ -627,7 +627,7 @@ function Update({ infoUpdate,setView,getAll }) {
                   {/* ESTADO DE PRESENTACIÓN */}
 
                     <div className='mt-4 listCheck-create-main-input form-group'>
-                      <label htmlFor="exampleInputEmail1">Aseo interno :</label>
+                      <label htmlFor="exampleInputEmail1">Aseo Interno :</label>
                       <select value={opcionSelectInternalToilet} onChange={(e) => setOpcionSelectInternalToilet(e.target.value)} className='listCheck-create-input form-control'>
                         {opcionInternalToilet.map((opcion, index) => (
                           <option key={index} value={opcion.value}>
@@ -638,7 +638,7 @@ function Update({ infoUpdate,setView,getAll }) {
                     </div>
 
                     <div className='mt-4 listCheck-create-main-input form-group'>
-                      <label htmlFor="exampleInputEmail1">Aseo externo :</label>
+                      <label htmlFor="exampleInputEmail1">Aseo Externo :</label>
                       <select value={opcionSelectExternalToilet} onChange={(e) => setOpcionSelectExternalToilet(e.target.value)} className='listCheck-create-input form-control'>
                         {opcionExternalToilet.map((opcion, index) => (
                           <option key={index} value={opcion.value}>
@@ -684,7 +684,7 @@ function Update({ infoUpdate,setView,getAll }) {
                       </div>
 
                       <div className='mt-4 listCheck-create-main-input form-group'>
-                        <label htmlFor="exampleInputEmail1">Silletería (Anclaje, estado) :</label>
+                        <label htmlFor="exampleInputEmail1">Silletería (Anclaje, Estado) :</label>
                         <select value={opcionSelectChairs} onChange={(e) => setOpcionSelectChairs(e.target.value)} className='listCheck-create-input form-control'>
                           {opcionChairs.map((opcion, index) => (
                             <option key={index} value={opcion.value}>
@@ -706,7 +706,7 @@ function Update({ infoUpdate,setView,getAll }) {
                       </div>
 
                       <div className='mt-4 listCheck-create-main-input form-group'>
-                        <label htmlFor="exampleInputEmail1">Luz Interior o de techo :</label>
+                        <label htmlFor="exampleInputEmail1">Luz Interior o de Techo :</label>
                         <select value={opcionSelectInteriorOrCeilingLight} onChange={(e) => setOpcionSelectInteriorOrCeilingLight(e.target.value)} className='listCheck-create-input form-control'>
                           {opcionInteriorOrCeilingLight.map((opcion, index) => (
                             <option key={index} value={opcion.value}>
@@ -719,7 +719,7 @@ function Update({ infoUpdate,setView,getAll }) {
                       {/* ESTADO DE COMODIDAD */}
 
                       <div className='mt-4 listCheck-create-main-input form-group'>
-                        <label htmlFor="exampleInputEmail1">Nivel de Aceite de motor :</label>
+                        <label htmlFor="exampleInputEmail1">Nivel de Aceite de Motor :</label>
                         <select value={opcionSelectEngineOilLevel} onChange={(e) => setOpcionSelectEngineOilLevel(e.target.value)} className='listCheck-create-input form-control'>
                           {opcionEngineOilLevel.map((opcion, index) => (
                             <option key={index} value={opcion.value}>
@@ -730,7 +730,7 @@ function Update({ infoUpdate,setView,getAll }) {
                       </div>
 
                       <div className='mt-4 listCheck-create-main-input form-group'>
-                        <label htmlFor="exampleInputEmail1">Nivel de liquido de frenos :</label>
+                        <label htmlFor="exampleInputEmail1">Nivel de Líquido de Frenos :</label>
                         <select value={opcionSelectBrakeFluidLevel} onChange={(e) => setOpcionSelectBrakeFluidLevel(e.target.value)} className='listCheck-create-input form-control'>
                           {opcionBrakeFluidLevel.map((opcion, index) => (
                             <option key={index} value={opcion.value}>
@@ -741,7 +741,7 @@ function Update({ infoUpdate,setView,getAll }) {
                       </div>
 
                       <div className='mt-4 listCheck-create-main-input form-group'>
-                        <label htmlFor="exampleInputEmail1">Nivel de agua del radiador :</label>
+                        <label htmlFor="exampleInputEmail1">Nivel de Agua del Radiador :</label>
                         <select value={opcionSelectRadiatorWaterLevel} onChange={(e) => setOpcionSelectRadiatorWaterLevel(e.target.value)} className='listCheck-create-input form-control'>
                           {opcionRadiatorWaterLevel.map((opcion, index) => (
                             <option key={index} value={opcion.value}>
@@ -752,7 +752,7 @@ function Update({ infoUpdate,setView,getAll }) {
                       </div>
 
                       <div className='mt-4 listCheck-create-main-input form-group'>
-                        <label htmlFor="exampleInputEmail1">Nivel de agua de la batería :</label>
+                        <label htmlFor="exampleInputEmail1">Nivel de Agua de la Batería :</label>
                         <select value={opcionSelectBatteryWaterLevel} onChange={(e) => setOpcionSelectBatteryWaterLevel(e.target.value)} className='listCheck-create-input form-control'>
                           {opcionBatteryWaterLevel.map((opcion, index) => (
                             <option key={index} value={opcion.value}>
@@ -763,7 +763,7 @@ function Update({ infoUpdate,setView,getAll }) {
                       </div>
 
                       <div className='mt-4 listCheck-create-main-input form-group'>
-                        <label htmlFor="exampleInputEmail1">Nivel de aceite hidráulico :</label>
+                        <label htmlFor="exampleInputEmail1">Nivel de Aceite Hidráulico :</label>
                         <select value={opcionSelectHydraulicOilLevel} onChange={(e) => setOpcionSelectHydraulicOilLevel(e.target.value)} className='listCheck-create-input form-control'>
                           {opcionHydraulicOilLevel.map((opcion, index) => (
                             <option key={index} value={opcion.value}>
@@ -796,7 +796,7 @@ function Update({ infoUpdate,setView,getAll }) {
                       </div>
 
                       <div className='mt-4 listCheck-create-main-input form-group'>
-                        <label htmlFor="exampleInputEmail1">Fugas de Aceite de transmisión :</label>
+                        <label htmlFor="exampleInputEmail1">Fugas de Aceite de Transmisión :</label>
                         <select value={opcionSelectTransmissionOilLeaks} onChange={(e) => setOpcionSelectTransmissionOilLeaks(e.target.value)} className='listCheck-create-input form-control'>
                           {opcionTransmissionOilLeaks.map((opcion, index) => (
                             <option key={index} value={opcion.value}>
@@ -807,7 +807,7 @@ function Update({ infoUpdate,setView,getAll }) {
                       </div>
 
                       <div className='mt-4 listCheck-create-main-input form-group'>
-                        <label htmlFor="exampleInputEmail1">Fuga aceite de caja :</label>
+                        <label htmlFor="exampleInputEmail1">Fuga Aceite de Caja :</label>
                         <select value={opcionSelectBoxOilLeak} onChange={(e) => setOpcionSelectBoxOilLeak(e.target.value)} className='listCheck-create-input form-control'>
                           {opcionBoxOilLeak.map((opcion, index) => (
                             <option key={index} value={opcion.value}>
@@ -818,7 +818,7 @@ function Update({ infoUpdate,setView,getAll }) {
                       </div>
 
                       <div className='mt-4 listCheck-create-main-input form-group'>
-                        <label htmlFor="exampleInputEmail1">Fugas de líquidos de frenos :</label>
+                        <label htmlFor="exampleInputEmail1">Fugas de Líquidos de Frenos :</label>
                         <select value={opcionSelectBrakeFluidLeaks} onChange={(e) => setOpcionSelectBrakeFluidLeaks(e.target.value)} className='listCheck-create-input form-control'>
                           {opcionBrakeFluidLeaks.map((opcion, index) => (
                             <option key={index} value={opcion.value}>
@@ -1258,7 +1258,7 @@ function Update({ infoUpdate,setView,getAll }) {
                       </div>
 
                       <div className='mt-4 listCheck-create-main-input form-group'>
-                        <label htmlFor="exampleInputEmail1">Presión aire llanta :</label>
+                        <label htmlFor="exampleInputEmail1">Presión Aire Llanta :</label>
                         <select value={opcionSelectTireAirPressure} onChange={(e) => setOpcionSelectTireAirPressure(e.target.value)} className='listCheck-create-input form-control'>
                           {opcionTireAirPressure.map((opcion, index) => (
                             <option key={index} value={opcion.value}>
@@ -1306,7 +1306,7 @@ function Update({ infoUpdate,setView,getAll }) {
                      {/* EQUIPO DE CARRETERA */}
 
                      <div className='mt-4 listCheck-create-main-input form-group'>
-                        <label htmlFor="exampleInputEmail1">1 gato con capacidad para elevar el vehículo :</label>
+                        <label htmlFor="exampleInputEmail1">1 Gato con Capacidad para Elevar el Vehículo :</label>
                         <select value={opcionSelectOneJackWithTheCapacityToRaiseTheVehicle} onChange={(e) => setOpcionSelectOneJackWithTheCapacityToRaiseTheVehicle(e.target.value)} className='listCheck-create-input form-control'>
                           {opcionOneJackWithTheCapacityToRaiseTheVehicle.map((opcion, index) => (
                             <option key={index} value={opcion.value}>
@@ -1317,7 +1317,7 @@ function Update({ infoUpdate,setView,getAll }) {
                       </div>
 
                       <div className='mt-4 listCheck-create-main-input form-group'>
-                        <label htmlFor="exampleInputEmail1">1 chaleco reflectivo :</label>
+                        <label htmlFor="exampleInputEmail1">1 Chaleco Reflectivo :</label>
                         <select value={opcionSelectOneReflectiveVest} onChange={(e) => setOpcionSelectOneReflectiveVest(e.target.value)} className='listCheck-create-input form-control'>
                           {opcionOneReflectiveVest.map((opcion, index) => (
                             <option key={index} value={opcion.value}>
@@ -1328,7 +1328,7 @@ function Update({ infoUpdate,setView,getAll }) {
                       </div>
 
                       <div className='mt-4 listCheck-create-main-input form-group'>
-                        <label htmlFor="exampleInputEmail1">2 tacos para bloquear el vehículo :</label>
+                        <label htmlFor="exampleInputEmail1">2 Tacos para Bloquear el Vehículo :</label>
                         <select value={opcionSelectTwoBlocksToBlockTheVehicle} onChange={(e) => setOpcionSelectTwoBlocksToBlockTheVehicle(e.target.value)} className='listCheck-create-input form-control'>
                           {opcionTwoBlocksToBlockTheVehicle.map((opcion, index) => (
                             <option key={index} value={opcion.value}>
@@ -1339,7 +1339,7 @@ function Update({ infoUpdate,setView,getAll }) {
                       </div>
 
                       <div className='mt-4 listCheck-create-main-input form-group'>
-                        <label htmlFor="exampleInputEmail1">2 señales de carretera; conos o triangulos :</label>
+                        <label htmlFor="exampleInputEmail1">2 Señales de Carretera; Conos o Triangulos :</label>
                         <select value={opcionSelectTwoRoadSigns} onChange={(e) => setOpcionSelectTwoRoadSigns(e.target.value)} className='listCheck-create-input form-control'>
                           {opcionTwoRoadSigns.map((opcion, index) => (
                             <option key={index} value={opcion.value}>
@@ -1350,7 +1350,7 @@ function Update({ infoUpdate,setView,getAll }) {
                       </div>
 
                       <div className='mt-4 listCheck-create-main-input form-group'>
-                        <label htmlFor="exampleInputEmail1">1 par de guantes industriales :</label>
+                        <label htmlFor="exampleInputEmail1">1 Par de Guantes Industriales :</label>
                         <select value={opcionSelectOnePairOfIndustrialGloves} onChange={(e) => setOpcionSelectOnePairOfIndustrialGloves(e.target.value)} className='listCheck-create-input form-control'>
                           {opcionOnePairOfIndustrialGloves.map((opcion, index) => (
                             <option key={index} value={opcion.value}>
@@ -1372,7 +1372,7 @@ function Update({ infoUpdate,setView,getAll }) {
                       </div>
 
                       <div className='mt-4 listCheck-create-main-input form-group'>
-                        <label htmlFor="exampleInputEmail1">extinguidor de fuego( capacidad mín. 5 lb) :</label>
+                        <label htmlFor="exampleInputEmail1">Extinguidor de Fuego( Capacidad Mín. 5 Lb) :</label>
                         <select value={opcionSelectFireExtinguisher} onChange={(e) => setOpcionSelectFireExtinguisher(e.target.value)} className='listCheck-create-input form-control'>
                           {opcionFireExtinguisher.map((opcion, index) => (
                             <option key={index} value={opcion.value}>
@@ -1394,7 +1394,7 @@ function Update({ infoUpdate,setView,getAll }) {
                       </div>
 
                       <div className='mt-4 listCheck-create-main-input form-group'>
-                        <label htmlFor="exampleInputEmail1">caja de herramientas (alicates, destornilladores de pala y estrella, llave de expansión y fijas) :</label>
+                        <label htmlFor="exampleInputEmail1">Caja de Herramientas (Alicates, Destornilladores de Pala y Estrella, Llave de Expansión y Fijas) :</label>
                         <select value={opcionSelectToolBox} onChange={(e) => setOpcionSelectToolBox(e.target.value)} className='listCheck-create-input form-control'>
                           {opcionToolBox.map((opcion, index) => (
                             <option key={index} value={opcion.value}>
@@ -1405,7 +1405,7 @@ function Update({ infoUpdate,setView,getAll }) {
                       </div>
 
                       <div className='mt-4 listCheck-create-main-input form-group'>
-                        <label htmlFor="exampleInputEmail1">Botiquín de primeros auxilios :</label>
+                        <label htmlFor="exampleInputEmail1">Botiquín de Primeros Auxilios :</label>
                         <select value={opcionSelectFirstAidKit} onChange={(e) => setOpcionSelectFirstAidKit(e.target.value)} className='listCheck-create-input form-control'>
                           {opcionFirstAidKit.map((opcion, index) => (
                             <option key={index} value={opcion.value}>
@@ -1429,7 +1429,7 @@ function Update({ infoUpdate,setView,getAll }) {
                       </div>
 
                       <div className='mt-4 listCheck-create-main-input form-group'>
-                        <label htmlFor="exampleInputEmail1">Revisión tecnomecánica y certificación de gases :</label>
+                        <label htmlFor="exampleInputEmail1">Revisión Técnico Mecánica y Certificación de Gases :</label>
                         <select value={opcionSelectTechnomechanicalReviewAndGasCertification} onChange={(e) => setOpcionSelectTechnomechanicalReviewAndGasCertification(e.target.value)} className='listCheck-create-input form-control'>
                           {opcionTechnomechanicalReviewAndGasCertification.map((opcion, index) => (
                             <option key={index} value={opcion.value}>
@@ -1440,7 +1440,7 @@ function Update({ infoUpdate,setView,getAll }) {
                       </div>
 
                       <div className='mt-4 listCheck-create-main-input form-group'>
-                        <label htmlFor="exampleInputEmail1">Seguro contractual y extracontractual :</label>
+                        <label htmlFor="exampleInputEmail1">Seguro Contractual y Extracontractual :</label>
                         <select value={opcionSelectContractualAndNonContractualInsurance} onChange={(e) => setOpcionSelectContractualAndNonContractualInsurance(e.target.value)} className='listCheck-create-input form-control'>
                           {opcionContractualAndNonContractualInsurance.map((opcion, index) => (
                             <option key={index} value={opcion.value}>
@@ -1462,7 +1462,7 @@ function Update({ infoUpdate,setView,getAll }) {
                       </div>
 
                       <div className='mt-4 listCheck-create-main-input form-group'>
-                        <label htmlFor="exampleInputEmail1">Tarjeta de operación :</label>
+                        <label htmlFor="exampleInputEmail1">Tarjeta de Operación :</label>
                         <select value={opcionSelectOperationCard} onChange={(e) => setOpcionSelectOperationCard(e.target.value)} className='listCheck-create-input form-control'>
                           {opcionOperationCard.map((opcion, index) => (
                             <option key={index} value={opcion.value}>
@@ -1473,7 +1473,7 @@ function Update({ infoUpdate,setView,getAll }) {
                       </div>
 
                       <div className='mt-4 listCheck-create-main-input form-group'>
-                        <label htmlFor="exampleInputEmail1">Tarjeta de propiedad :</label>
+                        <label htmlFor="exampleInputEmail1">Tarjeta de Propiedad :</label>
                         <select value={opcionSelectPropertyCard} onChange={(e) => setOpcionSelectPropertyCard(e.target.value)} className='listCheck-create-input form-control'>
                           {opcionPropertyCard.map((opcion, index) => (
                             <option key={index} value={opcion.value}>
@@ -1484,7 +1484,7 @@ function Update({ infoUpdate,setView,getAll }) {
                       </div>
 
                       <div className='mt-4 listCheck-create-main-input form-group'>
-                        <label htmlFor="exampleInputEmail1">Licencia de conducción :</label>
+                        <label htmlFor="exampleInputEmail1">Licencia de Conducción :</label>
                         <select value={opcionSelectDrivingLicense} onChange={(e) => setOpcionSelectDrivingLicense(e.target.value)} className='listCheck-create-input form-control'>
                           {opcionDrivingLicense.map((opcion, index) => (
                             <option key={index} value={opcion.value}>
@@ -1497,7 +1497,7 @@ function Update({ infoUpdate,setView,getAll }) {
                   {/* End */}
 
                   <div className='mt-4 listCheck-create-main-input'>
-                    <label htmlFor="exampleInputEmail1">Kilometraje actual :</label>
+                    <label htmlFor="exampleInputEmail1">Kilometraje Actual :</label>
                     <input value={currentKm} onChange={(e) => setCurrentKm(e.target.value)} type="text" className="listCheck-create-input form-control" placeholder="Kilometraje actual" />
                   </div>
 
@@ -1506,7 +1506,7 @@ function Update({ infoUpdate,setView,getAll }) {
                   </div>
 
                   <div className='mt-4 listCheck-create-main-input'>
-                    <label htmlFor="exampleInputEmail1">Proximo cambio de aceite :</label>
+                    <label htmlFor="exampleInputEmail1">Próximo Cambio de Aceite :</label>
                     <input value={oilChange} onChange={(e) => setOilChange(e.target.value)} type="text" className="listCheck-create-input form-control" placeholder="Proximo cambio de aceite" />
                   </div>
 
@@ -1515,7 +1515,7 @@ function Update({ infoUpdate,setView,getAll }) {
                   </div>
 
                   <div className='mt-4 listCheck-create-main-input'>
-                    <label htmlFor="exampleInputEmail1">Observacion :</label>
+                    <label htmlFor="exampleInputEmail1">Observación :</label>
                     <textarea value={observation} onChange={(e) => setObservation(e.target.value)} type="text" className="listCheck-create-input form-control" placeholder="Observacion" />
                   </div>
 

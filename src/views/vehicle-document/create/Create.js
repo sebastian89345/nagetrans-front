@@ -421,7 +421,7 @@ function Create({ setView,getAll }) {
                     <img onClick={returnWindow} src={arrow} className='vehicleDocument-create-img' alt='img' />
                   </div>
                   <div className=' text-center'>
-                    <p className='vehicleDocument-create-title'>Crear un documento del vehiculo</p>
+                    <p className='vehicleDocument-create-title'>Crear un Documento del Vehículo</p>
                   </div>
                   
                   <div className='vehicleDocument-create-position-content-form'>
@@ -430,7 +430,7 @@ function Create({ setView,getAll }) {
                       <div className='mt-4 vehicleDocument-create-main-input form-group'>
                         <label htmlFor="exampleInputEmail1">Usuario:</label>
                         <select value={opcionSelectUser} onChange={(e) => setOpcionSelectUser(e.target.value)} className='user-create-input form-control'>
-                          <option value="">Selecciona una opción</option>
+                          <option value="">Selecciona una Opción</option>
                           {opcionUser.map((opcion, index) => (
                             <option key={index} value={opcion._id}>
                               {opcion.placa}
@@ -446,7 +446,7 @@ function Create({ setView,getAll }) {
                       <div className='mt-4 vehicleDocument-create-main-input form-group'>
                       <label htmlFor="exampleInputEmail1">Soat:</label>
                         <select value={opcionSelectSoat} onChange={(e) => setOpcionSelectSoat(e.target.value)} className='user-create-input form-control'>
-                          <option value="">Selecciona una opción</option>
+                          <option value="">Selecciona una Opción</option>
                           {opcionSoat.map((opcion, index) => (
                             <option key={index} value={opcion.value}>
                               {opcion.value}
@@ -460,9 +460,9 @@ function Create({ setView,getAll }) {
                       </div>
 
                       <div className='mt-4 vehicleDocument-create-main-input form-group'>
-                      <label htmlFor="exampleInputEmail1">Tecnico mecanica:</label>
+                      <label htmlFor="exampleInputEmail1">Técnico Mecánica :</label>
                         <select value={opcionSelectMechanicalTechnician} onChange={(e) => setOpcionSelectMechanicalTechnician(e.target.value)} className='user-create-input form-control'>
-                          <option value="">Selecciona una opción</option>
+                          <option value="">Selecciona una Opción</option>
                           {opcionMechanicalTechnician.map((opcion, index) => (
                             <option key={index} value={opcion.value}>
                               {opcion.value}
@@ -476,7 +476,7 @@ function Create({ setView,getAll }) {
                       </div>
 
                       <div className='mt-4 vehicleDocument-create-main-input form-group'>
-                        <label htmlFor="exampleInputEmail1">Tarjeta de operaciones:</label>
+                        <label htmlFor="exampleInputEmail1">Tarjeta de Operación:</label>
                         <select value={opcionSelectOperationsCard} onChange={(e) => setOpcionSelectOperationsCard(e.target.value)} className='user-create-input form-control'>
                           <option value="">Selecciona una opción</option>
                           {opcionOperationsCard.map((opcion, index) => (
@@ -492,9 +492,9 @@ function Create({ setView,getAll }) {
                       </div>
 
                       <div className='mt-4 vehicleDocument-create-main-input form-group'>
-                        <label htmlFor="exampleInputEmail1">Tarjeta de propiedades:</label>
+                        <label htmlFor="exampleInputEmail1">Tarjeta de Propiedad:</label>
                         <select value={opcionSelectPropertyCards} onChange={(e) => setOpcionSelectPropertyCards(e.target.value)} className='user-create-input form-control'>
-                          <option value="">Selecciona una opción</option>
+                          <option value="">Selecciona una Opción</option>
                           {opcionPropertyCards.map((opcion, index) => (
                             <option key={index} value={opcion.value}>
                               {opcion.value}
@@ -508,9 +508,9 @@ function Create({ setView,getAll }) {
                       </div>
 
                       <div className='mt-4 vehicleDocument-create-main-input form-group'>
-                        <label htmlFor="exampleInputEmail1">Seguro rcc ece:</label>
+                        <label htmlFor="exampleInputEmail1">Seguro RCC RCE:</label>
                         <select value={opcionSelectSureRccece} onChange={(e) => setOpcionSelectSureRccece(e.target.value)} className='user-create-input form-control'>
-                          <option value="">Selecciona una opción</option>
+                          <option value="">Selecciona una Opción</option>
                           {opcionSureRccece.map((opcion, index) => (
                             <option key={index} value={opcion.value}>
                               {opcion.value}
@@ -526,7 +526,7 @@ function Create({ setView,getAll }) {
                       <div className='mt-4 vehicleDocument-create-main-input form-group'>
                         <label htmlFor="exampleInputEmail1">Extracto:</label>
                         <select value={opcionSelectExtract} onChange={(e) => setOpcionSelectExtract(e.target.value)} className='user-create-input form-control'>
-                          <option value="">Selecciona una opción</option>
+                          <option value="">Selecciona una Opción</option>
                           {opcionExtract.map((opcion, index) => (
                             <option key={index} value={opcion.value}>
                               {opcion.value}
@@ -540,9 +540,9 @@ function Create({ setView,getAll }) {
                       </div>
 
                       <div className='mt-4 vehicleDocument-create-main-input form-group'>
-                        <label htmlFor="exampleInputEmail1">Revicion preventiva:</label>
+                        <label htmlFor="exampleInputEmail1">Revisión Preventiva:</label>
                         <select value={opcionSelectPreventiveReview} onChange={(e) => setOpcionSelectPreventiveReview(e.target.value)} className='user-create-input form-control'>
-                          <option value="">Selecciona una opción</option>
+                          <option value="">Selecciona una Opción</option>
                           {opcionPreventiveReview.map((opcion, index) => (
                             <option key={index} value={opcion.value}>
                               {opcion.value}
@@ -556,7 +556,7 @@ function Create({ setView,getAll }) {
                       </div>
 
                       <div className='mt-4 vehicleDocument-create-main-input'>
-                        <label htmlFor="exampleInputEmail1">Inicio del soat:</label>
+                        <label htmlFor="exampleInputEmail1">Inicio del Soat:</label>
                         <input value={inputDateStartSoat} onChange={(e) => setInputDateStartSoat(e.target.value)} type="date" className='vehicleDocument-create-input form-control' />
                       </div>
 
@@ -565,7 +565,7 @@ function Create({ setView,getAll }) {
                       </div>
 
                       <div className='mt-4 vehicleDocument-create-main-input'>
-                       <label htmlFor="exampleInputEmail1">Vencimiento del soat:</label>
+                       <label htmlFor="exampleInputEmail1">Vencimiento del Soat:</label>
                         <input value={inputDateExpirationSoat} onChange={(e) => setInputDateExpirationSoat(e.target.value)} type="date" className='vehicleDocument-create-input form-control' />
                       </div>
 
@@ -574,7 +574,7 @@ function Create({ setView,getAll }) {
                       </div>
 
                       <div className='mt-4 vehicleDocument-create-main-input'>
-                        <label htmlFor="exampleInputEmail1">Inicio de la tecnicomecanico:</label>
+                        <label htmlFor="exampleInputEmail1">Inicio de la Técnico Mecánica:</label>
                         <input value={inputDateStartMechanicalTechnician} onChange={(e) => setInputDateStartMechanicalTechnician(e.target.value)} type="date" className='vehicleDocument-create-input form-control' />
                       </div>
 
@@ -583,7 +583,7 @@ function Create({ setView,getAll }) {
                       </div>
 
                       <div className='mt-4 vehicleDocument-create-main-input'>
-                        <label htmlFor="exampleInputEmail1">Vencimiento de la tecnicomecanico:</label>
+                        <label htmlFor="exampleInputEmail1">Vencimiento de la Técnico Mecánica:</label>
                         <input value={inputDateExpirationMechanicalTechnician} onChange={(e) => setInputDateExpirationMechanicalTechnician(e.target.value)} type="date" className='user-create-input form-control' />
                       </div>
 
@@ -592,7 +592,7 @@ function Create({ setView,getAll }) {
                       </div>
 
                       <div className='mt-4 vehicleDocument-create-main-input'>
-                        <label htmlFor="exampleInputEmail1">Inicio de la tarjeta operaciones:</label>
+                        <label htmlFor="exampleInputEmail1">Inicio de la Tarjeta de Operación:</label>
                         <input value={inputDateStartCardOperations} onChange={(e) => setInputDateStartCardOperations(e.target.value)} type="date" className='vehicleDocument-create-input form-control' />
                       </div>
 
@@ -601,7 +601,7 @@ function Create({ setView,getAll }) {
                       </div>
 
                       <div className='mt-4 vehicleDocument-create-main-input'>
-                        <label htmlFor="exampleInputEmail1">Vencimiento de la tarjeta operaciones:</label>
+                        <label htmlFor="exampleInputEmail1">Vencimiento de la Tarjeta de Operación:</label>
                         <input value={inputDateExpirationCardOperations} onChange={(e) => setInputDateExpirationCardOperations(e.target.value)} type="date" className='user-create-input form-control' />
                       </div>
 
@@ -610,7 +610,7 @@ function Create({ setView,getAll }) {
                       </div>
 
                       <div className='mt-4 vehicleDocument-create-main-input'>
-                        <label htmlFor="exampleInputEmail1">Inicio de la tarjeta propiedades:</label>
+                        <label htmlFor="exampleInputEmail1">Inicio de la Tarjeta Propiedad:</label>
                         <input value={inputDateStartCardProperties} onChange={(e) => setInputDateStartCardProperties(e.target.value)} type="date" className='vehicleDocument-create-input form-control' />
                       </div>
 
@@ -619,7 +619,7 @@ function Create({ setView,getAll }) {
                       </div>
 
                       <div className='mt-4 vehicleDocument-create-main-input'>
-                        <label htmlFor="exampleInputEmail1">Inicio seguro rcc rce:</label>
+                        <label htmlFor="exampleInputEmail1">Inicio Seguro RCC RCE:</label>
                         <input value={inputDateStartSureRccece} onChange={(e) => setInputDateStartSureRccece(e.target.value)} type="date" className='vehicleDocument-create-input form-control' />
                       </div>
 
@@ -628,7 +628,7 @@ function Create({ setView,getAll }) {
                       </div>
 
                       <div className='mt-4 vehicleDocument-create-main-input'>
-                        <label htmlFor="exampleInputEmail1">Vencimiento seguro rcc rce:</label>
+                        <label htmlFor="exampleInputEmail1">Vencimiento Seguro RCC RCE:</label>
                         <input value={inputDateExpirationSureRccece} onChange={(e) => setInputDateExpirationSureRccece(e.target.value)} type="date" className='user-create-input form-control' />
                       </div>
 
@@ -637,7 +637,7 @@ function Create({ setView,getAll }) {
                       </div>
 
                       <div className='mt-4 vehicleDocument-create-main-input'>
-                        <label htmlFor="exampleInputEmail1">Inicio extracto:</label>
+                        <label htmlFor="exampleInputEmail1">Inicio Extracto:</label>
                         <input value={inputDateStartExtract} onChange={(e) => setInputDateStartExtract(e.target.value)} type="date" className='vehicleDocument-create-input form-control' />
                       </div>
 
@@ -646,7 +646,7 @@ function Create({ setView,getAll }) {
                       </div>
 
                       <div className='mt-4 vehicleDocument-create-main-input'>
-                        <label htmlFor="exampleInputEmail1">Vencimiento extracto:</label>
+                        <label htmlFor="exampleInputEmail1">Vencimiento Extracto:</label>
                         <input value={inputDateExpirationExtract} onChange={(e) => setInputDateExpirationExtract(e.target.value)} type="date" className='user-create-input form-control' />
                       </div>
 
@@ -655,7 +655,7 @@ function Create({ setView,getAll }) {
                       </div>
 
                       <div className='mt-4 vehicleDocument-create-main-input'>
-                        <label htmlFor="exampleInputEmail1">Inicio revision preventiva:</label>
+                        <label htmlFor="exampleInputEmail1">Inicio Revisión Preventiva:</label>
                         <input value={inputDateStartPreventiveReview} onChange={(e) => setInputDateStartPreventiveReview(e.target.value)} type="date" className='vehicleDocument-create-input form-control' />
                       </div>
 
@@ -664,7 +664,7 @@ function Create({ setView,getAll }) {
                       </div>
 
                       <div className='mt-4 vehicleDocument-create-main-input'>
-                        <label htmlFor="exampleInputEmail1">Vencimiento revision preventiva:</label>
+                        <label htmlFor="exampleInputEmail1">Vencimiento Revisión Preventiva:</label>
                         <input value={inputDateExpirationPreventiveReview} onChange={(e) => setInputDateExpirationPreventiveReview(e.target.value)} type="date" className='user-create-input form-control' />
                       </div>
 

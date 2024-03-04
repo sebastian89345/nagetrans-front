@@ -54,57 +54,65 @@ const DefaultTable = ({ data , nms , updateId , deleteId , selectCheck}) => {
     } else if (nms === "driverDocument") {
       th = <>
         <th scope="col">Usuario</th>
-        <th scope="col">Número de licencia</th>
+        <th scope="col">Número de Licencia</th>
         <th scope="col">ARL</th>
         <th scope="col">AFP</th>
         <th scope="col">EPS</th>
-        <th scope="col">Caja de compensación</th>
+        <th scope="col">Caja de Compensación</th>
       </>
     } else if (nms === "vehicleDocument") {
       th = <>
-        <th scope="col">Usuario</th>
-        <th scope="col">Soat</th>
-        <th scope="col">Técnico mecánica</th>
-        <th scope="col">Tarjeta de operación</th>
-        <th scope="col">Tarjeta de propiedad</th>
-        <th scope="col">Seguro RCC RCE</th>
-        <th scope="col">Extracto</th>
-        <th scope="col">Revisión preventiva</th>
+        <th className="DefaultTable-header-th-width" scope="col">Usuario</th>
+        <th className="DefaultTable-header-th-width" scope="col">Soat</th>
+        <th className="DefaultTable-header-th-width" scope="col">Técnico Mecánica</th>
+        <th className="DefaultTable-header-th-width" scope="col">Tarjeta de Operación</th>
+        <th className="DefaultTable-header-th-width" scope="col">Tarjeta de Propiedad</th>
+        <th className="DefaultTable-header-th-width" scope="col">Seguro RCC RCE</th>
+        <th className="DefaultTable-header-th-width" scope="col">Extracto</th>
+        <th className="DefaultTable-header-th-width" scope="col">Revisión Preventiva</th>
+        <th className="DefaultTable-header-th-width" scope="col">Inicio Soat</th>
+        <th className="DefaultTable-header-th-width" scope="col">Venciento Soat</th>
+        <th className="DefaultTable-header-th-width" scope="col">Inicio Técnico Mcánica</th>
+        <th className="DefaultTable-header-th-width" scope="col">Venciento Técnico Mecánica</th>
+        <th className="DefaultTable-header-th-width" scope="col">Inicio Tarjeta de Operación</th>
+        <th className="DefaultTable-header-th-width" scope="col">Venciento Tarjeta de Operación</th>
+        <th className="DefaultTable-header-th-width" scope="col">Inicio Tarjeta de Propiedad</th>
+        <th className="DefaultTable-header-th-width" scope="col">Inicio Seguro RCC RCE</th>
+        <th className="DefaultTable-header-th-width" scope="col">Venciento Seguro RCC RCE</th>
+        <th className="DefaultTable-header-th-width" scope="col">Inicio Extracto</th>
+        <th className="DefaultTable-header-th-width" scope="col">Venciento Extracto</th>
+        <th className="DefaultTable-header-th-width" scope="col">Inicio Revisión Preventiva</th>
+        <th className="DefaultTable-header-th-width" scope="col">Venciento Revisión Preventiva</th>
       </>
     } else if (nms === "listCheck") {
-
       th = <>
-        <th className="DefaultTable-header-th-width" scope="col">Preoperacional diaria</th>
+        <th className="DefaultTable-header-th-width" scope="col">Preoperacional Diaria</th>
         <th className="DefaultTable-header-th-width" scope="col">Placa</th>
         <th className="DefaultTable-header-th-width" scope="col">Cédula</th>
-        <th className="DefaultTable-header-th-width" scope="col">Kilometraje actual</th>
-        <th className="DefaultTable-header-th-width" scope="col">Proxímo cambio de aceite</th>
+        <th className="DefaultTable-header-th-width" scope="col">Kilometraje Actual</th>
+        <th className="DefaultTable-header-th-width" scope="col">Proxímo Cambio de Aceite</th>
         <th className="DefaultTable-header-th-width" scope="col">Fecha</th>
-
         {/* ESTADO DE PRESENTACIÓN */}
-        <th className="DefaultTable-header-th-width" scope="col">Aseo interno</th>
-        <th className="DefaultTable-header-th-width" scope="col">Aseo externo</th>
+        <th className="DefaultTable-header-th-width" scope="col">Aseo Interno</th>
+        <th className="DefaultTable-header-th-width" scope="col">Aseo Externo</th>
         <th className="DefaultTable-header-th-width" scope="col">Latas</th>
         <th className="DefaultTable-header-th-width" scope="col">Pintura</th>
-
         {/* ESTADO DE COMODIDAD */}
         <th className="DefaultTable-header-th-width" scope="col">Aire Acondicionado</th>
         <th className="DefaultTable-header-th-width" scope="col">Silletería</th>
         <th className="DefaultTable-header-th-width" scope="col">Encendedor</th>
-        <th className="DefaultTable-header-th-width" scope="col">Luz Interior o de techo</th>
-
+        <th className="DefaultTable-header-th-width" scope="col">Luz Interior o de Techo</th>
         {/* NIVELES Y PERDIDA DE LIQUIDOS */}
-        <th className="DefaultTable-header-th-width" scope="col">Nivel de Aceite de motor</th>
-        <th className="DefaultTable-header-th-width" scope="col">Nivel de liquido de frenos</th>
-        <th className="DefaultTable-header-th-width" scope="col">Nivel de agua del radiador</th>
-        <th className="DefaultTable-header-th-width" scope="col">Nivel de agua de la batería</th>
-        <th className="DefaultTable-header-th-width" scope="col">Nivel de aceite hidráulico</th>
+        <th className="DefaultTable-header-th-width" scope="col">Nivel de Aceite de Motor</th>
+        <th className="DefaultTable-header-th-width" scope="col">Nivel de Liquido de Frenos</th>
+        <th className="DefaultTable-header-th-width" scope="col">Nivel de Agua del Radiador</th>
+        <th className="DefaultTable-header-th-width" scope="col">Nivel de Agua de la Batería</th>
+        <th className="DefaultTable-header-th-width" scope="col">Nivel de Aceite Hidráulico</th>
         <th className="DefaultTable-header-th-width" scope="col">Fugas de A.C.P.M</th>
         <th className="DefaultTable-header-th-width" scope="col">Fugas de Agua</th>
-        <th className="DefaultTable-header-th-width" scope="col">Fugas de Aceite de transmisión</th>
-        <th className="DefaultTable-header-th-width" scope="col">Fuga aceite de caja</th>
-        <th className="DefaultTable-header-th-width" scope="col">Fugas de líquidos de frenos</th>
-
+        <th className="DefaultTable-header-th-width" scope="col">Fugas de Aceite de Transmisión</th>
+        <th className="DefaultTable-header-th-width" scope="col">Fuga Aceite de Caja</th>
+        <th className="DefaultTable-header-th-width" scope="col">Fugas de Líquidos de Frenos</th>
         {/* TABLERO DE CONTROL */}
         <th className="DefaultTable-header-th-width" scope="col">Luces de Tablero</th>
         <th className="DefaultTable-header-th-width" scope="col">Nivel de Combustible</th>
@@ -114,7 +122,6 @@ const DefaultTable = ({ data , nms , updateId , deleteId , selectCheck}) => {
         <th className="DefaultTable-header-th-width" scope="col">Velocímetro</th>
         <th className="DefaultTable-header-th-width" scope="col">Indicador de Aceite</th>
         <th className="DefaultTable-header-th-width" scope="col">Indicador de Temperatura</th>
-
         {/* SEGURIDAD PASIVA */}
         <th className="DefaultTable-header-th-width" scope="col">Cinturones de Seguridad</th>
         <th className="DefaultTable-header-th-width" scope="col">Airbags</th>
@@ -124,15 +131,13 @@ const DefaultTable = ({ data , nms , updateId , deleteId , selectCheck}) => {
         <th className="DefaultTable-header-th-width" scope="col">Espejo Lateral Derecho</th>
         <th className="DefaultTable-header-th-width" scope="col">Espejo Lateral Izquierdo</th>
         <th className="DefaultTable-header-th-width" scope="col">Espejo Retrovisor</th>
-
         {/* SEGURIDAD ACTIVA */}
         <th className="DefaultTable-header-th-width" scope="col">Estado de la Dirección</th>
         <th className="DefaultTable-header-th-width" scope="col">Estado Suspensión Delantera</th>
         <th className="DefaultTable-header-th-width" scope="col">Amortiguadores</th>
-        <th className="DefaultTable-header-th-width" scope="col">Estado suspensión Trasera</th>
+        <th className="DefaultTable-header-th-width" scope="col">Estado Suspensión Trasera</th>
         <th className="DefaultTable-header-th-width" scope="col">Estado Parabrisas</th>
         <th className="DefaultTable-header-th-width" scope="col">Vidrio Frontal</th>
-
         {/* ESTADO LUCES */}
         <th className="DefaultTable-header-th-width" scope="col">Luces Medias</th>
         <th className="DefaultTable-header-th-width" scope="col">Luces Altas</th>
@@ -145,43 +150,37 @@ const DefaultTable = ({ data , nms , updateId , deleteId , selectCheck}) => {
         <th className="DefaultTable-header-th-width" scope="col">Luz Freno</th>
         <th className="DefaultTable-header-th-width" scope="col">Luz Reverso</th>
         <th className="DefaultTable-header-th-width" scope="col">L. Antiniebla Exploradoras</th>
-
         {/* ESTADO LLANTAS */}
         <th className="DefaultTable-header-th-width" scope="col">Delantera Derecha</th>
         <th className="DefaultTable-header-th-width" scope="col">Delantera Izquierda</th>
         <th className="DefaultTable-header-th-width" scope="col">Trasera Derecha</th>
         <th className="DefaultTable-header-th-width" scope="col">Trasera Izquierda</th>
         <th className="DefaultTable-header-th-width" scope="col">Repuesto</th>
-        <th className="DefaultTable-header-th-width" scope="col">Presión aire llanta</th>
-
+        <th className="DefaultTable-header-th-width" scope="col">Presión Aire Llanta</th>
         {/* FRENOS */}
         <th className="DefaultTable-header-th-width" scope="col">Estado de los Frenos</th>
         <th className="DefaultTable-header-th-width" scope="col">Freno de Mano</th>
         <th className="DefaultTable-header-th-width" scope="col">Pastillas</th>
-
         {/* EQUIPO DE CARRETERA */}
         <th className="DefaultTable-header-th-width" scope="col">Gato</th>
-        <th className="DefaultTable-header-th-width" scope="col">Chaleco reflectivo</th>
+        <th className="DefaultTable-header-th-width" scope="col">Chaleco Reflectivo</th>
         <th className="DefaultTable-header-th-width" scope="col">Tacos</th>
-        <th className="DefaultTable-header-th-width" scope="col">Señales de carretera</th>
-        <th className="DefaultTable-header-th-width" scope="col">Guantes industriales</th>
+        <th className="DefaultTable-header-th-width" scope="col">Señales de Carretera</th>
+        <th className="DefaultTable-header-th-width" scope="col">Guantes Industriales</th>
         <th className="DefaultTable-header-th-width" scope="col">Cruceta</th>
-        <th className="DefaultTable-header-th-width" scope="col">Extinguidor de fuego</th>
+        <th className="DefaultTable-header-th-width" scope="col">Extinguidor de Fuego</th>
         <th className="DefaultTable-header-th-width" scope="col">Linterna</th>
-        <th className="DefaultTable-header-th-width" scope="col">Caja de herramientas</th>
+        <th className="DefaultTable-header-th-width" scope="col">Caja de Herramientas</th>
         <th className="DefaultTable-header-th-width" scope="col">Botiquín</th>
-
         {/* DOCUMENTOS DEL VEHÍCULO */}
         <th className="DefaultTable-header-th-width" scope="col">Soat</th>
         <th className="DefaultTable-header-th-width" scope="col">Revisión Tecnomecánica y Certificación de Gases</th>
-        <th className="DefaultTable-header-th-width" scope="col">Seguro contractual y extracontractual</th>
+        <th className="DefaultTable-header-th-width" scope="col">Seguro Contractual y Extracontractual</th>
         <th className="DefaultTable-header-th-width" scope="col">Preventiva</th>
-        <th className="DefaultTable-header-th-width" scope="col">Tarjeta de operación</th>
-        <th className="DefaultTable-header-th-width" scope="col">Tarjeta de propiedad</th>
-        <th className="DefaultTable-header-th-width" scope="col">Licencia de conducción</th>
-
+        <th className="DefaultTable-header-th-width" scope="col">Tarjeta de Operación</th>
+        <th className="DefaultTable-header-th-width" scope="col">Tarjeta de Propiedad</th>
+        <th className="DefaultTable-header-th-width" scope="col">Licencia de Conducción</th>
       </>
-
     } else if (nms === "role" || nms === "status" || nms === "brand" || nms === "model" || nms === "type" || nms === "arl" || nms === "afp" || nms === "eps" || nms === "compensationBox"){
       th = <>
         <th scope="col">Nombre</th>
@@ -218,9 +217,21 @@ const DefaultTable = ({ data , nms , updateId , deleteId , selectCheck}) => {
         <td>{item.sureRccece}</td>
         <td>{item.extract}</td>
         <td>{item.preventiveReview}</td>
+        <td>{item.dateStartSoat}</td>
+        <td>{item.dateExpirationSoat}</td>
+        <td>{item.dateStartMechanicalTechnician}</td>
+        <td>{item.dateExpirationMechanicalTechnician}</td>
+        <td>{item.dateStartCardOperations}</td>
+        <td>{item.dateExpirationCardOperations}</td>
+        <td>{item.dateStartCardProperties}</td>
+        <td>{item.dateStartSureRccece}</td>
+        <td>{item.dateExpirationSureRccece}</td>
+        <td>{item.dateStartExtract}</td>
+        <td>{item.dateExpirationExtract}</td>
+        <td>{item.dateStartPreventiveReview}</td>
+        <td>{item.dateExpirationPreventiveReview}</td>
       </>
     } else if (nms === "listCheck") {
-
       td = <>
         <td className='text-center'>
           <input type="checkbox" className="DefaultTable-check form-check-input" onChange={() => selectCheck(item)} />
@@ -230,19 +241,16 @@ const DefaultTable = ({ data , nms , updateId , deleteId , selectCheck}) => {
         <td>{item.currentKm}</td>
         <td>{item.oilChange}</td>
         <td className='DefaultTable-table-width'>{item.date}</td>
-
         {/* ESTADO DE PRESENTACIÓN */}
         <td>{item.internalToilet}</td>
         <td>{item.externalToilet}</td>
         <td>{item.cans}</td>
         <td>{item.paint}</td>
-
         {/* ESTADO DE COMODIDAD */}
         <td>{item.airConditioning}</td>
         <td>{item.chairs}</td>
         <td>{item.lighter}</td>
         <td>{item.interiorOrCeilingLight}</td>
-       
         {/* NIVELES Y PERDIDA DE LIQUIDOS */}
         <td>{item.engineOilLevel}</td>
         <td>{item.brakeFluidLevel}</td>
@@ -254,7 +262,6 @@ const DefaultTable = ({ data , nms , updateId , deleteId , selectCheck}) => {
         <td>{item.transmissionOilLeaks}</td>
         <td>{item.boxOilLeak}</td>
         <td>{item.brakeFluidLeaks}</td>
-
         {/* TABLERO DE CONTROL */}
         <td>{item.tableLight}</td>
         <td>{item.fuelLevel}</td>
@@ -264,7 +271,6 @@ const DefaultTable = ({ data , nms , updateId , deleteId , selectCheck}) => {
         <td>{item.speedometer}</td>
         <td>{item.oilIndicator}</td>
         <td>{item.temperatureIndicator}</td>
-
         {/* SEGURIDAD PASIVA */}
         <td>{item.seatBelts}</td>
         <td>{item.airbags}</td>
@@ -274,7 +280,6 @@ const DefaultTable = ({ data , nms , updateId , deleteId , selectCheck}) => {
         <td>{item.rightSideMirror}</td>
         <td>{item.leftSideMirror}</td>
         <td>{item.rearViewMirror}</td>
-
         {/* SEGURIDAD ACTIVA */}
         <td>{item.addressStatus}</td>
         <td>{item.frontSuspensionCondition}</td>
@@ -282,7 +287,6 @@ const DefaultTable = ({ data , nms , updateId , deleteId , selectCheck}) => {
         <td>{item.rearSuspensionStatus}</td>
         <td>{item.windshieldCondition}</td>
         <td>{item.frontGlass}</td>
-
         {/* ESTADO LUCES */}
         <td>{item.mediumLights}</td>
         <td>{item.highBeams}</td>
@@ -295,7 +299,6 @@ const DefaultTable = ({ data , nms , updateId , deleteId , selectCheck}) => {
         <td>{item.brakeLight}</td>
         <td>{item.reverseLight}</td>
         <td>{item.explorerFogLights}</td>
-
         {/* ESTADO LLANTAS */}
         <td>{item.rightFront}</td>
         <td>{item.leftFront}</td>
@@ -303,12 +306,10 @@ const DefaultTable = ({ data , nms , updateId , deleteId , selectCheck}) => {
         <td>{item.rearLeft}</td>
         <td>{item.replacement}</td>
         <td>{item.tireAirPressure}</td>
-
         {/* FRENOS */}
         <td>{item.brakeCondition}</td>
         <td>{item.handBrake}</td>
         <td>{item.tablets}</td>
-
         {/* EQUIPO DE CARRETERA */}
         <td>{item.oneJackWithTheCapacityToRaiseTheVehicle}</td>
         <td>{item.oneReflectiveVest}</td>
@@ -320,7 +321,6 @@ const DefaultTable = ({ data , nms , updateId , deleteId , selectCheck}) => {
         <td>{item.flashLight}</td>
         <td>{item.toolBox}</td>
         <td>{item.firstAidKit}</td>
-
         {/* DOCUMENTOS DEL VEHÍCULO */}
         <td>{item.soat}</td>
         <td>{item.technomechanicalReviewAndGasCertification}</td>
@@ -329,9 +329,7 @@ const DefaultTable = ({ data , nms , updateId , deleteId , selectCheck}) => {
         <td>{item.operationCard}</td>
         <td>{item.propertyCard}</td>
         <td>{item.drivingLicense}</td>
-
       </>
-
   } else if (nms === "role" || nms === "status" || nms === "brand" || nms === "model" || nms === "type" || nms === "arl" || nms === "afp" || nms === "eps" || nms === "compensationBox") {
       td = <>
         <td>{item.name}</td>
