@@ -347,10 +347,10 @@ function Create({ setView,getAll }) {
   // Función para formatear la fecha al formato dd-mm-yyyy
   const formatDate = (date) => {
     const d = new Date(date);
-    const day = d.getDate() + 1;
+    d.setDate(d.getDate() + 1); // Sumar un día
+    const day = d.getDate();
     const month = d.getMonth() + 1;
     const year = d.getFullYear();
-    // console.log(`${day < 10 ? '0' + day : day}/${month < 10 ? '0' + month : month}/${year}`);
     return `${day < 10 ? '0' + day : day}-${month < 10 ? '0' + month : month}-${year}`;
   };
 

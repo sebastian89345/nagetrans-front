@@ -72,7 +72,7 @@ const DefaultTable = ({ data , nms , updateId , deleteId , selectCheck}) => {
         <th className="DefaultTable-header-th-width" scope="col">Revisión Preventiva</th>
         <th className="DefaultTable-header-th-width" scope="col">Inicio Soat</th>
         <th className="DefaultTable-header-th-width" scope="col">Venciento Soat</th>
-        <th className="DefaultTable-header-th-width" scope="col">Inicio Técnico Mcánica</th>
+        <th className="DefaultTable-header-th-width" scope="col">Inicio Técnico Mecánica</th>
         <th className="DefaultTable-header-th-width" scope="col">Venciento Técnico Mecánica</th>
         <th className="DefaultTable-header-th-width" scope="col">Inicio Tarjeta de Operación</th>
         <th className="DefaultTable-header-th-width" scope="col">Venciento Tarjeta de Operación</th>
