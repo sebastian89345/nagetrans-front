@@ -253,7 +253,7 @@ function List() {
     })
 
     // Identificación del Propietario
-    page.drawText("Cedula doña maria", {
+    page.drawText("42691020", {
       x: 450,
       y: height - 181,
       size: 8,
@@ -261,7 +261,7 @@ function List() {
     })
 
     // Propietario
-    page.drawText("Nombre completo doña maria", {
+    page.drawText("MARIA EDITH SALAZAR RAMIREZ", {
       x: 107,
       y: height - 193,
       size: 8,
@@ -960,7 +960,7 @@ function List() {
     }
 
     // Propietario
-    page1.drawText("Nombre completo doña maria", {
+    page1.drawText("MARIA EDITH SALAZAR RAMIREZ", {
       x: 145,
       y: height - 590,
       size: 8,
