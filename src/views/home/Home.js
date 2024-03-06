@@ -42,16 +42,19 @@ import roleService from '../../libs/helpers/role.json';
 import {  useSelector, useDispatch } from "react-redux";
 
 // actios
-import { getVehicleDocumentAllService } from '../../store/action/vehicleDocumentAction'
+import { getVehicleDocumentAllService } from '../../store/action/vehicleDocumentAction';
+import { getListCheckAllService } from '../../store/action/listCheckAction';
 
 function Home() {
 
     const { adminstrador,vehiculo } = roleService;
     const [runEffects, setRunEffects] = useState(false);
+    const [runEffectsTwo, setRunEffectsTwo] = useState(false);
     const [newMtzVehicle, setNewMtzVehicle] = useState([]);
     const [width, setWidth] = useState(window.innerWidth);
     const dataListLogin = useSelector((store) => store.loginReducer);
     const dataListVehicleDocument = useSelector((store) => store.vehicleDocumentReducer);
+    const dataListVehicleListCheck = useSelector((store) => store.listCheckReducer);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -105,12 +108,13 @@ function Home() {
     useEffect(() => {
       try {
         dispatch(getVehicleDocumentAllService())
+        dispatch(getListCheckAllService())
       } catch (error) {
         console.log(error);
       }
     }, [dispatch])
     
-    // Aqui hago la logica para las notificaciones
+    // Aqui hago la logica para las notificaciones de la fecha
     useEffect(() => {
       if (dataListVehicleDocument.data.length > 0 && runEffects !== true) {
 
@@ -123,7 +127,6 @@ function Home() {
 
         let newMtz = [];
         for (let i = 0; i < resultadosFiltrados.length; i++) {
-
           const element = resultadosFiltrados[i];
           // console.log(element);
           let obj = {};
@@ -147,13 +150,63 @@ function Home() {
             obj.placa = element.users[0].placa
             newMtz.push(obj)
           }
-          
         }
         setNewMtzVehicle(newMtz);
         setRunEffects(true);
       }
     }, [dataListVehicleDocument,dataListLogin,runEffects,adminstrador])
 
+    // Aqui hago la logica para las notificaciones del kilometraje
+    useEffect(() => {
+      if (dataListVehicleListCheck.data.length > 0 && runEffectsTwo !== true) {
+
+        // busco la informacion y la filtro
+        let resultadosFiltrados;
+        if(dataListLogin.data.response.data.role[0]._id === adminstrador) {
+          resultadosFiltrados = dataListVehicleListCheck.data.filter(objeto => objeto.userVehicle[0].show === "Si");
+        } else {
+          resultadosFiltrados = dataListVehicleListCheck.data.filter(objeto => objeto.userVehicle[0].show === "Si" && objeto.userVehicle[0]._id === dataListLogin.data.response.data._id);
+        }
+
+        // Aquí , filtro la informacion y busco solo la ultima lista de chequeo de cada usurio
+        const dateForUser = [];
+        resultadosFiltrados.forEach(element => {
+          const { date,currentKm,oilChange } = element;
+          const user = element.userVehicle[0].user;
+          const index = dateForUser.findIndex(item => item.user === user);
+          if (index === -1) {
+            dateForUser.push({ user, date, currentKm ,oilChange });
+          } else {
+            if (date > dateForUser[index].date) {
+              dateForUser[index].currentKm = currentKm;
+              dateForUser[index].oilChange = oilChange;
+              dateForUser[index].date = date;
+            }
+          }
+        });
+
+        // Hago un recorrido de las ultimas fechas , para el kilometraje 
+        let newMtz = [];
+        for (let i = 0; i < dateForUser.length; i++) {
+          const element = dateForUser[i];
+          let result = parseFloat(element.currentKm) - parseFloat(element.oilChange);
+          //Cambiar despues
+          if (result <= 500) {
+            element.resultOperation = result
+            newMtz.push(element);
+          }
+        }
+
+        const resultados = newMtzVehicle.map(item1 => {
+          const item2 = newMtz.find(element => element.user === item1.placa);
+          return { ...item1, ...item2 };
+        });
+        
+        setNewMtzVehicle(resultados);
+        setRunEffectsTwo(true);
+      }
+    }, [dataListVehicleListCheck,dataListLogin,newMtzVehicle,runEffectsTwo,adminstrador])
+    
     // Función para formatear las fechas
     const formatDate = (date) => {
       //convierte las fechas a yyyy-mm-dd

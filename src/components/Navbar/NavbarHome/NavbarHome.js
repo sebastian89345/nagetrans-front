@@ -60,7 +60,7 @@ function NavbarHome({ logout,email,user,dataNotification }) {
                             <p className='text-dark card-text'>{"Soat: " + item.expireSoat}</p>
                           )}
                           {item.expirationMechanicalTechnician && (
-                            <p className='text-dark card-text'>{"Tecnicomecanica: " + item.expirationMechanicalTechnician}</p>
+                            <p className='text-dark card-text'>{"Técnico mecanica: " + item.expirationMechanicalTechnician}</p>
                           )}
                           {item.expirationCardOperations && (
                             <p className='text-dark card-text'>{"Operaciones: " + item.expirationCardOperations}</p>
@@ -77,7 +77,9 @@ function NavbarHome({ logout,email,user,dataNotification }) {
                           {item.expirationPreventiveReview && (
                             <p className='text-dark card-text'>{"Preventiva: " + item.expirationPreventiveReview}</p>
                           )}
-
+                          {item.resultOperation && (
+                            <p className='text-dark card-text'>{"Cambio de aceite: " + item.resultOperation}</p>
+                          )}
                         </div>
                       </div>
                     ))}
