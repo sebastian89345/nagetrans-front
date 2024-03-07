@@ -31,7 +31,6 @@ import pdfDiary from '../../../docs/pdfDiary.pdf';
 function List() {
   const [view, setView] = useState({list:true,create:false,update:false});
   const [infoUpdate, setInfoUpdate] = useState({});
-  
   const [opcionPreoperacional, setOpcionPreoperacional] = useState([]);
   const [opcionSelectPreoperacional, setOpcionSelectPreoperacional] = useState('');
   const [inputstartLicense, setInputstartLicense] = useState("");
@@ -151,7 +150,7 @@ function List() {
         // console.log(element);
         const pdfBytes = await createPdf(element,i);
         download(pdfBytes, `preoperacional_diaria_${i}.pdf`, "application/pdf");
-        await esperar(2000);
+        await esperar(1000);
       }
     }
   }
@@ -161,7 +160,7 @@ function List() {
   }
 
   const createPdf = async (element,i) => {
-    console.log(element);
+    // console.log(element);
     const pdf = await fetch(pdfDiary).then((res) => res.arrayBuffer());
     const pdfDoc = await PDFDocument.load(pdf);
 
@@ -987,7 +986,7 @@ function List() {
       substrings.push(cadena.substring(i, i + longitud));
     }
     return substrings;
-}
+  }
 
   // const dowlandPdfMonthly = () => {}
 

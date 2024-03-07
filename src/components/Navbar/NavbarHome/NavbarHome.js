@@ -18,9 +18,9 @@ function NavbarHome({ logout,email,user,dataNotification }) {
     const [showCircle, setShowCircle] = useState(false);    
     
     useEffect(() => {
-      // console.log(dataNotification);
       if (dataNotification.length > 0) {
-        setShowCircle(true)
+        // console.log(dataNotification);
+        setShowCircle(true);
       }
     }, [dataNotification])
     
@@ -53,23 +53,19 @@ function NavbarHome({ logout,email,user,dataNotification }) {
                   <div className="dropdown-menu dropdown-menu-bell" aria-labelledby="dropdownMenuButton">
                     { dataNotification.map((item, index) => (
                       <div key={index} className="card border-warning mb-3" >
-                        <div className="card-body text-warning">
-
-                          <h5>{"Placa: " + item.placa}</h5>
+                        <div className="card-body">
+                          <h5 className='text-warning'>{"Placa: " + item.placa}</h5>
                           {item.expireSoat && (
-                            <p className='text-dark card-text'>{"Soat: " + item.expireSoat}</p>
+                            <p className='text-dark card-text'>{"Soat:" + item.expireSoat}</p>
                           )}
                           {item.expirationMechanicalTechnician && (
-                            <p className='text-dark card-text'>{"Técnico mecanica: " + item.expirationMechanicalTechnician}</p>
+                            <p className='text-dark card-text'>{"Técnico Mecánica: " + item.expirationMechanicalTechnician}</p>
                           )}
                           {item.expirationCardOperations && (
-                            <p className='text-dark card-text'>{"Operaciones: " + item.expirationCardOperations}</p>
-                          )}
-                          {item.expirationCardProperties && (
-                            <p className='text-dark card-text'>{"Propiedades: " + item.expirationCardProperties}</p>
+                            <p className='text-dark card-text'>{"T.Operación: " + item.expirationCardOperations}</p>
                           )}
                           {item.expirationSureRccece && (
-                            <p className='text-dark card-text'>{"Seguro rcc rce: " + item.expirationSureRccece}</p>
+                            <p className='text-dark card-text'>{"Seguro RCC RCE: " + item.expirationSureRccece}</p>
                           )}
                           {item.expirationExtract && (
                             <p className='text-dark card-text'>{"Extracto: " + item.expirationExtract}</p>
@@ -77,7 +73,7 @@ function NavbarHome({ logout,email,user,dataNotification }) {
                           {item.expirationPreventiveReview && (
                             <p className='text-dark card-text'>{"Preventiva: " + item.expirationPreventiveReview}</p>
                           )}
-                          {item.resultOperation && (
+                          {typeof item.resultOperation !== 'undefined' && (
                             <p className='text-dark card-text'>{"Cambio de aceite: " + item.resultOperation}</p>
                           )}
                         </div>
@@ -123,22 +119,18 @@ function NavbarHome({ logout,email,user,dataNotification }) {
                     { dataNotification.map((item, index) => (
                       <div key={index} className="card border-warning mb-3" >
                         <div className="card-body text-warning">
-
                           <h5>{"Placa: " + item.placa}</h5>
                           {item.expireSoat && (
                             <p className='text-dark card-text'>{"Soat: " + item.expireSoat}</p>
                           )}
                           {item.expirationMechanicalTechnician && (
-                            <p className='text-dark card-text'>{"Tecnicomecanica: " + item.expirationMechanicalTechnician}</p>
+                            <p className='text-dark card-text'>{"Técnico Mecánica: " + item.expirationMechanicalTechnician}</p>
                           )}
                           {item.expirationCardOperations && (
-                            <p className='text-dark card-text'>{"Operaciones: " + item.expirationCardOperations}</p>
-                          )}
-                          {item.expirationCardProperties && (
-                            <p className='text-dark card-text'>{"Propiedades: " + item.expirationCardProperties}</p>
+                            <p className='text-dark card-text'>{"T.Operación: " + item.expirationCardOperations}</p>
                           )}
                           {item.expirationSureRccece && (
-                            <p className='text-dark card-text'>{"Seguro rcc rce: " + item.expirationSureRccece}</p>
+                            <p className='text-dark card-text'>{"Seguro RCC RCE: " + item.expirationSureRccece}</p>
                           )}
                           {item.expirationExtract && (
                             <p className='text-dark card-text'>{"Extracto: " + item.expirationExtract}</p>
@@ -146,7 +138,9 @@ function NavbarHome({ logout,email,user,dataNotification }) {
                           {item.expirationPreventiveReview && (
                             <p className='text-dark card-text'>{"Preventiva: " + item.expirationPreventiveReview}</p>
                           )}
-
+                          {typeof item.resultOperation !== 'undefined' && (
+                            <p className='text-dark card-text'>{"Cambio de aceite: " + item.resultOperation}</p>
+                          )}
                         </div>
                       </div>
                     ))}

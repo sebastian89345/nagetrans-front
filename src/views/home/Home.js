@@ -141,7 +141,7 @@ function Home() {
 
           if(expireSoat < 8) { obj.expireSoat = element.dateExpirationSoat }
           if(expirationMechanicalTechnician < 8) { obj.expirationMechanicalTechnician = element.expirationMechanicalTechnician }
-          if(expirationCardOperations < 8) { obj.expirationCardOperations = element.dateExpirationCardOperations }
+          if(expirationCardOperations < 30) { obj.expirationCardOperations = element.dateExpirationCardOperations }
           if(expirationCardProperties < 8) { obj.expirationCardProperties = element.dateExpirationCardProperties }
           if(expirationSureRccece < 8) { obj.expirationSureRccece = element.dateExpirationSureRccece }
           if(expirationExtract < 8) { obj.expirationExtract = element.dateExpirationExtract }
@@ -189,7 +189,7 @@ function Home() {
         let newMtz = [];
         for (let i = 0; i < dateForUser.length; i++) {
           const element = dateForUser[i];
-          let result = parseFloat(element.currentKm) - parseFloat(element.oilChange);
+          let result = parseFloat(element.oilChange) - parseFloat(element.currentKm);
           //Cambiar despues
           if (result <= 500) {
             element.resultOperation = result
