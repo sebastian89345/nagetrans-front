@@ -408,7 +408,7 @@ function Home() {
             <NavbarHome logout={logout} email={dataListLogin.data.response.data.email} user={dataListLogin.data.response.data.user} dataNotification={newMtzVehicle} />
             {dashboards()}
         </div>
-      </div> 
+      </div>
       : <>
           <NavbarHome email={dataListLogin.data.response.data.email} user={dataListLogin.data.response.data.user} dataNotification={newMtzVehicle} />
           <div className='home-mobile-container'>

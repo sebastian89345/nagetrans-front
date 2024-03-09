@@ -159,6 +159,14 @@ function List() {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
+  function dividirCadena(cadena, longitud) {
+    let substrings = [];
+    for (let i = 0; i < cadena.length; i += longitud) {
+      substrings.push(cadena.substring(i, i + longitud));
+    }
+    return substrings;
+  }
+
   const createPdf = async (element,i) => {
     // console.log(element);
     const pdf = await fetch(pdfDiary).then((res) => res.arrayBuffer());
@@ -978,14 +986,6 @@ function List() {
     return new Blob([pdfBytes], { type: "application/pdf" });
     // Trigger the browser to download the PDF document 
     // download(pdfBytes,`preoperacional_diaria.pdf`, "application/pdf");
-  }
-
-  function dividirCadena(cadena, longitud) {
-    let substrings = [];
-    for (let i = 0; i < cadena.length; i += longitud) {
-      substrings.push(cadena.substring(i, i + longitud));
-    }
-    return substrings;
   }
 
   // const dowlandPdfMonthly = () => {}
