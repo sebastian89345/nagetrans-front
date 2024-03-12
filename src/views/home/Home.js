@@ -389,7 +389,6 @@ function Home() {
 
     const logout = () => {
       navigate("/login");
-      window.location.reload();
     }
 
   return (

@@ -33,7 +33,7 @@ function List() {
   const [infoUpdate, setInfoUpdate] = useState({});
   const [opcionPreoperacional, setOpcionPreoperacional] = useState([]);
   const [opcionSelectPreoperacional, setOpcionSelectPreoperacional] = useState('');
-  const [inputstartLicense, setInputstartLicense] = useState("");
+  const [dateMonthly, setDateMonthly] = useState("");
   const [dowmlandPdfDiary, setDowmlandPdfDiary] = useState([]);
   // const [dowmlandPdfMonthly, setDowmlandPdfMonthly] = useState([]);
   const dataList = useSelector((store) => store.listCheckReducer);
@@ -988,7 +988,36 @@ function List() {
     // download(pdfBytes,`preoperacional_diaria.pdf`, "application/pdf");
   }
 
-  // const dowlandPdfMonthly = () => {}
+  const dowlandPdfMonthly = async () => {
+
+    //aquí , traigo la fecha y hago un split
+    let spllitMonthly = dateMonthly.split("-");
+    // console.log(spllitMonthly);
+
+    //Aquí tomo la fecha del input y la convierto a fecha
+    let dateMonthEnd = new Date(parseInt(spllitMonthly[0]), parseInt(spllitMonthly[1]) - 1, parseInt(spllitMonthly[2]));
+    // console.log(dateMonthEnd);
+
+    //Aquí reseteo la fecha , para que el día siempre sea 01
+    const dateMonthStart = new Date(parseInt(spllitMonthly[0]), parseInt(spllitMonthly[1]) - 1, 0o1);
+    // console.log(dateMonthStart);
+
+    for (let i = 0; i < dataList.data.length; i++) {
+      const element = dataList.data[i];
+
+      //aquí , traigo la fecha y hago un split
+      let spllitMonthSpace = element.date.split(" ");
+      let spllitMonth = spllitMonthSpace[0].split("-");
+      const dates = new Date(parseInt(spllitMonth[2]), parseInt(spllitMonth[1]) - 1, spllitMonth[0]);
+      // console.log(element.date);
+      // console.log(dates);
+
+      if( dates >= dateMonthStart && dates <= dateMonthEnd) {
+        console.log(element.date);
+      }
+
+    }
+  }
 
   return (
     <div className='list-listCheck-main'>
@@ -997,7 +1026,6 @@ function List() {
           <DefaultTable data={dataList.data} nms={"listCheck"} deleteId={deleteInfo} updateId={updateInfo} selectCheck={selectCheck} />
 
           <div className='mt-4 user-create-main-input form-group'>
-            {/* <label htmlFor="exampleInputEmail1">Preoperacional:</label> */}
             <select value={opcionSelectPreoperacional} onChange={(e) => setOpcionSelectPreoperacional(e.target.value)} className='list-listCheck-input form-control'>
               <option value="">Selecciona una opción</option>
               {opcionPreoperacional.map((opcion, index) => (
@@ -1017,12 +1045,12 @@ function List() {
               </> 
             : opcionSelectPreoperacional === "Preoperacional mensual" ? 
               <>
-                <div className='mt-4 user-create-main-input'>
+                <div className='mt-3 user-create-main-input'>
                   <label htmlFor="exampleInputEmail1">Mes de la preoperacional:</label>
-                  <input value={inputstartLicense} onChange={(e) => setInputstartLicense(e.target.value)} type="date" className='list-listCheck-input-date form-control' />
+                  <input value={dateMonthly} onChange={(e) => setDateMonthly(e.target.value)} type="date" className='list-listCheck-input-date form-control' />
                 </div>
-                <div>
-                  {/* <button type='button' className='btn btn-danger' onCanPlay={dowlandPdfMonthly}>Descargar</button> */}
+                <div className='mt-3'>
+                  <button type='button' className='btn btn-danger' onClick={dowlandPdfMonthly}>Descargar</button>
                 </div>
               </> 
             : <></>
