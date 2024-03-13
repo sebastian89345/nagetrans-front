@@ -15,6 +15,8 @@ import { useSelector , useDispatch } from "react-redux";
 
 //Reducers
 import { getListCheckAllService , deleteListCheckService  } from "../../../store/action/listCheckAction";
+import { getUserAllService } from "../../../store/action/userAction";
+
 
 //Alertas 
 import Swal from 'sweetalert2';
@@ -27,16 +29,25 @@ import download  from 'downloadjs';
 
 //documentos
 import pdfDiary from '../../../docs/pdfDiary.pdf';
+import pdfMonthly from '../../../docs/pdfMonthly.pdf';
+
+//id de los roles
+import roleService from '../../../libs/helpers/role.json';
 
 function List() {
+
+  const { vehiculo } = roleService;
   const [view, setView] = useState({list:true,create:false,update:false});
   const [infoUpdate, setInfoUpdate] = useState({});
+  const [opcionUserVehicle, setOpcionUserVehicle] = useState([]);
+  const [opcionSelectUserVehicle, setOpcionSelectUserVehicle] = useState('');
+
   const [opcionPreoperacional, setOpcionPreoperacional] = useState([]);
   const [opcionSelectPreoperacional, setOpcionSelectPreoperacional] = useState('');
   const [dateMonthly, setDateMonthly] = useState("");
   const [dowmlandPdfDiary, setDowmlandPdfDiary] = useState([]);
-  // const [dowmlandPdfMonthly, setDowmlandPdfMonthly] = useState([]);
   const dataList = useSelector((store) => store.listCheckReducer);
+  const dataListUserVehicle = useSelector((store) => store.userReducer);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -46,6 +57,7 @@ function List() {
   //Aqui hago la consulta a la base de datos y la agrego el payload al redux
   useEffect(() => {
     dispatch(getListCheckAllService());
+    dispatch(getUserAllService());
   }, [dispatch])
 
   useEffect(() => {
@@ -59,7 +71,12 @@ function List() {
       return dateB - dateA; // De mayor a menor
     });
   }, [dataList])
-  
+
+  useEffect(() => {
+    let resultadosFiltrados = dataListUserVehicle.data.filter(objeto => objeto.role[0]._id === vehiculo);
+    setOpcionUserVehicle(resultadosFiltrados);
+  }, [dataListUserVehicle])
+
   // Función para convertir una cadena de fecha en un objeto Date
   function parseDate(str) {
     var parts = str.split(/[- :]/);
@@ -990,6 +1007,8 @@ function List() {
 
   const dowlandPdfMonthly = async () => {
 
+    // ---- 1 -----
+
     //aquí , traigo la fecha y hago un split
     let spllitMonthly = dateMonthly.split("-");
     // console.log(spllitMonthly);
@@ -1002,6 +1021,8 @@ function List() {
     const dateMonthStart = new Date(parseInt(spllitMonthly[0]), parseInt(spllitMonthly[1]) - 1, 0o1);
     // console.log(dateMonthStart);
 
+    let mtz = [];
+
     for (let i = 0; i < dataList.data.length; i++) {
       const element = dataList.data[i];
 
@@ -1013,9 +1034,134 @@ function List() {
       // console.log(dates);
 
       if( dates >= dateMonthStart && dates <= dateMonthEnd) {
-        console.log(element.date);
+        // console.log(element.date);
+        element.day = spllitMonth[0];
+        mtz.push(element)
       }
+    }
 
+    // ---- 2 -----
+
+    // console.log(mtz);
+
+    //Cargo el documento
+    const pdf = await fetch(pdfMonthly).then((res) => res.arrayBuffer());
+    const pdfDoc = await PDFDocument.load(pdf);
+
+    const page0 = pdfDoc.getPage(0);
+    // const page1 = pdfDoc.getPage(1);
+    // const page2 = pdfDoc.getPage(2);
+    const { height } = page0.getSize();
+
+    for (let isn = 0; isn < mtz.length; isn++) {
+      const element = mtz[isn];
+      console.log(element.day);
+    }
+
+    // ESTADO DE PRESENTACIÓN
+    // Aseo interno
+    // page0.drawText(element.internalToilet, {
+    //   x: 500,
+    //   y: height - 227,
+    //   size: 8,
+    //   color: rgb(0, 0, 0 , 1),
+    // })
+
+    // // // Aseo externo
+    // page0.drawText(element.externalToilet, {
+    //   x: 500,
+    //   y: height - 238,
+    //   size: 8,
+    //   color: rgb(0, 0, 0 , 1),
+    // })
+
+    // // // Latas
+    // page0.drawText(element.cans, {
+    //   x: 500,
+    //   y: height - 249,
+    //   size: 8,
+    //   color: rgb(0, 0, 0 , 1),
+    // })
+
+    // // // Pintura
+    // page0.drawText(element.paint, {
+    //   x: 500,
+    //   y: height - 260,
+    //   size: 8,
+    //   color: rgb(0, 0, 0 , 1),
+    // })
+
+    // const pdfBytes = await pdfDoc.save()
+    // download(pdfBytes, `preoperacional_mensual_${0}.pdf`, "application/pdf");
+  }
+
+  const cratePdfMonth = async () => { 
+    // ESTADO DE PRESENTACIÓN
+
+    // Aseo interno
+    // page.drawText(element.internalToilet, {
+    //   x: 500,
+    //   y: height - 227,
+    //   size: 8,
+    //   color: rgb(0, 0, 0 , 1),
+    // })
+
+    // // Aseo externo
+    // page.drawText(element.externalToilet, {
+    //   x: 500,
+    //   y: height - 238,
+    //   size: 8,
+    //   color: rgb(0, 0, 0 , 1),
+    // })
+
+    // // Latas
+    // page.drawText(element.cans, {
+    //   x: 500,
+    //   y: height - 249,
+    //   size: 8,
+    //   color: rgb(0, 0, 0 , 1),
+    // })
+
+    // // Pintura
+    // page.drawText(element.paint, {
+    //   x: 500,
+    //   y: height - 260,
+    //   size: 8,
+    //   color: rgb(0, 0, 0 , 1),
+    // })
+  }
+
+  const cratePdfMonths = async () => {
+    // ---- 1 -----
+
+    //aquí , traigo la fecha y hago un split
+    let spllitMonthly = dateMonthly.split("-");
+    // console.log(spllitMonthly);
+
+    //Aquí tomo la fecha del input y la convierto a fecha
+    let dateMonthEnd = new Date(parseInt(spllitMonthly[0]), parseInt(spllitMonthly[1]) - 1, parseInt(spllitMonthly[2]));
+    // console.log(dateMonthEnd);
+
+    //Aquí reseteo la fecha , para que el día siempre sea 01
+    const dateMonthStart = new Date(parseInt(spllitMonthly[0]), parseInt(spllitMonthly[1]) - 1, 0o1);
+    // console.log(dateMonthStart);
+
+    let mtz = [];
+
+    for (let i = 0; i < dataList.data.length; i++) {
+      const element = dataList.data[i];
+
+      //aquí , traigo la fecha y hago un split
+      let spllitMonthSpace = element.date.split(" ");
+      let spllitMonth = spllitMonthSpace[0].split("-");
+      const dates = new Date(parseInt(spllitMonth[2]), parseInt(spllitMonth[1]) - 1, spllitMonth[0]);
+      // console.log(element.date);
+      // console.log(dates);
+
+      if( dates >= dateMonthStart && dates <= dateMonthEnd) {
+        // console.log(element.date);
+        mtz.push(element)
+      }
     }
   }
 
@@ -1045,6 +1191,18 @@ function List() {
               </> 
             : opcionSelectPreoperacional === "Preoperacional mensual" ? 
               <>
+                <div className='mt-4 user-create-main-input form-group'>
+                  <label htmlFor="exampleInputEmail1">Seleccione un vehículo:</label>
+                  <select value={opcionSelectUserVehicle} onChange={(e) => setOpcionSelectUserVehicle(e.target.value)} className='list-listCheck-input-date form-control'>
+                    <option value="">Selecciona una opción</option>
+                    {opcionUserVehicle.map((opcion, index) => (
+                      <option key={index} value={opcion._id}>
+                        {opcion.placa}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
                 <div className='mt-3 user-create-main-input'>
                   <label htmlFor="exampleInputEmail1">Mes de la preoperacional:</label>
                   <input value={dateMonthly} onChange={(e) => setDateMonthly(e.target.value)} type="date" className='list-listCheck-input-date form-control' />
