@@ -17,7 +17,6 @@ import { useSelector , useDispatch } from "react-redux";
 import { getListCheckAllService , deleteListCheckService  } from "../../../store/action/listCheckAction";
 import { getUserAllService } from "../../../store/action/userAction";
 
-
 //Alertas 
 import Swal from 'sweetalert2';
 
@@ -75,7 +74,7 @@ function List() {
   useEffect(() => {
     let resultadosFiltrados = dataListUserVehicle.data.filter(objeto => objeto.role[0]._id === vehiculo);
     setOpcionUserVehicle(resultadosFiltrados);
-  }, [dataListUserVehicle])
+  }, [dataListUserVehicle,vehiculo])
 
   // Función para convertir una cadena de fecha en un objeto Date
   function parseDate(str) {
@@ -1033,7 +1032,7 @@ function List() {
       // console.log(element.date);
       // console.log(dates);
 
-      if( dates >= dateMonthStart && dates <= dateMonthEnd) {
+      if(dates >= dateMonthStart && dates <= dateMonthEnd && element.userVehicle[0]._id === opcionSelectUserVehicle) {
         // console.log(element.date);
         element.day = spllitMonth[0];
         mtz.push(element)
@@ -1041,8 +1040,6 @@ function List() {
     }
 
     // ---- 2 -----
-
-    // console.log(mtz);
 
     //Cargo el documento
     const pdf = await fetch(pdfMonthly).then((res) => res.arrayBuffer());
@@ -1053,49 +1050,153 @@ function List() {
     // const page2 = pdfDoc.getPage(2);
     const { height } = page0.getSize();
 
+    //Aquí lleno la lista , pero de la informacion general
+    await createFieldGeneralInformation(page0,mtz,height)
+
+    let positionFiledsPdf = {};
+
+    //Aqui lleno la lista , de los demas campos
     for (let isn = 0; isn < mtz.length; isn++) {
       const element = mtz[isn];
-      console.log(element.day);
+      if(element.day === "08") {
+        // ESTADO DE PRESENTACIÓN
+        positionFiledsPdf.internalToilet = { x:320, y:height - 180 }
+        positionFiledsPdf.externalToilet = { x:320, y:height - 194 }
+        await createField(page0,element,positionFiledsPdf);
+      } 
+      if (element.day === "11") {
+        // ESTADO DE PRESENTACIÓN
+        positionFiledsPdf.internalToilet = { x:380, y:height - 180 }
+        positionFiledsPdf.externalToilet = { x:380, y:height - 194 }
+        await createField(page0,element,positionFiledsPdf);
+      }
     }
 
-    // ESTADO DE PRESENTACIÓN
-    // Aseo interno
-    // page0.drawText(element.internalToilet, {
-    //   x: 500,
-    //   y: height - 227,
-    //   size: 8,
-    //   color: rgb(0, 0, 0 , 1),
-    // })
-
-    // // // Aseo externo
-    // page0.drawText(element.externalToilet, {
-    //   x: 500,
-    //   y: height - 238,
-    //   size: 8,
-    //   color: rgb(0, 0, 0 , 1),
-    // })
-
-    // // // Latas
-    // page0.drawText(element.cans, {
-    //   x: 500,
-    //   y: height - 249,
-    //   size: 8,
-    //   color: rgb(0, 0, 0 , 1),
-    // })
-
-    // // // Pintura
-    // page0.drawText(element.paint, {
-    //   x: 500,
-    //   y: height - 260,
-    //   size: 8,
-    //   color: rgb(0, 0, 0 , 1),
-    // })
-
-    // const pdfBytes = await pdfDoc.save()
-    // download(pdfBytes, `preoperacional_mensual_${0}.pdf`, "application/pdf");
+    const pdfBytess = await pdfDoc.save();
+    download(pdfBytess, `preoperacional_mensual.pdf`, "application/pdf");
   }
 
-  const cratePdfMonth = async () => { 
+  const createFieldGeneralInformation = (page0,mtz,height) => {
+    let mtzStart = mtz[mtz.length -1];
+    let mtzEnd = mtz[0];
+
+    // console.log(mtzStart);
+    // console.log(mtzEnd);
+    // INFORMACIÓN GENERAL
+
+    // Fecha preoperacional
+    page0.drawText(mtzEnd.date, {
+      x: 150,
+      y: height - 106,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Placa
+    page0.drawText(mtzEnd.userVehicle[0].placa, {
+      x: 323,
+      y: height - 106,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Modelo
+    page0.drawText(mtzEnd.userVehicle[0].model[0].name, {
+      x: 460,
+      y: height - 106,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Marca
+    page0.drawText(mtzEnd.userVehicle[0].brand[0].name, {
+      x: 580,
+      y: height - 106,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Clase
+    page0.drawText(mtzEnd.userVehicle[0].types[0].name, {
+      x: 705,
+      y: height - 106,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Número interno:
+    page0.drawText(mtzEnd.userVehicle[0].internalNumber.toString(), {
+      x: 120,
+      y: height - 129,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Número interno
+    page0.drawText(mtzEnd.userVehicle[0].internalNumber.toString(), {
+      x: 120,
+      y: height - 129,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Propietario
+    page0.drawText("MARIA EDITH SALAZAR RAMIREZ", {
+      x: 100,
+      y: height - 139,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Identificacion del propietario
+    page0.drawText("42691020", {
+      x: 560,
+      y: height - 128,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Kilometraje inicial
+    page0.drawText(mtzStart.currentKm, {
+      x: 722,
+      y: height - 128,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Kilometraje final
+    page0.drawText(mtzEnd.currentKm, {
+      x: 718,
+      y: height - 140,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    return page0
+  } 
+
+  const createField = async (page0,element,positionFiledsPdf) => {
+    // ESTADO DE PRESENTACIÓN
+    // Aseo interno
+    page0.drawText(element.internalToilet, {
+      x: positionFiledsPdf.internalToilet.x,
+      y: positionFiledsPdf.internalToilet.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // // Aseo externo
+    page0.drawText(element.externalToilet, {
+      x: positionFiledsPdf.externalToilet.x,
+      y: positionFiledsPdf.externalToilet.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    return page0
+  }
+
+  // const cratePdfMonth = async () => { 
     // ESTADO DE PRESENTACIÓN
 
     // Aseo interno
@@ -1129,41 +1230,41 @@ function List() {
     //   size: 8,
     //   color: rgb(0, 0, 0 , 1),
     // })
-  }
+  // }
 
-  const cratePdfMonths = async () => {
-    // ---- 1 -----
+  // const cratePdfMonths = async () => {
+  //   // ---- 1 -----
 
-    //aquí , traigo la fecha y hago un split
-    let spllitMonthly = dateMonthly.split("-");
-    // console.log(spllitMonthly);
+  //   //aquí , traigo la fecha y hago un split
+  //   let spllitMonthly = dateMonthly.split("-");
+  //   // console.log(spllitMonthly);
 
-    //Aquí tomo la fecha del input y la convierto a fecha
-    let dateMonthEnd = new Date(parseInt(spllitMonthly[0]), parseInt(spllitMonthly[1]) - 1, parseInt(spllitMonthly[2]));
-    // console.log(dateMonthEnd);
+  //   //Aquí tomo la fecha del input y la convierto a fecha
+  //   let dateMonthEnd = new Date(parseInt(spllitMonthly[0]), parseInt(spllitMonthly[1]) - 1, parseInt(spllitMonthly[2]));
+  //   // console.log(dateMonthEnd);
 
-    //Aquí reseteo la fecha , para que el día siempre sea 01
-    const dateMonthStart = new Date(parseInt(spllitMonthly[0]), parseInt(spllitMonthly[1]) - 1, 0o1);
-    // console.log(dateMonthStart);
+  //   //Aquí reseteo la fecha , para que el día siempre sea 01
+  //   const dateMonthStart = new Date(parseInt(spllitMonthly[0]), parseInt(spllitMonthly[1]) - 1, 0o1);
+  //   // console.log(dateMonthStart);
 
-    let mtz = [];
+  //   let mtz = [];
 
-    for (let i = 0; i < dataList.data.length; i++) {
-      const element = dataList.data[i];
+  //   for (let i = 0; i < dataList.data.length; i++) {
+  //     const element = dataList.data[i];
 
-      //aquí , traigo la fecha y hago un split
-      let spllitMonthSpace = element.date.split(" ");
-      let spllitMonth = spllitMonthSpace[0].split("-");
-      const dates = new Date(parseInt(spllitMonth[2]), parseInt(spllitMonth[1]) - 1, spllitMonth[0]);
-      // console.log(element.date);
-      // console.log(dates);
+  //     //aquí , traigo la fecha y hago un split
+  //     let spllitMonthSpace = element.date.split(" ");
+  //     let spllitMonth = spllitMonthSpace[0].split("-");
+  //     const dates = new Date(parseInt(spllitMonth[2]), parseInt(spllitMonth[1]) - 1, spllitMonth[0]);
+  //     // console.log(element.date);
+  //     // console.log(dates);
 
-      if( dates >= dateMonthStart && dates <= dateMonthEnd) {
-        // console.log(element.date);
-        mtz.push(element)
-      }
-    }
-  }
+  //     if( dates >= dateMonthStart && dates <= dateMonthEnd) {
+  //       // console.log(element.date);
+  //       mtz.push(element)
+  //     }
+  //   }
+  // }
 
   return (
     <div className='list-listCheck-main'>
