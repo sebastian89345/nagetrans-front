@@ -1054,26 +1054,60 @@ function List() {
     await createFieldGeneralInformation(page0,mtz,height)
 
     let positionFiledsPdf = {};
+    const increase = [
+      {x:160},
+      {x:180},
+      {x:200},
+      {x:220},
+      {x:240},
+      {x:260},
+      {x:280},
+      {x:300},
+      {x:320},
+      {x:340},
+      {x:360},
+      {x:380},
+      {x:400},
+      {x:420},
+      {x:440},
+      {x:460},
+      {x:480},
+      {x:500},
+    ]
 
     //Aqui lleno la lista , de los demas campos
     for (let isn = 0; isn < mtz.length; isn++) {
       const element = mtz[isn];
-      if(element.day === "08") {
-        // ESTADO DE PRESENTACIÓN
-        positionFiledsPdf.internalToilet = { x:320, y:height - 180 }
-        positionFiledsPdf.externalToilet = { x:320, y:height - 194 }
-        await createField(page0,element,positionFiledsPdf);
-      } 
-      if (element.day === "11") {
-        // ESTADO DE PRESENTACIÓN
-        positionFiledsPdf.internalToilet = { x:380, y:height - 180 }
-        positionFiledsPdf.externalToilet = { x:380, y:height - 194 }
-        await createField(page0,element,positionFiledsPdf);
-      }
-    }
 
+      // ESTADO DE PRESENTACIÓN
+      positionFiledsPdf.internalToilet = { x:increase[parseFloat(element.day)].x, y:height - 180 }
+      positionFiledsPdf.externalToilet = { x:increase[parseFloat(element.day)].x, y:height - 194 }
+      await createField(page0,element,positionFiledsPdf);
+       
+    }
     const pdfBytess = await pdfDoc.save();
     download(pdfBytess, `preoperacional_mensual.pdf`, "application/pdf");
+  }
+
+  const createField = async (page0,element,positionFiledsPdf) => {
+    // ESTADO DE PRESENTACIÓN
+    // Aseo interno
+    page0.drawText(element.internalToilet, {
+      x: positionFiledsPdf.internalToilet.x,
+      y: positionFiledsPdf.internalToilet.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // // Aseo externo
+    page0.drawText(element.externalToilet, {
+      x: positionFiledsPdf.externalToilet.x,
+      y: positionFiledsPdf.externalToilet.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    return page0
   }
 
   const createFieldGeneralInformation = (page0,mtz,height) => {
@@ -1175,95 +1209,19 @@ function List() {
     return page0
   } 
 
-  const createField = async (page0,element,positionFiledsPdf) => {
-    // ESTADO DE PRESENTACIÓN
-    // Aseo interno
-    page0.drawText(element.internalToilet, {
-      x: positionFiledsPdf.internalToilet.x,
-      y: positionFiledsPdf.internalToilet.y,
-      size: 8,
-      color: rgb(0, 0, 0 , 1),
-    })
-
-    // // Aseo externo
-    page0.drawText(element.externalToilet, {
-      x: positionFiledsPdf.externalToilet.x,
-      y: positionFiledsPdf.externalToilet.y,
-      size: 8,
-      color: rgb(0, 0, 0 , 1),
-    })
-
-    return page0
-  }
-
   // const cratePdfMonth = async () => { 
-    // ESTADO DE PRESENTACIÓN
-
-    // Aseo interno
-    // page.drawText(element.internalToilet, {
-    //   x: 500,
-    //   y: height - 227,
-    //   size: 8,
-    //   color: rgb(0, 0, 0 , 1),
-    // })
-
-    // // Aseo externo
-    // page.drawText(element.externalToilet, {
-    //   x: 500,
-    //   y: height - 238,
-    //   size: 8,
-    //   color: rgb(0, 0, 0 , 1),
-    // })
-
-    // // Latas
-    // page.drawText(element.cans, {
-    //   x: 500,
-    //   y: height - 249,
-    //   size: 8,
-    //   color: rgb(0, 0, 0 , 1),
-    // })
-
-    // // Pintura
-    // page.drawText(element.paint, {
-    //   x: 500,
-    //   y: height - 260,
-    //   size: 8,
-    //   color: rgb(0, 0, 0 , 1),
-    // })
-  // }
-
-  // const cratePdfMonths = async () => {
-  //   // ---- 1 -----
-
-  //   //aquí , traigo la fecha y hago un split
-  //   let spllitMonthly = dateMonthly.split("-");
-  //   // console.log(spllitMonthly);
-
-  //   //Aquí tomo la fecha del input y la convierto a fecha
-  //   let dateMonthEnd = new Date(parseInt(spllitMonthly[0]), parseInt(spllitMonthly[1]) - 1, parseInt(spllitMonthly[2]));
-  //   // console.log(dateMonthEnd);
-
-  //   //Aquí reseteo la fecha , para que el día siempre sea 01
-  //   const dateMonthStart = new Date(parseInt(spllitMonthly[0]), parseInt(spllitMonthly[1]) - 1, 0o1);
-  //   // console.log(dateMonthStart);
-
-  //   let mtz = [];
-
-  //   for (let i = 0; i < dataList.data.length; i++) {
-  //     const element = dataList.data[i];
-
-  //     //aquí , traigo la fecha y hago un split
-  //     let spllitMonthSpace = element.date.split(" ");
-  //     let spllitMonth = spllitMonthSpace[0].split("-");
-  //     const dates = new Date(parseInt(spllitMonth[2]), parseInt(spllitMonth[1]) - 1, spllitMonth[0]);
-  //     // console.log(element.date);
-  //     // console.log(dates);
-
-  //     if( dates >= dateMonthStart && dates <= dateMonthEnd) {
-  //       // console.log(element.date);
-  //       mtz.push(element)
-  //     }
-  //   }
+   // if(element.day === "08") {
+      //   // ESTADO DE PRESENTACIÓN
+      //   positionFiledsPdf.internalToilet = { x:320, y:height - 180 }
+      //   positionFiledsPdf.externalToilet = { x:320, y:height - 194 }
+      //   await createField(page0,element,positionFiledsPdf);
+      // } 
+      // if (element.day === "11") {
+      //   // ESTADO DE PRESENTACIÓN
+      //   positionFiledsPdf.internalToilet = { x:380, y:height - 180 }
+      //   positionFiledsPdf.externalToilet = { x:380, y:height - 194 }
+      //   await createField(page0,element,positionFiledsPdf);
+      // }
   // }
 
   return (
