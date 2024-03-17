@@ -507,7 +507,7 @@ function List() {
       color: rgb(0, 0, 0 , 1),
     })
 
-     // SEGURIDAD PASIVA
+    // SEGURIDAD PASIVA
 
      // Cinturones de Seguridad
     page.drawText(element.seatBelts, {
@@ -1046,51 +1046,123 @@ function List() {
     const pdfDoc = await PDFDocument.load(pdf);
 
     const page0 = pdfDoc.getPage(0);
-    // const page1 = pdfDoc.getPage(1);
-    // const page2 = pdfDoc.getPage(2);
+    const page1 = pdfDoc.getPage(1);
+    const page2 = pdfDoc.getPage(2);
     const { height } = page0.getSize();
 
     //Aquí lleno la lista , pero de la informacion general
     await createFieldGeneralInformation(page0,mtz,height)
 
     let positionFiledsPdf = {};
-    const increase = [
-      {x:160},
-      {x:180},
-      {x:200},
-      {x:220},
-      {x:240},
-      {x:260},
-      {x:280},
-      {x:300},
-      {x:320},
-      {x:340},
-      {x:360},
-      {x:380},
-      {x:400},
-      {x:420},
-      {x:440},
-      {x:460},
-      {x:480},
-      {x:500},
-    ]
+    const increasePages = {
+      page1:[
+        {x:160},
+        {x:180},
+        {x:200},
+        {x:220},
+        {x:240},
+        {x:260},
+        {x:280},
+        {x:300},
+        {x:320},
+        {x:340},
+        {x:360},
+        {x:380},
+        {x:400},
+        {x:420},
+        {x:440},
+        {x:460},
+        {x:480},
+        {x:500},
+      ],
+      page2:[
+        {x:168},
+        {x:188},
+        {x:208},
+        {x:228},
+        {x:240},
+        {x:268},
+        {x:288},
+        {x:308},
+        {x:328},
+        {x:348},
+        {x:368},
+        {x:388},
+        {x:408},
+        {x:428},
+        {x:448},
+        {x:468},
+        {x:488},
+        {x:508},
+      ],
+      page3: [
+
+      ]
+    }
 
     //Aqui lleno la lista , de los demas campos
     for (let isn = 0; isn < mtz.length; isn++) {
       const element = mtz[isn];
 
       // ESTADO DE PRESENTACIÓN
-      positionFiledsPdf.internalToilet = { x:increase[parseFloat(element.day)].x, y:height - 180 }
-      positionFiledsPdf.externalToilet = { x:increase[parseFloat(element.day)].x, y:height - 194 }
-      await createField(page0,element,positionFiledsPdf);
+      positionFiledsPdf.internalToilet = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 180 }
+      positionFiledsPdf.externalToilet = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 194 }
+      positionFiledsPdf.cans = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 206 }
+      positionFiledsPdf.paint = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 218 }
+      // ESTADO DE COMODIDAD
+      positionFiledsPdf.airConditioning = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 242 }
+      positionFiledsPdf.chairs = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 254 }
+      positionFiledsPdf.lighter = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 268 }
+      positionFiledsPdf.interiorOrCeilingLight = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 281 }
+      // NIVELES Y PERDIDA DE LIQUIDOS
+      positionFiledsPdf.engineOilLevel = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 305 }
+      positionFiledsPdf.brakeFluidLevel = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 317 }
+      positionFiledsPdf.radiatorWaterLevel = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 330 }
+      positionFiledsPdf.batteryWaterLevel = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 343 }
+      positionFiledsPdf.hydraulicOilLevel = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 355 }
+      positionFiledsPdf.acpmLeaks = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 368 }
+      positionFiledsPdf.waterLeaks = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 381 }
+      positionFiledsPdf.transmissionOilLeaks = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 397 }
+      positionFiledsPdf.boxOilLeak = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 414 }
+      positionFiledsPdf.brakeFluidLeaks = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 426 }
+      // TABLERO DE CONTROL
+      positionFiledsPdf.tableLight = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 451 }
+      positionFiledsPdf.fuelLevel = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 463 }
+      positionFiledsPdf.odometer = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 475 }
+      positionFiledsPdf.whistle = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 488 }
+      positionFiledsPdf.tachometer = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 501 }
+      positionFiledsPdf.speedometer = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 514 }
+      positionFiledsPdf.oilIndicator = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 526 }
+      positionFiledsPdf.temperatureIndicator = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 538 }
+      // SEGURIDAD PASIVA
+      positionFiledsPdf.seatBelts = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 61 }
+      positionFiledsPdf.airbags = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 74 }
+      positionFiledsPdf.crystals = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 86 }
+      positionFiledsPdf.headrest = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 98 }
+      positionFiledsPdf.mirrorStatus = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 110 }
+      positionFiledsPdf.rightSideMirror = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 122 }
+      positionFiledsPdf.leftSideMirror = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 133 }
+      positionFiledsPdf.rearViewMirror = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 145 }
+      //SEGURIDAD ACTIVA
+      positionFiledsPdf.addressStatus = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 169 }
+      positionFiledsPdf.frontSuspensionCondition = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 181 }
+      positionFiledsPdf.shockAbsorbers = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 193 }
+      positionFiledsPdf.rearSuspensionStatus = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 205 }
+      positionFiledsPdf.windshieldCondition = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 217 }
+      positionFiledsPdf.frontGlass = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 229 }
+
+
+      await createField(page0,page1,page2,element,positionFiledsPdf);
        
     }
     const pdfBytess = await pdfDoc.save();
     download(pdfBytess, `preoperacional_mensual.pdf`, "application/pdf");
   }
 
-  const createField = async (page0,element,positionFiledsPdf) => {
+  const createField = async (page0,page1,page2,element,positionFiledsPdf) => {
+
     // ESTADO DE PRESENTACIÓN
+
     // Aseo interno
     page0.drawText(element.internalToilet, {
       x: positionFiledsPdf.internalToilet.x,
@@ -1098,24 +1170,428 @@ function List() {
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
-
-    // // Aseo externo
+    // Aseo externo
     page0.drawText(element.externalToilet, {
       x: positionFiledsPdf.externalToilet.x,
       y: positionFiledsPdf.externalToilet.y,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
+    // Latas
+    page0.drawText(element.cans, {
+      x: positionFiledsPdf.cans.x,
+      y: positionFiledsPdf.cans.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Pintura
+    page0.drawText(element.paint, {
+      x: positionFiledsPdf.paint.x,
+      y: positionFiledsPdf.paint.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    
+    // ESTADO DE COMODIDAD
 
-    return page0
+    // Aire Acondicionado
+    page0.drawText(element.airConditioning, {
+      x: positionFiledsPdf.airConditioning.x,
+      y: positionFiledsPdf.airConditioning.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Silletería (Anclaje, estado)
+    page0.drawText(element.chairs, {
+      x: positionFiledsPdf.chairs.x,
+      y: positionFiledsPdf.chairs.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Encendedor
+    page0.drawText(element.lighter, {
+      x: positionFiledsPdf.lighter.x,
+      y: positionFiledsPdf.lighter.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Luz Interior o de techo
+    page0.drawText(element.interiorOrCeilingLight, {
+      x: positionFiledsPdf.interiorOrCeilingLight.x,
+      y: positionFiledsPdf.interiorOrCeilingLight.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // NIVELES Y PERDIDA DE LIQUIDOS
+
+    // Nivel de Aceite de motor
+    page0.drawText(element.engineOilLevel, {
+      x: positionFiledsPdf.engineOilLevel.x,
+      y: positionFiledsPdf.engineOilLevel.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Nivel de liquido de frenos
+    page0.drawText(element.brakeFluidLevel, {
+      x: positionFiledsPdf.brakeFluidLevel.x,
+      y: positionFiledsPdf.brakeFluidLevel.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Nivel de agua del radiador
+    page0.drawText(element.radiatorWaterLevel, {
+      x: positionFiledsPdf.radiatorWaterLevel.x,
+      y: positionFiledsPdf.radiatorWaterLevel.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Nivel de agua de la batería
+    page0.drawText(element.batteryWaterLevel, {
+      x: positionFiledsPdf.batteryWaterLevel.x,
+      y: positionFiledsPdf.batteryWaterLevel.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Nivel de aceite hidráulico
+    page0.drawText(element.hydraulicOilLevel, {
+      x: positionFiledsPdf.hydraulicOilLevel.x,
+      y: positionFiledsPdf.hydraulicOilLevel.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Fugas de A.C.P.M
+    page0.drawText(element.acpmLeaks, {
+      x: positionFiledsPdf.acpmLeaks.x,
+      y: positionFiledsPdf.acpmLeaks.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Fugas de Agua
+    page0.drawText(element.waterLeaks, {
+      x: positionFiledsPdf.waterLeaks.x,
+      y: positionFiledsPdf.waterLeaks.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Fugas de Aceite de transmisión
+    page0.drawText(element.transmissionOilLeaks, {
+      x: positionFiledsPdf.transmissionOilLeaks.x,
+      y: positionFiledsPdf.transmissionOilLeaks.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Fuga aceite de caja
+    page0.drawText(element.boxOilLeak, {
+      x: positionFiledsPdf.boxOilLeak.x,
+      y: positionFiledsPdf.boxOilLeak.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Fugas de líquidos de frenos
+    page0.drawText(element.brakeFluidLeaks, {
+      x: positionFiledsPdf.brakeFluidLeaks.x,
+      y: positionFiledsPdf.brakeFluidLeaks.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // TABLERO DE CONTROL
+
+    // Luces de Tablero
+    page0.drawText(element.tableLight, {
+      x: positionFiledsPdf.tableLight.x,
+      y: positionFiledsPdf.tableLight.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Nivel de Combustible
+    page0.drawText(element.fuelLevel, {
+      x: positionFiledsPdf.fuelLevel.x,
+      y: positionFiledsPdf.fuelLevel.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Odómetro
+    page0.drawText(element.odometer, {
+      x: positionFiledsPdf.odometer.x,
+      y: positionFiledsPdf.odometer.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Pito
+    page0.drawText(element.whistle, {
+      x: positionFiledsPdf.whistle.x,
+      y: positionFiledsPdf.whistle.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Tacómetro
+    page0.drawText(element.tachometer, {
+      x: positionFiledsPdf.tachometer.x,
+      y: positionFiledsPdf.tachometer.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Velocímetro
+    page0.drawText(element.speedometer, {
+      x: positionFiledsPdf.speedometer.x,
+      y: positionFiledsPdf.speedometer.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Indicador de Aceite
+    page0.drawText(element.oilIndicator, {
+      x: positionFiledsPdf.oilIndicator.x,
+      y: positionFiledsPdf.oilIndicator.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Indicador de Temperatura
+    page0.drawText(element.temperatureIndicator, {
+      x: positionFiledsPdf.temperatureIndicator.x,
+      y: positionFiledsPdf.temperatureIndicator.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // -------- Page 2---------
+
+    // SEGURIDAD PASIVA
+
+    // Cinturones de Seguridad
+    page1.drawText(element.seatBelts, {
+      x: positionFiledsPdf.seatBelts.x,
+      y: positionFiledsPdf.seatBelts.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Airbags
+    page1.drawText(element.airbags, {
+      x: positionFiledsPdf.airbags.x,
+      y: positionFiledsPdf.airbags.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Cristales (Vidrios)
+    page1.drawText(element.crystals, {
+      x: positionFiledsPdf.crystals.x,
+      y: positionFiledsPdf.crystals.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Apoyacabezas
+    page1.drawText(element.headrest, {
+      x: positionFiledsPdf.headrest.x,
+      y: positionFiledsPdf.headrest.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Estado Espejos
+    page1.drawText(element.mirrorStatus, {
+      x: positionFiledsPdf.mirrorStatus.x,
+      y: positionFiledsPdf.mirrorStatus.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Espejo Lateral Derecho
+    page1.drawText(element.rightSideMirror, {
+      x: positionFiledsPdf.rightSideMirror.x,
+      y: positionFiledsPdf.rightSideMirror.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Espejo Lateral Izquierdo
+    page1.drawText(element.leftSideMirror, {
+      x: positionFiledsPdf.leftSideMirror.x,
+      y: positionFiledsPdf.leftSideMirror.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Espejo Retrovisor
+    page1.drawText(element.rearViewMirror, {
+      x: positionFiledsPdf.rearViewMirror.x,
+      y: positionFiledsPdf.rearViewMirror.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    //SEGURIDAD ACTIVA
+
+    // Estado de la Dirección
+    page1.drawText(element.addressStatus, {
+      x: positionFiledsPdf.addressStatus.x,
+      y: positionFiledsPdf.addressStatus.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Estado Suspensión Delantera
+    page1.drawText(element.frontSuspensionCondition, {
+      x: positionFiledsPdf.frontSuspensionCondition.x,
+      y: positionFiledsPdf.frontSuspensionCondition.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Amortiguadores
+    page1.drawText(element.shockAbsorbers, {
+      x: positionFiledsPdf.shockAbsorbers.x,
+      y: positionFiledsPdf.shockAbsorbers.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Estado suspensión Trasera
+    page1.drawText(element.rearSuspensionStatus, {
+      x: positionFiledsPdf.rearSuspensionStatus.x,
+      y: positionFiledsPdf.rearSuspensionStatus.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Estado Parabrisas
+    page1.drawText(element.windshieldCondition, {
+      x: positionFiledsPdf.windshieldCondition.x,
+      y: positionFiledsPdf.windshieldCondition.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Vidrio Frontal
+    page1.drawText(element.frontGlass, {
+      x: positionFiledsPdf.frontGlass.x,
+      y: positionFiledsPdf.frontGlass.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    //ESTADO LUCES
+
+    // Luces Medias
+    page1.drawText(element.mediumLights, {
+      x:positionFiledsPdf.mediumLights.x,
+      y:positionFiledsPdf.mediumLights.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Luces Altas
+    page1.drawText(element.highBeams, {
+      x:positionFiledsPdf.highBeams.x,
+      y: positionFiledsPdf.highBeams.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Luces Bajas
+    page1.drawText(element.lowLights, {
+      x:positionFiledsPdf.lowLights.x,
+      y: positionFiledsPdf.lowLights.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Direccional Izquie. Delant.
+    page1.drawText(element.leftDirectionalFront, {
+      x:positionFiledsPdf.leftDirectionalFront.x,
+      y: positionFiledsPdf.leftDirectionalFront.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Direccional Derec. Delant.
+    page1.drawText(element.directionalRightFront, {
+      x:positionFiledsPdf.directionalRightFront.x,
+      y: positionFiledsPdf.directionalRightFront.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Direccional Izquie. Trasera
+    page1.drawText(element.leftDirectionalRear, {
+      x:positionFiledsPdf.leftDirectionalRear.x,
+      y: positionFiledsPdf.leftDirectionalRear.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Direccional Derec. Trasera
+    page1.drawText(element.directionalRightRear, {
+      x:positionFiledsPdf.directionalRightRear.x,
+      y: positionFiledsPdf.directionalRightRear.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Luces de Parqueo
+    page1.drawText(element.parkingLights, {
+      x:positionFiledsPdf.parkingLights.x,
+      y: positionFiledsPdf.parkingLights.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Luz Freno
+    page1.drawText(element.brakeLight, {
+      x:positionFiledsPdf.brakeLight.x,
+      y: positionFiledsPdf.brakeLight.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Luz Reverso
+    page1.drawText(element.reverseLight, {
+      x:positionFiledsPdf.reverseLight.x,
+      y: positionFiledsPdf.reverseLight.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // L. Antiniebla Exploradoras
+    page1.drawText(element.explorerFogLights, {
+      x:positionFiledsPdf.explorerFogLights.x,
+      y: positionFiledsPdf.explorerFogLights.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    //ESTADO LLANTAS
+
+    // Delantera Derecha
+    page1.drawText(element.rightFront, {
+      x:positionFiledsPdf.rightFront.x,
+      y: positionFiledsPdf.rightFront.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Delantera Izquierda
+    page1.drawText(element.leftFront, {
+      x:positionFiledsPdf.leftFront.x,
+      y: positionFiledsPdf.leftFront.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Trasera Derecha
+    page1.drawText(element.rightRear, {
+      x:positionFiledsPdf.rightRear.x,
+      y: positionFiledsPdf.rightRear.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Trasera Izquierda
+    page1.drawText(element.rearLeft, {
+      x:positionFiledsPdf.rearLeft.x,
+      y: positionFiledsPdf.rearLeft.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Repuesto
+    page1.drawText(element.replacement, {
+      x:positionFiledsPdf.replacement.x,
+      y: positionFiledsPdf.replacement.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Presión aire llanta
+    page1.drawText(element.tireAirPressure, {
+      x:positionFiledsPdf.tireAirPressure.x,
+      y: positionFiledsPdf.tireAirPressure.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    
   }
 
   const createFieldGeneralInformation = (page0,mtz,height) => {
     let mtzStart = mtz[mtz.length -1];
     let mtzEnd = mtz[0];
 
-    // console.log(mtzStart);
-    // console.log(mtzEnd);
     // INFORMACIÓN GENERAL
 
     // Fecha preoperacional
@@ -1208,21 +1684,6 @@ function List() {
 
     return page0
   } 
-
-  // const cratePdfMonth = async () => { 
-   // if(element.day === "08") {
-      //   // ESTADO DE PRESENTACIÓN
-      //   positionFiledsPdf.internalToilet = { x:320, y:height - 180 }
-      //   positionFiledsPdf.externalToilet = { x:320, y:height - 194 }
-      //   await createField(page0,element,positionFiledsPdf);
-      // } 
-      // if (element.day === "11") {
-      //   // ESTADO DE PRESENTACIÓN
-      //   positionFiledsPdf.internalToilet = { x:380, y:height - 180 }
-      //   positionFiledsPdf.externalToilet = { x:380, y:height - 194 }
-      //   await createField(page0,element,positionFiledsPdf);
-      // }
-  // }
 
   return (
     <div className='list-listCheck-main'>
