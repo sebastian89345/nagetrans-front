@@ -1096,7 +1096,24 @@ function List() {
         {x:508},
       ],
       page3: [
-
+        {x:168},
+        {x:188},
+        {x:208},
+        {x:228},
+        {x:240},
+        {x:268},
+        {x:288},
+        {x:308},
+        {x:328},
+        {x:348},
+        {x:368},
+        {x:388},
+        {x:408},
+        {x:428},
+        {x:448},
+        {x:468},
+        {x:488},
+        {x:508},
       ]
     }
 
@@ -1150,10 +1167,52 @@ function List() {
       positionFiledsPdf.rearSuspensionStatus = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 205 }
       positionFiledsPdf.windshieldCondition = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 217 }
       positionFiledsPdf.frontGlass = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 229 }
+      //ESTADO LUCES
+      positionFiledsPdf.mediumLights = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 251 }
+      positionFiledsPdf.highBeams = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 264 }
+      positionFiledsPdf.lowLights = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 276 }
+      positionFiledsPdf.leftDirectionalFront = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 288 }
+      positionFiledsPdf.directionalRightFront = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 300 }
+      positionFiledsPdf.leftDirectionalRear = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 312 }
+      positionFiledsPdf.directionalRightRear = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 324 }
+      positionFiledsPdf.parkingLights = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 336 }
+      positionFiledsPdf.brakeLight = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 348 }
+      positionFiledsPdf.reverseLight = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 360 }
+      positionFiledsPdf.explorerFogLights = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 372 }
+      //ESTADO LLANTAS
+      positionFiledsPdf.rightFront = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 395 }
+      positionFiledsPdf.leftFront = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 407 }
+      positionFiledsPdf.rightRear = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 419 }
+      positionFiledsPdf.rearLeft = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 431 }
+      positionFiledsPdf.replacement = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 443 }
+      positionFiledsPdf.tireAirPressure = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 455 }
+      //FRENOS
+      positionFiledsPdf.brakeCondition = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 478 }
+      positionFiledsPdf.handBrake = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 490 }
+      positionFiledsPdf.tablets = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 502 }
+      //EQUIPO DE CARRETERA
+      positionFiledsPdf.oneJackWithTheCapacityToRaiseTheVehicle = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 530 }
+      positionFiledsPdf.oneReflectiveVest = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 549 }
 
-
+      positionFiledsPdf.twoBlocksToBlockTheVehicle = { x:increasePages.page3[parseFloat(element.day)].x, y:height - 44 }
+      positionFiledsPdf.twoRoadSigns = { x:increasePages.page3[parseFloat(element.day)].x, y:height - 66 }
+      positionFiledsPdf.onePairOfIndustrialGloves = { x:increasePages.page3[parseFloat(element.day)].x, y:height - 84 }
+      positionFiledsPdf.oneCrosshead = { x:increasePages.page3[parseFloat(element.day)].x, y:height - 97 }
+      positionFiledsPdf.fireExtinguisher = { x:increasePages.page3[parseFloat(element.day)].x, y:height - 113 }
+      positionFiledsPdf.flashLight = { x:increasePages.page3[parseFloat(element.day)].x, y:height - 132 }
+      positionFiledsPdf.toolBox = { x:increasePages.page3[parseFloat(element.day)].x, y:height - 162 }
+      positionFiledsPdf.firstAidKit = { x:increasePages.page3[parseFloat(element.day)].x, y:height - 190 }
+      //DOCUMENTOS DEL VEHÍCULO
+      positionFiledsPdf.soat = { x:increasePages.page3[parseFloat(element.day)].x, y:height - 214 }
+      positionFiledsPdf.technomechanicalReviewAndGasCertification = { x:increasePages.page3[parseFloat(element.day)].x, y:height - 238 }
+      positionFiledsPdf.contractualAndNonContractualInsurance = { x:increasePages.page3[parseFloat(element.day)].x, y:height - 266 }
+      positionFiledsPdf.preventive = { x:increasePages.page3[parseFloat(element.day)].x, y:height - 284 }
+      positionFiledsPdf.operationCard = { x:increasePages.page3[parseFloat(element.day)].x, y:height - 296 }
+      positionFiledsPdf.propertyCard = { x:increasePages.page3[parseFloat(element.day)].x, y:height - 308 }
+      positionFiledsPdf.drivingLicense = { x:increasePages.page3[parseFloat(element.day)].x, y:height - 320 }
+      
       await createField(page0,page1,page2,element,positionFiledsPdf);
-       
+      
     }
     const pdfBytess = await pdfDoc.save();
     download(pdfBytess, `preoperacional_mensual.pdf`, "application/pdf");
@@ -1580,12 +1639,164 @@ function List() {
     })
     // Presión aire llanta
     page1.drawText(element.tireAirPressure, {
-      x:positionFiledsPdf.tireAirPressure.x,
+      x: positionFiledsPdf.tireAirPressure.x,
       y: positionFiledsPdf.tireAirPressure.y,
       size: 8,
       color: rgb(0, 0, 0 , 1),
     })
-    
+
+    //FRENOS
+
+    // Estado de los Frenos
+    page1.drawText(element.brakeCondition, {
+      x: positionFiledsPdf.brakeCondition.x,
+      y: positionFiledsPdf.brakeCondition.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Freno de Mano
+    page1.drawText(element.handBrake, {
+      x: positionFiledsPdf.handBrake.x,
+      y: positionFiledsPdf.handBrake.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Pastillas
+    page1.drawText(element.tablets, {
+      x: positionFiledsPdf.tablets.x,
+      y: positionFiledsPdf.tablets.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    //EQUIPO DE CARRETERA
+
+    // 1 gato con capacidad para elevar el vehículo
+    page1.drawText(element.oneJackWithTheCapacityToRaiseTheVehicle, {
+      x: positionFiledsPdf.oneJackWithTheCapacityToRaiseTheVehicle.x,
+      y: positionFiledsPdf.oneJackWithTheCapacityToRaiseTheVehicle.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // 1 chaleco reflectivo
+    page1.drawText(element.oneReflectiveVest, {
+      x: positionFiledsPdf.oneReflectiveVest.x,
+      y: positionFiledsPdf.oneReflectiveVest.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    // Page 3
+
+    // 2 tacos para bloquear el vehículo
+    page2.drawText(element.twoBlocksToBlockTheVehicle, {
+      x: positionFiledsPdf.twoBlocksToBlockTheVehicle.x,
+      y: positionFiledsPdf.twoBlocksToBlockTheVehicle.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // 2 señales de carretera; conos o triangulos
+    page2.drawText(element.twoRoadSigns, {
+      x: positionFiledsPdf.twoRoadSigns.x,
+      y: positionFiledsPdf.twoRoadSigns.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // 1 par de guantes industriales
+    page2.drawText(element.onePairOfIndustrialGloves, {
+      x: positionFiledsPdf.onePairOfIndustrialGloves.x,
+      y: positionFiledsPdf.onePairOfIndustrialGloves.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // 1 cruceta
+    page2.drawText(element.oneCrosshead, {
+      x: positionFiledsPdf.oneCrosshead.x,
+      y: positionFiledsPdf.oneCrosshead.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Extinguidor de fuego( capacidad mín. 5 lb)
+    page2.drawText(element.fireExtinguisher, {
+      x: positionFiledsPdf.fireExtinguisher.x,
+      y: positionFiledsPdf.fireExtinguisher.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Linterna
+    page2.drawText(element.flashLight, {
+      x: positionFiledsPdf.flashLight.x,
+      y: positionFiledsPdf.flashLight.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // caja de herramientas ( alicates, destornilladores de pala y estrella, llave de expansión y fijas )
+    page2.drawText(element.toolBox, {
+      x: positionFiledsPdf.toolBox.x,
+      y: positionFiledsPdf.toolBox.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Botiquín de primeros auxilios
+    page2.drawText(element.firstAidKit, {
+      x: positionFiledsPdf.firstAidKit.x,
+      y: positionFiledsPdf.firstAidKit.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
+    //DOCUMENTOS DEL VEHÍCULO
+
+    // Soat
+    page2.drawText(element.soat, {
+      x: positionFiledsPdf.soat.x,
+      y: positionFiledsPdf.soat.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Revisión Tecnomecánica y Certificación de Gases
+    page2.drawText(element.technomechanicalReviewAndGasCertification, {
+      x: positionFiledsPdf.technomechanicalReviewAndGasCertification.x,
+      y: positionFiledsPdf.technomechanicalReviewAndGasCertification.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // seguro contractual y extracontractual
+    page2.drawText(element.contractualAndNonContractualInsurance, {
+      x: positionFiledsPdf.contractualAndNonContractualInsurance.x,
+      y: positionFiledsPdf.contractualAndNonContractualInsurance.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Preventiva
+    page2.drawText(element.preventive, {
+      x: positionFiledsPdf.preventive.x,
+      y: positionFiledsPdf.preventive.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Tarjeta de operación
+    page2.drawText(element.operationCard, {
+      x: positionFiledsPdf.operationCard.x,
+      y: positionFiledsPdf.operationCard.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Tarjeta de propiedad
+    page2.drawText(element.propertyCard, {
+      x: positionFiledsPdf.propertyCard.x,
+      y: positionFiledsPdf.propertyCard.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+    // Licencia de conducción
+    page2.drawText(element.drivingLicense, {
+      x: positionFiledsPdf.drivingLicense.x,
+      y: positionFiledsPdf.drivingLicense.y,
+      size: 8,
+      color: rgb(0, 0, 0 , 1),
+    })
+
   }
 
   const createFieldGeneralInformation = (page0,mtz,height) => {
