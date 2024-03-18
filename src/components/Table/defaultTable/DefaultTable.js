@@ -368,7 +368,7 @@ const DefaultTable = ({ data , nms , updateId , deleteId , selectCheck}) => {
             </tbody>
           </table>
         </div>
-        <div>
+        <div className='mt-2'>
           <ul className="pagination DefaultTable-pagination-main">
             {Array.from({ length: numeroTotalPaginas }, (_, index) => (
               <li

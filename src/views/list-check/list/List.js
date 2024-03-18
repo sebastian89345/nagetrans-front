@@ -40,9 +40,10 @@ function List() {
   const [infoUpdate, setInfoUpdate] = useState({});
   const [opcionUserVehicle, setOpcionUserVehicle] = useState([]);
   const [opcionSelectUserVehicle, setOpcionSelectUserVehicle] = useState('');
-
   const [opcionPreoperacional, setOpcionPreoperacional] = useState([]);
   const [opcionSelectPreoperacional, setOpcionSelectPreoperacional] = useState('');
+  const [errorUserVehicle, setErrorUserVehicle] = useState("");
+  const [errordateMonthly, setErrordateMonthly] = useState("");
   const [dateMonthly, setDateMonthly] = useState("");
   const [dowmlandPdfDiary, setDowmlandPdfDiary] = useState([]);
   const dataList = useSelector((store) => store.listCheckReducer);
@@ -75,6 +76,44 @@ function List() {
     let resultadosFiltrados = dataListUserVehicle.data.filter(objeto => objeto.role[0]._id === vehiculo);
     setOpcionUserVehicle(resultadosFiltrados);
   }, [dataListUserVehicle,vehiculo])
+
+  const validateField = (value, fieldName, regex, minLength, customErrorMessage) => {
+    if (value.trim() === '') {
+      return `El campo ${fieldName} no puede estar en blanco.`;
+    }
+
+    if (regex && !regex.test(value)) {
+      return customErrorMessage || `El campo ${fieldName} no cumple con el formato esperado.`;
+    }
+
+    if (value.length < minLength) {
+      return `El campo ${fieldName} debe tener al menos ${minLength} caracteres.`;
+    }
+
+    return null; // Indica que la validación fue exitosa
+  };
+
+  const validate = () => {
+    let isValid = true;
+
+    const userErrorVehicle = validateField(opcionSelectUserVehicle, 'usuario', /\S/, 1);
+    if (userErrorVehicle) {
+      setErrorUserVehicle(userErrorVehicle);
+      isValid = false;
+    } else {
+      setErrorUserVehicle("");
+    }
+
+    const errordateMonthly = validateField(dateMonthly, 'mes', /^\d{4}-\d{2}-\d{2}$/, 4);
+    if (errordateMonthly) {
+      setErrordateMonthly(errordateMonthly);
+      isValid = false;
+    } else {
+      setErrordateMonthly("");
+    }
+
+    return isValid;
+  };
 
   // Función para convertir una cadena de fecha en un objeto Date
   function parseDate(str) {
@@ -1005,217 +1044,220 @@ function List() {
   }
 
   const dowlandPdfMonthly = async () => {
+    let validates = validate();
+    if(validates){
 
-    // ---- 1 -----
-
-    //aquí , traigo la fecha y hago un split
-    let spllitMonthly = dateMonthly.split("-");
-    // console.log(spllitMonthly);
-
-    //Aquí tomo la fecha del input y la convierto a fecha
-    let dateMonthEnd = new Date(parseInt(spllitMonthly[0]), parseInt(spllitMonthly[1]) - 1, parseInt(spllitMonthly[2]));
-    // console.log(dateMonthEnd);
-
-    //Aquí reseteo la fecha , para que el día siempre sea 01
-    const dateMonthStart = new Date(parseInt(spllitMonthly[0]), parseInt(spllitMonthly[1]) - 1, 0o1);
-    // console.log(dateMonthStart);
-
-    let mtz = [];
-
-    for (let i = 0; i < dataList.data.length; i++) {
-      const element = dataList.data[i];
+      // ---- 1 -----
 
       //aquí , traigo la fecha y hago un split
-      let spllitMonthSpace = element.date.split(" ");
-      let spllitMonth = spllitMonthSpace[0].split("-");
-      const dates = new Date(parseInt(spllitMonth[2]), parseInt(spllitMonth[1]) - 1, spllitMonth[0]);
-      // console.log(element.date);
-      // console.log(dates);
+      let spllitMonthly = dateMonthly.split("-");
+      // console.log(spllitMonthly);
 
-      if(dates >= dateMonthStart && dates <= dateMonthEnd && element.userVehicle[0]._id === opcionSelectUserVehicle) {
+      //Aquí tomo la fecha del input y la convierto a fecha
+      let dateMonthEnd = new Date(parseInt(spllitMonthly[0]), parseInt(spllitMonthly[1]) - 1, parseInt(spllitMonthly[2]));
+      // console.log(dateMonthEnd);
+
+      //Aquí reseteo la fecha , para que el día siempre sea 01
+      const dateMonthStart = new Date(parseInt(spllitMonthly[0]), parseInt(spllitMonthly[1]) - 1, 0o1);
+      // console.log(dateMonthStart);
+
+      let mtz = [];
+
+      for (let i = 0; i < dataList.data.length; i++) {
+        const element = dataList.data[i];
+
+        //aquí , traigo la fecha y hago un split
+        let spllitMonthSpace = element.date.split(" ");
+        let spllitMonth = spllitMonthSpace[0].split("-");
+        const dates = new Date(parseInt(spllitMonth[2]), parseInt(spllitMonth[1]) - 1, spllitMonth[0]);
         // console.log(element.date);
-        element.day = spllitMonth[0];
-        mtz.push(element)
+        // console.log(dates);
+
+        if(dates >= dateMonthStart && dates <= dateMonthEnd && element.userVehicle[0]._id === opcionSelectUserVehicle) {
+          // console.log(element.date);
+          element.day = spllitMonth[0];
+          mtz.push(element)
+        }
       }
+
+      // ---- 2 -----
+
+      //Cargo el documento
+      const pdf = await fetch(pdfMonthly).then((res) => res.arrayBuffer());
+      const pdfDoc = await PDFDocument.load(pdf);
+
+      const page0 = pdfDoc.getPage(0);
+      const page1 = pdfDoc.getPage(1);
+      const page2 = pdfDoc.getPage(2);
+      const { height } = page0.getSize();
+
+      //Aquí lleno la lista , pero de la informacion general
+      await createFieldGeneralInformation(page0,mtz,height)
+
+      let positionFiledsPdf = {};
+      const increasePages = {
+        page1:[
+          {x:160},
+          {x:180},
+          {x:200},
+          {x:220},
+          {x:240},
+          {x:260},
+          {x:280},
+          {x:300},
+          {x:320},
+          {x:340},
+          {x:360},
+          {x:380},
+          {x:400},
+          {x:420},
+          {x:440},
+          {x:460},
+          {x:480},
+          {x:500},
+        ],
+        page2:[
+          {x:168},
+          {x:188},
+          {x:208},
+          {x:228},
+          {x:240},
+          {x:268},
+          {x:288},
+          {x:308},
+          {x:328},
+          {x:348},
+          {x:368},
+          {x:388},
+          {x:408},
+          {x:428},
+          {x:448},
+          {x:468},
+          {x:488},
+          {x:508},
+        ],
+        page3: [
+          {x:168},
+          {x:188},
+          {x:208},
+          {x:228},
+          {x:240},
+          {x:268},
+          {x:288},
+          {x:308},
+          {x:328},
+          {x:348},
+          {x:368},
+          {x:388},
+          {x:408},
+          {x:428},
+          {x:448},
+          {x:468},
+          {x:488},
+          {x:508},
+        ]
+      }
+
+      //Aqui lleno la lista , de los demas campos
+      for (let isn = 0; isn < mtz.length; isn++) {
+        const element = mtz[isn];
+
+        // ESTADO DE PRESENTACIÓN
+        positionFiledsPdf.internalToilet = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 180 }
+        positionFiledsPdf.externalToilet = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 194 }
+        positionFiledsPdf.cans = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 206 }
+        positionFiledsPdf.paint = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 218 }
+        // ESTADO DE COMODIDAD
+        positionFiledsPdf.airConditioning = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 242 }
+        positionFiledsPdf.chairs = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 254 }
+        positionFiledsPdf.lighter = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 268 }
+        positionFiledsPdf.interiorOrCeilingLight = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 281 }
+        // NIVELES Y PERDIDA DE LIQUIDOS
+        positionFiledsPdf.engineOilLevel = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 305 }
+        positionFiledsPdf.brakeFluidLevel = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 317 }
+        positionFiledsPdf.radiatorWaterLevel = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 330 }
+        positionFiledsPdf.batteryWaterLevel = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 343 }
+        positionFiledsPdf.hydraulicOilLevel = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 355 }
+        positionFiledsPdf.acpmLeaks = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 368 }
+        positionFiledsPdf.waterLeaks = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 381 }
+        positionFiledsPdf.transmissionOilLeaks = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 397 }
+        positionFiledsPdf.boxOilLeak = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 414 }
+        positionFiledsPdf.brakeFluidLeaks = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 426 }
+        // TABLERO DE CONTROL
+        positionFiledsPdf.tableLight = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 451 }
+        positionFiledsPdf.fuelLevel = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 463 }
+        positionFiledsPdf.odometer = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 475 }
+        positionFiledsPdf.whistle = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 488 }
+        positionFiledsPdf.tachometer = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 501 }
+        positionFiledsPdf.speedometer = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 514 }
+        positionFiledsPdf.oilIndicator = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 526 }
+        positionFiledsPdf.temperatureIndicator = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 538 }
+        // SEGURIDAD PASIVA
+        positionFiledsPdf.seatBelts = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 61 }
+        positionFiledsPdf.airbags = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 74 }
+        positionFiledsPdf.crystals = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 86 }
+        positionFiledsPdf.headrest = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 98 }
+        positionFiledsPdf.mirrorStatus = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 110 }
+        positionFiledsPdf.rightSideMirror = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 122 }
+        positionFiledsPdf.leftSideMirror = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 133 }
+        positionFiledsPdf.rearViewMirror = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 145 }
+        //SEGURIDAD ACTIVA
+        positionFiledsPdf.addressStatus = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 169 }
+        positionFiledsPdf.frontSuspensionCondition = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 181 }
+        positionFiledsPdf.shockAbsorbers = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 193 }
+        positionFiledsPdf.rearSuspensionStatus = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 205 }
+        positionFiledsPdf.windshieldCondition = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 217 }
+        positionFiledsPdf.frontGlass = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 229 }
+        //ESTADO LUCES
+        positionFiledsPdf.mediumLights = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 251 }
+        positionFiledsPdf.highBeams = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 264 }
+        positionFiledsPdf.lowLights = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 276 }
+        positionFiledsPdf.leftDirectionalFront = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 288 }
+        positionFiledsPdf.directionalRightFront = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 300 }
+        positionFiledsPdf.leftDirectionalRear = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 312 }
+        positionFiledsPdf.directionalRightRear = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 324 }
+        positionFiledsPdf.parkingLights = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 336 }
+        positionFiledsPdf.brakeLight = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 348 }
+        positionFiledsPdf.reverseLight = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 360 }
+        positionFiledsPdf.explorerFogLights = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 372 }
+        //ESTADO LLANTAS
+        positionFiledsPdf.rightFront = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 395 }
+        positionFiledsPdf.leftFront = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 407 }
+        positionFiledsPdf.rightRear = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 419 }
+        positionFiledsPdf.rearLeft = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 431 }
+        positionFiledsPdf.replacement = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 443 }
+        positionFiledsPdf.tireAirPressure = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 455 }
+        //FRENOS
+        positionFiledsPdf.brakeCondition = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 478 }
+        positionFiledsPdf.handBrake = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 490 }
+        positionFiledsPdf.tablets = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 502 }
+        //EQUIPO DE CARRETERA
+        positionFiledsPdf.oneJackWithTheCapacityToRaiseTheVehicle = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 530 }
+        positionFiledsPdf.oneReflectiveVest = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 549 }
+
+        positionFiledsPdf.twoBlocksToBlockTheVehicle = { x:increasePages.page3[parseFloat(element.day)].x, y:height - 44 }
+        positionFiledsPdf.twoRoadSigns = { x:increasePages.page3[parseFloat(element.day)].x, y:height - 66 }
+        positionFiledsPdf.onePairOfIndustrialGloves = { x:increasePages.page3[parseFloat(element.day)].x, y:height - 84 }
+        positionFiledsPdf.oneCrosshead = { x:increasePages.page3[parseFloat(element.day)].x, y:height - 97 }
+        positionFiledsPdf.fireExtinguisher = { x:increasePages.page3[parseFloat(element.day)].x, y:height - 113 }
+        positionFiledsPdf.flashLight = { x:increasePages.page3[parseFloat(element.day)].x, y:height - 132 }
+        positionFiledsPdf.toolBox = { x:increasePages.page3[parseFloat(element.day)].x, y:height - 162 }
+        positionFiledsPdf.firstAidKit = { x:increasePages.page3[parseFloat(element.day)].x, y:height - 190 }
+        //DOCUMENTOS DEL VEHÍCULO
+        positionFiledsPdf.soat = { x:increasePages.page3[parseFloat(element.day)].x, y:height - 214 }
+        positionFiledsPdf.technomechanicalReviewAndGasCertification = { x:increasePages.page3[parseFloat(element.day)].x, y:height - 238 }
+        positionFiledsPdf.contractualAndNonContractualInsurance = { x:increasePages.page3[parseFloat(element.day)].x, y:height - 266 }
+        positionFiledsPdf.preventive = { x:increasePages.page3[parseFloat(element.day)].x, y:height - 284 }
+        positionFiledsPdf.operationCard = { x:increasePages.page3[parseFloat(element.day)].x, y:height - 296 }
+        positionFiledsPdf.propertyCard = { x:increasePages.page3[parseFloat(element.day)].x, y:height - 308 }
+        positionFiledsPdf.drivingLicense = { x:increasePages.page3[parseFloat(element.day)].x, y:height - 320 }
+        
+        await createField(page0,page1,page2,element,positionFiledsPdf);
+        
+      }
+      const pdfBytess = await pdfDoc.save();
+      download(pdfBytess, `preoperacional_mensual.pdf`, "application/pdf");
     }
-
-    // ---- 2 -----
-
-    //Cargo el documento
-    const pdf = await fetch(pdfMonthly).then((res) => res.arrayBuffer());
-    const pdfDoc = await PDFDocument.load(pdf);
-
-    const page0 = pdfDoc.getPage(0);
-    const page1 = pdfDoc.getPage(1);
-    const page2 = pdfDoc.getPage(2);
-    const { height } = page0.getSize();
-
-    //Aquí lleno la lista , pero de la informacion general
-    await createFieldGeneralInformation(page0,mtz,height)
-
-    let positionFiledsPdf = {};
-    const increasePages = {
-      page1:[
-        {x:160},
-        {x:180},
-        {x:200},
-        {x:220},
-        {x:240},
-        {x:260},
-        {x:280},
-        {x:300},
-        {x:320},
-        {x:340},
-        {x:360},
-        {x:380},
-        {x:400},
-        {x:420},
-        {x:440},
-        {x:460},
-        {x:480},
-        {x:500},
-      ],
-      page2:[
-        {x:168},
-        {x:188},
-        {x:208},
-        {x:228},
-        {x:240},
-        {x:268},
-        {x:288},
-        {x:308},
-        {x:328},
-        {x:348},
-        {x:368},
-        {x:388},
-        {x:408},
-        {x:428},
-        {x:448},
-        {x:468},
-        {x:488},
-        {x:508},
-      ],
-      page3: [
-        {x:168},
-        {x:188},
-        {x:208},
-        {x:228},
-        {x:240},
-        {x:268},
-        {x:288},
-        {x:308},
-        {x:328},
-        {x:348},
-        {x:368},
-        {x:388},
-        {x:408},
-        {x:428},
-        {x:448},
-        {x:468},
-        {x:488},
-        {x:508},
-      ]
-    }
-
-    //Aqui lleno la lista , de los demas campos
-    for (let isn = 0; isn < mtz.length; isn++) {
-      const element = mtz[isn];
-
-      // ESTADO DE PRESENTACIÓN
-      positionFiledsPdf.internalToilet = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 180 }
-      positionFiledsPdf.externalToilet = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 194 }
-      positionFiledsPdf.cans = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 206 }
-      positionFiledsPdf.paint = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 218 }
-      // ESTADO DE COMODIDAD
-      positionFiledsPdf.airConditioning = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 242 }
-      positionFiledsPdf.chairs = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 254 }
-      positionFiledsPdf.lighter = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 268 }
-      positionFiledsPdf.interiorOrCeilingLight = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 281 }
-      // NIVELES Y PERDIDA DE LIQUIDOS
-      positionFiledsPdf.engineOilLevel = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 305 }
-      positionFiledsPdf.brakeFluidLevel = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 317 }
-      positionFiledsPdf.radiatorWaterLevel = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 330 }
-      positionFiledsPdf.batteryWaterLevel = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 343 }
-      positionFiledsPdf.hydraulicOilLevel = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 355 }
-      positionFiledsPdf.acpmLeaks = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 368 }
-      positionFiledsPdf.waterLeaks = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 381 }
-      positionFiledsPdf.transmissionOilLeaks = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 397 }
-      positionFiledsPdf.boxOilLeak = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 414 }
-      positionFiledsPdf.brakeFluidLeaks = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 426 }
-      // TABLERO DE CONTROL
-      positionFiledsPdf.tableLight = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 451 }
-      positionFiledsPdf.fuelLevel = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 463 }
-      positionFiledsPdf.odometer = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 475 }
-      positionFiledsPdf.whistle = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 488 }
-      positionFiledsPdf.tachometer = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 501 }
-      positionFiledsPdf.speedometer = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 514 }
-      positionFiledsPdf.oilIndicator = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 526 }
-      positionFiledsPdf.temperatureIndicator = { x:increasePages.page1[parseFloat(element.day)].x, y:height - 538 }
-      // SEGURIDAD PASIVA
-      positionFiledsPdf.seatBelts = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 61 }
-      positionFiledsPdf.airbags = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 74 }
-      positionFiledsPdf.crystals = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 86 }
-      positionFiledsPdf.headrest = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 98 }
-      positionFiledsPdf.mirrorStatus = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 110 }
-      positionFiledsPdf.rightSideMirror = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 122 }
-      positionFiledsPdf.leftSideMirror = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 133 }
-      positionFiledsPdf.rearViewMirror = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 145 }
-      //SEGURIDAD ACTIVA
-      positionFiledsPdf.addressStatus = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 169 }
-      positionFiledsPdf.frontSuspensionCondition = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 181 }
-      positionFiledsPdf.shockAbsorbers = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 193 }
-      positionFiledsPdf.rearSuspensionStatus = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 205 }
-      positionFiledsPdf.windshieldCondition = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 217 }
-      positionFiledsPdf.frontGlass = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 229 }
-      //ESTADO LUCES
-      positionFiledsPdf.mediumLights = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 251 }
-      positionFiledsPdf.highBeams = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 264 }
-      positionFiledsPdf.lowLights = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 276 }
-      positionFiledsPdf.leftDirectionalFront = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 288 }
-      positionFiledsPdf.directionalRightFront = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 300 }
-      positionFiledsPdf.leftDirectionalRear = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 312 }
-      positionFiledsPdf.directionalRightRear = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 324 }
-      positionFiledsPdf.parkingLights = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 336 }
-      positionFiledsPdf.brakeLight = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 348 }
-      positionFiledsPdf.reverseLight = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 360 }
-      positionFiledsPdf.explorerFogLights = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 372 }
-      //ESTADO LLANTAS
-      positionFiledsPdf.rightFront = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 395 }
-      positionFiledsPdf.leftFront = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 407 }
-      positionFiledsPdf.rightRear = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 419 }
-      positionFiledsPdf.rearLeft = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 431 }
-      positionFiledsPdf.replacement = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 443 }
-      positionFiledsPdf.tireAirPressure = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 455 }
-      //FRENOS
-      positionFiledsPdf.brakeCondition = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 478 }
-      positionFiledsPdf.handBrake = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 490 }
-      positionFiledsPdf.tablets = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 502 }
-      //EQUIPO DE CARRETERA
-      positionFiledsPdf.oneJackWithTheCapacityToRaiseTheVehicle = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 530 }
-      positionFiledsPdf.oneReflectiveVest = { x:increasePages.page2[parseFloat(element.day)].x, y:height - 549 }
-
-      positionFiledsPdf.twoBlocksToBlockTheVehicle = { x:increasePages.page3[parseFloat(element.day)].x, y:height - 44 }
-      positionFiledsPdf.twoRoadSigns = { x:increasePages.page3[parseFloat(element.day)].x, y:height - 66 }
-      positionFiledsPdf.onePairOfIndustrialGloves = { x:increasePages.page3[parseFloat(element.day)].x, y:height - 84 }
-      positionFiledsPdf.oneCrosshead = { x:increasePages.page3[parseFloat(element.day)].x, y:height - 97 }
-      positionFiledsPdf.fireExtinguisher = { x:increasePages.page3[parseFloat(element.day)].x, y:height - 113 }
-      positionFiledsPdf.flashLight = { x:increasePages.page3[parseFloat(element.day)].x, y:height - 132 }
-      positionFiledsPdf.toolBox = { x:increasePages.page3[parseFloat(element.day)].x, y:height - 162 }
-      positionFiledsPdf.firstAidKit = { x:increasePages.page3[parseFloat(element.day)].x, y:height - 190 }
-      //DOCUMENTOS DEL VEHÍCULO
-      positionFiledsPdf.soat = { x:increasePages.page3[parseFloat(element.day)].x, y:height - 214 }
-      positionFiledsPdf.technomechanicalReviewAndGasCertification = { x:increasePages.page3[parseFloat(element.day)].x, y:height - 238 }
-      positionFiledsPdf.contractualAndNonContractualInsurance = { x:increasePages.page3[parseFloat(element.day)].x, y:height - 266 }
-      positionFiledsPdf.preventive = { x:increasePages.page3[parseFloat(element.day)].x, y:height - 284 }
-      positionFiledsPdf.operationCard = { x:increasePages.page3[parseFloat(element.day)].x, y:height - 296 }
-      positionFiledsPdf.propertyCard = { x:increasePages.page3[parseFloat(element.day)].x, y:height - 308 }
-      positionFiledsPdf.drivingLicense = { x:increasePages.page3[parseFloat(element.day)].x, y:height - 320 }
-      
-      await createField(page0,page1,page2,element,positionFiledsPdf);
-      
-    }
-    const pdfBytess = await pdfDoc.save();
-    download(pdfBytess, `preoperacional_mensual.pdf`, "application/pdf");
   }
 
   const createField = async (page0,page1,page2,element,positionFiledsPdf) => {
@@ -1934,10 +1976,19 @@ function List() {
                   </select>
                 </div>
 
+                <div className='mt-4'>
+                  {errorUserVehicle && <p style={{ color: 'red' }}>{errorUserVehicle}</p>}
+                </div>
+
                 <div className='mt-3 user-create-main-input'>
                   <label htmlFor="exampleInputEmail1">Mes de la preoperacional:</label>
                   <input value={dateMonthly} onChange={(e) => setDateMonthly(e.target.value)} type="date" className='list-listCheck-input-date form-control' />
                 </div>
+
+                <div className='mt-4'>
+                  {errordateMonthly && <p style={{ color: 'red' }}>{errordateMonthly}</p>}
+                </div>
+                
                 <div className='mt-3'>
                   <button type='button' className='btn btn-danger' onClick={dowlandPdfMonthly}>Descargar</button>
                 </div>
