@@ -28,7 +28,7 @@ export const AppRouter = () => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Index token={token} setToken={ (e) => setToken(e) } />} exact />
+        <Route path="/" element={<Login token={token} setToken={ (e) => setToken(e) } />} exact />
         <Route path="/index" element={<Index token={token} setToken={ (e) => setToken(e) } />} exact />
         <Route path="/login" element={<Login token={token} setToken={ (e) => setToken(e) } />} exact />
         <Route path="/home" element={<PrivateRoute isAuthenticated={infoLogin.data.response} ><Home /></PrivateRoute>} exact />
