@@ -96,7 +96,7 @@ i.box-circle-solid{
 	height: 4px;
 	left:50%;
 	margin-left:-25px;
-	background:#35CBDF;
+	background:#DA3434;
 	bottom: -15px;
 	border-radius: 10px;
 }
@@ -296,6 +296,10 @@ i.box-circle-solid{
 
 .index-change-carousel {
 	height: 100%;
+}
+
+.index-font-title {
+	color: #DA3434;
 }
 
 /* ========== Who We Are ========== */

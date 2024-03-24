@@ -29,23 +29,22 @@ function Index() {
   
   return (
     <>
-      
-
     {/* <!-- Top navigation --> */}
     <nav className="navbar navbar-expand-md fixed-top top-nav">
       <div className="container">
-          <a className="navbar-brand" href="#"><strong>Nagetrans</strong></a>
+          <a className="navbar-brand"><strong>Nagetrans</strong></a>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"><i className="fa fa-bars" aria-hidden="true"></i></span>
           </button>
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav ml-auto">
-              <li className="nav-item active">
+            {/* active */}
+              <li className="nav-item">
                 <a className="nav-link" href="#">INICIO <span className="sr-only">(current)</span></a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">QUIENES SOMOS</a>
+                <a className="nav-link" href="#aboutUs">QUIENES SOMOS</a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#">SERVICIOS</a>
@@ -57,9 +56,6 @@ function Index() {
                 <a className="nav-link" href="#">CONTACTO</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">FAQ's</a>
-              </li>
-              <li className="nav-item">
                 <a className="nav-link" href="#">PQRS</a>
               </li>
             </ul>
@@ -69,7 +65,7 @@ function Index() {
 
     {/* <!-- Intro Seven --> */}
     {/* h-auto */}
-    <section className="intro carousel slide bg-overlay-light" id="carouselExampleCaptions">
+    <section id="carouselExampleCaptions" className="intro carousel slide bg-overlay-light">
       <ol className="carousel-indicators">
         <li data-target="#carouselExampleCaptions" data-slide-to="0" className="active"></li>
         <li data-target="#carouselExampleCaptions" data-slide-to="1" className=""></li>
@@ -103,11 +99,11 @@ function Index() {
     </section>
 
     {/* <!-- Info block 1 --> */}
-    <section className="info-section">
+    <section id='aboutUs' className="info-section">
       <div className="container">
         <div className="head-box text-center mb-5">
-          <h2>Who We Are</h2>
-          <h6 className="text-underline-primary">This is information panel</h6>
+          <h2 className='index-font-title'>QUIENES SOMOS</h2>
+          <h6 className="text-underline-primary">Operador logístico y de Transporte Nagetrans Zomac S.A.S. Es una Empresa de servicios especialesde Transporte Terrestre Automotor de pasajeros en la región de Urabá.</h6>
         </div>
         <div className="three-panel-block mt-5">
           <div className="row">
