@@ -80,7 +80,7 @@ function Index() {
           <div className="carousel-caption ">
               <h2 className="display-4 text-white mb-2 mt-4">NAGETRANS ZOMAC SAS</h2>
               <p className="text-white mb-3 px-5 lead">Nuestro compromiso es llevar a tu equipo con seguridad y puntualidad</p>
-              <a href="#" className="btn btn-primary btn-capsul px-4 py-2">Ver servicios</a>
+              <a href="#" className="btn btn-danger btn-capsul px-4 py-2">Ver servicios</a>
           </div>
         </div>
         <div className="carousel-item">
@@ -88,7 +88,7 @@ function Index() {
           <div className="carousel-caption ">
               <h2 className="display-4 text-white mb-2 mt-4">EXPLORA LA EFICIENCIA EN CADA SERVICIO</h2>
         <p className="text-white mb-3 px-5 lead">Nagetrans zomac SAS, tu socio de transporte confiable</p>
-        <a href="#" className="btn btn-primary btn-capsul px-4 py-2">Más información</a>
+        <a href="#" className="btn btn-danger btn-capsul px-4 py-2">Más información</a>
           </div>
         </div>
       </div>

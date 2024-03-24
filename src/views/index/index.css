@@ -199,8 +199,8 @@ i.box-circle-solid{
 	-moz-transition: 0.5s ease-in;
 }
 .top-nav li a.nav-link:hover, .top-nav .nav-item.active a.nav-link{
-    border-bottom: 3px solid #35cbdf;
-    color: #35cbdf;
+    border-bottom: 3px solid #DA3434;
+    color: #DA3434;
     transition: 0.5s ease-in;
 	-webkit-transition: 0.5s ease-in;
 	-moz-transition: 0.5s ease-in;
@@ -230,8 +230,8 @@ i.box-circle-solid{
 }
 
 .top-nav.light-header li a.nav-link:hover, .top-nav.light-header .nav-item.active a.nav-link{
-	border-bottom: 3px solid #35cbdf;
-    color: #35cbdf;
+	border-bottom: 3px solid #DA3434;
+    color: #DA3434;
     transition: 0.5s ease-in;
 	-webkit-transition: 0.5s ease-in;
 	-moz-transition: 0.5s ease-in;
@@ -802,7 +802,7 @@ ul.social-box li {
     margin-top: 6px;
     }
     .top-nav.light-header .navbar-toggler i {
-    color: #00BED7;
+    color: #DA3434;
     }
     .top-nav  .navbar-collapse.show {
     background-color: #fff;
