@@ -40,6 +40,7 @@ function NavbarHome({ logout,email,user,dataNotification }) {
         ? <div className='home-container-navbar'>
             <div className='home-navbar-flex-container'>
               <div className='home-navbar-position'>
+
                 <div className="dropdown">
                   <div id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" className='home-navbar-tiltle'>
                     { showCircle === true ?
@@ -80,8 +81,8 @@ function NavbarHome({ logout,email,user,dataNotification }) {
                       </div>
                     ))}
                   </div>
-
                 </div>
+
                 <div className="dropdown">
                   <p id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" className='home-navbar-tiltle'>
                     {email} <img src={arrow} alt='icono de la flecha' /> 
@@ -98,6 +99,7 @@ function NavbarHome({ logout,email,user,dataNotification }) {
                     </div>
                   </div>
                 </div>
+
               </div>
             </div>
           </div> 
