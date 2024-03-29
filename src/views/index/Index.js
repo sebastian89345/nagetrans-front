@@ -7,6 +7,10 @@ import './index.css';
 import camioneta1 from "../../assets/img/865831723edcb9974ca2e1843ee622a0.jpg"
 import camioneta2 from "../../assets/img/1230446564.jpg"
 
+import services1 from "../../assets/img/services1.png"
+import services2 from "../../assets/img/services2.png"
+import services3 from "../../assets/img/services3.png"
+
 //Libreria del slider
 import SimpleSlider from "../../components/slider/SimpleSlider";
 
@@ -135,21 +139,27 @@ function Index() {
             <div className="row">
               <div className="col-lg-4 col-md-6 col-sm-6">
                 <div className="service-block-overlay text-center mb-5 p-lg-3">
-                  <i className="fa fa-laptop box-circle-solid mt-3 mb-3" aria-hidden="true"></i>
+                  <div className='mb-3'>
+                    <img src={services1} alt='services 1' />
+                  </div>
                   <h3>Transporte Terrestre Empresarial y Personal</h3>
                   <p className="px-4">Adaptamos nuestros servicios para satisfacer las necesidades tanto empresariales como personales de nuestros clientes.</p>
                 </div>
               </div>
               <div className="col-lg-4 col-md-6 col-sm-6">
                 <div className="service-block-overlay text-center mb-5 p-lg-3">
-                  <i className="fa fa-calendar box-circle-solid mt-3 mb-3" aria-hidden="true"></i>
+                  <div className='mb-3'>
+                    <img src={services2} alt='services 2' />
+                  </div>
                   <h3>Flota Especializada</h3>
                   <p className="px-4">Contamos con una flota de camionetas doblecabina 4x4, equipadas con platón, garantizando versatilidad y capacidad para diversos tipos decarga.</p>
                 </div>
               </div>
               <div className="col-lg-4 col-md-6 col-sm-6">
                 <div className="service-block-overlay text-center mb-5 p-lg-3">
-                  <i className="fa fa-bug box-circle-solid mt-3 mb-3" aria-hidden="true"></i>
+                  <div className='mb-3'>
+                    <img src={services3} alt='services 3' />
+                  </div>
                   <h3>Rastreo Satelital</h3>
                   <p className="px-4">Utilizamos tecnología de rastreo satelital para proporcionar a nuestros clientes visibilidad en tiempo real de los vehiculos.</p>
                 </div>
@@ -177,11 +187,58 @@ function Index() {
             <h2 className='index-font-title'>CONTÁCTANOS</h2>
             <h6 className="text-underline-primary">Estamos aquí para responder tus preguntas, brindarte información adicional o colaborar contigo en soluciones logísticas personalizadas. No dudes en ponerte en contacto con Nagetrans Zomac S.A.Sa través de los siguientes medios</h6>
           </div>
-          <div className="text-center">
-            {/* <SimpleSlider /> */}
+          <div>
+            
+            <div className="login-card-container">
+                <div className="login-container-flex">
+                  
+
+                    {/* <div className="index-container-form-one">
+                      <p className="login-form-one-title">Nagetrans</p>
+                    </div> */}
+
+                    <div className="index-container-form-two">
+                      <div className="login-container-card-two">
+
+                        <div className='mb-3'>
+                          <p className='index-sub-title'>Déjanos tus datos y nos contactaremos contigo</p>
+                        </div>
+
+                        <form component="form">
+
+                          <div className="form-group">
+                            <input type="text" className="form-control login-input" placeholder="Nombres y apellidos" />
+                          </div>
+
+                          <div className="form-group">
+                            <input type="text" className="form-control login-input" placeholder="Número de celular o whatsapp" />
+                          </div>
+
+                          <div className="form-group">
+                            <input type="password" className="form-control login-input" placeholder="Correo electrónico" />
+                          </div>
+
+                          <div className="form-group">
+                            <input type="password" className="form-control login-input" placeholder="Mensaje" />
+                          </div>
+
+                          <div className="form-group">
+                            <button type="submit" className="login-btn-login btn btn-danger">Enviar</button>
+                          </div>
+                          
+                        </form>
+
+                      </div>
+                    </div>
+                  </div>
+              </div>
+
           </div>
         </div>
       </section>
+
+
+
     </>
   )
 }

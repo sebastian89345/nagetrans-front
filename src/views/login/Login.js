@@ -1,8 +1,10 @@
 // componentes de react
 import React, { useState, useEffect } from "react";
 
-// Redux
+//react router dom
 import { useNavigate } from "react-router-dom";
+
+// Redux
 import { useDispatch } from "react-redux";
 
 //Actions
