@@ -61,7 +61,7 @@ function Index() {
                   <a className="nav-link" href="/#contact">CONTACTO</a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/#">PQRS</a>
+                  <a className="nav-link" href="/#pqrs">PQRS</a>
                 </li>
               </ul>
             </div>	
@@ -113,14 +113,14 @@ function Index() {
                 <div className="service-block-overlay text-center mb-5 p-lg-3">
                   <i className="fa fa-laptop box-circle-solid mt-3 mb-3" aria-hidden="true"></i>
                   <h3>MISIÓN</h3>
-                  <p className="px-4">En Nagetrans Zomac SAS, no solo ofrecemos servicios de logística y coordinación de transporte;contribuimos en el desarrollo de la región de Urabá. Nos dedicamos al crecimiento constante para ser el motor que impulsa el progreso,respaldados por una flota de vehículos y camionetas doble cabina en condiciones óptimas de seguridad.</p>
+                  <p className="px-4 text-justify">En Nagetrans Zomac SAS, no solo ofrecemos servicios de logística y coordinación de transporte;contribuimos en el desarrollo de la región de Urabá. Nos dedicamos al crecimiento constante para ser el motor que impulsa el progreso,respaldados por una flota de vehículos y camionetas doble cabina en condiciones óptimas de seguridad.</p>
                 </div>
               </div>
               <div className="col-lg-6 col-md-6 col-sm-6">
                 <div className="service-block-overlay text-center mb-5 p-lg-3">
                   <i className="fa fa-calendar box-circle-solid mt-3 mb-3" aria-hidden="true"></i>
                   <h3>VISIÓN</h3>
-                  <p className="px-4">Será una empresa reconocida en el sector servicios de logística y transporte de la región, preferida por su calidez humana y con alta recordación por su excelente orientación al cliente, basada en la cultura de calidad, compromiso integral de todo nuestro equipo de trabajo.</p>
+                  <p className="px-4 text-justify">Será una empresa reconocida en el sector servicios de logística y transporte de la región, preferida por su calidez humana y con alta recordación por su excelente orientación al cliente, basada en la cultura de calidad, compromiso integral de todo nuestro equipo de trabajo.</p>
                 </div>
               </div>
 
@@ -237,7 +237,43 @@ function Index() {
         </div>
       </section>
 
-
+      <section id='pqrs' className="info-section">
+        <div className="container">
+          <div className="head-box text-center mb-5">
+            <h2 className='index-font-title'>PQRS</h2>
+            <h6 className="text-underline-primary">En Nagetrans Zomac S.A.S, valoramos la retroalimentación de nuestros clientes y nos esforzamos por mejorar continuamente nuestros servicios. Utiliza nuestro sistema de PQRS para hacernos llegar tus Peticiones, Quejas, Reclamos o Sugerencias. Tu opinión es fundamental para nosotros</h6>
+          </div>
+          <div className="three-panel-block mt-5">
+            <div className="row">
+              <div className="col-lg-6 col-md-6 col-sm-6">
+                <div className="text-center mb-5 p-lg-3">
+                  <h3>¿Cómo Funciona?</h3>
+                  <p className="px-4 text-justify mb-2">1. Peticiones: Si necesitas información adicional, cambios en tus servicios o cualquier solicitud específica,estaremos encantados de atenderte.</p>
+                  <p className="px-4 text-justify mb-2">2. Quejas: Si experimentas algún inconveniente odescontento con nuestros servicios, por favor, háznoslo saber para que podamos abordar el problema demanera eficaz.</p>
+                  <p className="px-4 text-justify mb-2">3. Reclamos: Si sientes que no hemos cumplido con tus expectativas, queremos saberlo. Tu reclamo es una oportunidad para mejorar.</p>
+                  <p className="px-4 text-justify mb-2">4. Sugerencias: Valoramos tus ideas y sugerencias para innovar y optimizar nuestros servicios. Cuéntanos cómo podemos mejorar.</p>
+                </div>
+              </div>
+              <div className="col-lg-6 col-md-6 col-sm-6">
+                <div className="text-center mb-5 p-lg-3">
+                  <h3>Proceso de PQRS:</h3>
+                  <p className="px-4 text-justify mb-1">1. Completa nuestro formulario de PQRS en línea.</p>
+                  <p className="px-4 text-justify mb-1">2. Nos pondremos en contacto contigo para confirmar la recepción de tu solicitud.</p>
+                  <p className="px-4 text-justify mb-1">3. Evaluaremos tu caso y tomaremos las medidas necesarias.</p>
+                  <p className="px-4 text-justify mb-3">4. Te proporcionaremos una respuesta o solución en el menor tiempo posible.</p>
+                  <h3>Formulario de PQRS:</h3>
+                  <p className="px-4 text-justify mb-3">[Enlace al Formulario de PQRS]</p>
+                  <h3>Atención Personalizada:</h3>
+                  <p className="px-4 text-justify mb-1">Si prefieres una atención más directa, puedes comunicarte con nuestro equipo de atención al cliente a través de los siguientes medios:</p>
+                  <p className="px-4 text-justify mb-1">1. Teléfono: 315 621 25 82 / 318 332 47 67</p>
+                  <p className="px-4 text-justify mb-3">2. Correo Electrónico: nagetrans@gmail.com</p>
+                  <p className="px-4 text-justify mb-1">En Nagetrans Zomac S.A.S, tu satisfacción es nuestra prioridad. Estamos aquí para escucharte y mejorar juntos.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
     </>
   )
