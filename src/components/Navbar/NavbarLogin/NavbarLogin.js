@@ -14,7 +14,7 @@ function NavbarLogin() {
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-    navigate("/index");
+    navigate("/");
   }
 
   return (

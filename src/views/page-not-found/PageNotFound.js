@@ -11,7 +11,7 @@ function PageNotFound() {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate('/index');
+    navigate('/');
   }
 
   return (

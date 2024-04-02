@@ -14,25 +14,37 @@ import services3 from "../../assets/img/services3.png"
 //Libreria del slider
 import SimpleSlider from "../../components/slider/SimpleSlider";
 
+//react router dom
+import { useNavigate } from "react-router-dom";
+
 function Index() {
   
+  const navigate = useNavigate();
+
   // Sticky Header
   useEffect(() => {
     window.addEventListener("scroll", function() {
-      var scroll = window.pageYOffset || document.documentElement.scrollTop;
+      let scroll = document.documentElement.scrollTop;
 
-      if (scroll >= 100) {
+      if(window.location.pathname === "/"){
+        if (scroll >= 100) {
           document.querySelector(".top-nav").classList.add("light-header");
-      } else {
+        } else {
           document.querySelector(".top-nav").classList.remove("light-header");
+        }
       }
+
     });
 
-    document.addEventListener("DOMContentLoaded", function() {
-      var theYear = new Date().getFullYear();
-      document.getElementById('year').innerHTML = theYear;
-    });
+    // document.addEventListener("DOMContentLoaded", function() {
+    //   var theYear = new Date().getFullYear();
+    //   document.getElementById('year').innerHTML = theYear;
+    // });
   }, [])
+
+  const navigateLogin = () => {
+    navigate("/login");
+  }
 
   return (
     <>
@@ -275,7 +287,6 @@ function Index() {
         </div>
       </section>
 
-      {/* <!-- Footer --> */}
       <section id="footer" className="info-section">
         <div className="container">
           <div className="row text-center text-xs-center text-sm-left text-md-left">
@@ -302,7 +313,7 @@ function Index() {
             <div className="col-xs-12 col-sm-4 col-md-4">
               <h5>Quick links</h5>
               <ul className="list-unstyled quick-links">
-                <li><a href="https://www.fiverr.com/share/qb8D02"><i className="fa fa-angle-double-right"></i>Home</a></li>
+                <li><p className='index-footer-p-text' onClick={navigateLogin}><i className="fa fa-angle-double-right"></i>Login</p></li>
                 <li><a href="https://www.fiverr.com/share/qb8D02"><i className="fa fa-angle-double-right"></i>About</a></li>
                 <li><a href="https://www.fiverr.com/share/qb8D02"><i className="fa fa-angle-double-right"></i>FAQ</a></li>
                 <li><a href="https://www.fiverr.com/share/qb8D02"><i className="fa fa-angle-double-right"></i>Get Started</a></li>
@@ -317,19 +328,18 @@ function Index() {
                 <li className="list-inline-item"><a href="https://www.fiverr.com/share/qb8D02"><i className="fa fa-twitter"></i></a></li>
                 <li className="list-inline-item"><a href="https://www.fiverr.com/share/qb8D02"><i className="fa fa-instagram"></i></a></li>
                 <li className="list-inline-item"><a href="https://www.fiverr.com/share/qb8D02"><i className="fa fa-google-plus"></i></a></li>
-                <li className="list-inline-item"><a href="https://www.fiverr.com/share/qb8D02" target="_blank"><i className="fa fa-envelope"></i></a></li>
+                <li className="list-inline-item"><a href="https://www.fiverr.com/share/qb8D02"><i className="fa fa-envelope"></i></a></li>
               </ul>
             </div>
           </div>	
           <div className="row">
             <div className="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
               <p><u><a href="https://www.nationaltransaction.com/">National Transaction Corporation</a></u> is a Registered MSP/ISO of Elavon, Inc. Georgia [a wholly owned subsidiary of U.S. Bancorp, Minneapolis, MN]</p>
-              <p className="h6">© All right Reversed.<a class="text-green ml-2" href="https://www.sunlimetech.com" target="_blank">Sunlimetech</a></p>
+              <p className="h6">© All right Reversed.<a className="text-green ml-2" href="https://www.sunlimetech.com">Sunlimetech</a></p>
             </div>
           </div>	
         </div>
       </section>
-      {/* <!-- ./Footer --> */}
 
     </>
   )
