@@ -105,6 +105,10 @@ function Login() {
     }
   };
 
+  const handleSubmitNavigate = () => {
+    navigate("/");
+  }
+
   return (
     <>
       {width > 992  
@@ -190,7 +194,7 @@ function Login() {
               </div>
             </form>
             <div className="form-group">
-              <button type="button" className="login-mobile-button btn btn-danger">Inicio</button>
+              <button onClick={handleSubmitNavigate} type="button" className="login-mobile-button btn btn-danger">Inicio</button>
             </div>
           </div>
         </div>        

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect,useState } from 'react'
 
 //Estilos
 import './index.css';
@@ -17,9 +17,20 @@ import SimpleSlider from "../../components/slider/SimpleSlider";
 //react router dom
 import { useNavigate } from "react-router-dom";
 
+//Alertas 
+import Swal from 'sweetalert2';
+
 function Index() {
   
   const navigate = useNavigate();
+  const [name, setName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [errorName, setErrorName] = useState("");
+  const [errorPhoneNumber, setErrorPhoneNumber] = useState("");
+  const [errorEmail, setErrorEmail] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   // Sticky Header
   useEffect(() => {
@@ -44,6 +55,87 @@ function Index() {
 
   const navigateLogin = () => {
     navigate("/login");
+  }
+
+  const validateField = (value, fieldName, regex, minLength, customErrorMessage) => {
+    if (value.trim() === '') {
+      return `El campo ${fieldName} no puede estar en blanco.`;
+    }
+
+    if (regex && !regex.test(value)) {
+      return customErrorMessage || `El campo ${fieldName} no cumple con el formato esperado.`;
+    }
+
+    if (value.length < minLength) {
+      return `El campo ${fieldName} debe tener al menos ${minLength} caracteres.`;
+    }
+
+    return null; // Indica que la validación fue exitosa
+  };
+
+  const validate = () => {
+    let isValid = true;
+
+    const nameError = validateField(name, 'nombres', /^[a-zA-ZñÑ0-9\s]+$/, 4);
+    if (nameError) {
+      setErrorName(nameError);
+      isValid = false;
+    } else {
+      setErrorName("");
+    }
+
+    const phoneNumberError = validateField(phoneNumber, 'celular', /^[a-zA-ZñÑ0-9\s]+$/, 4);
+    if (phoneNumberError) {
+      setErrorPhoneNumber(phoneNumberError);
+      isValid = false;
+    } else {
+      setErrorPhoneNumber("");
+    }
+
+    const emailError = validateField(email, 'correo', /^[a-zA-ZñÑ0-9\s]+$/, 4);
+    if (emailError) {
+      setErrorEmail(emailError);
+      isValid = false;
+    } else {
+      setErrorEmail("");
+    }
+
+    const messageError = validateField(message, 'mensaje', /^[a-zA-ZñÑ0-9\s]+$/, 4);
+    if (messageError) {
+      setErrorMessage(messageError);
+      isValid = false;
+    } else {
+      setErrorMessage("");
+    }
+
+    // Puedes agregar más bloques de validaciones para otros campos si es necesario
+    return isValid;
+  }
+
+  // valida que solo se escriban numeros
+  const handleChangePhoneNumber = (e) => {
+    const esValido = e.target.validity.valid;
+    if (esValido) {
+      setPhoneNumber(e.target.value);
+    }
+  } 
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let validateContant = validate();
+    if (validateContant) {
+      Swal.fire({
+        title: "Mensaje enviado!",
+        // text: "El mensaje se envío con exito",
+        icon: "success"
+      });
+    } else {
+      Swal.fire({
+        title: "Error!",
+        text: "Ocurrio un error al enviar el mensaje",
+        icon: "error"
+      });
+    }
   }
 
   return (
@@ -91,7 +183,7 @@ function Index() {
             <div className="carousel-caption ">
                 <h2 className="display-4 text-white mb-2 mt-4">NAGETRANS ZOMAC SAS</h2>
                 <p className="text-white mb-3 px-5 lead">Nuestro compromiso es llevar a tu equipo con seguridad y puntualidad</p>
-                <a href="/#" className="btn btn-danger btn-capsul px-4 py-2">Ver servicios</a>
+                <a href="/#services" className="btn btn-danger btn-capsul px-4 py-2">Ver servicios</a>
             </div>
           </div>
           <div className="carousel-item">
@@ -99,7 +191,7 @@ function Index() {
             <div className="carousel-caption ">
                 <h2 className="display-4 text-white mb-2 mt-4">EXPLORA LA EFICIENCIA EN CADA SERVICIO</h2>
                 <p className="text-white mb-3 px-5 lead">Nagetrans zomac SAS, tu socio de transporte confiable</p>
-                <a href="/#" className="btn btn-danger btn-capsul px-4 py-2">Más información</a>
+                <a href="/#contact" className="btn btn-danger btn-capsul px-4 py-2">Más información</a>
             </div>
           </div>
         </div>
@@ -202,49 +294,58 @@ function Index() {
           <div>
             
             <div className="login-card-container">
-                <div className="login-container-flex">
-                  
+              <div className="login-container-flex">
+                
+                  <div className="index-container-form-two">
+                    <div className="login-container-card-two">
+                      <div className='mb-3'>
+                        <p className='index-sub-title'>Déjanos tus datos y nos contactaremos contigo</p>
+                      </div>
 
-                    {/* <div className="index-container-form-one">
-                      <p className="login-form-one-title">Nagetrans</p>
-                    </div> */}
+                      <form onSubmit={handleSubmit} component="form">
 
-                    <div className="index-container-form-two">
-                      <div className="login-container-card-two">
-
-                        <div className='mb-3'>
-                          <p className='index-sub-title'>Déjanos tus datos y nos contactaremos contigo</p>
+                        <div className="form-group">
+                          <input value={name} onChange={(e) => setName(e.target.value)} type="text" className="form-control login-input" placeholder="Nombres y apellidos" />
                         </div>
 
-                        <form component="form">
+                        <div className='mb-4'>
+                          {errorName && <p style={{ color: 'red' }}>{errorName}</p>}
+                        </div>
 
-                          <div className="form-group">
-                            <input type="text" className="form-control login-input" placeholder="Nombres y apellidos" />
-                          </div>
+                        <div className="form-group">
+                          <input value={phoneNumber} onChange={handleChangePhoneNumber} pattern="[0-9]{0,13}" type="text" className="form-control login-input" placeholder="Número de celular o whatsapp" />
+                        </div>
 
-                          <div className="form-group">
-                            <input type="text" className="form-control login-input" placeholder="Número de celular o whatsapp" />
-                          </div>
+                        <div className='mb-4'>
+                          {errorPhoneNumber && <p style={{ color: 'red' }}>{errorPhoneNumber}</p>}
+                        </div>
 
-                          <div className="form-group">
-                            <input type="password" className="form-control login-input" placeholder="Correo electrónico" />
-                          </div>
+                        <div className="form-group">
+                          <input value={email} onChange={(e) => setEmail(e.target.value)} type="text" className="form-control login-input" placeholder="Correo electrónico" />
+                        </div>
 
-                          <div className="form-group">
-                            <input type="password" className="form-control login-input" placeholder="Mensaje" />
-                          </div>
+                        <div className='mb-4'>
+                          {errorEmail && <p style={{ color: 'red' }}>{errorEmail}</p>}
+                        </div>
 
-                          <div className="form-group">
-                            <button type="submit" className="login-btn-login btn btn-danger">Enviar</button>
-                          </div>
-                          
-                        </form>
+                        <div className="form-group">
+                          <input value={message} onChange={(e) => setMessage(e.target.value)} type="text" className="form-control login-input" placeholder="Mensaje" />
+                        </div>
 
-                      </div>
+                        <div className='mb-4'>
+                          {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+                        </div>
+
+                        <div className="form-group">
+                          <button type="submit" className="login-btn-login btn btn-danger">Enviar</button>
+                        </div>
+                        
+                      </form>
+
                     </div>
                   </div>
+                </div>
               </div>
-
           </div>
         </div>
       </section>
@@ -289,39 +390,40 @@ function Index() {
 
       <section id="footer" className="info-section">
         <div className="container">
-          <div className="row text-center text-xs-center text-sm-left text-md-left">
-            <div className="col-xs-12 col-sm-4 col-md-4">
+          <div className="row text-center text-xs-center text-sm-left text-md-left justify-content-center">
+            {/* <div className="col-xs-12 col-sm-4 col-md-4">
               <h5>Quick links</h5>
               <ul className="list-unstyled quick-links">
-                <li><a href="https://www.fiverr.com/share/qb8D02"><i className="fa fa-angle-double-right"></i>Home</a></li>
-                <li><a href="https://www.fiverr.com/share/qb8D02"><i className="fa fa-angle-double-right"></i>About</a></li>
-                <li><a href="https://www.fiverr.com/share/qb8D02"><i className="fa fa-angle-double-right"></i>FAQ</a></li>
+                <li><a href="https://www.fiverr.com/share/qb8D02"><i className="fa fa-angle-double-right"></i>Correo:</a></li>
+                <li><a href="https://www.fiverr.com/share/qb8D02"><i className="fa fa-angle-double-right"></i>Celular:</a></li>
+                <li><a href="https://www.fiverr.com/share/qb8D02"><i className="fa fa-angle-double-right"></i>Ubicación:</a></li>
                 <li><a href="https://www.fiverr.com/share/qb8D02"><i className="fa fa-angle-double-right"></i>Get Started</a></li>
                 <li><a href="https://www.fiverr.com/share/qb8D02"><i className="fa fa-angle-double-right"></i>Videos</a></li>
               </ul>
-            </div>
+            </div> */}
             <div className="col-xs-12 col-sm-4 col-md-4">
-              <h5>Quick links</h5>
+              <h5>Información</h5>
               <ul className="list-unstyled quick-links">
-                <li><a href="https://www.fiverr.com/share/qb8D02"><i className="fa fa-angle-double-right"></i>Home</a></li>
-                <li><a href="https://www.fiverr.com/share/qb8D02"><i className="fa fa-angle-double-right"></i>About</a></li>
-                <li><a href="https://www.fiverr.com/share/qb8D02"><i className="fa fa-angle-double-right"></i>FAQ</a></li>
-                <li><a href="https://www.fiverr.com/share/qb8D02"><i className="fa fa-angle-double-right"></i>Get Started</a></li>
-                <li><a href="https://www.fiverr.com/share/qb8D02"><i className="fa fa-angle-double-right"></i>Videos</a></li>
+                <li><p className='index-footer-p-text'><i className="fa fa-angle-double-right"></i>nagetrans@gmail.com</p></li>
+                <li><p className='index-footer-p-text'><i className="fa fa-angle-double-right"></i>3156212582 / 3183324767</p></li>
+                <li><p className='index-footer-p-text'><i className="fa fa-angle-double-right"></i>Apartado-Colombia</p></li>
+                {/* <li><a href="https://www.fiverr.com/share/qb8D02"><i className="fa fa-angle-double-right"></i>Get Started</a></li>
+                <li><a href="https://www.fiverr.com/share/qb8D02"><i className="fa fa-angle-double-right"></i>Videos</a></li> */}
               </ul>
             </div>
             <div className="col-xs-12 col-sm-4 col-md-4">
-              <h5>Quick links</h5>
+              <h5>Acceso a afiliados</h5>
               <ul className="list-unstyled quick-links">
-                <li><p className='index-footer-p-text' onClick={navigateLogin}><i className="fa fa-angle-double-right"></i>Login</p></li>
-                <li><a href="https://www.fiverr.com/share/qb8D02"><i className="fa fa-angle-double-right"></i>About</a></li>
-                <li><a href="https://www.fiverr.com/share/qb8D02"><i className="fa fa-angle-double-right"></i>FAQ</a></li>
+                <li><p className='index-footer-p-text' onClick={navigateLogin}><i className="fa fa-angle-double-right"></i>Acceso a empleados</p></li>
+                <li><p className='index-footer-p-text'><i className="fa fa-angle-double-right"></i>Acceso a afiliados</p></li>
+                {/* <li><a href="https://www.fiverr.com/share/qb8D02"><i className="fa fa-angle-double-right"></i>FAQ</a></li>
                 <li><a href="https://www.fiverr.com/share/qb8D02"><i className="fa fa-angle-double-right"></i>Get Started</a></li>
-                <li><a href="https://wwwe.sunlimetech.com" title="Design and developed by"><i className="fa fa-angle-double-right"></i>Imprint</a></li>
+                <li><a href="https://wwwe.sunlimetech.com" title="Design and developed by"><i className="fa fa-angle-double-right"></i>Imprint</a></li> */}
               </ul>
             </div>
           </div>
-          <div className="row">
+
+          {/* <div className="row">
             <div className="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
               <ul className="list-unstyled list-inline social text-center">
                 <li className="list-inline-item"><a href="https://www.fiverr.com/share/qb8D02"><i className="fa fa-facebook"></i></a></li>
@@ -331,13 +433,15 @@ function Index() {
                 <li className="list-inline-item"><a href="https://www.fiverr.com/share/qb8D02"><i className="fa fa-envelope"></i></a></li>
               </ul>
             </div>
-          </div>	
-          <div className="row">
+          </div>	 */}
+            
+          {/* <div className="row">
             <div className="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
               <p><u><a href="https://www.nationaltransaction.com/">National Transaction Corporation</a></u> is a Registered MSP/ISO of Elavon, Inc. Georgia [a wholly owned subsidiary of U.S. Bancorp, Minneapolis, MN]</p>
               <p className="h6">© All right Reversed.<a className="text-green ml-2" href="https://www.sunlimetech.com">Sunlimetech</a></p>
             </div>
-          </div>	
+          </div>	 */}
+
         </div>
       </section>
 
