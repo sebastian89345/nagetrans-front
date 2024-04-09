@@ -41,7 +41,7 @@ function SimpleSlider() {
     if(window.innerWidth > 992) {
       setSettings({
         infinite: true,
-        speed: 500,
+        speed: 1000,
         slidesToShow: 4,
         slidesToScroll: 1,
         autoplay: true,
@@ -51,7 +51,7 @@ function SimpleSlider() {
     } else if(window.innerWidth > 500 && window.innerWidth < 991) {
       setSettings({
         infinite: true,
-        speed: 500,
+        speed: 1000,
         slidesToShow: 3,
         slidesToScroll: 1,
         autoplay: true,
@@ -61,7 +61,7 @@ function SimpleSlider() {
     } else {
       setSettings({
         infinite: true,
-        speed: 500,
+        speed: 1000,
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,

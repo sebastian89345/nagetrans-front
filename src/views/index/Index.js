@@ -6,10 +6,11 @@ import './index.css';
 //Imagenes
 import camioneta1 from "../../assets/img/865831723edcb9974ca2e1843ee622a0.jpg"
 import camioneta2 from "../../assets/img/1230446564.jpg"
-
 import services1 from "../../assets/img/services1.png"
 import services2 from "../../assets/img/services2.png"
 import services3 from "../../assets/img/services3.png"
+import mision from '../../assets/img/MISION.png'
+import vision from '../../assets/img/vision.png'
 
 //Libreria del slider
 import SimpleSlider from "../../components/slider/SimpleSlider";
@@ -215,15 +216,15 @@ function Index() {
             <div className="row">
               <div className="col-lg-6 col-md-6 col-sm-6">
                 <div className="service-block-overlay text-center mb-5 p-lg-3">
-                  <i className="fa fa-laptop box-circle-solid mt-3 mb-3" aria-hidden="true"></i>
-                  <h3>MISIÓN</h3>
+                  {/* <i className="fa fa-laptop box-circle-solid mt-3 mb-3" aria-hidden="true"></i> */}
+                  <img className='index-abot-us-img' src={mision} alt='mision' />
                   <p className="px-4 text-justify">En Nagetrans Zomac SAS, no solo ofrecemos servicios de logística y coordinación de transporte;contribuimos en el desarrollo de la región de Urabá. Nos dedicamos al crecimiento constante para ser el motor que impulsa el progreso,respaldados por una flota de vehículos y camionetas doble cabina en condiciones óptimas de seguridad.</p>
                 </div>
               </div>
               <div className="col-lg-6 col-md-6 col-sm-6">
                 <div className="service-block-overlay text-center mb-5 p-lg-3">
-                  <i className="fa fa-calendar box-circle-solid mt-3 mb-3" aria-hidden="true"></i>
-                  <h3>VISIÓN</h3>
+                  {/* <i className="fa fa-calendar box-circle-solid mt-3 mb-3" aria-hidden="true"></i> */}
+                  <img className='index-abot-us-img' src={vision} alt='vision' />
                   <p className="px-4 text-justify">Será una empresa reconocida en el sector servicios de logística y transporte de la región, preferida por su calidez humana y con alta recordación por su excelente orientación al cliente, basada en la cultura de calidad, compromiso integral de todo nuestro equipo de trabajo.</p>
                 </div>
               </div>

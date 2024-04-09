@@ -928,6 +928,10 @@ section .section-title {
 	color:#eeeeee;
 }
 
+.index-abot-us-img {
+	width: 280px;
+}
+
 @media (max-width:767px){
 	#footer h5 {
     padding-left: 0;
