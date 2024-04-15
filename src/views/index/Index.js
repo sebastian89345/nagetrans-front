@@ -21,6 +21,9 @@ import { useNavigate } from "react-router-dom";
 //Alertas 
 import Swal from 'sweetalert2';
 
+//Actions
+import { postSendEmail } from "../../store/action/sendEmailAction";
+
 function Index() {
   
   const navigate = useNavigate();
@@ -58,6 +61,18 @@ function Index() {
     navigate("/login");
   }
 
+  const handleNavigatePqrs = () => {
+    navigate("/pqrs");
+  }
+
+  // valida que solo se escriban numeros
+  const handleChangePhoneNumber = (e) => {
+    const esValido = e.target.validity.valid;
+    if (esValido) {
+      setPhoneNumber(e.target.value);
+    }
+  } 
+
   const validateField = (value, fieldName, regex, minLength, customErrorMessage) => {
     if (value.trim() === '') {
       return `El campo ${fieldName} no puede estar en blanco.`;
@@ -93,7 +108,7 @@ function Index() {
       setErrorPhoneNumber("");
     }
 
-    const emailError = validateField(email, 'correo', /^[a-zA-ZñÑ0-9\s]+$/, 4);
+    const emailError = validateField(email, 'correo', /^.+$/, 4);
     if (emailError) {
       setErrorEmail(emailError);
       isValid = false;
@@ -101,7 +116,7 @@ function Index() {
       setErrorEmail("");
     }
 
-    const messageError = validateField(message, 'mensaje', /^[a-zA-ZñÑ0-9\s]+$/, 4);
+    const messageError = validateField(message, 'mensaje', /^.+$/, 4);
     if (messageError) {
       setErrorMessage(messageError);
       isValid = false;
@@ -113,34 +128,49 @@ function Index() {
     return isValid;
   }
 
-  // valida que solo se escriban numeros
-  const handleChangePhoneNumber = (e) => {
-    const esValido = e.target.validity.valid;
-    if (esValido) {
-      setPhoneNumber(e.target.value);
-    }
-  } 
+  const resetInput = () => {
+    setName("")
+    setPhoneNumber("")
+    setEmail("")
+    setMessage("")
+  }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     let validateContant = validate();
     if (validateContant) {
-      Swal.fire({
-        title: "Mensaje enviado!",
-        // text: "El mensaje se envío con exito",
-        icon: "success"
-      });
-    } else {
-      Swal.fire({
-        title: "Error!",
-        text: "Ocurrio un error al enviar el mensaje",
-        icon: "error"
-      });
+      let body = {
+        interface:"contact",
+        name:name,
+        email:email,
+        phoneNumber:phoneNumber,
+        message:message
+      }
+      let result = await postSendEmail(body);
+      // console.log(result);
+      switch (result.status) {
+        case 200:
+          resetInput();
+          Swal.fire({
+            title: "Mensaje enviado!",
+            // text: "Nos contactaermos contigo",
+            icon: "success"
+          });
+          break;
+        default:
+          Swal.fire({
+            title: "No se pudo enviar el mensaje",
+            // text: "El mensaje se envío con exito",
+            icon: "error"
+          });
+          break;
+      }
     }
   }
 
   return (
     <>
+    
       <nav className="navbar navbar-expand-md fixed-top top-nav">
         <div className="container">
             <p className="navbar-brand"><strong>Nagetrans</strong></p>
@@ -295,8 +325,7 @@ function Index() {
           <div>
             
             <div className="login-card-container">
-              <div className="login-container-flex">
-                
+              <div className="index-container-flex">
                   <div className="index-container-form-two">
                     <div className="login-container-card-two">
                       <div className='mb-3'>
@@ -330,7 +359,7 @@ function Index() {
                         </div>
 
                         <div className="form-group">
-                          <input value={message} onChange={(e) => setMessage(e.target.value)} type="text" className="form-control login-input" placeholder="Mensaje" />
+                          <textarea value={message} onChange={(e) => setMessage(e.target.value)} type="text" className="form-control login-input" placeholder="Mensaje" />
                         </div>
 
                         <div className='mb-4'>
@@ -376,7 +405,7 @@ function Index() {
                   <p className="px-4 text-justify mb-1">3. Evaluaremos tu caso y tomaremos las medidas necesarias.</p>
                   <p className="px-4 text-justify mb-3">4. Te proporcionaremos una respuesta o solución en el menor tiempo posible.</p>
                   <h3>Formulario de PQRS:</h3>
-                  <p className="px-4 text-justify mb-3">[Enlace al Formulario de PQRS]</p>
+                  <p onClick={handleNavigatePqrs} className="index-pqrs-text-link-form px-4 text-justify mb-3">Dar click, para llenar el formulario</p>
                   <h3>Atención Personalizada:</h3>
                   <p className="px-4 text-justify mb-1">Si prefieres una atención más directa, puedes comunicarte con nuestro equipo de atención al cliente a través de los siguientes medios:</p>
                   <p className="px-4 text-justify mb-1">1. Teléfono: 315 621 25 82 / 318 332 47 67</p>

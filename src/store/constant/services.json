@@ -1,5 +1,5 @@
 {
-    "urlDev":"http://localhost:3010/api/v1/",
+    "urlDev":"http://localhost:3000/api/v1/",
     "urlProd":"https://nagetransbackone.uno/api/v1/",
     "login": {
         "urlLogin":"auth/login/"
@@ -42,5 +42,8 @@
     },
     "listCheck": {
         "urlListCheck":"listCheck/"
+    },
+    "contact": {
+        "urlContact":"contact/"
     }
 }

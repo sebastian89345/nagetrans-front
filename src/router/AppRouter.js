@@ -6,6 +6,7 @@ import PrivateRoute from "../components/router/PrivateRoute";
 
 // vistas
 import Index from '../views/index/Index';
+import Pqrs from '../views/pqrs/Pqrs';
 import Login from '../views/login/Login';
 import Home from '../views/home/Home';
 import PageNotFound from '../views/page-not-found/PageNotFound';
@@ -29,7 +30,7 @@ export const AppRouter = () => {
     <>
       <Routes>
         <Route path="/" element={<Index token={token} setToken={ (e) => setToken(e) } />} exact />
-        {/* <Route path="/index" element={<Index token={token} setToken={ (e) => setToken(e) } />} exact /> */}
+        <Route path="/pqrs" element={<Pqrs token={token} setToken={ (e) => setToken(e) } />} exact />
         <Route path="/login" element={<Login token={token} setToken={ (e) => setToken(e) } />} exact />
         <Route path="/home" element={<PrivateRoute isAuthenticated={infoLogin.data.response} ><Home /></PrivateRoute>} exact />
         <Route path="*" element={<PageNotFound />} exact />

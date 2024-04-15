@@ -29,7 +29,7 @@ const rootReducer = combineReducers({
     compesationBoxReducer: compesationBoxReducer, 
     driverDocumentReducer: driverDocumentReducer, 
     vehicleDocumentReducer: vehicleDocumentReducer, 
-    listCheckReducer: listCheckReducers 
+    listCheckReducer: listCheckReducers
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

@@ -475,8 +475,8 @@ function Create({ setView,getAll }) {
                   { opcionSelectRole === adminstrador || opcionSelectRole === conductor  ? 
                     <>
                       <div className='mt-4 user-create-main-input'>
-                          <label htmlFor="exampleInputEmail1">Cédula:</label>
-                          <input value={inputDni} onChange={handleChangeDni} pattern="[0-9]{0,13}" type="text" className="user-create-input form-control" placeholder="Cedula" />
+                        <label htmlFor="exampleInputEmail1">Cédula:</label>
+                        <input value={inputDni} onChange={handleChangeDni} pattern="[0-9]{0,13}" type="text" className="user-create-input form-control" placeholder="Cedula" />
                       </div>
 
                       <div className='mt-4'>
