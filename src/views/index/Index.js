@@ -4,8 +4,8 @@ import React, { useEffect,useState } from 'react'
 import './index.css';
 
 //Imagenes
-import camioneta1 from "../../assets/img/865831723edcb9974ca2e1843ee622a0.jpg"
-import camioneta2 from "../../assets/img/1230446564.jpg"
+import camioneta1 from "../../assets/img/backGroud1.jpeg"
+import camioneta2 from "../../assets/img/backGroud2.jpeg"
 import services1 from "../../assets/img/services1.png"
 import services2 from "../../assets/img/services2.png"
 import services3 from "../../assets/img/services3.png"
